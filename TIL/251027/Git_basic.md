@@ -3,7 +3,7 @@
 ## Echo
 
 - echo "hello world" > sample.txt : 덮어쓰기
-- echo "hello world >> sample.txt : 이어쓰기
+- echo "hello world" >> sample.txt : 이어쓰기
 
 ## 브랜치 병합
 
