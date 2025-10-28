@@ -385,3 +385,7 @@ fun main() {
 | --- | --- |
 | `?.` | null이 아닐 때만 접근 (safe call) |
 | `?:` | null일 경우 오른쪽 값을 반환 (Elvis 연산자) |
+
+---
+참고 문서
+[코틀린 공식 문서](https://kotlinlang.org/docs/basic-syntax.html)
