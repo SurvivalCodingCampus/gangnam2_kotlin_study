@@ -23,7 +23,6 @@ Kotlin은 **Java 기반 언어**지만,
 - 코드에서 실수할 가능성을 구조적으로 줄이고 읽고 쓰기 쉬운 방식으로 설계
 
     ex) Null Safety , 자동 타입 캐스팅 등등
-g
 ```kotlin
 package com.survivalcoding.kotlinstudy
 
