@@ -24,7 +24,7 @@ fun main() {
 }
 ```
 
-## 함수 (Funcations)
+## 함수 (Functions)
 `fun` 키워드를 사용해서 함수를 선언한다.
 
 ```kotlin
@@ -179,7 +179,7 @@ if (name2 != null) {
 } else {
   println("null")
 }
-println(name?.toInt()) // 안전한 호출
+println(name2?.toInt()) // 안전한 호출
 
 // !!로 null이 아님을 보증 (절대 금지)
 name = name2!!
