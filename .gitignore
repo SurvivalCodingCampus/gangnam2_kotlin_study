@@ -143,3 +143,24 @@ replay_pid*
 # End of https://www.toptal.com/developers/gitignore/api/intellij,kotlin
 
 .idea/
+.gradle
+**/build/
+!src/**/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+local.properties
+
+# Kotlin
+.kotlin_repl_history
+
+# VSCode
+.vscode/
