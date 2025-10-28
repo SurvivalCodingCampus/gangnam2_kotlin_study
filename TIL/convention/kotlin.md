@@ -1,6 +1,4 @@
-# Kotlin Coding 컨벤션
-
-https://kotlinlang.org/docs/coding-conventions.html
+# [Kotlin Coding 컨벤션](https://kotlinlang.org/docs/coding-conventions.html)
 
 ## IDE에서 스타일 구성하기
 
@@ -64,9 +62,9 @@ https://kotlinlang.org/docs/coding-conventions.html
 
 JVM은 동일한 완전한 클래스명(FQN)을 가진 여러 클래스를 허용하지 않습니다. 이는 Kotlin 프로젝트를 JVM으로 컴파일할 수 없는 상황으로 이어질 수 있습니다.
 
-```
-jvmMain/kotlin/myPackage/Platform.kt
-androidMain/kotlin/myPackage/Platform.kt
+```kotlin
+jvmMain / kotlin / myPackage / Platform.kt
+androidMain / kotlin / myPackage / Platform.kt
 ```
 
 두 `Platform.kt` 파일이 모두 같은 패키지에 있으므로, Kotlin JVM 컴파일러는 두 개의 파일 파사드를 생성하며, 둘 다 `myPackage.PlatformKt` FQN을 가집니다. 이는 "중복
@@ -384,7 +382,7 @@ if (elements != null) {
 
 **제어 흐름 키워드와 해당 여는 괄호 사이에 공백 넣기** (`if`, `when`, `for`, `while`)
 
-**주요 생성자 선언, 메서드 선언 또는 메서드 호출에서 여는 괄호 앞에 공백 넣지 않기**
+#### 주요 생성자 선언, 메서드 선언 또는 메서드 호출에서 여는 괄호 앞에 공백 넣지 않기
 
 ```kotlin
 class A(val x: Int)
@@ -409,7 +407,7 @@ fun bar() {
 
 - `// This is a comment`
 
-**타입 매개변수를 지정하는 데 사용되는 꺾쇠괄호 주위에 공백 넣지 않기**
+#### 타입 매개변수를 지정하는 데 사용되는 꺾쇠괄호 주위에 공백 넣지 않기
 
 - `class Map<K, V> { ... }`
 
@@ -527,7 +525,7 @@ class MyFavouriteVeryLongClassHolder :
 
 선언에 여러 수식어가 있는 경우, 항상 다음 순서로 배치하세요:
 
-```
+```text
 public / protected / private / internal
 expect / actual
 final / open / abstract / sealed / const
