@@ -3,7 +3,8 @@
 ## 오늘 배운것
 IntelliJ 단축키
 - 함수 정의로 이동: ctrl + B
-- 함수 정의 뒤로가기 앞으로 가기: ctrl + alt + B
+- 함수 정의 뒤로 가기: ctrl + alt + ←
+- 함수 정의 앞으로 가기: ctrl + alt + →
 - find action: shift 버튼 2번
 
 개념
