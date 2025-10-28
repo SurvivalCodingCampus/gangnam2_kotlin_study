@@ -107,9 +107,9 @@ println(result)
 ### 4-2 ) when 
 ```kotlin
 val add = when(a) {
-	1-> 10
-	2 -> 20
-	else -> 30
+    1-> 10
+    2 -> 20
+    else -> 30
 }
 ```
 
@@ -117,8 +117,8 @@ val add = when(a) {
 ### 5-1 ) named arguments
 ```kotlin
 
-fun sum(a: Int, b: Int = 10): Int { // b는 기본값 10
-    return a + b
+fun sum(a: Int, b: Int = 10): Int { // b는 기본값 10 
+ return a + b
 }
 
 fun main() {
