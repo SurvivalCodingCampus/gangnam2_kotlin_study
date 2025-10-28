@@ -93,7 +93,7 @@ Primitive Type이 존재하지 않고, 전부 Reference Type
 | Floating-point numbers | `Float`, `Double`                  | `val currentTemp: Float = 24.5f`,<br>`val price: Double = 19.99` |
 | Booleans               | `Boolean`                          | `val isEnabled: Boolean = true`                                  |
 | Characters             | `Char`                             | `val separator: Char = ','`                                      |
-| Strings                | `String`                           | `val message: String = "Hello, world!`                           |
+| Strings                | `String`                           | `val message: String = "Hello, world!"`                           |
 
 ## 타입 캐스팅
 java에서는 작은 크기의 타입은 큰 크기의 타입에 대입하면 자동 캐스팅 해주고, 큰 것에서 작은 것으로 대입하려면 명시적 캐스팅을 해야 한다.   
