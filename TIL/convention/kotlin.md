@@ -267,7 +267,7 @@ class MyTestCase {
 
 **상수명** (`const`로 표시되거나, 커스텀 `get` 함수가 없고 깊이 불변인 데이터를 보유하는 최상위 또는 object `val` 프로퍼티):
 
-- 모두 대문자, 언더스코어로 단어 구분 ([screaming snake case]((https://en.wikipedia.org/wiki/Snake_case)))
+- 모두 대문자, 언더스코어로 단어 구분 ([screaming snake case](https://en.wikipedia.org/wiki/Snake_case))
 
 ```kotlin
 const val MAX_COUNT = 8
@@ -1154,10 +1154,10 @@ fun containsNegative(list: List<Int>): Boolean {
     list.forEach {
         if (it < 0) {
             println("음수 발견: $it")
-            return@forEach true // ERROR: 람다의 반환 값이 아닌 forEach의 단일 스텝을 종료함
-            // return@forEach는 실제로 'forEach'의 다음 루프를 실행하도록 할 뿐,
-            // containsNegative 함수를 종료하고 'true'를 반환하지 못합니다.
-            // 원하는 결과를 얻으려면 'throw'를 사용하거나, 익명 함수로 변환해야 합니다.
+            return@forEach true // ❌ 잘못된 사용
+            // return@forEach는 forEach의 현재 반복만 건너뜀
+            // 함수 자체를 반환하지 않음 → 원하는 결과를 얻을 수 없음
+            // 원하는 결과를 얻으려면 'throw'를 사용하거나, 익명 함수로 변환.
         }
     }
     return false
