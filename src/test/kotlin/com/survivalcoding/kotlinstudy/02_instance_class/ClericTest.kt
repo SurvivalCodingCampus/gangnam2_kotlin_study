@@ -1,8 +1,8 @@
 package com.survivalcoding.kotlinstudy.`02_instance_class`
 
-import junit.framework.TestCase.assertTrue
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ClericTest {
     @Test
