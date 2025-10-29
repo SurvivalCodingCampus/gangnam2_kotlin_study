@@ -2,7 +2,7 @@ package _251029_kotlin_oop
 
 class Cleric(
     val name: String = "",
-    var hp: Int = 40,
+    var hp: Int = 50,
     var mp: Int = 10
 ) {
     val maxHp: Int = 50
