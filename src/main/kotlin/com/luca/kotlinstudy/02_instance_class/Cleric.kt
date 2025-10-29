@@ -21,25 +21,25 @@ class Cleric(var name: String = "", var hp: Int = MAX_HP, var mp: Int = MAX_MP) 
     }
 
     fun pray(prayTime: Int): Int {
-        if(mp < MAX_MP) {
-            val oldMp = mp
-            var recoveryMp = mp + prayTime + Random.nextInt(0,3)
-            var actualRecovery = 0
+        val oldMp = mp // 기존 mp
+        var recoveryMp = mp + prayTime + Random.nextInt(0,3) // 회복
+        var actualRecovery = 0 // 회복량 체크
 
-            if ( recoveryMp > MAX_MP ) {
-                recoveryMp = MAX_MP
-                actualRecovery = recoveryMp - oldMp
-                mp = MAX_MP
-                println("마나가 최대치로 회복 되었습니다.")
-            } else {
-                actualRecovery = recoveryMp - oldMp
-                mp = recoveryMp
-                println("마나가 $actualRecovery 만큼 회복 되었습니다. 현재 MP: $mp ")
-            }
-            return actualRecovery
-        } else {
+        if(mp == MAX_MP) { // 최대치라면
             println("이미 마나가 최대치입니다.")
             return 0
         }
+
+        if ( recoveryMp > MAX_MP ) { // 회복이 50보다 넘어설 때
+            recoveryMp = MAX_MP
+            actualRecovery = recoveryMp - oldMp // 회복량 체크
+            mp = MAX_MP
+            println("마나가 최대치로 회복 되었습니다.")
+        } else {
+            actualRecovery = recoveryMp - oldMp //회복량 체크
+            mp = recoveryMp
+            println("마나가 $actualRecovery 만큼 회복 되었습니다. 현재 MP: $mp ")
+        }
+        return actualRecovery
     }
 }
