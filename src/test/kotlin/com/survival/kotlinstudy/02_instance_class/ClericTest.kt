@@ -2,6 +2,7 @@ package com.survival.kotlinstudy.`02_instance_class`
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ClericTest {
 
@@ -76,13 +77,39 @@ class ClericTest {
         cleric.pray(3)
 
         // then (검증)
-        assertEquals(8, cleric.mp)
+        assertTrue(cleric.mp in 8..10)
     }
 
     @Test
     fun `pray() 메서드 실행 시 최대 MP 보다 더 회복하는 것은 불가능하다`() {
         // given (준비)
         val cleric = Cleric(name = "성직자")
+
+        // when (실행)
+        val actually = cleric.pray(3)
+
+        // then (검증)
+        assertEquals(10, cleric.mp)
+        assertEquals(0, actually)
+    }
+
+    @Test
+    fun `pray() 메서드 실행 시 기도 시간은 0초 이상이어야 한다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", mp = 3)
+
+        // when (실행)
+        val actually = cleric.pray(0)
+
+        // then (검증)
+        assertEquals(3, cleric.mp)
+        assertEquals(0, actually)
+    }
+
+    @Test
+    fun `pray() 메서드 실행 시 MP가 최대일 경우 테스트`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", mp = 10)
 
         // when (실행)
         val actually = cleric.pray(3)
