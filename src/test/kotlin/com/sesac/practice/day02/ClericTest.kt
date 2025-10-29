@@ -2,6 +2,7 @@ package com.sesac.practice.day02
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ClericTest {
     @Test
@@ -85,5 +86,42 @@ class ClericTest {
 
         // then
         assertEquals(10, cleric.hp)
+    }
+
+    @Test
+    fun `pray 사용시 mp가 회복된다`() {
+        // given
+        val cleric = Cleric(name = "test", mp = 5)
+
+        // when
+        val recoveredMp = cleric.pray(0)
+
+        // then
+        assertTrue(recoveredMp in 0..2)
+        assertTrue(cleric.mp in 5..7)
+    }
+
+    @Test
+    fun `pray 사용시 mp가 최대 mp까지 회복된다`() {
+        // given
+        val cleric = Cleric(name = "test", mp = 9)
+
+        // when
+        cleric.pray(2)
+
+        // then
+        assertEquals(cleric.maxMp, cleric.mp)
+    }
+
+    @Test
+    fun `pray 사용시 기도한 시간만큼 더 회복된다`() {
+        // given
+        val cleric = Cleric(name = "test", mp = 0)
+
+        // when
+        val recoveredMp = cleric.pray(3)
+
+        // then
+        assertTrue(recoveredMp in 3..5)
     }
 }
