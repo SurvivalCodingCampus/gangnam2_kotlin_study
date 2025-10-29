@@ -4,7 +4,10 @@ class Hero(var name: String, var hp: Int) {
     val attackPower: Int = 10
     fun attack() {
         println("attack")
-        hp = if ((hp - attackPower) < 0) 0 else hp - attackPower
+        hp -= attackPower
+        if (hp < 0) {
+            hp = 0
+        }
     }
 }
 
