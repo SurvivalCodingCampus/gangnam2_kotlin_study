@@ -28,6 +28,10 @@ class Cleric (
     }
 
     fun pray(sec: Int): Int {
+        if(sec < 0){
+            println("시간은 0초 미만일 수 없습니다.")
+            return 0
+        }
         val recentMp = mp
         val randomNumber = Random.nextInt(3)    // 0~2 난수 생성
         mp += sec + randomNumber
