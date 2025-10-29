@@ -2,6 +2,7 @@ package com.neouul.sesac.`02-instance-class`
 
 import kotlin.random.Random
 
+// 1. 생성자의 파라미터 디폴트값으로 속성의 초기치를 설정한 버전
 class Cleric (
     var name: String = "",
     var HP: Int = 50,
