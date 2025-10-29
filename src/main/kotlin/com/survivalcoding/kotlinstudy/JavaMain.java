@@ -2,7 +2,6 @@ package com.survivalcoding.kotlinstudy;
 
 // int a = 10;
 
-import jdk.jshell.PersistentSnippet;
 
 public class JavaMain {
     // 코드를 쓰는 순간 메모리에 10이 바로 올라가

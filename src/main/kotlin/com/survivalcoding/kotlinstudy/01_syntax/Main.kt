@@ -6,7 +6,7 @@ const val MAX = 10
 
 // 런타임 상수
 val PI2 = 3.14
-var x = 0 // mian 에서 접근 불가
+var x = 0 // main 에서 접근 불가
 
 fun main () {
     println("Hello World")

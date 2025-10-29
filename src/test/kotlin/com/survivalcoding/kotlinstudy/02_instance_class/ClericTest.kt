@@ -12,7 +12,7 @@ class ClericTest {
         // when(실행)
         cleric.selfAid()
 
-        // then(검중)
+        // then(검증)
         assertEquals(5 , cleric.mp)
 
     }
@@ -26,7 +26,7 @@ class ClericTest {
         // when(실행)
         cleric.pray(4) //
 
-        // then(검중)
+        // then(검증)
         assertTrue(cleric.mp in 9..MAX_MP)
     }
 
