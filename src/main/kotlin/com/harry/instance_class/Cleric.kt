@@ -45,13 +45,13 @@ class Cleric(
     }
 
     fun pray(prayTime: Int) : Int {
-        val healResult = prayTime + Random.nextInt(2)
-        if (this.mp+healResult > MAX_MP) {
+        val prayResult = prayTime + Random.nextInt(2)
+        if (this.mp+prayResult > MAX_MP) {
             println("MP 회복이 불가능 합니다.")
             return 0
         } else {
-            this.mp+=healResult
-            return healResult
+            this.mp+=prayResult
+            return prayResult
         }
     }
 }
