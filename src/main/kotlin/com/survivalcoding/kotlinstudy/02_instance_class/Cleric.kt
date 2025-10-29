@@ -8,5 +8,10 @@ class Cleric(
     var mp: Int = 10,
     val maxMp: Int = 10
 ) {
-
+    fun selfAid(){
+        if(mp >= 5){
+            mp -= 5
+            hp = maxHp
+        }
+    }
 }
