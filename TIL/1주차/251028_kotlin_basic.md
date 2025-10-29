@@ -1,6 +1,6 @@
 ## Kotlin 기본 문법 정리
 
-###  📁 프로젝트 및 파일 구조
+### 📁 프로젝트 및 파일 구조
 
 - `src` 폴더 → **새 폴더 생성 시 src 선택하면** 만들어짐
 - **패키지 이름**은 소문자로 시작 (`com.example.kotlinstudy`)
@@ -272,7 +272,7 @@ for (int j = 0; j < 10; j++);
 
 ```
 
-####  Kotlin
+#### Kotlin
 
 ```kotlin
 for (number in 1..5) {
@@ -368,7 +368,7 @@ name = name2!! // ❌ 절대 금지
 
 ---
 
-####  Elvis Operator (`?:`)
+#### Elvis Operator (`?:`)
 
 null일 때 **기본값을 대신 반환**하도록 하는 연산자.
 
