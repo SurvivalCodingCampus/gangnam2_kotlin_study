@@ -47,11 +47,13 @@ class Cleric(var name: String) {
     }
 
 
+    fun prayBonus(): Int = (0..2).random()
+
     /**
      * 기도하기
      */
     fun pray(prayDuration: Int) {
-        val randomValue = (0..2).random()
-        recoverMp(prayDuration + randomValue)
+        val bonusMp = prayBonus()
+        recoverMp(prayDuration + bonusMp)
     }
 }

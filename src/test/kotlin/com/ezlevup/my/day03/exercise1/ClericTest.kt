@@ -1,6 +1,7 @@
 package com.ezlevup.my.day03.exercise1
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ClericTest {
@@ -99,5 +100,19 @@ class ClericTest {
 
         // then
         assertEquals(10, cleric.mp)
+    }
+
+    @Test
+    fun `prayBonus는 0이상 2이하의 값을 반환한다`() {
+        // given
+        val cleric = Cleric(name = "lee")
+
+        repeat(100) {
+            // when
+            val value = cleric.prayBonus()
+
+            // then
+            assertTrue("prayBonus 결과가 0~2 범위 밖입니다: $value", value in 0..2)
+        }
     }
 }
