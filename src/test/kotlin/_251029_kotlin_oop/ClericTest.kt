@@ -44,6 +44,6 @@ class ClericTest {
         //when
 
         //then
-        assertEquals("",cleric.name)
+        assertEquals("", cleric.name)
     }
 }
