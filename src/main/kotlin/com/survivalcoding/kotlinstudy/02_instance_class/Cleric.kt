@@ -1,5 +1,7 @@
 package com.survivalcoding.kotlinstudy.`02_instance_class`
 
+import kotlin.random.Random
+
 
 const val MAX_HP = 50
 const val MAX_MP = 10
@@ -17,5 +19,16 @@ class Cleric (
             hp = MAX_HP // 최대 HP 회복
         }
     }
-
+    // 연습 문제 3. pray 메소드
+    fun pray(prayTime: Int) : Int {
+        var recovery  = prayTime + Random.nextInt(3) // 회복량 보정
+        var realRecovery = if (mp+ recovery > MAX_MP) {
+            MAX_MP - mp // 최대 mp 보다 회복 불가
+        }  else {
+            recovery
+        }
+        mp += realRecovery
+        println("${prayTime}초 기도하여 ${realRecovery} 회복 성공! 현재 MP : ${mp}")
+        return realRecovery // 실제로 회복된 MP 반환
+    }
 }
