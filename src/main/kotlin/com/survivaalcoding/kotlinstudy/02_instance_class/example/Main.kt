@@ -6,4 +6,13 @@ fun main() {
     clericA.selfAid()
     clericA.selfAid()
     clericA.selfAid()
+
+    println("============")
+
+    val clericB = Cleric("클레릭B", 20)
+
+    clericB.selfAid()
+    clericB.selfAid()
+    clericB.pray()
+    clericB.pray(3)
 }
