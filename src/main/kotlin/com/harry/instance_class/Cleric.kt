@@ -35,22 +35,22 @@ class Cleric(
     fun selfAid() {
         if (this.mp < 5) {
             println("MP가 부족합니다")
-        } else if (this.hp == MAX_HP) {
+        } else if (this.hp == this.maxHp) {
             println("체력이 이미 최대치 입니다")
         } else {
             this.mp -= 5
-            this.hp = MAX_HP
+            this.hp = this.maxHp
             println("체력 회복 완료")
         }
     }
 
     fun pray(prayTime: Int) : Int {
         val prayResult = prayTime + Random.nextInt(2)
-        if (this.mp+prayResult > MAX_MP) {
+        if (this.mp+prayResult > this.maxMp) {
             println("MP 회복이 불가능 합니다.")
             return 0
         } else {
-            this.mp+=prayResult
+            this.mp += prayResult
             return prayResult
         }
     }
