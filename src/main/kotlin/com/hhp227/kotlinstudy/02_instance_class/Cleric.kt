@@ -33,10 +33,16 @@ class Cleric(
     }
 
     fun pray(time: Int): Int {
-        if (mp >= MAX_MP) return MAX_MP
+        if (mp >= MAX_MP) {
+            mp = MAX_MP
+            return MAX_MP
+        }
         val result = mp + time + Random.nextInt(0, 2)
 
-        if (result >= MAX_MP) return MAX_MP
+        if (result >= MAX_MP) {
+            mp = MAX_MP
+            return MAX_MP
+        }
         mp = result
         return mp
     }

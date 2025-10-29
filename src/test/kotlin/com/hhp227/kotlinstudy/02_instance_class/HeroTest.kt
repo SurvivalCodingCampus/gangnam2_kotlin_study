@@ -1,7 +1,6 @@
-package com.hhp227.kotlinstudy
+package com.hhp227.kotlinstudy.`02_instance_class`
 
-import com.hhp227.kotlinstudy.`02_instance_class`.Hero
-import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase
 import org.junit.Test
 
 class HeroTest {
@@ -15,7 +14,7 @@ class HeroTest {
         hero.attack()
 
         // then (검증)
-        assertEquals(90, hero.hp)
+        TestCase.assertEquals(90, hero.hp)
     }
 
     @Test
@@ -27,6 +26,6 @@ class HeroTest {
         hero.attack()
 
         // then (검증)
-        assertEquals(0, hero.hp)
+        TestCase.assertEquals(0, hero.hp)
     }
 }
