@@ -16,6 +16,7 @@ class Cleric(var name: String, var hp: Int = 50, var mp: Int = 10) {
 
 
     fun pray(time: Int): Int {
+        if (time < 1 || mp == maxMp) return 0
         val randomNumber = Random.nextInt(0, 3)
         val recoveredMp = time + randomNumber
         val beforeMp = mp
