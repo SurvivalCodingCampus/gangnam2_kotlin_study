@@ -11,6 +11,7 @@ class Cleric2(var name: String = "") {
 
     // 메서드는 동일
     fun selfAid() {
+        require(mp >= 5) { "MP가 부족합니다. 현재 MP: $mp" }
         mp -= 5
         hp = maxHp
     }
