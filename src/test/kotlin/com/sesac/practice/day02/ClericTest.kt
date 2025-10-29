@@ -44,7 +44,7 @@ class ClericTest {
     }
 
     @Test
-    fun `Cleric을 생성하면 최대 mp는 50이다`() {
+    fun `Cleric을 생성하면 최대 mp는 10이다`() {
         // given // when
         val cleric = Cleric("test")
 
