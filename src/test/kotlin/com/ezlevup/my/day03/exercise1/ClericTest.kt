@@ -42,4 +42,61 @@ class ClericTest {
         // then
         assertEquals(cleric.MAX_MP, cleric.mp)
     }
+
+    @Test
+    fun `성직자 MP를 지정된 양만큼 소모 성공`() {
+        // given
+        val cleric = Cleric(name = "lee")
+        cleric.hp = cleric.MAX_HP
+        cleric.mp = cleric.MAX_MP
+
+        // when
+        val result: Boolean = cleric.useMp(5)
+
+        // then
+        assertEquals(cleric.MAX_MP - 5, cleric.mp)
+    }
+
+    @Test
+    fun `성직자 MP를 지정된 양만큼 소모 실패`() {
+        // given
+        val cleric = Cleric(name = "lee")
+        cleric.hp = 1
+        cleric.mp = 1
+
+        // when
+        val result: Boolean = cleric.useMp(5)
+
+        // then
+        assertEquals(false, result)
+        assertEquals(1, cleric.mp)
+    }
+
+    @Test
+    fun `성직자 MP를 회복 test 1`() {
+        // given
+        val cleric = Cleric(name = "lee")
+        cleric.hp = cleric.MAX_HP
+        cleric.mp = cleric.MAX_MP - 1
+
+        // when
+        cleric.recoverMp(10)
+
+        // then
+        assertEquals(cleric.MAX_MP, cleric.mp)
+    }
+
+    @Test
+    fun `성직자 MP를 회복 test 2`() {
+        // given
+        val cleric = Cleric(name = "lee")
+        cleric.hp = 0
+        cleric.mp = 0
+
+        // when
+        cleric.recoverMp(10)
+
+        // then
+        assertEquals(10, cleric.mp)
+    }
 }
