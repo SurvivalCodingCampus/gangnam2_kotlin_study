@@ -54,6 +54,7 @@ class ClericTest {
         val result: Boolean = cleric.useMp(5)
 
         // then
+        assertEquals(true, result)
         assertEquals(cleric.MAX_MP - 5, cleric.mp)
     }
 
