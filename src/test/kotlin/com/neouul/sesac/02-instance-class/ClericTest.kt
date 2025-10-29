@@ -85,4 +85,15 @@ class ClericTest {
         assertEquals(1, diffMp)     // MP가 9였고 회복량이 2~4이므로, 반환값은 항상 1이여야 한다.
     }
 
+    @Test
+    fun `Cleric 클래스의 pray(sec) 메서드가 호출될 때, 인자가 음수인 경우 회복하지 않고 0을 반환한다`(){
+        // given:
+        val cleric = Cleric(name = "A", mp = 9)
+
+        // when:
+        val diffMp = cleric.pray(-2)
+
+        // then:
+        assertEquals(0, diffMp)
+    }
 }

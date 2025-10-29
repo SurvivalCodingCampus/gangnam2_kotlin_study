@@ -28,6 +28,7 @@ class Cleric (
     }
 
     fun pray(sec: Int): Int {
+        // 파라미터 sec에 음수가 전달된 경우
         if(sec < 0){
             println("시간은 0초 미만일 수 없습니다.")
             return 0
