@@ -94,7 +94,7 @@ class ClericTest {
         val cleric = Cleric(name = "test", mp = 5)
 
         // when
-        val recoveredMp = cleric.pray(0)
+        val recoveredMp = cleric.pray()
 
         // then
         assertTrue(recoveredMp in 0..2)
@@ -123,5 +123,19 @@ class ClericTest {
 
         // then
         assertTrue(recoveredMp in 3..5)
+        assertTrue(cleric.mp in 3..5)
+    }
+
+    @Test
+    fun `pray 사용시 기도한 시간이 음수일 경우 0이 반환된다`() {
+        // given
+        val cleric = Cleric(name = "test", mp = 5)
+
+        // when
+        val recoveredMp = cleric.pray(-3)
+
+        // then
+        assertEquals(0, recoveredMp)
+        assertEquals(5, cleric.mp)
     }
 }
