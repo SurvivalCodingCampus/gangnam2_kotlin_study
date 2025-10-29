@@ -9,11 +9,9 @@ class Cleric(
     val maxMp: Int = 10
 
     fun selfAid() {
-        if (mp > 5) { // MP 5소비, 체력 끝까지 회복
+        if (mp >= 5) { // MP 5소비, 체력 끝까지 회복
             hp = maxHp
             mp -= 5
-        } else {
-            return
         }
     }
 
