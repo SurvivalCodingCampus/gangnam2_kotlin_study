@@ -23,8 +23,8 @@ fun main(args: Array<String>) {
 
     // var (Variable): 변경 가능한 변수
     // 코틀린은 타입 추론(Type Inference)을 지원합니다.
-    var itemSize = 10;
-    itemSize = 11;
+    var itemSize = 10
+    itemSize = 11
 
 }
 
