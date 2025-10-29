@@ -1,4 +1,4 @@
-package com.neouul.`01-syntax`
+package com.neouul.sesac.`01-syntax`
 
 // 컴파일타임 상수
 const val PI = 3.14
