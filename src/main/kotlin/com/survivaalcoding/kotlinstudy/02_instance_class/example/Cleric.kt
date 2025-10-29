@@ -27,14 +27,14 @@ class Cleric(val name: String, var hp: Int = 50, var mp: Int = 10) {
         var result = 0
 
         if (mp + mpRecovery > maxMp) {
+            result = maxMp - mp
             mp = maxMp
-            result = abs(mpRecovery - mp)
         } else {
-            mp += mpRecovery
             result = mpRecovery
+            mp += mpRecovery
         }
 
-        println("mp를 $mpRecovery 회복했습니다. 현재 mp: $mp")
+        println("mp를 $result 회복했습니다. 현재 mp: $mp")
 
         return result
     }
