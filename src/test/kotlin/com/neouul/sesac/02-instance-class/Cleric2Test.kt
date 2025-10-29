@@ -2,6 +2,7 @@ package com.neouul.sesac.`02-instance-class`
 
 import org.junit.Assert.*
 import org.junit.Test
+import kotlin.test.assertFails
 
 class Cleric2Test {
     @Test
@@ -30,6 +31,17 @@ class Cleric2Test {
         // then (검증)
         assertEquals(preMp - 5, cleric2.mp)
         assertEquals(cleric2.maxHp, cleric2.hp)
+    }
+
+    @Test
+    // require(mp >= 5)
+    fun `Cleric2 클래스의 selfAid() 메서드가 호출되었는데 MP가 5 미만이라 예외가 발생한다`(){
+        // given: HP를 10, MP는 3으로 설정
+        val cleric2 = Cleric2()
+        cleric2.hp = 10
+        cleric2.mp = 3
+
+        assertFails { cleric2.selfAid() }
     }
 
     @Test

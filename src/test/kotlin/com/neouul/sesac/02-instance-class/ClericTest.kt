@@ -19,7 +19,7 @@ class ClericTest {
 
     @Test
     fun `Cleric 클래스의 selfAid() 메서드를 실행하면 MP 5가 줄어들고 HP가 maxHP까지 늘어난다`(){
-        // given: HP를 10으로 설정, 최대 HP는 초기
+        // given: HP를 10으로 설정, 최대 HP는 초기값
         val cleric = Cleric(name = "Ju", hp = 10)
         val preMp = cleric.mp
 
@@ -29,6 +29,21 @@ class ClericTest {
         // then (검증)
         assertEquals(preMp - 5, cleric.mp)
         assertEquals(cleric.maxHp, cleric.hp)
+    }
+
+    @Test
+    fun `Cleric 클래스의 selfAid() 메서드가 호출되었는데 MP가 5 미만이라 아무일도 벌어지지 않는다`(){
+        // given: HP를 10, MP는 3으로 설정
+        val cleric = Cleric(name = "A", hp = 10, mp = 3)
+        val preHp = cleric.hp
+        val preMp = cleric.mp
+
+        // when: 필드값에 변화는 없다
+        cleric.selfAid()
+
+        // then (검증)
+        assertEquals(preMp, cleric.mp)
+        assertEquals(preHp, cleric.hp)
     }
 
     @Test
