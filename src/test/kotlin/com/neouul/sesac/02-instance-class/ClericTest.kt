@@ -50,10 +50,11 @@ class ClericTest {
         val cleric = Cleric(name = "A", mp = 9)
 
         // when: 2~4포인트만큼 MP를 회복하고 회복된 양을 반환한다
-        cleric.pray(2)
+        val diffMp = cleric.pray(2)
 
         // then: 모든 경우에서 회복량은 최대 MP를 넘지만, 최대 MP보다 더 회복하지는 않았다.
         assertEquals(cleric.maxMp, cleric.mp)
+        assertEquals(1, diffMp)     // MP가 9였고 회복량이 2~4이므로, 반환값은 항상 1이여야 한다.
     }
 
 }
