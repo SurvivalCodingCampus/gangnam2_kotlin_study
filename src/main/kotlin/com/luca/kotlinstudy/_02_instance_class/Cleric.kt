@@ -1,7 +1,6 @@
-package com.luca.kotlinstudy.`02_instance_class`
+package com.luca.kotlinstudy._02_instance_class
 
 import kotlin.random.Random
-import kotlin.time.ExperimentalTime
 
 const val MAX_HP = 50
 const val MAX_MP = 10
@@ -34,7 +33,7 @@ class Cleric(var name: String = "", var hp: Int = MAX_HP, var mp: Int = MAX_MP) 
             recoveryMp = MAX_MP
             actualRecovery = recoveryMp - oldMp // 회복량 체크
             mp = MAX_MP
-            println("마나가 최대치로 회복 되었습니다.")
+            println("마나가 최대치로 회복 되었습니다. 현재 MP: $mp ")
         } else {
             actualRecovery = recoveryMp - oldMp //회복량 체크
             mp = recoveryMp

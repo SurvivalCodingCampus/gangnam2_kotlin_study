@@ -1,4 +1,4 @@
-package com.luca.kotlinstudy.`02_instance_class`
+package com.luca.kotlinstudy._02_instance_class
 
 fun main() {
     val hero = Hero() // 기본 생성자
