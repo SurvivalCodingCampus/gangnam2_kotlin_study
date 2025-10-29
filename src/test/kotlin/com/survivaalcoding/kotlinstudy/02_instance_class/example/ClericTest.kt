@@ -42,4 +42,28 @@ class ClericTest {
         assertThat(cleric.hp).isEqualTo(50)
         assertThat(cleric.mp).isEqualTo(5)
     }
+
+    @Test
+    fun `기도 마법 사용하면 MP를 회복한다`() {
+        // given
+        val cleric = Cleric("클레릭", mp = 5)
+
+        // when
+        cleric.pray(2)
+
+        // then
+        assertThat(cleric.mp).isGreaterThan(5)
+    }
+
+    @Test
+    fun `MP가 최대 MP를 넘기지 않는다`() {
+        // given
+        val cleric = Cleric("클레릭", mp = 8)
+
+        // when
+        cleric.pray(5)
+
+        // then
+        assertThat(cleric.mp).isEqualTo(10)
+    }
 }
