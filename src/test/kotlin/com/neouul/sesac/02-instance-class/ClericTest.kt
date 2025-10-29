@@ -89,11 +89,13 @@ class ClericTest {
     fun `Cleric 클래스의 pray(sec) 메서드가 호출될 때, 인자가 음수인 경우 회복하지 않고 0을 반환한다`(){
         // given:
         val cleric = Cleric(name = "A", mp = 9)
+        val preMp = cleric.mp
 
         // when:
         val diffMp = cleric.pray(-2)
 
         // then:
         assertEquals(0, diffMp)
+        assertEquals(preMp, cleric.mp)
     }
 }
