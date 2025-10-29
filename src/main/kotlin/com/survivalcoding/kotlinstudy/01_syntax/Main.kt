@@ -35,7 +35,7 @@ fun main() {
 
     println(result)
 
-    val ddd = when(a) {
+    val ddd = when (a) {
         1 -> 10
         2 -> 20
         else -> 30
