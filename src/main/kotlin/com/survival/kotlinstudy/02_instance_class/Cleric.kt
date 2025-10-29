@@ -18,6 +18,15 @@ class Cleric(var name: String, var hp: Int, var mp: Int) {
     fun pray(time: Int): Int {
         val randomNumber = Random.nextInt(0, 3)
         val recoveredMp = time + randomNumber
-        return if (maxMp < mp + recoveredMp) maxMp - mp else recoveredMp
+        val beforeMp = mp
+
+        if (mp + recoveredMp > maxMp) {
+            mp = maxMp
+        } else {
+            mp += recoveredMp
+        }
+
+        val actuallyMp = mp - beforeMp
+        return actuallyMp
     }
 }
