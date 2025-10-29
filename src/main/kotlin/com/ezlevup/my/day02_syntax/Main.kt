@@ -1,4 +1,4 @@
-package com.ezlevup.my._01_syntax
+package com.ezlevup.my.day02_syntax
 
 
 // 톱 레벨(Top-level)에 선언된 const val
