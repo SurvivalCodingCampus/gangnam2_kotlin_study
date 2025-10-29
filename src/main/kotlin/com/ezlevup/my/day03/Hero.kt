@@ -1,4 +1,4 @@
-package com.ezlevup.my.day03_class
+package com.ezlevup.my.day03
 
 class Hero(var name: String, var hp: Int) {
     val attackPower: Int = 10

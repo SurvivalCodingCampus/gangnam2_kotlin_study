@@ -1,4 +1,4 @@
-package com.ezlevup.my.day03_class
+package com.ezlevup.my.day03
 
 import org.junit.Test
 import kotlin.test.assertEquals
