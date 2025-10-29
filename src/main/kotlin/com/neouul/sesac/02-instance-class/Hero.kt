@@ -10,6 +10,7 @@ class Hero(
 
     fun attack() {
         // 로컬 변수
+        hp -= 10
     }
 
     fun run() {
