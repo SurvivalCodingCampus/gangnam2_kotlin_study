@@ -14,4 +14,55 @@ class ClericTest {
         assertEquals(10,cleric.maxMp)
     }
 
+    @Test
+    fun `Cleric의 selfAid() 메서드 실행 시 MP가 5 감소하고 HP는 최대 HP가 된다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", hp = 20)
+
+        // when (실행)
+        cleric.selfAid()
+
+        // then (검증)
+        assertEquals(5, cleric.mp)
+        assertEquals(50, cleric.hp)
+    }
+
+    @Test
+    fun `Cleric의 selfAid() 메서드 실행 시 MP가 5일 경우 HP가 회복되어야 한다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", hp = 10, mp = 5)
+
+        // when (실행)
+        cleric.selfAid()
+
+        // then (검증)
+        assertEquals(0, cleric.mp)
+        assertEquals(50, cleric.hp)
+    }
+
+    @Test
+    fun `Cleric의 selfAid() 메서드 실행 시 MP가 5보다 작다면 HP가 회복되지 않음`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", hp = 20, mp = 3)
+
+        // when (실행)
+        cleric.selfAid()
+
+        // then (검증)
+        assertEquals(3, cleric.mp)
+        assertEquals(20, cleric.hp)
+    }
+
+    @Test
+    fun `Cleric의 selfAid() 메서드 실행 시 HP가 최대일 경우 최대HP를 넘어가면 안된다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자", hp = 50, mp = 10)
+
+        // when (실행)
+        cleric.selfAid()
+
+        // then (검증)
+        assertEquals(5, cleric.mp)
+        assertEquals(50, cleric.hp)
+    }
 }
