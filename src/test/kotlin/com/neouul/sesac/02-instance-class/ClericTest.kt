@@ -38,12 +38,25 @@ class ClericTest {
         val preHp = cleric.hp
         val preMp = cleric.mp
 
-        // when: 필드값에 변화는 없다
+        // when:
         cleric.selfAid()
 
-        // then (검증)
+        // then: 필드값에 변화는 없다
         assertEquals(preMp, cleric.mp)
         assertEquals(preHp, cleric.hp)
+    }
+
+    @Test
+    fun `Cleric 클래스의 selfAid() 메서드가 호출되었는데 HP가 최대라 아무것도 처리하지 않는다`() {
+        // given: HP와 최대 HP는 초기치인 50, MP는 8으로 설정
+        val cleric = Cleric(name = "A", mp = 8)
+        val preMp = cleric.mp
+
+        // when:
+        cleric.selfAid()
+
+        // then: MP를 소요하지 않아 그대로다.
+        assertEquals(preMp, cleric.mp)
     }
 
     @Test
