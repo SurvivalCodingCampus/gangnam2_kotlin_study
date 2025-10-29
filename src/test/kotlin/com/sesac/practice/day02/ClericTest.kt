@@ -50,4 +50,40 @@ class ClericTest {
         // then
         assertEquals(10, cleric.maxMp)
     }
+
+    @Test
+    fun `selfAid 사용시 mp를 5 소비한다`() {
+        // given
+        val cleric = Cleric("test")
+
+        // when
+        cleric.selfAid()
+
+        // then
+        assertEquals(5, cleric.mp)
+    }
+
+    @Test
+    fun `selfAid 사용시 hp가 최대 hp까지 회복한다`() {
+        // given
+        val cleric = Cleric("test", 10)
+
+        // when
+        cleric.selfAid()
+
+        // then
+        assertEquals(cleric.maxHp, cleric.hp)
+    }
+
+    @Test
+    fun `selfAid 사용시 mp가 5보다 작으면 hp 회복이 되지 않는다`() {
+        // given
+        val cleric = Cleric("test", 10, 4)
+
+        // when
+        cleric.selfAid()
+
+        // then
+        assertEquals(10, cleric.hp)
+    }
 }
