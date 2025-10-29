@@ -65,4 +65,30 @@ class ClericTest {
         assertEquals(5, cleric.mp)
         assertEquals(50, cleric.hp)
     }
+
+
+    @Test
+    fun `pray() 메서드 실행 시 MP를 회복해야 한다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자",mp = 5)
+
+        // when (실행)
+        cleric.pray(3)
+
+        // then (검증)
+        assertEquals(8, cleric.mp)
+    }
+
+    @Test
+    fun `pray() 메서드 실행 시 최대 MP 보다 더 회복하는 것은 불가능하다`() {
+        // given (준비)
+        val cleric = Cleric(name = "성직자")
+
+        // when (실행)
+        val actually = cleric.pray(3)
+
+        // then (검증)
+        assertEquals(10, cleric.mp)
+        assertEquals(0, actually)
+    }
 }
