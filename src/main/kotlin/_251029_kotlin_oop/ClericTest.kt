@@ -36,4 +36,14 @@ class ClericTest {
         //then
         assertEquals(cleric.maxMp, cleric.mp)
     }
+
+    @Test
+    fun `기본 생성자로 인스턴스를 만들 경우 이름이 ""인지 테스트`(){
+        //given
+        val cleric = Cleric()
+        //when
+
+        //then
+        assertEquals("",cleric.name)
+    }
 }
