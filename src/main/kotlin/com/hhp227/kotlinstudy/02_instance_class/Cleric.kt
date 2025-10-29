@@ -28,6 +28,7 @@ class Cleric(
     var mp: Int = MAX_MP
 ) {
     fun selfAid() {
+        if (mp < 5) return throw Exception("mp가 부족합니다.")
         mp -= 5
         hp = MAX_HP
     }
@@ -35,16 +36,16 @@ class Cleric(
     fun pray(time: Int): Int {
         if (mp >= MAX_MP) {
             mp = MAX_MP
-            return MAX_MP
+            return 0
         }
-        val result = mp + time + Random.nextInt(0, 2)
+        val result = time + Random.nextInt(0, 3)
 
         if (result >= MAX_MP) {
             mp = MAX_MP
             return MAX_MP
         }
-        mp = result
-        return mp
+        mp += result
+        return result
     }
 
     companion object {

@@ -35,20 +35,17 @@ class ClericTest {
     fun `Cleric의 pray메소드를 호출하면 time만큼 0~2보정된 값으로 회복된 후 반환된다`() {
         val cleric = Cleric(mp = 2)
 
-        cleric.pray(3)
-
-        TestCase.assertTrue((5..<7).contains(cleric.mp))
+        TestCase.assertTrue((3..<6).contains(cleric.pray(3)))
+        TestCase.assertTrue((5..<8).contains(cleric.mp))
 
         cleric.mp = 51
 
-        cleric.pray(0)
-
+        TestCase.assertEquals(0, cleric.pray(0))
         TestCase.assertEquals(10, cleric.mp)
 
         cleric.mp = 1
 
-        cleric.pray(11)
-
+        TestCase.assertEquals(10, cleric.pray(11))
         TestCase.assertEquals(10, cleric.mp)
     }
 }
