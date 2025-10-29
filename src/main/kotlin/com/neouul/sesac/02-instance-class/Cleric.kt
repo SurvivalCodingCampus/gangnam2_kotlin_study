@@ -7,4 +7,8 @@ class Cleric (
     var MP: Int = 10,
     val maxMP: Int = 10
 ) {
+    fun selfAid(){
+        MP -= 5
+        HP = maxHP
+    }
 }
