@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 class ClericTest {
 
     @Test
-    fun `Cleric 클래스 선언 시 초기 HP MP, 최대 HP MP 확인하기`() {
+    fun `Cleric 클래스 선언 시 초기 HP, MP, 이름 확인하기`() {
         val cleric = Cleric(name = "성직자")
         assertEquals(50, cleric.hp)
         assertEquals(10, cleric.mp)
