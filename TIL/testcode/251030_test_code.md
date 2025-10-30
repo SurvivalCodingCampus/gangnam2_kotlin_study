@@ -1,6 +1,6 @@
 ## Test Code 기초
 
-### 1. 테스트 코드르 통한 품질 향상
+### 1. 테스트 코드를 통한 품질 향상
 
 | **테스트 종류**                    | **설명**                                      | **예시**                      |
 |-------------------------------|---------------------------------------------|-----------------------------|
@@ -73,7 +73,7 @@ assertThrows<Exception> { a.transfer(b, 600) }
 - 반대는 assertDoesNotThrow (정상 동작 검증)
 
 ```kotlin
-assertDoesNotThrows { a.transfer(b, 400) }
+assertDoesNotThrow { a.transfer(b, 400) }
 ```
 
 ---
