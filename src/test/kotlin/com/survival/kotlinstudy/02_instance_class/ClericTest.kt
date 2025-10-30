@@ -148,4 +148,18 @@ class ClericTest {
         assertEquals(hp, cleric.hp)
         assertEquals(Cleric.MAX_MP, cleric.mp)
     }
+
+    @Test
+    fun `Cleric() 클래스 선언 시 이름만 지정하고 HP는 최대 HP, MP는 최대 MP인지 테스트`() {
+        // given (준비)
+        val name = "아서스"
+        val cleric = Cleric(name)
+
+        // when (실행)
+
+        // then (검증)
+        assertEquals(name, cleric.name)
+        assertEquals(Cleric.MAX_HP, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
+    }
 }
