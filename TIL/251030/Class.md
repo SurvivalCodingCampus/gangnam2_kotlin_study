@@ -53,6 +53,7 @@ val hero2 = Hero(name = "배트맨", hp = 100, sword = sword)
  - Java 의 static 같은 존재
  - 보통 클래스 맨 아래에 작성한다.
  - 탑레벨로 대체 가능 ( 역할에 따라 )
+![img_1.png](img_1.png)
 
 ## 총 정리
 - 레퍼런스 타입의 참조
