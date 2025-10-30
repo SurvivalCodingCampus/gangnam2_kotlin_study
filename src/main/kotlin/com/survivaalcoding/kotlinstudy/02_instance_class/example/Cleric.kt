@@ -4,6 +4,13 @@ import kotlin.math.min
 import kotlin.random.Random
 
 class Cleric(val name: String, var hp: Int = MAX_HP, var mp: Int = MAX_MP) {
+    /**
+     * TODO 보조 생성자를 사용해서 아래와 같이 할 수 있음. (비효율적)
+     */
+//class Cleric(val name: String, var hp: Int = MAX_HP, var mp: Int) {
+//    constructor(name: String, hp: Int) : this(name, hp, MAX_MP)
+//    constructor(name: String) : this(name, MAX_HP)
+
     fun selfAid() {
         if (mp < SELF_AID_MP_COST) {
             return
