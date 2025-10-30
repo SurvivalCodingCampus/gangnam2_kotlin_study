@@ -80,7 +80,7 @@ class ClericTest {
     }
 
     @Test
-    fun `이름을 지정하지 않는 경운에는 인스턴스화 할 수 없다`() {
+    fun `이름을 지정하지 않는 경우에는 인스턴스화 할 수 없다`() {
         assertFailsWith<Exception> { Cleric() }
     }
 }
