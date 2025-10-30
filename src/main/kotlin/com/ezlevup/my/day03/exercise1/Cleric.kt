@@ -40,10 +40,11 @@ class Cleric(var name: String) {
      * MP를 회복
      */
     fun recoverMp(amount: Int) {
-        mp += amount
-        if (mp > MAX_MP) {
-            mp = MAX_MP
+        if (amount < 0) {
+            println("회복량은 0 이상이어야 합니다: $amount")
+            return
         }
+        mp = (mp + amount).coerceAtMost(MAX_MP)
     }
 
 
