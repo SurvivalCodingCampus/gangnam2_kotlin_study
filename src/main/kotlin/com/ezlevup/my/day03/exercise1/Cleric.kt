@@ -6,8 +6,8 @@ class Cleric(var name: String) {
     val SELF_AID_MP_COST = 5 // 셀프 에이드 마법의 마나 사용량
 
 
-    var hp: Int = 50
-    var mp: Int = 10
+    var hp: Int = MAX_HP
+    var mp: Int = MAX_MP
 
 
     /**
