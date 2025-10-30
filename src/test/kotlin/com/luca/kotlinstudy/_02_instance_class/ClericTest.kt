@@ -18,30 +18,35 @@ class ClericTest {
         assertEquals(MAX_HP, cleric.hp)
         assertEquals(5, cleric.mp)
     }
+
     @Test
     fun `selfAid는 mp가 부족하면 실행되지 않는다`() {
+        val hpAmount = 10
+        val mpAmount = 3
         // given
-        val cleric = Cleric(name = "루카", hp = 10, mp = 3)
+        val cleric = Cleric(name = "루카", hp = hpAmount, mp = mpAmount)
 
         // when
         cleric.selfAid()
 
         // then
-        assertEquals(10, cleric.hp)
-        assertEquals(3, cleric.mp)
+        assertEquals(hpAmount, cleric.hp)
+        assertEquals(mpAmount, cleric.mp)
     }
 
     @Test
     fun `selfAid는 이미 HP가 최대일 때 실행되지 않는다`() {
+        val mpAmount = 9
+
         // given
-        val cleric = Cleric(name = "루카", hp = MAX_HP, mp = 9)
+        val cleric = Cleric(name = "루카", hp = MAX_HP, mp = mpAmount)
 
         // when
         cleric.selfAid()
 
         // then
         assertEquals(MAX_HP, cleric.hp)
-        assertEquals(9, cleric.mp)
+        assertEquals(mpAmount, cleric.mp)
         println(cleric.mp)
     }
 
@@ -60,14 +65,15 @@ class ClericTest {
 
     @Test
     fun `pray로 회복 시 최대치를 넘지 않아야 한다`() {
+        val mpAmount = 9
         // given
-        val cleric = Cleric(name = "루카", mp = 9)
+        val cleric = Cleric(name = "루카", mp = mpAmount)
 
         // when
         val recovered = cleric.pray(3)
 
         // then
-        assertTrue(recovered in 1..MAX_MP - 9)
+        assertTrue(recovered in 1..MAX_MP - mpAmount)
         assertEquals(MAX_MP, cleric.mp)
     }
 }

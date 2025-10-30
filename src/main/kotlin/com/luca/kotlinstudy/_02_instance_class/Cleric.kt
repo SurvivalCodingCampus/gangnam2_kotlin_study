@@ -2,17 +2,21 @@ package com.luca.kotlinstudy._02_instance_class
 
 import kotlin.random.Random
 
-const val MAX_HP = 50
+const val MAX_HP = 50 // 컴파일 타임
 const val MAX_MP = 10
 
 
-class Cleric(var name: String = "", var hp: Int = MAX_HP, var mp: Int = MAX_MP) {
+class Cleric(
+    var name: String = "", // ( 값 == 불변 )
+    var hp: Int = MAX_HP,
+    var mp: Int = MAX_MP,
+) {
     fun selfAid() {
-        if(mp >= 5 && hp < MAX_HP ) {
+        if (mp >= 5 && hp < MAX_HP) {
             mp -= 5
             hp = MAX_HP
             println("HP: $hp, MP: $mp ")
-        } else if(hp == MAX_HP) {
+        } else if (hp == MAX_HP) {
             println("이미 체력이 최대치입니다.")
         } else {
             println("마나가 부족합니다.")
