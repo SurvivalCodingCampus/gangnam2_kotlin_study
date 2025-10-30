@@ -1,4 +1,4 @@
-package com.sesac.kotlinstudy.day01_syntax
+package com.sesac.kotlinstudy.day01syntax
 
 const val PI = 3.14 // 컴파일타임 상수
 val PI2 = 3.14 // 런타임 상수
