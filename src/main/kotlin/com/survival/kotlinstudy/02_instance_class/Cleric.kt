@@ -2,7 +2,11 @@ package com.survival.kotlinstudy.`02_instance_class`
 
 import kotlin.random.Random
 
-class Cleric(var name: String, var hp: Int = 50, var mp: Int = 10) {
+class Cleric(
+    var name: String,
+    var hp: Int = 50,
+    var mp: Int = 10,
+) {
 
     fun selfAid() {
         if (mp < 5) return

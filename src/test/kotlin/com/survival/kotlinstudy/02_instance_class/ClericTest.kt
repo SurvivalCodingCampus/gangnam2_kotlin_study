@@ -11,7 +11,7 @@ class ClericTest {
         val cleric = Cleric(name = "성직자")
         assertEquals(50, cleric.hp)
         assertEquals(10, cleric.mp)
-        assertEquals("성직자",cleric.name)
+        assertEquals("성직자", cleric.name)
     }
 
     @Test
@@ -116,5 +116,18 @@ class ClericTest {
         // then (검증)
         assertEquals(10, cleric.mp)
         assertEquals(0, actually)
+    }
+
+    @Test
+    fun `Cleric() 클래스 선언 시 이름, HP, MP 를 지정하여 인스턴스 테스트`() {
+        // given (준비)
+        val cleric = Cleric("아서스", hp = 40, mp = 5)
+
+        // when (실행)
+
+        // then (검증)
+        assertEquals("아서스", cleric.name)
+        assertEquals(40, cleric.hp)
+        assertEquals(5, cleric.mp)
     }
 }
