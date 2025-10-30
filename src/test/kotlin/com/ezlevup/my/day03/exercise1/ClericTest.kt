@@ -5,11 +5,12 @@ import org.junit.Test
 
 class ClericTest {
     @Test
-    fun `성직자 인스턴스 초기값 확인`() {
+    fun `성직자 이름만 지정해서 인스턴스 초기값 확인`() {
         // given
         val cleric = Cleric(name = "lee")
 
         // then
+        assertEquals("lee", cleric.name)
         assertEquals(ClericConfig.MAX_HP, cleric.hp)
         assertEquals(ClericConfig.MAX_MP, cleric.mp)
     }
@@ -40,6 +41,32 @@ class ClericTest {
         }
         assertTrue(exception.message?.contains("10자 이하") ?: false)
     }
+
+    @Test
+    fun `성직자 hp, mp 지정해서 인스턴스 확인`() {
+        // given
+        val hp = 40
+        val mp = 5
+        val cleric = Cleric(name = "lee", hp, mp)
+
+        // then
+        assertEquals("lee", cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(mp, cleric.mp)
+    }
+
+    @Test
+    fun `성직자 hp 지정해서 인스턴스 확인`() {
+        // given
+        val hp = 35
+        val cleric = Cleric(name = "lee", hp)
+
+        // then
+        assertEquals("lee", cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(ClericConfig.MAX_MP, cleric.mp)
+    }
+
 
     @Test
     fun `성직자 셀프 에이드 마법 사용`() {

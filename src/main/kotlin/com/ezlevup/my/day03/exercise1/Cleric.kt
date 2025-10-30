@@ -3,9 +3,11 @@ package com.ezlevup.my.day03.exercise1
 import kotlin.math.min
 
 
-class Cleric(var name: String) {
-    var hp: Int = ClericConfig.MAX_HP
-    var mp: Int = ClericConfig.MAX_MP
+class Cleric(
+    var name: String,
+    var hp: Int = ClericConfig.MAX_HP,
+    var mp: Int = ClericConfig.MAX_MP,
+) {
 
     init {
         require(name.isNotEmpty()) {
