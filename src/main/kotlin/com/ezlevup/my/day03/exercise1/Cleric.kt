@@ -45,7 +45,7 @@ class Cleric(
             hp = ClericConfig.MAX_HP
             println("회복 성공 hp: $hp, mp: $mp")
         } else {
-            println("회복 실패 hp: $hp, mp: $mp / 필요한 MP는 $ClericConfig.SELF_AID_MP_COST")
+            println("회복 실패 hp: $hp, mp: $mp / 필요한 MP는 ${ClericConfig.SELF_AID_MP_COST}")
         }
     }
 
