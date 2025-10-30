@@ -5,9 +5,7 @@ import kotlin.random.Random
 class Cleric(
     var name: String,
     var hp: Int = MAX_HP,
-    val maxHp: Int = MAX_HP,
     var mp: Int = MAX_MP,
-    val maxMp: Int = MAX_MP,
 ) {
     fun selfAid() {
         val usingMp = 5
@@ -19,13 +17,13 @@ class Cleric(
         }
 
         // HP가 이미 최대일 때
-        if (hp == maxHp) {
+        if (hp == MAX_HP) {
             println("현재 HP가 최대치이므로 스킬을 사용할 수 없습니다.")
             return
         }
 
         mp -= usingMp
-        hp = maxHp
+        hp = MAX_HP
     }
 
     fun pray(sec: Int): Int {
@@ -37,7 +35,7 @@ class Cleric(
         val recentMp = mp
         val randomNumber = Random.nextInt(3)    // 0~2 난수 생성
         mp += sec + randomNumber
-        mp = if (mp > maxMp) maxMp else mp
+        mp = if (mp > MAX_MP) MAX_MP else mp
 
         return mp - recentMp
     }
