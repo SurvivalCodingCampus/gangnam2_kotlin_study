@@ -58,12 +58,15 @@ class Cleric(var name: String) {
     /**
      * 기도하기
      */
-    fun pray(prayDuration: Int) {
+    fun pray(prayDuration: Int): Int {
         if (prayDuration <= 0) {
             println("기도 시간은 0 이상이어야 합니다: $prayDuration")
-            return
+            return 0
         }
-        val bonusMp = prayBonus()
-        recoverMp(prayDuration + bonusMp)
+
+        val bonusMp = prayBonus() + prayDuration
+        recoverMp(bonusMp)
+
+        return bonusMp
     }
 }
