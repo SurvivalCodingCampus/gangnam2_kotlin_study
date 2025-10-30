@@ -17,6 +17,11 @@ class Cleric(var name: String) {
      * @return MP 사용했으면 true를 반환하고, 부족하면 false를 반환합니다.
      */
     fun useMp(amount: Int): Boolean {
+        if (amount < 0) {
+            println("MP 사용량은 0 이상이어야 합니다: $amount")
+            return false
+        }
+
         return if (mp >= amount) {
             mp -= amount
             true
