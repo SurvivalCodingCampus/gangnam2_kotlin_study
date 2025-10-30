@@ -70,7 +70,7 @@ class Cleric(
      */
     fun pray(prayDuration: Int): Int {
         if (prayDuration <= 0) {
-            println("기도 시간은 1 이상이어야 합니다: $prayDuration")
+            println("기도 시간은 1 이상이어야 합니다!: $prayDuration")
             return 0
         }
 
