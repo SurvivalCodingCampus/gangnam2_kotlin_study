@@ -2,9 +2,10 @@ package _251030_kotlin_oop
 
 const val MAX_HP = 50
 const val MAX_MP = 10
+const val SELF_AID_REQUIRE_MP = 5
 
 class Cleric(
-    val name: String = "",
+    val name: String, //인스턴스 생성 시 이름은 필수 입력값으로 변경
     var hp: Int = 50,
     var mp: Int = 10
 ) {
@@ -12,9 +13,9 @@ class Cleric(
     val maxMp: Int = MAX_MP
 
     fun selfAid() {
-        if (mp >= 5) { // MP 5소비, 체력 끝까지 회복
+        if (mp >= SELF_AID_REQUIRE_MP) { // MP 5소비, 체력 끝까지 회복
             hp = maxHp
-            mp -= 5
+            mp -= SELF_AID_REQUIRE_MP
         }
     }
 
@@ -23,6 +24,7 @@ class Cleric(
         val randomRange = 0..2
         val randomBonus = randomRange.random()
         val expected = time + randomBonus //mp회복 예상치
+
         if (mp + expected > maxMp) {
             val result = maxMp - mp
             mp = maxMp
