@@ -9,12 +9,9 @@ class Cleric(
     var hp: Int = 50,
     var mp: Int = 10
 ) {
-    val maxHp: Int = MAX_HP
-    val maxMp: Int = MAX_MP
-
     fun selfAid() {
         if (mp >= SELF_AID_REQUIRE_MP) { // MP 5소비, 체력 끝까지 회복
-            hp = maxHp
+            hp = MAX_HP
             mp -= SELF_AID_REQUIRE_MP
         }
     }
@@ -25,9 +22,9 @@ class Cleric(
         val randomBonus = randomRange.random()
         val expected = time + randomBonus //mp회복 예상치
 
-        if (mp + expected > maxMp) {
-            val result = maxMp - mp
-            mp = maxMp
+        if (mp + expected > MAX_MP) {
+            val result = MAX_MP - mp
+            mp = MAX_MP
             return result
         } else {
             mp += expected
