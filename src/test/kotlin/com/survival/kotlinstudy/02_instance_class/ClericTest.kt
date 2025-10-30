@@ -121,13 +121,31 @@ class ClericTest {
     @Test
     fun `Cleric() 클래스 선언 시 이름, HP, MP 를 지정하여 인스턴스 테스트`() {
         // given (준비)
-        val cleric = Cleric("아서스", hp = 40, mp = 5)
+        val hp = 40
+        val name = "아서스"
+        val mp = 5
+        val cleric = Cleric(name, hp, mp)
 
         // when (실행)
 
         // then (검증)
-        assertEquals("아서스", cleric.name)
-        assertEquals(40, cleric.hp)
-        assertEquals(5, cleric.mp)
+        assertEquals(name, cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(mp, cleric.mp)
+    }
+
+    @Test
+    fun `Cleric() 클래스 선언 시 이름, HP만 지정하고 MP는 최대 MP인지 테스트`() {
+        // given (준비)
+        val hp = 35
+        val name = "아서스"
+        val cleric = Cleric(name, hp)
+
+        // when (실행)
+
+        // then (검증)
+        assertEquals(name, cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
     }
 }
