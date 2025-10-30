@@ -40,7 +40,7 @@ class Cleric(
 
     fun pray(time: Int): Int {
         val mpRecovery = time + Random.nextInt(0, 3)
-        var actualRecovery = 0
+        var actualRecovery: Int
 
         if ((mp + mpRecovery) < maxMp) {
             actualRecovery = mpRecovery
