@@ -7,18 +7,52 @@ import kotlin.test.assertTrue
 class ClericTest {
     @Test
     fun `Cleric을 생성한다`() {
-        // given // when
-        val cleric = Cleric("test", 1, 2)
+        // given
+        val name = "아서스"
+        val hp = 40
+        val mp = 5
+
+        // when
+        val cleric = Cleric(name, hp, mp)
 
         // then
-        assertEquals("test", cleric.name)
-        assertEquals(1, cleric.hp)
-        assertEquals(2, cleric.mp)
+        assertEquals(name, cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(mp, cleric.mp)
         assertEquals(50, Cleric.MAX_HP)
         assertEquals(10, Cleric.MAX_MP)
         assertEquals(5, Cleric.SELF_AID_MP_COST)
         assertEquals(0, Cleric.PRAY_MIN_REGEN_AMOUNT)
         assertEquals(2, Cleric.PRAY_MAX_REGEN_AMOUNT)
+    }
+
+    @Test
+    fun `Cleric을 이름, hp 지정하여 생성한다`() {
+        // given
+        val name = "test"
+        val hp = 40
+
+        // when
+        val cleric = Cleric(name, hp)
+
+        // then
+        assertEquals(name, cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
+    }
+
+    @Test
+    fun `Cleric을 이름을 지정하여 생성한다`() {
+        // given
+        val name = "test"
+
+        // when
+        val cleric = Cleric(name)
+
+        // then
+        assertEquals(name, cleric.name)
+        assertEquals(Cleric.MAX_HP, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
     }
 
     @Test
@@ -125,7 +159,7 @@ class ClericTest {
     @Test(expected = IllegalArgumentException::class)
     fun `pray 사용시 기도한 시간이 음수일 경우 0이 반환된다`() {
         // given
-        val cleric = Cleric(name = "test")
+        val cleric = Cleric("test")
 
         // when // then
         cleric.pray(-3)
@@ -134,7 +168,7 @@ class ClericTest {
     @Test(expected = IllegalArgumentException::class)
     fun `pray 사용시 기도한 시간이 너무 클 경우 0이 반환된다`() {
         // given
-        val cleric = Cleric(name = "test")
+        val cleric = Cleric("test")
 
         // when // then
         cleric.pray(Int.MAX_VALUE)
