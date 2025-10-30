@@ -10,22 +10,35 @@ class ClericTest {
         val cleric = Cleric(name = "lee")
 
         // then
-        assertEquals(ClericConfig.MAX_MP, cleric.hp)
+        assertEquals(ClericConfig.MAX_HP, cleric.hp)
         assertEquals(ClericConfig.MAX_MP, cleric.mp)
     }
 
     @Test
-    fun `성직자 이름이 없어`() {
+    fun `성직자 이름이 빈 문자열이면 예외`() {
         // given
-        try {
+        val exception = assertThrows(IllegalArgumentException::class.java) {
             Cleric("")
-            fail()
-        } catch (e: Exception) {
-            println("발생한 예외: ${e::class.simpleName}")
-            println("메시지: ${e.message}")
-            // e.printStackTrace()
-            // 실행 결과를 보고 나서 적절한 예외 타입으로 테스트 수정
         }
+        assertTrue(exception.message?.contains("작명소") ?: false)
+    }
+
+    @Test
+    fun `성직자 이름이 너무 짧으면 예외`() {
+        // given
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            Cleric("이")
+        }
+        assertTrue(exception.message?.contains("2자 이상") ?: false)
+    }
+
+    @Test
+    fun `성직자 이름이 너무 길면 예외`() {
+        // given
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            Cleric("가나다라마바사아자차카타파하")
+        }
+        assertTrue(exception.message?.contains("10자 이하") ?: false)
     }
 
     @Test
