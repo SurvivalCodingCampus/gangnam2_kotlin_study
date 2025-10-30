@@ -9,7 +9,7 @@ class ClericTest {
 
 
     @Test
-    fun `selfAid 작동 테스트`() { //등가분할 기법 적용
+    fun `selfAid 작동 테스트`() { //경계값 분석 기법 적용
         //given
         val cleric1 = Cleric("", mp = 0, hp = 10)
         val cleric2 = Cleric("", mp = 4, hp = 10)
