@@ -8,16 +8,19 @@ class ClericTest {
 
     @Test
     fun `Cleric 클래스 선언 시 초기 HP, MP, 이름 확인하기`() {
-        val cleric = Cleric(name = "성직자")
-        assertEquals(50, cleric.hp)
-        assertEquals(10, cleric.mp)
-        assertEquals("성직자", cleric.name)
+        val name = "아서스"
+        val cleric = Cleric(name = name)
+        assertEquals(Cleric.MAX_HP, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
+        assertEquals(name, cleric.name)
     }
 
     @Test
     fun `Cleric의 selfAid() 메서드 실행 시 MP가 5 감소하고 HP는 최대 HP가 된다`() {
         // given (준비)
-        val cleric = Cleric(name = "성직자", hp = 20)
+        val name = "아서스"
+        val hp = 20
+        val cleric = Cleric(name = name, hp = hp)
 
         // when (실행)
         cleric.selfAid()
@@ -124,7 +127,7 @@ class ClericTest {
         val hp = 40
         val name = "아서스"
         val mp = 5
-        val cleric = Cleric(name, hp, mp)
+        val cleric = Cleric(name = name, hp = hp, mp = mp)
 
         // when (실행)
 
@@ -139,7 +142,7 @@ class ClericTest {
         // given (준비)
         val hp = 35
         val name = "아서스"
-        val cleric = Cleric(name, hp)
+        val cleric = Cleric(name = name, hp = hp)
 
         // when (실행)
 
@@ -153,7 +156,7 @@ class ClericTest {
     fun `Cleric() 클래스 선언 시 이름만 지정하고 HP는 최대 HP, MP는 최대 MP인지 테스트`() {
         // given (준비)
         val name = "아서스"
-        val cleric = Cleric(name)
+        val cleric = Cleric(name = name)
 
         // when (실행)
 
