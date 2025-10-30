@@ -103,7 +103,7 @@ class ClericTest {
     }
 
     @Test
-    fun `prayBonus는 0이상 2이하의 값을 반환한다`() {
+    fun `성직자 prayBonus는 0이상 2이하의 값을 반환한다`() {
         // given
         val cleric = Cleric(name = "lee")
 
