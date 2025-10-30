@@ -1,4 +1,4 @@
-package com.harry.`01_syntax`
+package com.harry.syntax
 
 val PI = 3.14
 var z = 1
