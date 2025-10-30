@@ -1,40 +1,35 @@
 package com.survivaalcoding.kotlinstudy.`02_instance_class`.example
 
+import kotlin.math.min
 import kotlin.random.Random
 
-class Cleric(val name: String, var hp: Int = 50, var mp: Int = 10) {
-    val maxHp: Int = 50
-    val maxMp: Int = 10
-
+class Cleric(val name: String, var hp: Int = MAX_HP, var mp: Int = MAX_MP) {
     fun selfAid() {
-        val mpCost = 5
-        val recovery = 10
-
-        if (mp < mpCost) {
-            println("mp가 부족합니다. 현재 mp: $mp")
+        if (mp < SELF_AID_MP_COST) {
             return
         }
 
-        hp = if (hp + recovery > maxHp) maxHp else hp + recovery
-
-        mp -= mpCost
-        println("회복 스킬을 사용해 mp가 $mpCost 감소합니다. 현재 hp: $hp, mp: $mp")
+        mp -= SELF_AID_MP_COST
+        hp = min(MAX_HP, SELF_AID_HP_RECOVERY + hp)
     }
 
     fun pray(sec: Int = 1): Int {
-        val mpRecovery = Random.nextInt(sec, sec + 3)
-        var result = 0
-
-        if (mp + mpRecovery > maxMp) {
-            result = maxMp - mp
-            mp = maxMp
-        } else {
-            result = mpRecovery
-            mp += mpRecovery
+        if (sec < 1) {  // TODO 예외 배우고 예외 처리
+            return -1
         }
 
-        println("mp를 $result 회복했습니다. 현재 mp: $mp")
+        val mpRecovery = Random.nextInt(sec, sec + 3)
+        val nowMp = mp
 
-        return result
+        mp = min(MAX_MP, mp + mpRecovery)
+
+        return mp - nowMp
+    }
+
+    companion object {
+        const val MAX_HP = 50
+        const val MAX_MP = 10
+        const val SELF_AID_MP_COST = 5
+        const val SELF_AID_HP_RECOVERY = 10
     }
 }
