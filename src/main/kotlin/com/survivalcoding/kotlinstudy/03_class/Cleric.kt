@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 
 class Cleric(
-    var name: String, // 연습문제 2. 생성자 조
+    var name: String, // 연습문제 2. 생성자 조건
     var hp: Int = MAX_HP,
     var mp: Int = MAX_MP,
 ) {
