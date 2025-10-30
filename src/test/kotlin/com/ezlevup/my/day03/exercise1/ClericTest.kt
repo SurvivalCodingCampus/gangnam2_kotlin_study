@@ -47,7 +47,7 @@ class ClericTest {
         // given
         val hp = 40
         val mp = 5
-        val cleric = Cleric(name = "lee", hp, mp)
+        val cleric = Cleric(name = "lee", hp = hp, mp = mp)
 
         // then
         assertEquals("lee", cleric.name)
@@ -59,7 +59,7 @@ class ClericTest {
     fun `성직자 hp 지정해서 인스턴스 확인`() {
         // given
         val hp = 35
-        val cleric = Cleric(name = "lee", hp)
+        val cleric = Cleric(name = "lee", hp = hp)
 
         // then
         assertEquals("lee", cleric.name)
