@@ -148,5 +148,4 @@ replay_pid*
 
 
 # Source folder (exclude entire src directory)
-src/
 build/
