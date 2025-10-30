@@ -76,4 +76,28 @@ class ClericTest {
         assertTrue(recovered in 1..MAX_MP - mpAmount)
         assertEquals(MAX_MP, cleric.mp)
     }
+
+    @Test
+    fun `생성자 확인`() {
+        val deciededName = "루카"
+
+        // name, hp = 40, mp = 5 지정
+        val cleric = Cleric(name = deciededName, hp = 40, mp = 5)
+        assertEquals(deciededName, cleric.name)
+        assertEquals(40, cleric.hp)
+        assertEquals(5, cleric.mp)
+
+        // name, hp 35 지정 후 MP는 최대 MP로 초기화
+        val cleric1 = Cleric(name = deciededName, hp = 35)
+        assertEquals(deciededName, cleric1.name)
+        assertEquals(35, cleric1.hp)
+        assertEquals(MAX_MP, cleric1.mp)
+
+
+        // name 만 지정 HP와 MP는 최대치로 초기화
+        val cleric2 = Cleric(name = deciededName)
+        assertEquals(deciededName, cleric2.name)
+        assertEquals(MAX_HP, cleric2.hp)
+        assertEquals(MAX_MP, cleric2.mp)
+    }
 }
