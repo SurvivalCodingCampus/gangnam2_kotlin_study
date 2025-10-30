@@ -2,12 +2,11 @@ package com.luca.kotlinstudy._02_instance_class
 
 import kotlin.random.Random
 
-const val MAX_HP = 50 // 컴파일 타임
+const val MAX_HP = 50
 const val MAX_MP = 10
 
-
 class Cleric(
-    var name: String = "", // ( 값 == 불변 )
+    var name: String,
     var hp: Int = MAX_HP,
     var mp: Int = MAX_MP,
 ) {
@@ -49,5 +48,4 @@ class Cleric(
 
         return actualRecovery
     }
-
 }
