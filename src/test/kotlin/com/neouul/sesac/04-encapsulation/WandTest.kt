@@ -43,6 +43,16 @@ class WandConstructorTest {
 // setter 재정의 테스트
 class WandFieldTest {
     @Test
+    fun `Wand의 name 필드 경계값 분석`() {
+        val wand = Wand(VALID_NAME, VALID_POWER)
+
+        assertFailsWith<IllegalArgumentException> { wand.name = "AB"}   // 2
+        assertEquals(VALID_NAME, wand.name)     // 3
+        wand.name += "D"
+        assertEquals("ABCD", wand.name)     // 4
+    }
+
+    @Test
     fun `Wand의 power 필드 경계값 분석 - 하한 경계`() {
         // 마력 0.5로 인스턴스 생성
         val wand = Wand(VALID_NAME, MIN_WAND_POWER)
