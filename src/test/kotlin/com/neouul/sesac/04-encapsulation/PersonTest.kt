@@ -11,8 +11,11 @@ class PersonTest {
     }
 
     @Test
-    fun `Person 생성자 `() {
+    fun `Person 생성자`() {
+        val person = Person(NAME, BIRTH_YEAR)
 
+        assertEquals(NAME,person.name)
+        assertEquals(BIRTH_YEAR, person.birthYear)
     }
 
     @Test
