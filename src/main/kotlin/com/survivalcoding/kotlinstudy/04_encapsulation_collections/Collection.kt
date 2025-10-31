@@ -32,17 +32,33 @@ package com.survivalcoding.kotlinstudy.`04_encapsulation_collections`
  */
 
 // 연습문제 2. Person class
-class Person(
+class Person3(
     val name: String,   // 반드시 이름 포함
 )
 
 fun main() {
     // 인스턴스 생성
-    val person1 = Person(name = "홍길동")
-    val person2 = Person(name = "한석봉")
+    val person1 = Person3(name = "홍길동")
+    val person2 = Person3(name = "한석봉")
 
-    val peoples: List<Person> = listOf(person1, person2)    // 리스트에 담기
+    val peoples: List<Person3> = listOf(person1, person2)    // 리스트에 담기
 
     // 리스트에 담긴 모든 이름 출력
     peoples.forEach { println(it.name) }
+
+    // 연습문제 3. 이름 - 나이 쌍 컬렉션
+    val nameAges: Map<String, Int> = mapOf(
+        "홍길동" to 20,
+        "한석봉" to 25
+    )
+
+    // Map에 저장된 값 하나씩 출력
+    nameAges.entries.forEach {
+        println("${it.key}의 나이는 ${it.value}살")
+    }
+
+    // 같은 코드
+//    for ((name, age) in nameAges) {
+//        println("${name}의 나이는 ${age}살")
+//    }
 }
