@@ -7,9 +7,10 @@ class PersonTest {
     @Test
     fun `인스턴스가 잘 만들어지는지 테스트`() {
         //given
-        val person = Person("한석봉")
+        val person = Person("한석봉", 25)
         //then
         assertEquals("한석봉", person.name)
+        assertEquals(25, person.age)
 
     }
 }
