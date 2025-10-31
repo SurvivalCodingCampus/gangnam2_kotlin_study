@@ -10,14 +10,14 @@ class Person2Test {
 
     @Test
     fun `나이 계산 성공`() {
-        // given
+        // given(준비)
         val thisYear = Year.now().value
         val calculatedAge = thisYear - validBirthYear
 
-        // when
+        // when(실행)
         val person = Person2(name = validName, birthYear = validBirthYear)
 
-        // then
+        // then(검증)
         assertEquals(calculatedAge, person.age)
     }
 }
