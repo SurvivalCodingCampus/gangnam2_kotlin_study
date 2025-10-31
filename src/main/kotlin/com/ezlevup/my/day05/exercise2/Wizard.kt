@@ -6,7 +6,7 @@ class Wizard(
     var wand: Wand?,
 ) {
     companion object {
-        const val MIN_NAME_LENGTH = 2
+        const val MIN_NAME_LENGTH = 3
         const val MAX_NAME_LENGTH = 10
     }
 
