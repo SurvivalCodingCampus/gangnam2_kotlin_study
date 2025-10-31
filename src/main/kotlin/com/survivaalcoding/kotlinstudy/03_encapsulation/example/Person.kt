@@ -1,4 +1,4 @@
-package com.survivaalcoding.kotlinstudy.`03_encapsulation`
+package com.survivaalcoding.kotlinstudy.`03_encapsulation`.example
 
 import java.time.LocalDate
 

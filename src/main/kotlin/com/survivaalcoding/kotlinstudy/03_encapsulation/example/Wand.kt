@@ -1,4 +1,4 @@
-package com.survivaalcoding.kotlinstudy.`03_encapsulation`
+package com.survivaalcoding.kotlinstudy.`03_encapsulation`.example
 
 class Wand(val name: String, var power: Double) {
     init {
