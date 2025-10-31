@@ -23,5 +23,14 @@ class ClericTest {
         assertEquals(35, cleric.hp)
         assertEquals(Cleric.MAX_MP, cleric.mp)
     }
+
+    @Test
+    fun `Cleric 생성자가 연습문제 2-C를 만족하는지`(){
+        val cleric = Cleric(name = "아서스")
+
+        assertEquals("아서스", cleric.name)
+        assertEquals(Cleric.MAX_HP, cleric.hp)
+        assertEquals(Cleric.MAX_MP, cleric.mp)
+    }
   
 }
