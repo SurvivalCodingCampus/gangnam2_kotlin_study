@@ -1,6 +1,6 @@
-package _251031_kotlin_oop.collection
+package _251031_kotlin_oop.encapsulation
 
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Test
 
 class PersonTest {
@@ -9,7 +9,7 @@ class PersonTest {
         //given
         val person = Person("test", 2000)
         //then
-        assertEquals(25, person.age)
+        Assert.assertEquals(25, person.age)
     }
 
 

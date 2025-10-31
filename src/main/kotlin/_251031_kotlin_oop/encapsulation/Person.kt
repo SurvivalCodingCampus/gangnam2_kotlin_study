@@ -1,4 +1,4 @@
-package _251031_kotlin_oop.collection
+package _251031_kotlin_oop.encapsulation
 
 import java.time.LocalDate
 
@@ -8,5 +8,4 @@ class Person(
 
     ) {
     val age = LocalDate.now().year - birthYear
-
 }
