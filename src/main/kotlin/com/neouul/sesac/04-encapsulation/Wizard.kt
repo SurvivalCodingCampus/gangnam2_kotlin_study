@@ -5,9 +5,14 @@ class Wizard(
     hp: Int,
     var wand: Wand?,
 ) {
+    init {
+        checkName(name)
+        require(hp >= 0) { "invalid value: HP의 입력은 0 이상이어야 합니다" }
+    }
+
     var name: String = name
         set(value) {
-            require(value.length >= MIN_NAME_LENGTH) { "invalid value: 이름은 ${MIN_NAME_LENGTH}자 이상이어야 합니다" }
+            checkName(value)
             field = value
         }
 
@@ -19,11 +24,13 @@ class Wizard(
 
     var hp: Int = hp
         set(value) {
-            // TODO: 예외를 던져야 할까??
             field = if (value < 0) 0 else value
         }
 
-    fun fireball(){
+    private fun checkName(value: String) =
+        require(value.length >= MIN_NAME_LENGTH) { "invalid value: 이름은 ${MIN_NAME_LENGTH}자 이상이어야 합니다" }
+
+    fun fireball() {
 
     }
 }
