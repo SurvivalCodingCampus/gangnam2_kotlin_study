@@ -7,6 +7,11 @@ class Person2(
     val name: String,   // 생성자, 수정 불가
     val birthYear: Int, // 생성자, 수정 불가
 ) {
+    init {
+        require(name.isNotEmpty()) { "이름은 비어 있을 수 없습니다." }
+        require(birthYear <= Year.now().value) { "출생 연도는 미래일 수 없습니다." }
+    }
+
     // 올해 연도
     private val thisYear: Int = Year.now().value
 
