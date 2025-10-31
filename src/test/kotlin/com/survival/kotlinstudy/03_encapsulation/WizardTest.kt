@@ -1,6 +1,7 @@
 package com.survival.kotlinstudy.`03_encapsulation`
 
 import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -55,6 +56,18 @@ class WizardTest {
     }
 
     @Test
+    fun `Wizard의 이름을 3글자로 변경할 때 예외가 발생하지 않는다`() {
+        // given (준비)
+        val wizard = Wizard(name = "대마법사", hp = 100, wand = null)
+        val newName = "마법사"
+
+        // when (실행)
+        // then (검증)
+        assertDoesNotThrow { wizard.name = newName }
+        assertEquals(newName, wizard.name)
+    }
+
+    @Test
     fun `Wizard의 이름이 null 이면 예외가 발생한다`() {
         // given (준비)
         val wizard = Wizard(name = "마법사", hp = 100, wand = null)
@@ -65,6 +78,19 @@ class WizardTest {
         }
         // then (검증)
         assertEquals("마법사의 이름은 null 일 수 없습니다", exception.message)
+    }
+
+    @Test
+    fun `Wizard의 MP는 0 이상이어야 한다`() {
+        // given (준비)
+        val wizard = Wizard(name = "마법사", hp = 100, wand = null)
+
+        // when (실행)
+        val exception = assertThrows<IllegalArgumentException> {
+            wizard.mp = -10
+        }
+        // then (검증)
+        assertEquals("마법사의 MP 는 0 이상이어야 합니다", exception.message)
     }
 
 }
