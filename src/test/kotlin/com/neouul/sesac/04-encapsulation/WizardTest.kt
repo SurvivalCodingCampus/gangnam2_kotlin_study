@@ -62,11 +62,27 @@ class WizardTest {
 
     @Test
     fun `Wizard의 mp에 0 이상의 값을 대입한다`() {
+        // given
+        val wizard = Wizard(VALID_NAME, MAX_WIZARD_HP, wand)
 
+        // when
+        wizard.mp = 5
+
+        // then
+        assertEquals(VALID_NAME, wizard.name)
+        assertEquals(MAX_WIZARD_HP, wizard.hp)
+        assertEquals(5, wizard.mp)
+        assertTrue(wizard.wand is Wand)
     }
 
     @Test
     fun `Wizard의 mp에 음수 대입을 시도하여, 실패한다`() {
+        val wizard = Wizard(VALID_NAME, MAX_WIZARD_HP, wand)
 
+        // then
+        assertEquals(VALID_NAME, wizard.name)
+        assertEquals(MAX_WIZARD_HP, wizard.hp)
+        assertFailsWith<IllegalArgumentException> { wizard.mp = -5 }
+        assertTrue(wizard.wand is Wand)
     }
 }
