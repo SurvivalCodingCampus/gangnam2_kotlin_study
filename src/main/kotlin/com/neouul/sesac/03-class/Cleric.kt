@@ -2,6 +2,7 @@ package com.neouul.sesac.`03-class`
 
 import kotlin.random.Random
 
+//TODO: hp, mp 입력의 범위를 지정해야 한다
 class Cleric(
     var name: String,
     var hp: Int = MAX_HP,
@@ -41,7 +42,7 @@ class Cleric(
     }
 
     // 매직 넘버를 줄이기 위한 상수 선언
-    companion object{
+    companion object {
         const val MAX_HP = 50
         const val MAX_MP = 10
     }
