@@ -14,9 +14,7 @@ class Wizard(
 
     var hp: Int = hp
         set(value) {
-            if (value < 0) {
-                field = 0
-            }
+            field = if (value < 0) 0 else value
         }
 
     var mp: Int = 10
