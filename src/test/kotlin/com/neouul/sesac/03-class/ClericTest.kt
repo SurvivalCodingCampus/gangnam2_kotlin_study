@@ -3,6 +3,7 @@ package com.neouul.sesac.`03-class`
 import org.junit.Assert.*
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 class ClericTest {
     @Test
@@ -32,5 +33,6 @@ class ClericTest {
         assertEquals(Cleric.MAX_HP, cleric.hp)
         assertEquals(Cleric.MAX_MP, cleric.mp)
     }
+
   
 }
