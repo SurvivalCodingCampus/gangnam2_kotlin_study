@@ -27,7 +27,7 @@ fun main() {
 }
 
 // Map 보다는 이렇게 클래스 만들어서 사용하는 게 좋다.
-class Person(
-    val name: String,
-    val age: Int
-)
+//class Person(
+//    val name: String,
+//    val age: Int
+//)
