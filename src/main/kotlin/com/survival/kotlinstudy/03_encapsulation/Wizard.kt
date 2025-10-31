@@ -2,7 +2,7 @@ package com.survival.kotlinstudy.`03_encapsulation`
 
 class Wizard(
     name: String,
-    var hp: Int,
+    hp: Int,
     var wand: Wand?,
 ) {
     var name: String = name
@@ -10,6 +10,13 @@ class Wizard(
             require(value.isNotEmpty()) { "마법사의 이름은 null 일 수 없습니다" }
             require(value.length >= 3) { "마법사의 이름은 3글자 이상이어야 합니다" }
             field = value
+        }
+
+    var hp: Int = hp
+        set(value) {
+            if (value < 0) {
+                field = 0
+            }
         }
 
     var mp: Int = 10
