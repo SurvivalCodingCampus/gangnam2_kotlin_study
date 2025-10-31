@@ -8,7 +8,5 @@ class Person(
     private val now: LocalDate = LocalDate.now(),
 ) {
     val age: Int
-        get() {
-            return now.year - birthYear
-        }
+        get() = now.year - birthYear
 }
