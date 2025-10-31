@@ -102,7 +102,7 @@ class WizardTest {
         wizard.hp = -100
 
         // then (검증)
-        assertEquals(0,wizard.hp)
+        assertEquals(0, wizard.hp)
     }
 
 }
