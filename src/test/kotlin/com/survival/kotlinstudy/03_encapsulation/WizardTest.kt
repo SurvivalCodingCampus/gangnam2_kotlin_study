@@ -93,4 +93,16 @@ class WizardTest {
         assertEquals("마법사의 MP 는 0 이상이어야 합니다", exception.message)
     }
 
+    @Test
+    fun `Wizard의 hp가 음수가 되는 상황에서는 대신 0을 설정 되도록 한다`() {
+        // given (준비)
+        val wizard = Wizard(name = "마법사", hp = 100, wand = null)
+
+        // when (실행)
+        wizard.hp = -100
+
+        // then (검증)
+        assertEquals(0,wizard.hp)
+    }
+
 }
