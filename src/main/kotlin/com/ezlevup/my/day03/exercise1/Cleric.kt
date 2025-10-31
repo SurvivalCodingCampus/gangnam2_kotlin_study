@@ -1,14 +1,23 @@
 package com.ezlevup.my.day03.exercise1
 
-class Cleric(var name: String) {
-    val MAX_HP: Int = 50
-    val MAX_MP: Int = 10
-    val SELF_AID_MP_COST = 5 // 셀프 에이드 마법의 마나 사용량
+import kotlin.math.min
 
 
-    var hp: Int = MAX_HP
-    var mp: Int = MAX_MP
+class Cleric(
+    var name: String,
+    var hp: Int = ClericConfig.MAX_HP,
+    var mp: Int = ClericConfig.MAX_MP,
+) {
 
+    init {
+        require(name.isNotEmpty()) {
+            "이름이 없으면 작명소에서 만들어서 오세요."
+        }
+
+        require(name.length in ClericConfig.MIN_NAME_LENGTH..ClericConfig.MAX_NAME_LENGTH) {
+            "이름은 ${ClericConfig.MIN_NAME_LENGTH}자 이상 ${ClericConfig.MAX_NAME_LENGTH}자 이하로 부탁해요."
+        }
+    }
 
     /**
      * MP를 지정된 양만큼 소모합니다.
@@ -32,11 +41,11 @@ class Cleric(var name: String) {
 
 
     fun selfAid() {
-        if (useMp(SELF_AID_MP_COST)) {
-            hp = MAX_HP
+        if (useMp(ClericConfig.SELF_AID_MP_COST)) {
+            hp = ClericConfig.MAX_HP
             println("회복 성공 hp: $hp, mp: $mp")
         } else {
-            println("회복 실패 hp: $hp, mp: $mp / 필요한 MP는 $SELF_AID_MP_COST")
+            println("회복 실패 hp: $hp, mp: $mp / 필요한 MP는 ${ClericConfig.SELF_AID_MP_COST}")
         }
     }
 
@@ -49,21 +58,25 @@ class Cleric(var name: String) {
             println("회복량은 0 이상이어야 합니다: $amount")
             return
         }
-        mp = (mp + amount).coerceAtMost(MAX_MP)
+
+        mp = min(mp + amount, ClericConfig.MAX_MP)
     }
 
 
-    fun prayBonus(): Int = (0..2).random()
+    fun prayBonus(): Int = ClericConfig.bonusCalculator()
 
     /**
      * 기도하기
      */
-    fun pray(prayDuration: Int) {
+    fun pray(prayDuration: Int): Int {
         if (prayDuration <= 0) {
-            println("기도 시간은 0 이상이어야 합니다: $prayDuration")
-            return
+            println("기도 시간은 1 이상이어야 합니다!: $prayDuration")
+            return 0
         }
-        val bonusMp = prayBonus()
-        recoverMp(prayDuration + bonusMp)
+
+        val bonusMp = prayBonus() + prayDuration
+        recoverMp(bonusMp)
+
+        return bonusMp
     }
 }

@@ -1,62 +1,115 @@
 package com.ezlevup.my.day03.exercise1
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class ClericTest {
     @Test
-    fun `성직자 인스턴스 초기값 확인`() {
+    fun `성직자 이름만 지정해서 인스턴스 초기값 확인`() {
         // given
         val cleric = Cleric(name = "lee")
 
         // then
-        assertEquals(50, cleric.hp)
-        assertEquals(10, cleric.mp)
+        assertEquals("lee", cleric.name)
+        assertEquals(ClericConfig.MAX_HP, cleric.hp)
+        assertEquals(ClericConfig.MAX_MP, cleric.mp)
     }
+
+    @Test
+    fun `성직자 이름이 빈 문자열이면 예외`() {
+        // given
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            Cleric("")
+        }
+        assertTrue(exception.message?.contains("작명소") ?: false)
+    }
+
+    @Test
+    fun `성직자 이름이 너무 짧으면 예외`() {
+        // given
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            Cleric("이")
+        }
+        assertTrue(exception.message?.contains("2자 이상") ?: false)
+    }
+
+    @Test
+    fun `성직자 이름이 너무 길면 예외`() {
+        // given
+        val exception = assertThrows(IllegalArgumentException::class.java) {
+            Cleric("가나다라마바사아자차카타파하")
+        }
+        assertTrue(exception.message?.contains("10자 이하") ?: false)
+    }
+
+    @Test
+    fun `성직자 hp, mp 지정해서 인스턴스 확인`() {
+        // given
+        val hp = 40
+        val mp = 5
+        val cleric = Cleric(name = "lee", hp = hp, mp = mp)
+
+        // then
+        assertEquals("lee", cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(mp, cleric.mp)
+    }
+
+    @Test
+    fun `성직자 hp 지정해서 인스턴스 확인`() {
+        // given
+        val hp = 35
+        val cleric = Cleric(name = "lee", hp = hp)
+
+        // then
+        assertEquals("lee", cleric.name)
+        assertEquals(hp, cleric.hp)
+        assertEquals(ClericConfig.MAX_MP, cleric.mp)
+    }
+
 
     @Test
     fun `성직자 셀프 에이드 마법 사용`() {
         // given
         val cleric = Cleric(name = "lee")
-        cleric.hp = cleric.MAX_HP - 1
-        cleric.mp = cleric.MAX_MP
+        cleric.hp = ClericConfig.MAX_HP - 1
+        cleric.mp = ClericConfig.MAX_MP
 
         // when
         cleric.selfAid()
 
         // then
-        assertEquals(cleric.MAX_HP, cleric.hp)
-        assertEquals(cleric.MAX_MP - cleric.SELF_AID_MP_COST, cleric.mp)
+        assertEquals(ClericConfig.MAX_HP, cleric.hp)
+        assertEquals(ClericConfig.MAX_MP - ClericConfig.SELF_AID_MP_COST, cleric.mp)
     }
 
     @Test
     fun `성직자 기도하기 행동`() {
         // given
         val cleric = Cleric(name = "lee")
-        cleric.hp = cleric.MAX_HP
-        cleric.mp = cleric.MAX_MP - 10
+        cleric.hp = ClericConfig.MAX_HP
+        cleric.mp = ClericConfig.MAX_MP - 10
 
         // when
         cleric.pray(10)
 
         // then
-        assertEquals(cleric.MAX_MP, cleric.mp)
+        assertEquals(ClericConfig.MAX_MP, cleric.mp)
     }
 
     @Test
     fun `성직자 MP를 지정된 양만큼 소모 성공`() {
         // given
         val cleric = Cleric(name = "lee")
-        cleric.hp = cleric.MAX_HP
-        cleric.mp = cleric.MAX_MP
+        cleric.hp = ClericConfig.MAX_HP
+        cleric.mp = ClericConfig.MAX_MP
 
         // when
         val result: Boolean = cleric.useMp(5)
 
         // then
         assertEquals(true, result)
-        assertEquals(cleric.MAX_MP - 5, cleric.mp)
+        assertEquals(ClericConfig.MAX_MP - 5, cleric.mp)
     }
 
     @Test
@@ -78,14 +131,14 @@ class ClericTest {
     fun `성직자 MP를 회복 test 1`() {
         // given
         val cleric = Cleric(name = "lee")
-        cleric.hp = cleric.MAX_HP
-        cleric.mp = cleric.MAX_MP - 1
+        cleric.hp = ClericConfig.MAX_HP
+        cleric.mp = ClericConfig.MAX_MP - 1
 
         // when
         cleric.recoverMp(10)
 
         // then
-        assertEquals(cleric.MAX_MP, cleric.mp)
+        assertEquals(ClericConfig.MAX_MP, cleric.mp)
     }
 
     @Test
