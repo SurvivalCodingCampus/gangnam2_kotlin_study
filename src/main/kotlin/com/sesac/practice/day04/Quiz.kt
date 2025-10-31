@@ -1,6 +1,6 @@
 package com.sesac.practice.day04
 
-class Person(val name: String)
+class QuizPerson(val name: String)
 
 fun main() {
     /**
@@ -38,8 +38,8 @@ fun main() {
     )
 
     // 연습문제 2
-    val hong = Person("홍길동")
-    val han = Person("한석봉")
+    val hong = QuizPerson("홍길동")
+    val han = QuizPerson("한석봉")
 
     val list = listOf(hong, han)
 
