@@ -1,0 +1,41 @@
+package com.neouul.sesac.`04-encapsulation`
+
+import org.junit.Assert.*
+import org.junit.Test
+
+class PersonTest {
+    companion object {
+        const val NAME = "최강"
+        const val BIRTH_YEAR = 2004
+        const val LOCAL_YEAR = 2025
+    }
+
+    @Test
+    fun `Person 생성자 `() {
+
+    }
+
+    @Test
+    fun `Person의 age 필드를 통해 나이를 제공받는다`() {
+        // given
+        val person = Person(NAME, BIRTH_YEAR)
+
+        // when
+        val age = person.age
+
+        // then
+        assertEquals(LOCAL_YEAR - BIRTH_YEAR, age)
+    }
+
+    @Test
+    fun `Person의 calculateAge() 메서드를 통해 나이를 리턴받는다`() {
+        // given
+        val person = Person(NAME, BIRTH_YEAR)
+
+        // when
+        val age = person.calculateAge()
+
+        // then
+        assertEquals(LOCAL_YEAR - BIRTH_YEAR, age)
+    }
+}
