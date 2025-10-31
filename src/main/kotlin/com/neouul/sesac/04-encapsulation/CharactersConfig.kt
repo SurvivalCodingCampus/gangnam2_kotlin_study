@@ -3,6 +3,7 @@ package com.neouul.sesac.`04-encapsulation`
 const val MIN_NAME_LENGTH = 3
 
 // Wizard
+const val MAX_WIZARD_HP = 50
 const val MAX_WIZARD_MP = 10
 
 // Wand
