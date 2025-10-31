@@ -32,12 +32,32 @@ class WizardTest {
 
     @Test
     fun `Wizard의 hp에 0 이상의 값을 대입한다`() {
+        // given
+        val wizard = Wizard(VALID_NAME, MAX_WIZARD_HP, wand)
 
+        // when
+        wizard.hp = 10
+
+        // then
+        assertEquals(VALID_NAME, wizard.name)
+        assertEquals(10, wizard.hp)
+        assertEquals(MAX_WIZARD_MP, wizard.mp)
+        assertTrue(wizard.wand is Wand)
     }
 
     @Test
     fun `Wizard의 hp에 음수 대입을 시도하여, hp가 0이 된다`() {
+        // given
+        val wizard = Wizard(VALID_NAME, MAX_WIZARD_HP, wand)
 
+        // when
+        wizard.hp = -10
+
+        // then
+        assertEquals(VALID_NAME, wizard.name)
+        assertEquals(0, wizard.hp)
+        assertEquals(MAX_WIZARD_MP, wizard.mp)
+        assertTrue(wizard.wand is Wand)
     }
 
     @Test
