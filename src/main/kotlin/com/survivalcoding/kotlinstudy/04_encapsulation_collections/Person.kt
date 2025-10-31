@@ -3,7 +3,7 @@ package com.survivalcoding.kotlinstudy.`04_encapsulation_collections`
 import java.time.Year
 
 // 연습문제 2. Person class
-class Person(
+class Person2(
     val name: String,   // 생성자, 수정 불가
     val birthYear: Int, // 생성자, 수정 불가
 ) {
