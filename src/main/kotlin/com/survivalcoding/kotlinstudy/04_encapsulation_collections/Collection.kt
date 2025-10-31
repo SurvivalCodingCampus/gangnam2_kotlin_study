@@ -30,3 +30,19 @@ package com.survivalcoding.kotlinstudy.`04_encapsulation_collections`
  * Key로 빠른 접근이 가능
  * key 인 도시 이름은 중복이 불가능하지만 Value인 인구수는 중복이 가능한 구조
  */
+
+// 연습문제 2. Person class
+class Person(
+    val name: String,   // 반드시 이름 포함
+)
+
+fun main() {
+    // 인스턴스 생성
+    val person1 = Person(name = "홍길동")
+    val person2 = Person(name = "한석봉")
+
+    val peoples: List<Person> = listOf(person1, person2)    // 리스트에 담기
+
+    // 리스트에 담긴 모든 이름 출력
+    peoples.forEach { println(it.name) }
+}
