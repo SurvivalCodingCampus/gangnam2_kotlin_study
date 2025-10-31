@@ -46,7 +46,7 @@ class WandFieldTest {
     fun `Wand의 name 필드 경계값 분석`() {
         val wand = Wand(VALID_NAME, VALID_POWER)
 
-        assertFailsWith<IllegalArgumentException> { wand.name = "AB"}   // 2
+        assertFailsWith<IllegalArgumentException> { wand.name = "AB" }   // 2
         assertEquals(VALID_NAME, wand.name)     // 3
         wand.name += "D"
         assertEquals("ABCD", wand.name)     // 4
