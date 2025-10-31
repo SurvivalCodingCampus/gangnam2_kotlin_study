@@ -13,8 +13,8 @@ class Wand(
 
     var power: Double = power
         set(value) {
-            require(value >= MIN_POWER) {"지팡이의 마력은 ${MIN_POWER} 이상이어야 한다"}
-            require(value <= MAX_POWER) {"지팡이의 마력은 ${MAX_POWER} 이하여야 한다"}
+            require(value >= MIN_POWER) { "지팡이의 마력은 ${MIN_POWER} 이상이어야 한다" }
+            require(value <= MAX_POWER) { "지팡이의 마력은 ${MAX_POWER} 이하여야 한다" }
             field = value
         }
 
