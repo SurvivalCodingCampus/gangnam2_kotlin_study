@@ -4,10 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-// given(준비)
-// when(실행)
-// then(검증)
-
 // 지팡이 테스트
 class WandTest {
     private val validName = "마법지팡이"
