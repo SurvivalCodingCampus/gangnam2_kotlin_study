@@ -78,6 +78,82 @@ class WandTest {
             Wand(name, power)
         }
     }
+
+    @Test
+    fun `지팡이 이름 변경 성공`() {
+        // given(준비)
+        val wand = Wand(validName, normalPower)
+        val newName = "마법막대기"
+
+        // when(실행)
+        wand.name = newName
+
+        // then(검증)
+        assertEquals(newName, wand.name)
+    }
+
+    @Test
+    fun `지팡이 이름 변경 실패 - 이름 null`() {
+        // given(준비)
+        val wand = Wand(validName, normalPower)
+        val newName = invalidName
+
+        // then(검증)
+        assertFailsWith<IllegalArgumentException> {
+            wand.name = newName
+        }
+    }
+
+    @Test
+    fun `지팡이 이름 변경 실패 - 이름 3글자 미만`() {
+        // given(준비)
+        val wand = Wand(validName, normalPower)
+        val newName = shortName
+
+        // then(검증)
+        assertFailsWith<IllegalArgumentException> {
+            wand.name = newName
+        }
+    }
+
+    @Test
+    fun `지팡이 마력 변경 성공`() {
+        // given(준비)
+        val wand = Wand(validName, 1.0)
+        val newPower = 80.0
+
+        // when(실행)
+        wand.power = newPower
+
+        // then(검증)
+        assertEquals(newPower, wand.power, 0.0)
+    }
+
+    @Test
+    fun `지팡이 마력 변경 실패 - 미만`() {
+        // given(준비)
+        val wand = Wand(validName, normalPower)
+        val newPower = lowPower
+
+        // then(검증)
+        assertFailsWith<IllegalArgumentException> {
+            wand.power = newPower
+        }
+    }
+
+    @Test
+    fun `지팡이 마력 변경 실패 - 초과`() {
+        // given(준비)
+        val wand = Wand(validName, normalPower)
+        val newPower = highPower
+
+        // then(검증)
+        assertFailsWith<IllegalArgumentException> {
+            wand.power = newPower
+        }
+    }
+
+
 }
 
 class WizardTest {
@@ -87,7 +163,7 @@ class WizardTest {
     private val validHp = 0
     private val validMp = 10
     private val invalidMp = -1
-    private val negativeHP = -1
+    private val negativeHp = -1
     private val validWand = Wand("지팡이", 1.0)
 
     @Test
@@ -146,7 +222,7 @@ class WizardTest {
         // given(준비)
         val name = validName
         val mp = validMp
-        val hp = negativeHP
+        val hp = negativeHp
 
         // when(실행)
         val wizard = Wizard(name, mp, hp, validWand)
@@ -168,6 +244,80 @@ class WizardTest {
 
         // then(검증)
         assertEquals(null, wizard.wand)
+    }
 
+    @Test
+    fun `마법사 이름 변경 성공`() {
+        // given(준비)
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newName = "위자드"
+
+        // when(실행)
+        wizard.name = newName
+
+        // then(검증)
+        assertEquals(newName, wizard.name)
+    }
+
+    @Test
+    fun `마법사 이름 변경 실패 - 이름 null`() {
+        // given
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newName = invalidName
+
+        // then
+        assertFailsWith<IllegalArgumentException> {
+            wizard.name = newName
+        }
+    }
+
+    @Test
+    fun `마법사 이름 변경 실패 - 이름 3글자 미만`() {
+        // given
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newName = shortName
+
+        // then
+        assertFailsWith<IllegalArgumentException> {
+            wizard.name = newName
+        }
+    }
+
+    @Test
+    fun `마법사 MP 변경 성공`() {
+        // given
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newMp = 30
+
+        // when
+        wizard.mp = newMp
+
+        // then
+        assertEquals(newMp, wizard.mp)
+    }
+
+    @Test
+    fun `마법사 MP 변경 실패 - 음수`() {
+        // given
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newMp = invalidMp
+
+        // then
+        assertFailsWith<IllegalArgumentException> {
+            wizard.mp = newMp
+        }
+    }
+
+    @Test
+    fun `마법사 HP 변경 성공 - 음수는 0으로 보정`() {
+        // given
+        val wizard = Wizard(validName, validMp, validHp, validWand)
+        val newHp = negativeHp
+
+        // when
+        wizard.hp = newHp
+
+        // then
+        assertEquals(0, wizard.hp)  // setter에서 보정됨
     }
 }
