@@ -32,7 +32,7 @@ class WandTest {
     }
 
     @Test
-    fun `지팡이 생성 실패 - 이름 null`() {
+    fun `지팡이 생성 실패 - 이름 이름 빈 문자열`() {
         // given(준비)
         val name = invalidName
         val power = normalPower
@@ -93,7 +93,7 @@ class WandTest {
     }
 
     @Test
-    fun `지팡이 이름 변경 실패 - 이름 null`() {
+    fun `지팡이 이름 변경 실패 - 이름 빈 문자열`() {
         // given(준비)
         val wand = Wand(validName, normalPower)
         val newName = invalidName
@@ -152,8 +152,6 @@ class WandTest {
             wand.power = newPower
         }
     }
-
-
 }
 
 class WizardTest {
@@ -179,7 +177,7 @@ class WizardTest {
     }
 
     @Test
-    fun `마법사 생성 실패 - 이름 null`() {
+    fun `마법사 생성 실패 - 이름 빈 문자열`() {
         // given(준비)
         val name = invalidName
         val mp = validMp
@@ -232,7 +230,7 @@ class WizardTest {
     }
 
     @Test
-    fun `마법사 성공 - 지팡이 null`() {
+    fun `마법사 성공 - 지팡이 열`() {
         // given(준비)
         val name = validName
         val mp = validMp
@@ -260,7 +258,7 @@ class WizardTest {
     }
 
     @Test
-    fun `마법사 이름 변경 실패 - 이름 null`() {
+    fun `마법사 이름 변경 실패 - 이름 빈 문자`() {
         // given
         val wizard = Wizard(validName, validMp, validHp, validWand)
         val newName = invalidName

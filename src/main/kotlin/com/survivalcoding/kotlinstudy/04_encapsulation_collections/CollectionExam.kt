@@ -8,7 +8,7 @@ fun main() {
     // 수정 불가능한 리스트 (add 안됨)
     // 초기값 작성 가능
     val names2: List<Int> = listOf<Int>(1, 2, 3, 4)
-    println(names2[3]) // 터져요
+    println(names2[3]) // IndexOutOfBoundsException 발생
 
     val names3: Array<Int> = arrayOf(1, 2, 3, 4)
     names3[0] = 10
