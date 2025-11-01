@@ -6,7 +6,7 @@ class Wand(
 ) {
     var name: String = name
         set(value) {
-            require(value.length <= 3) { "3글자 이상부터 가능합니다." }
+            require(value.length >= 3) { "3글자 이상부터 가능합니다." }
             field = value
         }
     var power: Double = power
@@ -14,4 +14,9 @@ class Wand(
             require(value in 0.5..100.0) { "지팡이의 마력은 0.5 이상 100.0 이하여야 합니다." }
             field = value
         }
+
+    init {
+        this.name = name
+        this.power = power
+    }
 }
