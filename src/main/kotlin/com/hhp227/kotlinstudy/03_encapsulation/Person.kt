@@ -1,8 +1,6 @@
 package com.hhp227.kotlinstudy.`03_encapsulation`
 
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.Period
 import java.time.format.DateTimeFormatter
 
 /*
