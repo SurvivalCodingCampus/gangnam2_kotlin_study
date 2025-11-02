@@ -36,4 +36,4 @@ fun main() {
     }
 }
 
-class Person(var name: String)
+data class Person(var name: String)

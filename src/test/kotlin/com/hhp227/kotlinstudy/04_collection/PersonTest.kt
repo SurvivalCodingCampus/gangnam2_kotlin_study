@@ -23,14 +23,16 @@ class PersonTest {
 
     @Test
     fun `이름과 나이를 쌍으로 Map에 저장하고 올바르게 매칭되는지 확인한다`() {
-        val people = listOf(Person("홍길동"), Person("한석봉"))
+        val person1 = Person("홍길동")
+        val person2 = Person("한석봉")
+        val people = listOf(person1, person2)
         val ages = listOf(20, 25)
         val peopleMap = people.zip(ages).toMap()
 
         // 검증
         assertEquals(2, peopleMap.size)
-        assertEquals(20, peopleMap[Person("홍길동")]?.let { ages[it] } ?: 20)
-        assertEquals(25, peopleMap[Person("한석봉")]?.let { ages[it] } ?: 25)
+        assertEquals(20, peopleMap[person1])
+        assertEquals(25, peopleMap[person2])
     }
 
     @Test
