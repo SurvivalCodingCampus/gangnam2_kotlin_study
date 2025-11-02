@@ -22,7 +22,7 @@ class Wizard(
     var mp: Int = 0
         set(value) {
             if (value > -1) field = value
-            else throw IllegalArgumentException("")
+            else throw IllegalArgumentException("MP는 0 이상이어야 합니다.")
         }
 
     var name = _name
