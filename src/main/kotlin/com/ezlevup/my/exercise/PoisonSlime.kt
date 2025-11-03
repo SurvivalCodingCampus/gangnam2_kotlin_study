@@ -32,5 +32,4 @@ fun main() {
     val hero = Hero(name = "lee", hp = 100)
 
     poisonSlime.attack(hero)
-
 }
