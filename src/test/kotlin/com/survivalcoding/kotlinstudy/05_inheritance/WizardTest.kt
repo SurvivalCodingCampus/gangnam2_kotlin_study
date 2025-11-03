@@ -29,7 +29,7 @@ class WizardTest {
     }
 
     @Test
-    fun `힐 성공 - 영웅 HP 20 회복, 마법사 MP 10 소모`() {
+    fun `힐 성공 - 용사 HP 20 회복, 마법사 MP 10 소모`() {
         // given
         val hero = Hero(HERO_NAME, HERO_INITIAL_HP)
         val wand = Wand(WAND_NAME, WAND_POWER)
