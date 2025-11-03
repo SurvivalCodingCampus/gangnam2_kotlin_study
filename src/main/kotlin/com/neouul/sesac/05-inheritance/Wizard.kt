@@ -41,27 +41,27 @@ open class Wizard(
 
     // 연습문제 4
     open fun heal(hero: Hero) {
-        checkHeal(HEAL_HP, HEAL_MP, hero)
+//        checkHeal(HEAL_HP, HEAL_MP, hero)
 
-//        if (mp >= HEAL_MP) {
-//            hero.hp += HEAL_HP
-//            mp -= HEAL_MP
-//            println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
-//        } else {
-//            println("마나가 부족합니다")
-//        }
-    }
-
-    protected fun checkHeal(healHp: Int, healMp: Int, hero: Hero) {
-        if (mp >= healMp) {
-            hero.hp += healHp
-            mp -= healMp
-            if (this is GreatWizard) {
-                print("슈퍼 ")
-            }
+        if (mp >= HEAL_MP) {
+            hero.hp += HEAL_HP
+            mp -= HEAL_MP
             println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
         } else {
             println("마나가 부족합니다")
         }
     }
+
+//    protected fun checkHeal(healHp: Int, healMp: Int, hero: Hero) {
+//        if (mp >= healMp) {
+//            hero.hp += healHp
+//            mp -= healMp
+//            if (this is GreatWizard) {
+//                print("슈퍼 ")
+//            }
+//            println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+//        } else {
+//            println("마나가 부족합니다")
+//        }
+//    }
 }

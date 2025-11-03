@@ -19,6 +19,14 @@ class GreatWizard(
     }
 
     override fun heal(hero: Hero) {
-        checkHeal(HEAL_HP, HEAL_MP, hero)
+//        checkHeal(HEAL_HP, HEAL_MP, hero)
+
+        if (mp >= HEAL_MP) {
+            hero.hp += HEAL_HP
+            mp -= HEAL_MP
+            println("슈퍼 힐을 시전했습니다. 대상 HP: ${hero.hp}")
+        } else {
+            println("마나가 부족합니다")
+        }
     }
 }
