@@ -52,7 +52,8 @@ class PoisonSlimeTest {
     @Test
     fun `포이즌 횟수에 음수가 들어가면 0으로 교정된다`() {
         val poisonSlime = PoisonSlime(slimeName)
-        poisonSlime.poisonCount = -5
+        val poisonCount = -5
+        poisonSlime.poisonCount = poisonCount
 
         assertEquals(expectedCount, poisonSlime.poisonCount)
     }

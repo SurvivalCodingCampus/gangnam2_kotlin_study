@@ -18,10 +18,8 @@ class GreatWizard(
             println("마나가 부족합니다.")
             return
         }
-        if (hero.hp >= HERO_MAX_HP) {
-            return
-        }
-        hero.hp += 25
+
+        hero.hp += minOf(hero.hp +25, HERO_MAX_HP)
         mp -= 5
         println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
     }
