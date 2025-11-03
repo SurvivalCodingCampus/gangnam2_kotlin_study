@@ -17,8 +17,6 @@ open class Wizard(
         set(value) {
             if (value < 0) {
                 throw IllegalArgumentException("마법사의 MP는 0이상이어야 합니다.")
-            } else {
-                println("현재 값")
             }
             field = value
         }
