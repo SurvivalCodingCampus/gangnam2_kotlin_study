@@ -4,7 +4,7 @@ class Slime {
     - suffix: String
     + hp: Int
     - MAX_HP: Int
-    - ATTACK_POINT: INT
+    - ATTACK_POINT: Int
     + attack(hero: Hero): Unit
 }
 

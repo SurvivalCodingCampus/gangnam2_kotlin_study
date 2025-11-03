@@ -23,7 +23,7 @@ class PoisonSlime(suffix: String) : Slime(suffix) {
         val damage = Hero.MAX_HP / POISON_ATTACK_POINT
         println("$damage 포인트의 데미지")
 
-        hero.hp -= damage
+        hero.hp -= if (hero.hp - damage >= Hero.MIN_HP) damage else hero.hp
         poisonCount--
     }
 
