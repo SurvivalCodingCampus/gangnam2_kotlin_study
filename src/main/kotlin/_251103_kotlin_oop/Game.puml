@@ -1,0 +1,15 @@
+@startuml
+scale 2
+'스케일 크게 작성
+class Hero{
+    + name: String
+    + hp: Int
+    + fun attack(slime:Slime)
+    - fun run()
+}
+
+class SuperHero extends Hero{
+    + isFlying: Boolean
+}
+
+@enduml
