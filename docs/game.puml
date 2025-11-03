@@ -9,14 +9,46 @@ class Hero {
 }
 
 class SuperHero extends Hero {
+    + sword: Sword?
     + isFlying: Boolean
 }
 
-class Slime {
+class Sword {
 
+}
+
+SuperHero o.. Sword
+
+class Slime {
+    + suffix: String
+    + hp: Int
+    + fun attack(hero: Hero)
 }
 
 class PoisonSlime extends Slime {
+    - poisonCount: Int
+    + fun attack(hero: Hero)
 }
+
+class Wand {
+    + name: String
+    + power: Double
+}
+
+class Wizard {
+    + name: String
+    + hp: Int
+    + mp: Int
+    + wand: Wand?
+    + fun heal(hero: Hero)
+    # fun checkHeal(healHp: Int, healMp: Int, hero: Hero)
+}
+
+class GreatWizard extends Wizard {
+
+}
+
+Wizard o.. Wand
+GreatWizard o.. Wand
 
 @enduml
