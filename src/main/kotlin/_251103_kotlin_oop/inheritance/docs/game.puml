@@ -1,0 +1,62 @@
+@startuml
+scale 1
+
+class Hero{
+    + name: String,
+    + hp: Int,
+    + sword: Sword? = null
+}
+class Slime{
+    + suffix: String
+    + hp: Int
+    - fun attack(hero: Hero)
+}
+class Wizard{
+    + name: String,
+    + hp: Int,
+    + wand: Wand?
+    + mp:Int
+
+    - fun attacked(damage: Int)
+    - fun heal(hero: Hero)
+    }
+class PoisonSlime extends Slime{
+    + name: String
+    + poisonCount: Int
+    - fun attack()
+
+}
+class GreatWizard extends Wizard{
+    + name: String,
+    + hp: Int,
+    + wand: Wand?
+    + mp:Int
+
+    - fun heal(hero: Hero)
+    - fun superHeal(hero: Hero)
+}
+
+class Cleric{
+    +name: String
+    +hp: Int
+    +mp: Int
+
+    -fun selfAid()
+    -fun pray(time:Int)
+}
+
+class Sword{
+    +name: String
+    +damage: Int
+}
+class Person{
+    +name: String
+    +age: Int
+    +birthYear: Int
+}
+class Wand{
+    +name: String
+    +power: Double
+}
+
+@enduml
