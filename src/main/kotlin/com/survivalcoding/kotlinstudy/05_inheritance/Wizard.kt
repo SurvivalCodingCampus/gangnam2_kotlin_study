@@ -24,7 +24,7 @@ class Wand(
         }
 }
 
-
+// 연습문제 4. Wizard 수정
 class Wizard(
     name: String,
     mp: Int = 100,  // 초기값 100
