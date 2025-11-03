@@ -13,6 +13,8 @@ class Hero {
 
 class SuperHero extends Hero {
     + isFlying: Boolean
+
+    + override fun attack(slime: Slime)
 }
 
 class Cleric {
@@ -32,6 +34,7 @@ class Slime {
 }
 
 class PoisonSlime extends Slime {
+    + override fun attack(hero: Hero)
     + poisonCount: Int
 }
 
