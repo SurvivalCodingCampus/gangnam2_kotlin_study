@@ -1,5 +1,6 @@
 package com.hhp227.kotlinstudy.`03_encapsulation`
 
+import com.hhp227.kotlinstudy.`02_instance_class`.Hero
 import kotlin.math.max
 
 /*
@@ -14,24 +15,35 @@ import kotlin.math.max
 마법사의 MP는 0 이상이어야 한다.
 HP가 음수가 되는 상황에서는 대신 0을 설정 되도록 한다.
  */
-class Wizard(
-    _name: String,
-    _hp: Int,
+
+/*
+연습문제4 - Wizard 수정
+속성:
+mp: Int (초기값 100)
+메서드:
+heal(hero: Hero): Unit의 hp를 20 회복시키고 자신의 mp를 10 소모
+mp가 부족하면 "마나가 부족합니다" 출력
+힐을 성공하면 "힐을 시전했습니다. 대상 HP: ${hero.hp}" 출력
+ */
+
+open class Wizard(
+    name: String,
+    hp: Int,
     var wand: Wand
 ) {
-    var mp: Int = 0
+    open var mp: Int = 100
         set(value) {
             if (value > -1) field = value
             else throw IllegalArgumentException("MP는 0 이상이어야 합니다.")
         }
 
-    var name = _name
+    var name = name
         set(value) {
             validName(value)
             field = value
         }
 
-    var hp = _hp
+    var hp = hp
         set(value) {
             field = max(0, value)
         }
@@ -40,22 +52,32 @@ class Wizard(
         require(name.length > 2) { "이름은 3문자 이상이어야 합니다." }
     }
 
+    open fun heal(hero: Hero) {
+        if (mp < 1) {
+            println("마나가 부족합니다")
+            return
+        }
+        hero.hp += 20
+        mp -= 10
+        println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+    }
+
     init {
-        require(_name.length > 2) { "이름은 3문자 이상이어야 합니다" }
+        require(name.length > 2) { "이름은 3문자 이상이어야 합니다" }
     }
 }
 
 class Wand(
-    _name: String, // 이름
-    _power: Double // 마력
+    name: String, // 이름
+    power: Double // 마력
 ) {
-    var name = _name
+    var name = name
         set(value) {
             validName(value)
             field = value
         }
 
-    var power = _power
+    var power = power
         set(value) {
             require(value in 0.5..100.0) { "지팡이의 마력은 0.5이상 100.0이하여야 합니다." }
             field = value
@@ -66,7 +88,7 @@ class Wand(
     }
 
     init {
-        require(_name.length > 2) { "이름은 3문자 이상이어야 합니다" }
-        require(power in 0.5..100.0) { "지팡이의 마력은 0.5이상 100.0이하여야 합니다" }
+        require(name.length > 2) { "이름은 3문자 이상이어야 합니다" }
+        require(this@Wand.power in 0.5..100.0) { "지팡이의 마력은 0.5이상 100.0이하여야 합니다" }
     }
 }

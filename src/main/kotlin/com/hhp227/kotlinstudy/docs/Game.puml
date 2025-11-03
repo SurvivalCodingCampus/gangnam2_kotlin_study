@@ -1,0 +1,78 @@
+
+/*
+연습문제 6 - 클래스 다이어그램 그리기
+지금까지 등장한 모든 게임 객체의 클래스 다이어그램을 docs/game.puml 에 작성하기
+*/
+
+@startuml
+'https://plantuml.com/class-diagram
+
+class Slime <<open>> {
+    + suffix: String
+    -- initialisation --
+    + Slime(suffix: String) <<constructor>>
+    -- methods --
+    + fun attack(hero: Hero) <<open>>
+}
+
+class PoisonSlime extends Slime {
+    + poisonCount: Int
+    -- methods --
+    + fun attack(hero: Hero) <<override>>
+}
+
+class Hero <<open>> {
+    + name: String = ""
+    + hp: Int = MAX_HP
+    {static} + MONEY: Int = 100
+    -- initialisation --
+    + Hero(name: String, hp: Int) <<constructor>>
+    + init { ... }
+    -- methods --
+    + attack()
+    + run() <<open>>
+    + sleep()
+    -- static methods --
+    {static} + setRandomMoney()
+}
+
+class SuperHero extends Hero {
+    -- initialisation --
+    + SuperHero(name: String) <<constructor>>
+    + init { ... }
+    -- methods --
+    + fun run() <<override>>
+}
+
+class Wand {
+    + name: String
+    + power: Double
+    -- initialisation --
+    + Wand(name: String, power: Double) <<constructor>>
+    + init { ... }
+    -- methods --
+    + fun validName(name: String)
+}
+
+class Wizard <<open>> {
+  - name: String
+  - hp: Int
+  - wand: Wand
+  + mp: Int = 100
+  -- initialisation --
+  + Wizard(name: String, hp: Int, wand: Wand) <<constructor>>
+  -- methods --
+  + validName(name: String)
+  + heal(hero: Hero) <<open>>
+}
+
+class GreatWizard extends Wizard {
+    + mp: Int = 150 <<override>>
+    -- initialisation --
+    + GreatWizard(name: String, hp: Int, wand: Wand) <<constructor>>
+    -- methods --
+    + fun heal(hero: Hero) <<override>>
+    + fun superHeal(hero: Hero)
+}
+
+@enduml
