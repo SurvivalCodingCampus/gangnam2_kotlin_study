@@ -1,6 +1,5 @@
-package com.ezlevup.my.day05.exercise2
+package com.ezlevup.my.exercise
 
-import com.ezlevup.my.exercise.Wizard
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -78,5 +77,42 @@ class WizardTest {
 
         // then
         assertEquals(0, wizard.hp)
+    }
+
+    @Test
+    fun `마법사 힐 시전`() {
+        // given
+        val wizardName = "lee"
+        val wizardHp = 100
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
+
+        val heroName = "lee"
+        val heroHp = 1
+        val hero = Hero(name = heroName, hp = heroHp)
+
+        // when
+        wizard.heal(hero)
+
+        // then
+        assertEquals(heroHp + Wizard.HEAL_HP, hero.hp)
+    }
+
+    @Test
+    fun `마법사 힐 시전 마나 부족`() {
+        // given
+        val wizardName = "lee"
+        val wizardHp = 100
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
+        wizard.mp = Wizard.MP_COST - 1
+
+        val heroName = "lee"
+        val heroHp = 1
+        val hero = Hero(name = heroName, hp = heroHp)
+
+        // when
+        wizard.heal(hero)
+
+        // then
+        assertEquals(heroHp, hero.hp)
     }
 }
