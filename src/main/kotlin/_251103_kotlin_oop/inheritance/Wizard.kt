@@ -15,8 +15,10 @@ open class Wizard(
 ) {
     open var mp: Int = WIZARD_MINIMUM_MP
         set(value) {
-            if (mp < WIZARD_MINIMUM_MP) {
-                throw IllegalArgumentException("마법사의 MP는 ${WIZARD_MINIMUM_MP}이상이어야 합니다.")
+            if (value < 0) {
+                throw IllegalArgumentException("마법사의 MP는 0이상이어야 합니다.")
+            } else {
+                println("현재 값")
             }
             field = value
         }
@@ -24,6 +26,9 @@ open class Wizard(
     init {
         if (name.isEmpty() || name.length < MINIMUM_NAME_LENGTH) {
             throw IllegalArgumentException("마법사의 이름은 3글자 이상이어야 합니다.")
+        }
+        require(mp >= WIZARD_MINIMUM_MP) {
+            throw IllegalArgumentException("마법사의 MP는 ${WIZARD_MINIMUM_MP}이상이어야 합니다.}")
         }
 
 
