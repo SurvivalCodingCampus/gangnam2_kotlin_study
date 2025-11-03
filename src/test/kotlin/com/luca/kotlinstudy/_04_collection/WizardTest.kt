@@ -53,7 +53,7 @@ class WizardTest {
     }
 
     @Test
-    fun `완드 마력이 정상범주 일 때  설정된다`() { // 0.5 <= 정상범주 <=100
+    fun `완드 마력이 정상범주 일 때 설정된다`() { // 0.5 <= 정상범주 <=100
         val wand = Wand(name = availableName, power = availablePower)
         assertEquals(availablePower, wand.power,1e-9)
     }
