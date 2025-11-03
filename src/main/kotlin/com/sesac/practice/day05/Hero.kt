@@ -1,6 +1,6 @@
 package com.sesac.practice.day05
 
-class Hero(
+open class Hero(
     val name: String,
     var hp: Int = MAX_HP,
 ) {
