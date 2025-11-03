@@ -2,12 +2,13 @@ package com.neouul.sesac.`04-encapsulation`
 
 import org.junit.Assert.*
 import org.junit.Test
+import java.time.LocalDate
 
 class PersonTest {
     companion object {
         const val NAME = "최강"
         const val BIRTH_YEAR = 2004
-        const val LOCAL_YEAR = 2025
+        val LOCAL_YEAR = LocalDate.now().year
     }
 
     @Test
