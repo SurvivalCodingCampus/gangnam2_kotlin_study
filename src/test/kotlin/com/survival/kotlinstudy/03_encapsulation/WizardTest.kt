@@ -1,5 +1,6 @@
 package com.survival.kotlinstudy.`03_encapsulation`
 
+import com.survival.kotlinstudy.`02_instance_class`.Hero
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -70,7 +71,9 @@ class WizardTest {
     @Test
     fun `Wizard의 이름이 null 이면 예외가 발생한다`() {
         // given (준비)
-        val wizard = Wizard(name = "마법사", hp = 100, wand = null)
+        val wizardName = "마법사"
+        val wizardHp = 100
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
 
         // when (실행)
         val exception = assertThrows<IllegalArgumentException> {
@@ -83,7 +86,9 @@ class WizardTest {
     @Test
     fun `Wizard의 MP는 0 이상이어야 한다`() {
         // given (준비)
-        val wizard = Wizard(name = "마법사", hp = 100, wand = null)
+        val wizardName = "마법사"
+        val wizardHp = 100
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
 
         // when (실행)
         val exception = assertThrows<IllegalArgumentException> {
@@ -96,13 +101,54 @@ class WizardTest {
     @Test
     fun `Wizard의 hp가 음수가 되는 상황에서는 대신 0을 설정 되도록 한다`() {
         // given (준비)
-        val wizard = Wizard(name = "마법사", hp = 100, wand = null)
+        val wizardName = "마법사"
+        val wizardHp = 100
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
 
         // when (실행)
         wizard.hp = -100
 
         // then (검증)
         assertEquals(0, wizard.hp)
+    }
+
+    @Test
+    fun `Wizard의 heal이 성공하면 Unit의 hp가 20 회복된다`() {
+        // given (준비)
+        val wizardName = "마법사"
+        val wizardHp = 100
+        val heroName = "영웅"
+        val heroHp = 100
+
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
+        val hero = Hero(name = heroName, hp = heroHp)
+
+        // when (실행)
+        wizard.heal(hero)
+
+        // then (검증)
+        assertEquals(Wizard.INIT_MP - Wizard.HEAL_COST, wizard.mp)
+        assertEquals(heroHp + Wizard.HEAL_HP, hero.hp)
+    }
+
+    @Test
+    fun `Wizard의 mp가 부족하면 heal이 실행되지 않는다`() {
+        // given (준비)
+        val wizardName = "마법사"
+        val wizardHp = 100
+        val heroName = "영웅"
+        val heroHp = 100
+        val zeroMp = 0
+        val wizard = Wizard(name = wizardName, hp = wizardHp, wand = null)
+        val hero = Hero(name = heroName, hp = heroHp)
+
+        // when (실행)
+        wizard.mp = zeroMp
+        wizard.heal(hero)
+
+        // then (검증)
+        assertEquals(zeroMp, wizard.mp)
+        assertEquals(heroHp, hero.hp)
     }
 
 }
