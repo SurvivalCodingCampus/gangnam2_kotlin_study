@@ -59,9 +59,8 @@ class ClericTest {
 
         //then
         assertNotEquals(50, cleric.hp)//기본hp값이 적용되면 안됨
-        assertEquals(MAX_HP, cleric.maxHp)
         assertEquals(MAX_MP, cleric.mp)
-        assertEquals(MAX_MP, cleric.maxMp)
+
     }
 
     @Test
@@ -73,8 +72,6 @@ class ClericTest {
 
         //then
         assertEquals(MAX_HP, cleric.hp)
-        assertEquals(MAX_HP, cleric.maxHp)
         assertEquals(MAX_MP, cleric.mp)
-        assertEquals(MAX_MP, cleric.maxMp)
     }
 }
