@@ -9,7 +9,7 @@ const val MIN_HP_MP = 0
 const val MIN_NAME_LENGTH = 3
 const val WIZARD_MAX_MP = 100
 
-class Wizard(
+open class Wizard(
     name: String, // No null, 3문자 이상
     hp: Int = MAX_HP, // HP가 음수가 될 때는 0이 되도록
     mp: Int = WIZARD_MAX_MP, // MP 0 이상
@@ -30,7 +30,7 @@ class Wizard(
             field = value
         }
 
-    fun heal(hero: Hero) {
+    open fun heal(hero: Hero) {
         if (mp <= 9) {
             println("마나가 부족합니다.")
             return

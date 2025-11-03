@@ -38,6 +38,7 @@ class WizardTest {
 
     @Test
     fun `MP가 9 이하일 때는 heal이 발동하지 않는다`() {
+        val invaildMana = 9
         val wizard = Wizard(name = availableName, mp = invaildMana)
         val hero = Hero(name = availableName, hp = 30)
 
@@ -51,8 +52,12 @@ class WizardTest {
 
     @Test
     fun `힐을 하면 MP가 10이 닳는다`() {
+        val heroHp = 30
+        val healCost = 20
+        val healManaCost = 10
+
         val wizard = Wizard(name = availableName, mp = availableMana)
-        val hero = Hero(name = availableName, hp = 30)
+        val hero = Hero(name = availableName, hp = heroHp)
 
         val beforeHeal = hero.hp
         wizard.heal(hero)
@@ -81,8 +86,5 @@ class WizardTest {
         val invalidPower = 0.4
         val overPower = 101.0
         val availableMana = 10
-        val invaildMana = 9
-        val healManaCost = 10
-        val healCost = 20
     }
 }
