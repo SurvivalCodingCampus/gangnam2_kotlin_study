@@ -8,8 +8,7 @@ class GreatWizard(
     name: String,
     hp: Int,
     wand: Wand?
-) : Wizard(name, hp, wand) {
-    override var mp = INIT_MP
+) : Wizard(name, hp, wand, mp = INIT_MP) {
 
     override fun heal(hero: Hero) {
         if (mp < HEAL_COST) {

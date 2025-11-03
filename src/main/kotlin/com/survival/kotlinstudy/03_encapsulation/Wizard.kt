@@ -6,6 +6,7 @@ open class Wizard(
     name: String,
     hp: Int,
     var wand: Wand?,
+    mp: Int = INIT_MP
 ) {
     var name: String = name
         set(value) {
@@ -19,7 +20,7 @@ open class Wizard(
             field = if (value < 0) 0 else value
         }
 
-    open var mp: Int = INIT_MP
+    var mp: Int = mp
         set(value) {
             require(value >= 0) { "마법사의 MP 는 0 이상이어야 합니다" }
             field = value
