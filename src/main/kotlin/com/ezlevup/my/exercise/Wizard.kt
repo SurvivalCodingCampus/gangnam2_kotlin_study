@@ -10,9 +10,13 @@ class Wizard(
     companion object {
         const val MIN_NAME_LENGTH = 3
         const val MAX_NAME_LENGTH = 10
+
+        const val INITIAL_MP = 100 // MP 초기값
+        const val HEAL_HP = 20 // HP 회복값
+        const val MP_COST = 10 // MP 소모값
     }
 
-    var mp: Int = 0
+    var mp: Int = Wizard.INITIAL_MP
         set(value) {
             require(value >= 0) { "마법사의 MP는 0 이상이어야 한다." }
             field = value
@@ -33,5 +37,15 @@ class Wizard(
     init {
         this.name = name
         this.hp = hp
+    }
+
+    fun heal(hero: Hero) {
+        if (this.mp < 10) {
+            println("마나가 부족합니다.")
+        } else {
+            this.mp -= Wizard.MP_COST
+            hero.addHp(Wizard.HEAL_HP)
+            println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+        }
     }
 }

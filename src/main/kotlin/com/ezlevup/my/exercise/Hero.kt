@@ -27,13 +27,18 @@ class Hero(
             throw IllegalArgumentException("데미지는 음수가 될 수 없습니다")
         }
 
-
-
         hp -= damage;
 
         if (hp <= 0) {
             println("die")
             hp = 0
         }
+    }
+
+    fun addHp(hp: Int) {
+        if (hp < 0) {
+            throw IllegalArgumentException("HP 는 음수가 될 수 없습니다")
+        }
+        this.hp += hp
     }
 }
