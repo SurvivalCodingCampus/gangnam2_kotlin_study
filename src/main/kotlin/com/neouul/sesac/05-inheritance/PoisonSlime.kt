@@ -3,7 +3,11 @@ package com.neouul.sesac.`05-inheritance`
 class PoisonSlime(
     suffix: String,
 ) : Slime(suffix) {
-    var poisonCount = 5
+    companion object{
+        const val POISON_NUMBER = 5
+    }
+
+    private var poisonCount = POISON_NUMBER
 
     override fun attack(hero: Hero) {
         super.attack(hero)
