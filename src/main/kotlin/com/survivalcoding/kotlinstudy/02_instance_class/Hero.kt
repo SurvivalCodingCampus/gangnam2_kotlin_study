@@ -8,7 +8,7 @@ fun main() {
 
 open class Hero(var name: String = "", var hp: Int = 0) {
     init {
-        println { "1. Hero의 init" }
+        println("1. Hero의 init")
     }
 
 
