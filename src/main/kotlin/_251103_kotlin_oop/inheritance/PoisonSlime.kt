@@ -19,9 +19,15 @@ class PoisonSlime(
         if (poisonCount > 0) {
             println("추가로, 독 포자를 살포했다!")
             val additionalAttack = MAX_HP / 5
-            println("hero는 ${additionalAttack}의 데미지를 더 받았다!")
-            hero.hp -= additionalAttack
-            poisonCount -= 1
+            if (additionalAttack < hero.hp) {
+                println("hero는 ${additionalAttack}의 데미지를 더 받았다!")
+                hero.hp -= additionalAttack
+                poisonCount -= 1
+            } else {
+                println("hero는 ${hero.hp}의 데미지를 더 받았다!")
+                hero.hp = 0
+                poisonCount -= 1
+            }
         }
     }
 }
