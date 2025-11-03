@@ -48,4 +48,9 @@ class GreatWizard extends Wizard{
     + override fun heal(hero: Hero)
     + fun superHeal(hero: Hero)
 }
+
+class Wand {
+    + name: String,
+    + power: Double,
+}
 @enduml
