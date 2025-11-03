@@ -15,7 +15,7 @@ class PoisonSlimeTest {
     }
 
     @Test
-    fun `PoisonSlime의 attack 메소드가 용사의 HP를 적절히 감소시키는 경우`() {
+    fun `PoisonSlime의 attack 메서드가 용사의 HP를 적절히 감소시키는 경우`() {
         // given: 용사의 최대 HP는 80, 현재 HP는 최대 HP가 아닌 값으로 설정
         val poisonSlime = PoisonSlime("A")
         val hero = Hero("홍길동", 50)
@@ -34,7 +34,7 @@ class PoisonSlimeTest {
     }
 
     @Test
-    fun `PoisonSlime의 poisonCount가 0이라서 attack 메소드에서 추가 공격은 하지 않는 경우`() {
+    fun `PoisonSlime의 poisonCount가 0이라서 attack 메서드에서 추가 공격은 하지 않는 경우`() {
         // given
         val poisonSlime = PoisonSlime("A")
         val hero = Hero("홍길동", 50)
