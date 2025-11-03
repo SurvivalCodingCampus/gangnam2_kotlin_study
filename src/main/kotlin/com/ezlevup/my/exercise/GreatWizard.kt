@@ -31,7 +31,7 @@ class GreatWizard(
             println("마나가 부족합니다.")
         } else {
             this.mp -= GreatWizard.SUPER_HEAL_MP_COST
-            hero.addHp(Hero.MAX_HP)
+            hero.addHp(hero.maxHp)
             println("슈퍼 힐을 시전했습니다. 대상 HP: ${hero.hp}")
         }
     }
