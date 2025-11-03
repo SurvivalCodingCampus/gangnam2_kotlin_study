@@ -10,6 +10,8 @@ class GreatWizard(
 
         const val HEAL_HP = 25
         const val HEAL_MP = 5
+
+        const val SUPER_HEAL_MP = 50
     }
 //    override var mp = 150
 
@@ -24,6 +26,16 @@ class GreatWizard(
         if (mp >= HEAL_MP) {
             hero.hp += HEAL_HP
             mp -= HEAL_MP
+            println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+        } else {
+            println("마나가 부족합니다")
+        }
+    }
+
+    fun superHeal(hero: Hero) {
+        if (mp >= SUPER_HEAL_MP) {
+            hero.hp = Hero.MAX_HP
+            mp -= SUPER_HEAL_MP
             println("슈퍼 힐을 시전했습니다. 대상 HP: ${hero.hp}")
         } else {
             println("마나가 부족합니다")
