@@ -25,7 +25,7 @@ class Wand(
 }
 
 // 연습문제 4. Wizard 수정
-class Wizard(
+open class Wizard(
     name: String,
     mp: Int = 100,  // 초기값 100
     hp: Int,
@@ -56,15 +56,16 @@ class Wizard(
             field = if (value < 0) 0 else value
         }
 
-    fun heal(hero: Hero) {
-        val discountMp = 10
-        val recoveryHp = 20
+    // 재정의 하기 위해서는 open 키워드 필요
+    open val MP_COST = 10
+    open val HP_RECOVERY = 20
 
-        if (mp < discountMp) {
+    open fun heal(hero: Hero) {
+        if (mp < MP_COST) {
             println("마나가 부족합니다")    // mp가 부족하면 "마나가 부족합니다" 출력
         } else {
-            hero.hp += recoveryHp   // Unit의 hp를 20 회복시키고
-            mp -= discountMp    // 자신의 mp를 10 소모
+            hero.hp += HP_RECOVERY  // Unit의 hp를 20 회복시키고
+            mp -= MP_COST     // 자신의 mp를 10 소모
             println("힐을 시전했습니다. 대상 HP: ${hero.hp}") // 힐 성공시 출력
         }
     }
