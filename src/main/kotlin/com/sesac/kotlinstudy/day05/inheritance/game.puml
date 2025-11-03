@@ -1,0 +1,17 @@
+@startuml
+scale 2
+skinparam classAttributeIconSize 0
+
+class Hero {
+    + name: String
+    + hp: Int
+
+    + fun attack(slime: Slime)
+    - fun run()
+}
+
+class SuperHero extends Hero {
+    + isFlying: Boolean
+}
+
+@enduml
