@@ -23,6 +23,7 @@ class Wizard extends Hero {
     + mp: Int
 
     + heal(hero: Hero)
+    # isEnoughMp(cost: Int): Boolean
 }
 
 class GreatWizard extends Wizard {
