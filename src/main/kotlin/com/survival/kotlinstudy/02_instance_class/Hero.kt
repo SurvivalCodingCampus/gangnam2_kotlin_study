@@ -14,11 +14,14 @@ fun main() {
 }
 
 //동적
-class Hero(
+open class Hero(
     var name: String = "",
     var hp: Int = 0,
 //    var money: Int = 0
 ) {
+    init {
+        println("Hero의 init")
+    }
     //정적
     companion object {
         var MONEY = 100
@@ -36,15 +39,19 @@ class Hero(
     // name
     // hp
 
-    fun attack() {
-        hp -= 10
+    open fun attack(slime: Slime) {
+        println("$name 이 ${slime}을 공격했다.")
+        println("슬라임 반격을 받았다.")
+        hp -=10
     }
 
-    fun run() {
-
+    open fun run() {
+        hp = 10
+        println("$name 이 도망침.")
     }
 
     fun sleep() {
+        MONEY = 10
 
     }
 }
