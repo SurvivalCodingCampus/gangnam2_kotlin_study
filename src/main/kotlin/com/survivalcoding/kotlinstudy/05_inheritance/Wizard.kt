@@ -57,15 +57,15 @@ open class Wizard(
         }
 
     // 재정의 하기 위해서는 open 키워드 필요
-    open val MP_COST = 10
-    open val HP_RECOVERY = 20
+    open val mpCost = 10
+    open val hpRecovery = 20
 
     open fun heal(hero: Hero) {
-        if (mp < MP_COST) {
+        if (mp < mpCost) {
             println("마나가 부족합니다")    // mp가 부족하면 "마나가 부족합니다" 출력
         } else {
-            hero.hp += HP_RECOVERY  // Unit의 hp를 20 회복시키고
-            mp -= MP_COST     // 자신의 mp를 10 소모
+            hero.hp += hpRecovery  // Unit의 hp를 20 회복시키고
+            mp -= mpCost     // 자신의 mp를 10 소모
             println("힐을 시전했습니다. 대상 HP: ${hero.hp}") // 힐 성공시 출력
         }
     }
