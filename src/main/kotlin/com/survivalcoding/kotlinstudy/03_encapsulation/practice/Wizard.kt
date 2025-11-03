@@ -29,8 +29,7 @@ package com.survivalcoding.kotlinstudy.`03_encapsulation`.practice
      wand: Wand?,
  ) {
     var wand: Wand? = wand
-     
-    var name: String = name
+
     // 이름이 3자 미만인 상황
     var name: String = name
         set(value) {
