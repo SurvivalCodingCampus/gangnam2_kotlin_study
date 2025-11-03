@@ -4,10 +4,14 @@ import kotlin.random.Random
 
 const val MAX_HP = 10
 
-class Hero(
+open class Hero(
     var name: String = "",
     var hp: Int = MAX_HP
 ) {
+    init {
+        println("Hero init")
+    }
+
     companion object {
         var MONEY = 100
 
@@ -25,8 +29,9 @@ class Hero(
         hp -= 10
     }
 
-    fun run() {
+    open fun run() {
         hp = 10
+        println("Hero의 run")
     }
 
     fun sleep() {
