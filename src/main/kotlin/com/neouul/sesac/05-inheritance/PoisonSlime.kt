@@ -7,7 +7,7 @@ class PoisonSlime(
         const val POISON_NUMBER = 5
     }
 
-    private var poisonCount = POISON_NUMBER
+    var poisonCount = POISON_NUMBER
 
     override fun attack(hero: Hero) {
         super.attack(hero)
