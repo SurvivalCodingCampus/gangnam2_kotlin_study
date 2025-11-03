@@ -48,7 +48,5 @@ class GreatWizard extends Wizard {
 }
 
 Wizard o.. Wand
-GreatWizard o.. Wand
-
 
 @enduml
