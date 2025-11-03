@@ -2,11 +2,14 @@ package com.neouul.sesac.`05-inheritance`
 
 open class Hero(
     var name: String,
-    var hp: Int,
+    var hp: Int = MAX_HP,
 ) {
     companion object{
+        const val MAX_HP = 80
         const val DAMAGE = 15
     }
+
+    open val maxHp = MAX_HP
     
     open fun attack(slime: Slime) {
         println("$name 이 $slime 을 공격했다")

@@ -2,12 +2,15 @@ package com.neouul.sesac.`05-inheritance`
 
 class SuperHero(
     name: String,
-    hp: Int,
+    hp: Int = MAX_HP,
     var sword: Sword?,
 ) : Hero(name, hp) {
     companion object{
+        const val MAX_HP = 100
         const val FLYING_DAMAGE = 5
     }
+
+    override val maxHp = MAX_HP
 
     var isFlying: Boolean = false
         set(value) {
