@@ -1,6 +1,6 @@
 package com.neouul.sesac.`05-inheritance`
 
-class Wizard(
+open class Wizard(
     name: String,
     hp: Int,
     var wand: Wand?,
@@ -25,7 +25,7 @@ class Wizard(
             field = value
         }
 
-    var mp: Int = MAX_MP
+    open var mp: Int = MAX_MP
         set(value) {
             require(value >= 0) { "invalid value: MP는 0 이상이어야 합니다" }
             field = value
@@ -40,10 +40,25 @@ class Wizard(
         require(value.length >= MIN_NAME_LENGTH) { "invalid value: 이름은 ${MIN_NAME_LENGTH}자 이상이어야 합니다" }
 
     // 연습문제 4
-    fun heal(hero: Hero) {
-        if(mp >= HEAL_MP){
-            hero.hp += HEAL_HP
-            mp -= HEAL_MP
+    open fun heal(hero: Hero) {
+        checkHeal(HEAL_HP, HEAL_MP, hero)
+
+//        if (mp >= HEAL_MP) {
+//            hero.hp += HEAL_HP
+//            mp -= HEAL_MP
+//            println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+//        } else {
+//            println("마나가 부족합니다")
+//        }
+    }
+
+    protected fun checkHeal(healHp: Int, healMp: Int, hero: Hero) {
+        if (mp >= healMp) {
+            hero.hp += healHp
+            mp -= healMp
+            if (this is GreatWizard) {
+                print("슈퍼 ")
+            }
             println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
         } else {
             println("마나가 부족합니다")
