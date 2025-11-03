@@ -17,7 +17,7 @@ fun main() {
 open class Hero(
     var name: String = "",
     var hp: Int = 0,
-//    var money: Int = 0
+    val maxHp : Int = MAX_HP
 ) {
     init {
         println("Hero의 init")
@@ -26,7 +26,7 @@ open class Hero(
     //정적
     companion object {
         var MONEY = 100
-
+        const val MAX_HP = 100
         fun setRandomMoney() {
             MONEY = Random.nextInt(1000)
             this.MONEY = 100
