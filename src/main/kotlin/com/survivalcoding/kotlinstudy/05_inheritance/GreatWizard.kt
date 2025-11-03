@@ -14,17 +14,17 @@ class GreatWizard(
 
     override fun heal(hero: Hero) {
         super.heal(hero)  // super를 사용해보기
+    }
 
-        // 이건 새로운 superHeal 메서드
-        fun superHeal(hero: Hero) {
-            val mpCost = 50
-            if (mp < mpCost) {
-                println("마나가 부족합니다")
-            } else {
-                hero.hp = hero.maxHp
-                mp -= mpCost
-                println("슈퍼 힐을 시전했습니다. 대상 HP: ${hero.hp}")
-            }
+    // 이건 새로운 superHeal 메서드
+    fun superHeal(hero: Hero) {
+        val superHealCost = 50
+        if (mp < superHealCost) {
+            println("마나가 부족합니다")
+        } else {
+            hero.hp = hero.maxHp    // 완전 회복
+            mp -= superHealCost
+            println("슈퍼 힐을 시전했습니다. 대상 HP: ${hero.hp}")
         }
     }
 }
