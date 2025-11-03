@@ -36,7 +36,7 @@ class PoisonSlimeTest {
     }
 
     @Test
-    fun `attack - 독 횟수가 남아있으면 기본 공격과 독 공격을 모두 수행한다`() {
+    fun `attack - poisonCount가 남아있으면 기본 공격 + 독 공격을 수행한다`() {
         // given (준비)
         val heroName = "홍길동"
         val heroHp = 100
@@ -50,12 +50,12 @@ class PoisonSlimeTest {
 
         // then (검증)
 
-        assertEquals(heroHp - ((heroHp-10)/5) - 10, hero.hp)
+        assertEquals(heroHp - ((heroHp - 10) / 5) - 10, hero.hp)
         assertEquals(--poisonCount, poisonSlime.poisonCount)
     }
 
     @Test
-    fun `attack - 독 횟수가 0이면 기본 공격만 수행한다`() {
+    fun `attack - poisonCount가 0이면 기본 공격만 수행한다`() {
         // given (준비)
         val heroName = "홍길동"
         val heroHp = 100
