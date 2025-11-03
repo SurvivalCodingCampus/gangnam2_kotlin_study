@@ -74,7 +74,7 @@ class PoisonSlimeTest {
     }
 
     @Test
-    fun `독공격 가능 횟수 이상으로 공격 불가 및 음수 안 됨 확인`() {
+    fun `독 공격 가능 횟수 다 쓰면 독 공격 불가 확인`() {
         val heroName = "홍길동"
         val heroHp = 100
         val hero = Hero(heroName, heroHp)
