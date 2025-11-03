@@ -1,7 +1,7 @@
 package _251103_kotlin_oop.inheritance
 
 import org.junit.Assert.assertEquals
-import kotlin.test.Test
+import org.junit.Test
 
 class WizardTest {
 
