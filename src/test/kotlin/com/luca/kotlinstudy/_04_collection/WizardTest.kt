@@ -38,8 +38,8 @@ class WizardTest {
 
     @Test
     fun `MP가 9 이하일 때는 heal이 발동하지 않는다`() {
-        val invaildMana = 9
-        val wizard = Wizard(name = availableName, mp = invaildMana)
+        val invalidMana = 9
+        val wizard = Wizard(name = availableName, mp = invalidMana)
         val hero = Hero(name = availableName, hp = 30)
 
         val beforeHeal = hero.hp
@@ -47,7 +47,7 @@ class WizardTest {
         val afterHeal = hero.hp
 
         assertEquals(beforeHeal, afterHeal)
-        assertEquals(invaildMana, wizard.mp)
+        assertEquals(invalidMana, wizard.mp)
     }
 
     @Test

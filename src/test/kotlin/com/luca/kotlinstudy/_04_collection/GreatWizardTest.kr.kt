@@ -8,9 +8,9 @@ import org.junit.Test
 class GreatWizardTest {
     @Test
     fun `MP가 4 이하일 때는 heal이 발동하지 않는다`() {
-        val invaildMana = 4
+        val invalidMana = 4
 
-        val greatWizard = GreatWizard(name = availableName, mp = invaildMana)
+        val greatWizard = GreatWizard(name = availableName, mp = invalidMana)
         val hero = Hero(name = availableName, heroHp)
 
         val beforeHeal = hero.hp
@@ -18,7 +18,7 @@ class GreatWizardTest {
         val afterHeal = hero.hp
 
         assertEquals(beforeHeal, afterHeal)
-        assertEquals(invaildMana, greatWizard.mp)
+        assertEquals(invalidMana, greatWizard.mp)
     }
 
     @Test
@@ -52,9 +52,9 @@ class GreatWizardTest {
 
     @Test
     fun `MP가 49 이하일 때는 superHeal이 발동하지 않는다`() {
-        val invaildMana = 49
+        val invalidMana = 49
 
-        val greatWizard = GreatWizard(name = availableName, mp = invaildMana)
+        val greatWizard = GreatWizard(name = availableName, mp = invalidMana)
         val hero = Hero(name = availableName, heroHp)
 
         val beforeHeal = hero.hp
@@ -62,7 +62,7 @@ class GreatWizardTest {
         val afterHeal = hero.hp
 
         assertEquals(beforeHeal, afterHeal)
-        assertEquals(invaildMana, greatWizard.mp)
+        assertEquals(invalidMana, greatWizard.mp)
     }
 
     @Test
