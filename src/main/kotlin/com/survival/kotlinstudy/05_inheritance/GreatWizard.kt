@@ -9,7 +9,7 @@ class GreatWizard(
     hp: Int,
     wand: Wand?
 ) : Wizard(name, hp, wand) {
-    override var mp = GreatWizard.INIT_MP
+    override var mp = INIT_MP
 
     override fun heal(hero: Hero) {
         if (mp < HEAL_COST) {
@@ -34,7 +34,7 @@ class GreatWizard(
     companion object {
         const val INIT_MP = 150
         const val HEAL_COST = 5
-        const val SUPER_HEAL_COST = 5
+        const val SUPER_HEAL_COST = 50
         const val HEAL_HP = 25
     }
 }
