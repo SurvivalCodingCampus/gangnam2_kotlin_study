@@ -20,8 +20,7 @@ class PoisonSlime(
 
     }
 
-    fun calculateDamage(hero: Hero): Int {
-        println("PoisonSlime calculateDamage")
+    private fun calculateDamage(hero: Hero): Int {
         return (hero.maxHp / 5).toInt()
     }
 
