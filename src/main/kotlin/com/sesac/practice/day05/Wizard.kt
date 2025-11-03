@@ -2,18 +2,21 @@ package com.sesac.practice.day05
 
 import kotlin.math.min
 
-class Wizard(
+open class Wizard(
     name: String,
-    var mp: Int = MAX_MP,
+    open var mp: Int = MAX_MP,
 ) : Hero(name) {
+    open val healCost: Int = HEAL_COST
+    open val healAmount: Int = HEAL_AMOUNT
+
     fun heal(hero: Hero) {
-        if (mp < HEAL_COST) {
+        if (mp < healCost) {
             println("마나가 부족합니다")
             return
         }
 
-        mp -= HEAL_COST
-        hero.hp = min(hero.hp + HEAL_AMOUNT, MAX_HP)
+        mp -= healCost
+        hero.hp = min(hero.hp + healAmount, MAX_HP)
         println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
     }
 
