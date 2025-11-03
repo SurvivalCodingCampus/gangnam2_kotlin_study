@@ -13,7 +13,7 @@ class PoisonSlime(
 
         if (poisonCount > 0) {
             println("추가로, 독 포자를 살포했다!")
-            val damage = hero.hp / 5
+            val damage = (hero.maxHp * 0.2).toInt()
             hero.hp -= damage
             println("$damage 포인트의 데미지")
             poisonCount--

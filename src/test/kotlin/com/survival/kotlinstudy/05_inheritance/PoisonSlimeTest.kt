@@ -50,7 +50,7 @@ class PoisonSlimeTest {
 
         // then (검증)
 
-        assertEquals(heroHp - ((heroHp - 10) / 5) - 10, hero.hp)
+        assertEquals(heroHp - 10 - (hero.maxHp * 0.2).toInt(), hero.hp)
         assertEquals(--poisonCount, poisonSlime.poisonCount)
     }
 
