@@ -40,5 +40,8 @@ class Hero(
             throw IllegalArgumentException("HP 는 음수가 될 수 없습니다")
         }
         this.hp += hp
+        if (this.hp > Hero.MAX_HP) {
+            this.hp = Hero.MAX_HP
+        }
     }
 }

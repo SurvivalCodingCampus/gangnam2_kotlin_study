@@ -1,11 +1,9 @@
 package com.ezlevup.my.exercise
 
-import com.ezlevup.my.day05.exercise2.Wand
-
-class Wizard(
+open class Wizard(
     name: String,
     hp: Int,
-    var wand: Wand?,
+    open var wand: Wand?,
 ) {
     companion object {
         const val MIN_NAME_LENGTH = 3
@@ -39,8 +37,8 @@ class Wizard(
         this.hp = hp
     }
 
-    fun heal(hero: Hero) {
-        if (this.mp < 10) {
+    open fun heal(hero: Hero) {
+        if (this.mp < Wizard.MP_COST) {
             println("마나가 부족합니다.")
         } else {
             this.mp -= Wizard.MP_COST
