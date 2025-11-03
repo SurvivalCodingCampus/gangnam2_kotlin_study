@@ -25,7 +25,7 @@ open class Wizard(
             field = value
         }
 
-    open var mp: Int = MAX_MP
+    var mp: Int = MAX_MP
         set(value) {
             require(value >= 0) { "invalid value: MP는 0 이상이어야 합니다" }
             field = value
