@@ -1,0 +1,17 @@
+@startuml
+scale 2
+
+class Hero {
+    + name: String
+    + hp: Int
+
+    + attack(slime: Slime)
+    - run()
+}
+
+'Hero <|- SuperHero
+class SuperHero extends Hero {
+    + isFly(): Boolean
+}
+
+@enduml
