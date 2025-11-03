@@ -22,12 +22,15 @@ package com.survivalcoding.kotlinstudy.`03_encapsulation`.practice
     a. 현재 시간과 날짜를 구하는 방법은 검색 해 볼 것
 */
 
-class Wizard(
-    name: String,           // 이름
-    hp: Int,                // 체력
-    mp: Int = DEFAULT_MP,   // 마나
-    wand: Wand?,            // 완드
-) {
+ class Wizard(
+     name: String,
+     hp: Int,
+     mp: Int = DEFAULT_MP,
+     wand: Wand?,
+ ) {
+    var wand: Wand? = wand
+     
+    var name: String = name
     // 이름이 3자 미만인 상황
     var name: String = name
         set(value) {
