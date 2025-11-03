@@ -37,8 +37,8 @@ class WizardTest {
         //when
         wizard.heal(hero)
         //then
-        assertEquals(heroHp + HEALTREATHP, hero.hp)
-        assertEquals(WIZARD_MINIMUM_MP - HEALREQUIREDMP, wizard.mp)
+        assertEquals(heroHp + WIZARD_HEAL_TREAT_HP, hero.hp)
+        assertEquals(WIZARD_MINIMUM_MP - WIZARD_HEAL_REQUIRED_MP, wizard.mp)
     }
 
 
