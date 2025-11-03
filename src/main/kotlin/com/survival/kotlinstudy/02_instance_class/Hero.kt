@@ -17,7 +17,7 @@ fun main() {
 open class Hero(
     var name: String = "",
     var hp: Int = 0,
-    val maxHp : Int = MAX_HP
+    val maxHp: Int = MAX_HP
 ) {
     init {
         println("Hero의 init")
