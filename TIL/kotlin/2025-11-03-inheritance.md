@@ -53,3 +53,44 @@ class SuperHero(
 - 올바른 상속은 "is-a 원칙" 이라고 하는 규칙에 따른 상속을 말한다
   SuperHero is a Hero
   (SuperHero 는 Hero의 한 종류 이다)
+
+## 연습문제 1
+
+다음 중에서 "잘못 된 상속" 인 것을 모두 구하시오.
+
+| 번호 | 슈퍼클래스    | 서브클래스   |
+|----|----------|---------|
+| 1  | Person   | Student |
+| 2  | Car      | Engine  |
+| 3  | Father   | Child   |
+| 4  | Food     | Susi    |
+| 5  | SuperMan | Man     |
+
+- Student is a Person. (o)
+- Engine is a Car. (x)
+- Child is a Father. (x)
+- Susi is a Food. (o)
+- Man is a SuperMan. (x)
+
+## 연습문제 2
+
+| 예시/번호 | 부모 클래스           |            | 자식 클래스            |
+|-------|------------------|------------|-------------------|
+| (예)   | Actor            | Character  | Hero → SuperHero  |
+| (1)   | ElectronicDevice | Phone      | SmartPhone        |
+| (2)   | Machine          | Car        | Bus               |
+| (3)   | Book             | Dictionary | EnglishDictionary |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
