@@ -1,16 +1,64 @@
 @startuml
-scale 2
+scale 1
 
+' 클래스
 class Hero {
-
-    + name: String
+    - name: String
     - hp: Int
-
-    + fun attack(smile: Smile)
-    - fun run()
-    }
-
-class SuperHero extends Hero{
-    + isFlying: Boolean
+    + maxHp: Int
+    + fun attack(slime: Slime)
+    + fun run()
 }
+
+class SuperHero {
+    + isFlying: Boolean
+    + fun run()
+}
+
+class Slime {
+    - suffix: String
+    - hp: Int
+    + fun attack(hero: Hero)
+}
+
+class PoisonSlime {
+    - poisonCount: Int
+    + fun attack(hero: Hero)
+}
+
+class Wand {
+    - name: String
+    - power: Double
+}
+
+class Wizard {
+    - name: String
+    - mp: Int
+    - hp: Int
+    - wand: Wand?
+    + mpCost: Int
+    + hpRecovery: Int
+    + fun heal(hero: Hero)
+}
+
+class GreatWizard {
+    + mpCost: Int
+    + hpRecovery: Int
+    + fun heal(hero: Hero)
+    + fun superHeal(hero: Hero)
+}
+
+' 상속
+SuperHero --|> Hero
+PoisonSlime --|> Slime
+GreatWizard --|> Wizard
+
+' 연관
+Wizard --> Wand : uses >
+Wizard --> Hero : heals >
+GreatWizard --> Hero : heals >
+Slime --> Hero : attacks >
+PoisonSlime --> Hero : attacks >
+Hero --> Slime : attacks >
+
 @enduml
