@@ -9,7 +9,7 @@ class Hero{
 class Slime{
     + suffix: String
     + hp: Int
-    - fun attack(hero: Hero)
+    + fun attack(hero: Hero)
 }
 class Wizard{
     + name: String,
@@ -17,13 +17,13 @@ class Wizard{
     + wand: Wand?
     + mp:Int
 
-    - fun attacked(damage: Int)
-    - fun heal(hero: Hero)
+    + fun attacked(damage: Int)
+    + fun heal(hero: Hero)
     }
 class PoisonSlime extends Slime{
     + name: String
     + poisonCount: Int
-    - fun attack()
+    + fun attack(hero: Hero)
 
 }
 class GreatWizard extends Wizard{
@@ -32,8 +32,8 @@ class GreatWizard extends Wizard{
     + wand: Wand?
     + mp:Int
 
-    - fun heal(hero: Hero)
-    - fun superHeal(hero: Hero)
+    + fun heal(hero: Hero)
+    + fun superHeal(hero: Hero)
 }
 
 class Cleric{
