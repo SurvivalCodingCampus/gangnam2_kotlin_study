@@ -72,4 +72,20 @@ class PoisonSlimeTest {
         assertEquals(heroHp - 10, hero.hp)
         assertEquals(0, poisonSlime.poisonCount)
     }
+
+    @Test
+    fun `독공격 가능 횟수 이상으로 공격 불가 및 음수 안 됨 확인`() {
+        val heroName = "홍길동"
+        val heroHp = 100
+        val hero = Hero(heroName, heroHp)
+        val slime = PoisonSlime("무시무시 슬라임")
+        val count = slime.poisonCount
+
+        for (i in 1..count + 1) {
+            slime.attack(hero)
+        }
+
+        assertEquals(0, slime.poisonCount)
+    }
+
 }
