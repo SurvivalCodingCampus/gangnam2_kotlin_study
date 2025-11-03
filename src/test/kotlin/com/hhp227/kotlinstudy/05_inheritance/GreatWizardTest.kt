@@ -11,25 +11,12 @@ import java.io.PrintStream
 import kotlin.test.assertEquals
 
 class GreatWizardTest {
-    private lateinit var hero: Hero
-    private lateinit var wand: Wand
-    private lateinit var greatWizard: GreatWizard
-    private val outputStream = ByteArrayOutputStream()
-
-    init {
-        setup()
-    }
-
-    fun setup() {
-        hero = Hero("용사", 50)
-        wand = Wand("파이어완드", 50.0)
-        greatWizard = GreatWizard("간달프", 100, wand)
-
-        System.setOut(PrintStream(outputStream))
-    }
-
     @Test
     fun `힐 - 정상적으로 HP 회복 및 MP 감소`() {
+        val hero = Hero("용사", 50)
+        val wand = Wand("파이어완드", 50.0)
+        val greatWizard = GreatWizard("간달프", 100, wand)
+
         greatWizard.heal(hero)
 
         assertEquals(75, hero.hp, "힐 후 Hero HP는 25 증가해야 합니다.")
@@ -38,6 +25,12 @@ class GreatWizardTest {
 
     @Test
     fun `힐 - 마나 부족 시 실패`() {
+        val hero = Hero("용사", 50)
+        val wand = Wand("파이어완드", 50.0)
+        val greatWizard = GreatWizard("간달프", 100, wand)
+        val outputStream = ByteArrayOutputStream()
+        System.setOut(PrintStream(outputStream))
+
         greatWizard.mp = 3
         greatWizard.heal(hero)
 
@@ -48,6 +41,12 @@ class GreatWizardTest {
 
     @Test
     fun `슈퍼 힐 - 정상적으로 전체 회복 및 MP 감소`() {
+        val hero = Hero("용사", 50)
+        val wand = Wand("파이어완드", 50.0)
+        val greatWizard = GreatWizard("간달프", 100, wand)
+        val outputStream = ByteArrayOutputStream()
+        System.setOut(PrintStream(outputStream))
+
         hero.hp = 30
         greatWizard.superHeal(hero)
 
@@ -60,6 +59,12 @@ class GreatWizardTest {
 
     @Test
     fun `슈퍼 힐 - MP 부족 시 실패`() {
+        val hero = Hero("용사", 50)
+        val wand = Wand("파이어완드", 50.0)
+        val greatWizard = GreatWizard("간달프", 100, wand)
+        val outputStream = ByteArrayOutputStream()
+        System.setOut(PrintStream(outputStream))
+
         greatWizard.mp = 40
         greatWizard.superHeal(hero)
 
