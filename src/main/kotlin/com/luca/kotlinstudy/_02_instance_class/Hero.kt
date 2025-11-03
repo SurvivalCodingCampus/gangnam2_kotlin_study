@@ -10,7 +10,7 @@ fun main() {
 }
 
 // 동적
-class Hero(var name: String = "", var hp: Int = 0) {
+open class Hero(var name: String = "", var hp: Int = 0) {
     var money: Int = 100
 
     // java static 정적 = 얘는 정적이라서 Heap 에 없다. 동적인 Hero와는 소통이 불가하다. 같은 클래스 안에서는 생략이 가능하다. 혹은 탑레벨
@@ -36,7 +36,8 @@ class Hero(var name: String = "", var hp: Int = 0) {
         val x: Int = 0
     }
 
-    fun run() {
+    open fun run() {
+        println("Hero의 run")
     }
 
     fun sleep() {
