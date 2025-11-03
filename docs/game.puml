@@ -12,4 +12,11 @@ class SuperHero extends Hero {
     + isFlying: Boolean
 }
 
+class Slime {
+
+}
+
+class PoisonSlime extends Slime {
+}
+
 @enduml
