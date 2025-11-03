@@ -1,4 +1,30 @@
 package com.ezlevup.my.exercise
 
-class PoisonSlime {
+class PoisonSlime(
+    suffix: String,
+    var poisonCount: Int = 5
+) : Slime(suffix) {
+    override fun attack(hero: Hero) {
+        super.attack(hero)
+        if (poisonCount > 0) {
+            println("추가로, 독 포자를 살포했다!")
+        }
+        val damage: Int = calculateDamage(hero)
+        hero.takeDamage(damage)
+        println("$damage 포인트의 데미지")
+        poisonCount--
+    }
+
+    fun calculateDamage(hero: Hero): Int {
+        return (hero.maxHp / 5).toInt()
+    }
+
+}
+
+fun main() {
+    val poisonSlime = PoisonSlime("A")
+    val hero = Hero(name = "lee", hp = 100)
+
+    poisonSlime.attack(hero)
+
 }
