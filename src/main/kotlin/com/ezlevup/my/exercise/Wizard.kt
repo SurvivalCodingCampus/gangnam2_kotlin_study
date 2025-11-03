@@ -1,4 +1,6 @@
-package com.ezlevup.my.day05.exercise2
+package com.ezlevup.my.exercise
+
+import com.ezlevup.my.day05.exercise2.Wand
 
 class Wizard(
     name: String,
@@ -18,8 +20,8 @@ class Wizard(
 
     var name: String = name
         set(value) {
-            require(value.length >= Wizard.MIN_NAME_LENGTH) { "이름은 최소 ${Wizard.MIN_NAME_LENGTH}자 이상이어야 합니다." }
-            require(value.length <= Wizard.MAX_NAME_LENGTH) { "이름은 최대 ${Wizard.MAX_NAME_LENGTH}자를 넘을 수 없습니다." }
+            require(value.length >= MIN_NAME_LENGTH) { "이름은 최소 ${MIN_NAME_LENGTH}자 이상이어야 합니다." }
+            require(value.length <= MAX_NAME_LENGTH) { "이름은 최대 ${MAX_NAME_LENGTH}자를 넘을 수 없습니다." }
             field = value
         }
 

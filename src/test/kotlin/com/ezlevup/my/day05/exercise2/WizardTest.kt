@@ -1,5 +1,6 @@
 package com.ezlevup.my.day05.exercise2
 
+import com.ezlevup.my.exercise.Wizard
 import org.junit.Assert.*
 import org.junit.Test
 

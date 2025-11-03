@@ -1,5 +1,6 @@
 package com.ezlevup.my.day03
 
+import com.ezlevup.my.exercise.Hero
 import org.junit.Test
 import kotlin.test.assertEquals
 
