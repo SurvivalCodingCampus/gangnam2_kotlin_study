@@ -44,10 +44,9 @@ class PoisonSlime(suffix: String) : Slime(suffix) {
     var poisonCount = 5
 
     override fun attack(hero: Hero) {
-        val maxHp = hero.hp
         super.attack(hero)
         if (poisonCount > 0) {
-            val damage = maxHp / 5
+            val damage = MAX_HP / 5
             println("추가로, 독 포자를 살포했다!")
             hero.hp -= damage
             println("${damage}포인트의 데미지")

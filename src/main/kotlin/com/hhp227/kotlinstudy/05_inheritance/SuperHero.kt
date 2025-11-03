@@ -12,6 +12,6 @@ class SuperHero(
 
     // 기능 재정의
     override fun run() {
-        println("SuperHeo의 run")
+        println("SuperHero의 run")
     }
 }

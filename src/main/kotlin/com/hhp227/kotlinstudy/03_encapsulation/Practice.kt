@@ -53,7 +53,7 @@ open class Wizard(
     }
 
     open fun heal(hero: Hero) {
-        if (mp < 1) {
+        if (mp < 10) {
             println("마나가 부족합니다")
             return
         }

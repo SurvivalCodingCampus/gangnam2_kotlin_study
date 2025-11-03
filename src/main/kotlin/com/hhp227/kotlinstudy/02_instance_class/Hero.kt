@@ -2,7 +2,7 @@ package com.hhp227.kotlinstudy.`02_instance_class`
 
 import kotlin.random.Random
 
-const val MAX_HP = 10
+const val MAX_HP = 100
 
 open class Hero(
     var name: String = "",
