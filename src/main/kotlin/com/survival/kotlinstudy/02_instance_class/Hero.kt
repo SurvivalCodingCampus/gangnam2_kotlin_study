@@ -22,6 +22,7 @@ open class Hero(
     init {
         println("Hero의 init")
     }
+
     //정적
     companion object {
         var MONEY = 100
@@ -42,7 +43,7 @@ open class Hero(
     open fun attack(slime: Slime) {
         println("$name 이 ${slime}을 공격했다.")
         println("슬라임 반격을 받았다.")
-        hp -=10
+        hp -= 10
     }
 
     open fun run() {

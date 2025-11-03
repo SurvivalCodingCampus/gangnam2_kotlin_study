@@ -8,6 +8,7 @@ class SuperHero(
     init {
         println("SuperHero의 init")
     }
+
     var isFlying: Boolean = false
     override fun run() {
         println("$name 이 퇴각했다.")
