@@ -2,6 +2,7 @@ package com.luca.kotlinstudy._05_inheritance
 
 import com.luca.kotlinstudy._02_instance_class.HERO_MAX_HP
 import com.luca.kotlinstudy._02_instance_class.Hero
+import com.luca.kotlinstudy._04_collection.availableName
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -10,7 +11,7 @@ class PoisonSlimeTest {
     @Test
     fun `공격할 때마다 포이즌 횟수가 차감이 된다`() {
         val poisonSlime = PoisonSlime(slimeName)
-        val hero = Hero(heroName, hp = HERO_MAX_HP)
+        val hero = Hero(availableName, hp = HERO_MAX_HP)
         val minusCount = 1
 
         val before = poisonSlime.poisonCount
@@ -23,7 +24,7 @@ class PoisonSlimeTest {
     @Test
     fun `포이즌 횟수 소진 후 기본 공격만 해야한다`() {
         val poisonSlime = PoisonSlime(slimeName)
-        val hero = Hero(heroName, hp = HERO_MAX_HP)
+        val hero = Hero(availableName, hp = HERO_MAX_HP)
         val expectedDamage = 10
         poisonSlime.poisonCount = 0
 
@@ -38,7 +39,7 @@ class PoisonSlimeTest {
     @Test
     fun `슬라임이 공격했을 때 용사의 체력이 닳는다`() {
         val poisonSlime = PoisonSlime(slimeName)
-        val hero = Hero(heroName, hp = HERO_MAX_HP)
+        val hero = Hero(availableName, hp = HERO_MAX_HP)
         val expectedDamage = 20
 
         val beforeHp = hero.hp
@@ -58,7 +59,6 @@ class PoisonSlimeTest {
 
     companion object {
         val slimeName = "A"
-        val heroName = "루카스"
         val expectedCount = 0
     }
 }

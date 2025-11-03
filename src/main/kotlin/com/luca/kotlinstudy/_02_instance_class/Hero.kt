@@ -1,5 +1,6 @@
 package com.luca.kotlinstudy._02_instance_class
 
+import com.luca.kotlinstudy._04_collection.MIN_HP_MP
 import kotlin.random.Random
 
 const val HERO_MAX_HP = 50
@@ -12,8 +13,14 @@ fun main() {
 }
 
 // 동적
-open class Hero(var name: String = "", var hp: Int = HERO_MAX_HP) {
-    var money: Int = 100
+open class Hero(
+    var name: String = "",
+    hp: Int = HERO_MAX_HP
+) {
+    var hp: Int = hp
+        set(value) {
+            field = if (value > HERO_MAX_HP) HERO_MAX_HP else value
+        }
 
     // java static 정적 = 얘는 정적이라서 Heap 에 없다. 동적인 Hero와는 소통이 불가하다. 같은 클래스 안에서는 생략이 가능하다. 혹은 탑레벨
     // 메모리에 먼저 올라감
