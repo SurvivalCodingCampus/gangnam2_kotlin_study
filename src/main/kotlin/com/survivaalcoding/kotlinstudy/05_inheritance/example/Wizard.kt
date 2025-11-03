@@ -1,25 +1,25 @@
 package com.survivaalcoding.kotlinstudy.`05_inheritance`.example
 
-import com.survivaalcoding.kotlinstudy.`03_encapsulation`.example.Wand
 import com.survivaalcoding.kotlinstudy.`05_inheritance`.Hero
 
-class Wizard(
+open class Wizard(
     val name: String,
     hp: Int,
-    mp: Int = 100,
+    mp: Int = MAX_MP,
     var wand: Wand? = null
 ) {
-    var hp = hp
+    var hp: Int = hp
         private set
-    var mp = mp
+
+    var mp: Int = mp
         private set
 
     init {
-        if (this.name.isBlank()) {
+        if (name.isBlank()) {
             throw IllegalArgumentException("이름은 빈 문자 혹은 공백일 수 없습니다.")
         }
 
-        if (this.name.length < NAME_LENGTH_RULE) {
+        if (name.length < NAME_LENGTH_RULE) {
             throw IllegalArgumentException("이름은 ${NAME_LENGTH_RULE}자 이상이어야 합니다.")
         }
 
@@ -32,14 +32,18 @@ class Wizard(
         }
     }
 
-    fun heal(hero: Hero) {
-        if (mp < HEAL_MP_COST) {
+    fun useUpMp(mpCost: Int) {
+        mp -= mpCost
+    }
+
+    open fun heal(hero: Hero) {
+        if (this.mp < HEAL_MP_COST) {
             println("마나가 부족합니다.")
             return
         }
 
         hero.addHp(HEAL_HP_RECOVERY)
-        mp -= HEAL_MP_COST
+        useUpMp(HEAL_MP_COST)
 
         println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
     }
@@ -47,7 +51,9 @@ class Wizard(
     companion object {
         const val NAME_LENGTH_RULE = 3
         const val MIN_HP = 0
+        const val MAX_HP = 100
         const val MIN_MP = 0
+        const val MAX_MP = 100
         const val HEAL_MP_COST = 10
         const val HEAL_HP_RECOVERY = 20
     }

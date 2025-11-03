@@ -1,5 +1,6 @@
 package com.survivaalcoding.kotlinstudy.`05_inheritance`.example
 
+import com.survivaalcoding.kotlinstudy.`05_inheritance`.Hero
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test
@@ -75,5 +76,56 @@ class WizardTest {
             .hasMessage("MP는 최소 ${Wizard.MIN_MP} 이상이어야 합니다.")
         assertThat(minMp.mp).isEqualTo(Wizard.MIN_MP)
         assertThat(minMpGreaterThan.mp).isEqualTo(initMp)
+    }
+
+    @Test
+    fun `힐 스킬을 사용하면 HP가 증가하고 MP가 감소한다`() {
+        // given
+        val heroName = "히어로"
+        val wizardName = "마법사"
+        val halfHp = Hero.MAX_HP / 2
+
+        val hero = Hero(heroName, halfHp)
+        val wizard = Wizard(wizardName, Wizard.MAX_HP)
+
+        // when
+        wizard.heal(hero)
+
+        // then
+        assertThat(hero.hp).isEqualTo(halfHp + Wizard.HEAL_HP_RECOVERY)
+        assertThat(wizard.mp).isEqualTo(Wizard.MAX_MP - Wizard.HEAL_MP_COST)
+    }
+
+    @Test
+    fun `마나가 부족하면 힐 스킬을 사용하지 못해 HP가 증가하지 않고 MP가 감소하지 않는다`() {
+        // given
+        val heroName = "히어로"
+        val wizardName = "마법사"
+        val halfHp = Hero.MAX_HP / 2
+        val hasFourMp = 4
+
+        val hero = Hero(heroName, halfHp)
+        val wizard = Wizard(wizardName, Wizard.MAX_HP, hasFourMp)
+
+        // when
+        wizard.heal(hero)
+
+        // then
+        assertThat(hero.hp).isEqualTo(halfHp)
+        assertThat(wizard.mp).isEqualTo(hasFourMp)
+    }
+
+    @Test
+    fun `스킬을 사용하면 마나가 감소한다`() {
+        // given
+        val name = "마법사"
+
+        val wizard = Wizard(name, Wizard.MAX_HP)
+
+        // when
+        wizard.useUpMp(Wizard.HEAL_MP_COST)
+
+        // then
+        assertThat(wizard.mp).isEqualTo(Wizard.MAX_MP - Wizard.HEAL_MP_COST)
     }
 }
