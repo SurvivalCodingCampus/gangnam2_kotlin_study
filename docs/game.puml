@@ -41,14 +41,14 @@ class Wizard {
     + mp: Int
     + wand: Wand?
     + fun heal(hero: Hero)
-    # fun checkHeal(healHp: Int, healMp: Int, hero: Hero)
 }
 
 class GreatWizard extends Wizard {
-
+    + fun superHeal(hero: Hero)
 }
 
 Wizard o.. Wand
 GreatWizard o.. Wand
+
 
 @enduml
