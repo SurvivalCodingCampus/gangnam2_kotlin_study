@@ -2,15 +2,14 @@ package com.sesac.practice.day05
 
 class GreatWizard(
     name: String,
-    override var mp: Int = MAX_MP,
+    mp: Int = MAX_MP,
 ) : Wizard(name, mp) {
     override val healCost: Int = HEAL_COST
     override val healAmount: Int = HEAL_AMOUNT
     val superHealCost: Int = SUPER_HEAL_COST
 
     fun superHeal(hero: Hero) {
-        if (mp < superHealCost) {
-            println("마나가 부족합니다")
+        if (!isEnoughMp(superHealCost)) {
             return
         }
 
