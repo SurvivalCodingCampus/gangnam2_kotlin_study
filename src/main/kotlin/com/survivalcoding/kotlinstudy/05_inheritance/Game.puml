@@ -1,0 +1,16 @@
+@startuml
+scale 2
+
+class Hero {
+
+    + name: String
+    - hp: Int
+
+    + fun attack(smile: Smile)
+    - fun run()
+    }
+
+class SuperHero extends Hero{
+    + isFlying: Boolean
+}
+@enduml
