@@ -4,7 +4,7 @@ class Wand(
     name: String,
     power: Double,
 ) {
-    companion object{
+    companion object {
         const val MIN_NAME_LENGTH = 3
         const val MIN_POWER = 0.5
         const val MAX_POWER = 100.0

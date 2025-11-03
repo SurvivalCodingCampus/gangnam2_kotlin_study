@@ -5,7 +5,7 @@ class SuperHero(
     hp: Int = MAX_HP,
     var sword: Sword?,
 ) : Hero(name, hp) {
-    companion object{
+    companion object {
         const val MAX_HP = 100
         const val FLYING_DAMAGE = 5
     }
