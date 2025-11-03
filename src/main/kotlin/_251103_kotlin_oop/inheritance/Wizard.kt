@@ -28,7 +28,7 @@ open class Wizard(
             throw IllegalArgumentException("마법사의 이름은 3글자 이상이어야 합니다.")
         }
         require(mp >= WIZARD_MINIMUM_MP) {
-            throw IllegalArgumentException("마법사의 MP는 ${WIZARD_MINIMUM_MP}이상이어야 합니다.}")
+            "마법사의 MP는 ${WIZARD_MINIMUM_MP}이상이어야 합니다.}"
         }
 
 
