@@ -5,6 +5,10 @@ class SuperHero(
     hp: Int,
     var sword: Sword?,
 ) : Hero(name, hp) {
+    companion object{
+        const val FLYING_DAMAGE = 5
+    }
+
     var isFlying: Boolean = false
         set(value) {
             field = value
@@ -20,8 +24,8 @@ class SuperHero(
 
         if (isFlying) {
             println("$name 이 $slime 을 공격했다")
-            slime.hp -= 5
-            println("5포인트의 추가 피해를 입혔다")
+            slime.hp -= FLYING_DAMAGE
+            println("$FLYING_DAMAGE 포인트의 추가 피해를 입혔다")
         }
     }
 

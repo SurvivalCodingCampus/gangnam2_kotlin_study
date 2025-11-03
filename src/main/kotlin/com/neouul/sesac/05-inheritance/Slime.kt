@@ -8,7 +8,7 @@ class Slime(val suffix: String) {
 
     fun attack(hero: Hero){
         println("슬라임 $suffix 가 공격했다")
-        println("${DAMAGE}의 데미지")
+        println("$DAMAGE 의 데미지")
         hero.hp -= DAMAGE
     }
 }
