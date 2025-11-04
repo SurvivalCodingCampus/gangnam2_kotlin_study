@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Slime {
+    + suffix: String
+
+    + fun attack(hero: Hero)
+}
+
+class PoisonSlime extends Slime {
+    + poisonCount: Int
+
+    - fun cannotPoisonAttack(): Boolean
+    - fun poisonAttack(hero: Hero)
+}
+
+class Hero {
+    + name: String
+    + hp: Int
+}
+
+class Wizard extends Hero {
+    + mp: Int
+
+    + heal(hero: Hero)
+    # isEnoughMp(cost: Int): Boolean
+}
+
+class GreatWizard extends Wizard {
+    + superHeal(hero: Hero)
+}
+@enduml
