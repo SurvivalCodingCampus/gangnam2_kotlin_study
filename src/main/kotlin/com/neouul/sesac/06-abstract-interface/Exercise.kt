@@ -18,6 +18,7 @@ class Dancer(
     hp: Int,
 ) : Charactrer(name, hp) {
     override fun attack(slime: Slime) {
+        // TODO()는 호출되는 즉시 NotImplementedError를 던짐
         TODO("Not yet implemented")
     }
 }
@@ -72,7 +73,7 @@ open class Wizard(
         println("${target.name}을(를) 치유합니다!")
         target.hp += 20
         mp -= 10
-        println("${target.name}의 HP가 20 회복되었다! (현재 HP: ${target.hp}")
+        println("${target.name}의 HP가 20 회복되었다! (현재 HP: ${target.hp})")
         println("$name 의 남은 MP: $mp")
     }
 }
