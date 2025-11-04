@@ -1,9 +1,12 @@
 package com.survival.kotlinstudy.`03_encapsulation`
 
-class Wizard(
+import com.survival.kotlinstudy.`02_instance_class`.Hero
+
+open class Wizard(
     name: String,
     hp: Int,
     var wand: Wand?,
+    mp: Int = INIT_MP
 ) {
     var name: String = name
         set(value) {
@@ -17,9 +20,26 @@ class Wizard(
             field = if (value < 0) 0 else value
         }
 
-    var mp: Int = 10
+    var mp: Int = mp
         set(value) {
             require(value >= 0) { "마법사의 MP 는 0 이상이어야 합니다" }
             field = value
         }
+
+    open fun heal(hero: Hero) {
+        if (mp < HEAL_COST) {
+            println("마나가 부족합니다.")
+            return
+        }
+        hero.hp += HEAL_HP
+        mp -= HEAL_COST
+        println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
+    }
+
+
+    companion object {
+        const val INIT_MP = 100
+        const val HEAL_COST = 10
+        const val HEAL_HP = 20
+    }
 }

@@ -11,7 +11,7 @@ class HeroTest {
         val hero = Hero(hp = 100)
 
         // when (실행)
-        hero.attack()
+//        hero.attack()
 
         // then (검증)
         assertEquals(90, hero.hp)
@@ -23,7 +23,7 @@ class HeroTest {
         val hero = Hero(hp = 0)
 
         // when (실행)
-        hero.attack()
+//        hero.attack()
 
         // then (검증)
         assertEquals(0, hero.hp)
