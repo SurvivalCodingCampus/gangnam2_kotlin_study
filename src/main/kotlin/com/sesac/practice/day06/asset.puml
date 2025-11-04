@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Asset {
+    + name: String
+}
+
+abstract class TangibleAsset extends Asset {
+    + name: String,
+    + price: Int,
+    + color: String,
+}
+
+class Book extends TangibleAsset {
+    + name: String,
+    + price: Int,
+    + color: String,
+    + isbn: String,
+}
+
+class Computer extends TangibleAsset {
+    + name: String,
+    + price: Int,
+    + color: String,
+    + makerName: String,
+}
+
+abstract class IntangibleAsset extends Asset {
+    + name: String,
+}
+
+class Patent extends IntangibleAsset {
+    + name: String,
+}
+
+@enduml
