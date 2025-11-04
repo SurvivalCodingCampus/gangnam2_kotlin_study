@@ -1,4 +1,4 @@
-package com.ezlevup.my.day05.exercise2
+package com.ezlevup.my.exercise
 
 class Wand(
     name: String,
@@ -14,14 +14,14 @@ class Wand(
 
     var name: String = name
         set(value) {
-            require(value.length >= Wand.MIN_NAME_LENGTH) { "이름은 최소 ${Wand.MIN_NAME_LENGTH}자 이상이어야 합니다." }
-            require(value.length <= Wand.MAX_NAME_LENGTH) { "이름은 최대 ${Wand.MAX_NAME_LENGTH}자를 넘을 수 없습니다." }
+            require(value.length >= MIN_NAME_LENGTH) { "이름은 최소 ${MIN_NAME_LENGTH}자 이상이어야 합니다." }
+            require(value.length <= MAX_NAME_LENGTH) { "이름은 최대 ${MAX_NAME_LENGTH}자를 넘을 수 없습니다." }
             field = value
         }
 
     var power: Double = power
         set(value) {
-            require(value in Wand.MIN_MAGIC_POWER..Wand.MAX_MAGIC_POWER) { "지팡이의 마력은 ${Wand.MIN_MAGIC_POWER} 이상 ${Wand.MAX_MAGIC_POWER} 이하여야 한다." }
+            require(value in MIN_MAGIC_POWER..MAX_MAGIC_POWER) { "지팡이의 마력은 ${MIN_MAGIC_POWER} 이상 ${MAX_MAGIC_POWER} 이하여야 한다." }
             field = value
         }
 
@@ -30,4 +30,3 @@ class Wand(
         this.power = power
     }
 }
-

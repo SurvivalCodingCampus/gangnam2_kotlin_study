@@ -1,0 +1,45 @@
+@startuml
+
+class Hero {
+    + name: String
+    - hp: Int
+    - maxHp: Int
+
+    + attack(slime: Slime)
+    + takeDamage(damage: Int)
+    + addHp(hp: Int)
+}
+
+class Slime {
+    + suffix: String
+
+    + attack(hero: Hero)
+    - slimeDamage(hero: Hero): Int
+}
+
+class PoisonSlime extends Slime {
+    + poisonCount: Int
+
+    + attack(hero: Hero)
+    - calculateDamage(hero: Hero): Int
+}
+
+class Wand {
+    - name: String
+    - power: Double
+}
+
+class Wizard {
+    + name: String
+    + hp: Int
+    + wand: Wand?
+
+    + heal(hero: Hero)
+}
+
+class GreatWizard extends Wizard {
+    + superHeal(hero: Hero)
+}
+
+
+@enduml
