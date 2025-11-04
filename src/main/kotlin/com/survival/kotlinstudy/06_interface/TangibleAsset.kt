@@ -1,9 +1,9 @@
 package com.survival.kotlinstudy.`06_interface`
 
 abstract class TangibleAsset(
-    var name: String,
-    var price: Int,
+    name: String,
+    price: Int,
     var color: String,
-) {
+) : Asset(name,price) {
 
 }
