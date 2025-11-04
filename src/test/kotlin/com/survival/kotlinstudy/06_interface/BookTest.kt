@@ -13,14 +13,14 @@ class BookTest {
         val price = 10000
         val color = "Black"
         val isbn = "123123"
-        val book = Book(name = name ,price = price, color = color, isbn = isbn)
+        val book = Book(name = name, price = price, color = color, isbn = isbn)
 
         // when (실행)
 
         // then (검증)
-        assertEquals(name,book.name)
-        assertEquals(price,book.price)
-        assertEquals(color,book.color)
-        assertEquals(isbn,book.isbn)
+        assertEquals(name, book.name)
+        assertEquals(price, book.price)
+        assertEquals(color, book.color)
+        assertEquals(isbn, book.isbn)
     }
 }
