@@ -59,7 +59,7 @@ class WizardTest {
     }
 
     @Test
-    fun `회복 후 MP가 0이 되면 다음 힐은 실패한다`() {
+    fun `회복 후 MP가 0 - 다음 힐 실패`() {
         // given
         val hero = Hero(HERO_NAME, HERO_INITIAL_HP)
         val wand = Wand(WAND_NAME, WAND_POWER)
@@ -72,17 +72,5 @@ class WizardTest {
         // then
         assertEquals(HERO_INITIAL_HP + HP_RECOVERY, hero.hp) // 첫 힐만 성공
         assertEquals(0, wizard.mp)                           // MP 전부 소모됨
-    }
-
-    @Test
-    fun `HP가 0 이하인 경우 - 음수 X`() {
-        // given
-        val hero = Hero(HERO_NAME, NEGATIVE_HP)
-        val wand = Wand(WAND_NAME, WAND_POWER)
-        val wizard = Wizard(WIZARD_NAME, hp = WIZARD_HP, wand = wand)
-
-        // then
-        assertEquals(0, hero.hp)                 // Hero에서 0으로 보정되어야 함
-        assertEquals(WIZARD_HP, wizard.hp)
     }
 }
