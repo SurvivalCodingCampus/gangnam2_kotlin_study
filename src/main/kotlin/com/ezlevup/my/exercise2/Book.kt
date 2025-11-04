@@ -5,6 +5,7 @@ class Book(
     override var price: Int,
     override var color: String,
     var isbn: String,
+    override var weight: Double,
 ) : TangibleAsset(name, price, color) {
 
 }

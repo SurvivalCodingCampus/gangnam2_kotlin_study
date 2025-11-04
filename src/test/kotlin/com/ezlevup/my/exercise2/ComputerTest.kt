@@ -11,12 +11,14 @@ class ComputerTest {
         val price = 2300000
         val color = "pink"
         val makerName = "lee"
-        val computer = Computer(name = name, price = price, color = color, makerName = makerName)
+        val weight = 45.5
+        val computer = Computer(name = name, price = price, color = color, makerName = makerName, weight = weight)
 
         // then
         assertEquals(name, computer.name)
         assertEquals(price, computer.price)
         assertEquals(color, computer.color)
         assertEquals(makerName, computer.makerName)
+        assertEquals(weight, computer.weight, 0.001)
     }
 }

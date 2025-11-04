@@ -4,5 +4,6 @@ abstract class TangibleAsset(
     override var name: String,
     open var price: Int,
     open var color: String,
-) : Asset(name) {
+) : Asset(name), Thing {
+
 }
