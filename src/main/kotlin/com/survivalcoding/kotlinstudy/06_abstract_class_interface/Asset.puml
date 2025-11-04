@@ -1,0 +1,48 @@
+@startuml
+scale 1
+
+' 인터페이스
+interface Thing {
+    + weight: Double
+}
+
+' 추상 클래스
+abstract class Asset {
+    + name: String
+    + price: Int
+}
+
+' 자식 클래스
+abstract class TangibleAsset {
+    + color: String
+}
+
+abstract class IntangibleAsset {
+    + expiryDate: String
+}
+
+class Computer {
+    + makerName: String
+}
+
+class Book {
+    + isbn: String
+}
+
+class Patent {
+    + patentNumber: String
+}
+
+' 관계
+Asset <|-- TangibleAsset
+Asset <|-- IntangibleAsset
+TangibleAsset <|-- Computer
+TangibleAsset <|-- Book
+IntangibleAsset <|-- Patent
+
+' 인터페이스 구현
+Thing <|..TangibleAsset
+Thing <|.. Computer
+Thing <|.. Book
+
+@enduml
