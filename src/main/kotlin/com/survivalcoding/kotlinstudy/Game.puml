@@ -1,0 +1,59 @@
+@startuml
+scale 2
+
+class Hero {
+    + name: String
+    + hp: Int
+
+    + fun attack(slime: Slime)
+    - fun run()
+}
+
+class SuperHero extends Hero {
+    + isFlying: Boolean
+}
+
+class Wizard {
+    + name: String
+    + hp: Int
+    + mp: Int = 100
+    + wand: Wand? = null
+
+    + fun canHeal(hero: Hero, cost: Int): Boolean
+    + fun heal(hero: Hero)
+}
+
+class GreatWizard extends Wizard {
+    + mp: Int = 150
+
+    + fun heal(hero: Hero) {overrides}
+    + fun superHeal(hero: Hero)
+}
+
+class Slime {
+    + suffix: String
+    + hp: Int
+
+    + fun attack(hero: Hero)
+}
+
+class PoisonSlime extends Slime {
+    - _poisonCount: Int = 5
+    + poisonCount: Int
+
+    + fun attack(hero: Hero) {overrides}
+}
+
+class Wand {
+    + name: String
+    + power: Double
+}
+
+class Person {
+    + name: String
+    + birthYear: Int
+    + age: Int
+}
+
+Wizard --> Wand : uses
+@enduml
