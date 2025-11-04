@@ -39,6 +39,6 @@ abstract class IntangibleAsset extends Asset{
 
 class Patent extends IntangibleAsset {
     + name: String
-    + price: IntangibleAsset
+    + price: Int
 }
 @enduml
