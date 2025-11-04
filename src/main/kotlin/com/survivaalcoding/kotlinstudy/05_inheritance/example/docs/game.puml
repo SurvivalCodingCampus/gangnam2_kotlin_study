@@ -1,0 +1,53 @@
+@startuml
+
+class Slime {
+    - suffix: String
+    + hp: Int
+    - MAX_HP: Int
+    - ATTACK_POINT: Int
+    + attack(hero: Hero): Unit
+}
+
+class PoisonSlime extends Slime {
+    + poisonCount: Int
+    - UNAVAILABLE_POISON_ATTACK_COUNT: Int
+    - AVAILABLE_POISON_ATTACK_COUNT: Int
+    - POISON_ATTACK_POINT: Int
+    + attack(hero: Hero): Unit
+}
+
+class Hero {
+    + name: String
+    + hp: Int
+    - MIN_HP: Int
+    - MAX_HP: Int
+    + isAvailableAttack(): Boolean
+    + addHp(hpRecovery: Int): Unit
+}
+
+class Wizard {
+    - name: String
+    - hp: Int
+    - mp: Int
+    + wand: Wand?
+    - NAME_LENGTH_RULE: Int
+    - MIN_HP: Int
+    - MAX_HP: Int
+    - MIN_MP: Int
+    - MAX_MP: Int
+    - HEAL_MP_COST: Int
+    - HEAL_HP_RECOVERY: Int
+    + useUpMp(mpCost: Int): Unit
+    + heal(hero: Hero): Unit
+}
+
+class GreatWizard extends Wizard {
+    - MAX_MP: Int
+    - HEAL_MP_COST: Int
+    - HEAL_HP_RECOVERY: Int
+    - SUPER_HEAL_MP_COST: Int
+    + heal(hero: Hero): Unit
+    + superHeal(hero: Hero): Unit
+}
+
+@enduml
