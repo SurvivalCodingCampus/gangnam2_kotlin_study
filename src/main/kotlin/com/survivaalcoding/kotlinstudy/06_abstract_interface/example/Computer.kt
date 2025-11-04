@@ -7,7 +7,7 @@ class Computer(
     stock: Int,
     color: String,
     makeNamee: String
-) : TangibleAsset(weight, name, price, stock, color){
+) : TangibleAsset(weight, name, price, stock, color) {
     var makeNamee = makeNamee
         private set
 

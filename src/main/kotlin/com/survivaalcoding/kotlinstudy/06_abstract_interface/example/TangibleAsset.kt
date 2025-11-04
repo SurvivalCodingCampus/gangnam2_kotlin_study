@@ -32,6 +32,6 @@ abstract class TangibleAsset(
     }
 
     private fun isAvailableRental(quantity: Int): Boolean {
-        return stock > quantity
+        return stock >= quantity
     }
 }

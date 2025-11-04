@@ -88,7 +88,7 @@ class ComputerTest {
     }
 
     @Test
-    fun `재고가 부족해 책을 대여할 수 없다`() {
+    fun `재고가 부족해 컴퓨터를 대여할 수 없다`() {
         // given
         val weight = 7.0
         val name = "computer1"
