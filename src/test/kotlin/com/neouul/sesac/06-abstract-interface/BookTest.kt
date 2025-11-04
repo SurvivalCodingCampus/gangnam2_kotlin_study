@@ -20,4 +20,17 @@ class BookTest {
         assertTrue(book is Thing)
         assertTrue(book is Asset)
     }
+
+    @Test
+    fun `Book이 인터페이스 Thing의 weight를 잘 구현하고 있는가`() {
+        // given
+        val book = Book("생존코딩", 20000, "blue", "978-89-954321-0-5 03810", 0.8)
+
+        // when: Double형의 weight에게는 getter/setter가 존재한다 = var이다
+        book.weight = 1.0
+
+        // then
+        assertTrue(book is Thing)
+        assertEquals(1.0, book.weight, 1e-9)
+    }
 }
