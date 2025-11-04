@@ -1,10 +1,25 @@
 @startuml
+abstract class Character {
+    + name: String
+    + hp: Int
 
-class Hero {
+    - {abstract} fun run()
+}
+
+interface Attackable {
+    + {abstract} fun attack(slime: Slime)
+}
+
+interface Moveable {
+    + {abstract} fun move()
+}
+
+class Hero extends Character implements Attackable, Moveable {
     + name: String
     + hp: Int
 
     + fun attack(slime: Slime)
+    + fun move()
     - fun run()
 }
 
