@@ -5,7 +5,7 @@ import org.junit.Test
 
 class ComputerTest {
     @Test
-    fun `책 생성자`() {
+    fun `컴퓨터 생성자`() {
         // given
         val name = "게임 PC"
         val price = 2300000
