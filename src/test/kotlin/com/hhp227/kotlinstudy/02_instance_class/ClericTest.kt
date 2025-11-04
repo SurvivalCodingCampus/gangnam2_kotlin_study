@@ -48,7 +48,7 @@ class ClericTest {
 
         cleric.mp = 1
 
-        assertEquals(10, cleric.pray(11))
+        assertEquals(9, cleric.pray(11))
         assertEquals(10, cleric.mp)
     }
 

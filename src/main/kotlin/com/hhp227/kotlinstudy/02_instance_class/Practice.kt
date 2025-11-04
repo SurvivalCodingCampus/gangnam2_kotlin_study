@@ -60,13 +60,10 @@ class Practice(
             return 0
         }
         val result = time + Random.nextInt(0, 3)
+        val actualRecovery = minOf(result, MAX_MP - mp)
 
-        if (result >= MAX_MP) {
-            mp = MAX_MP
-            return MAX_MP
-        }
-        mp += result
-        return result
+        mp += actualRecovery
+        return actualRecovery
     }
 
     companion object {
