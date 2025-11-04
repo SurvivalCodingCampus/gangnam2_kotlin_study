@@ -19,7 +19,6 @@ fun main() {
 
     // Map
     val gildong = mapOf(
-        //"name".to("홍길동),
         "name" to "홍길동",
         "age" to 10
     )

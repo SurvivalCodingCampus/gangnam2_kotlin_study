@@ -1,0 +1,55 @@
+@startuml
+scale 1
+title Game Class Diagram
+
+class Hero {
+    + name: String
+    + hp: Int
+    + fun attack()
+    + fun run()
+    + fun sleep()
+}
+
+class SuperHero extends Hero {
+    + fun run()
+}
+
+class Cleric {
+    + name: String
+    + hp: Int
+    + mp: Int
+    + fun selfAid()
+    + fun pray(prayTime: Int): Int
+}
+
+class Slime {
+    + suffix: String
+    + hp: Int
+    + fun attack(hero: Hero)
+}
+
+class PoisonSlime extends Slime {
+    + poisonCount: Int
+    + fun attack(hero: Hero)
+}
+
+
+class Wand {
+    + name: String
+    + power: Double
+}
+
+class Wizard {
+    + name: String
+    + hp: Int
+    + mp: Int
+    + wand: Wand
+    + fun heal(hero: Hero)
+}
+
+class GreatWizard extends Wizard {
+    + fun heal(hero: Hero)
+    + fun superHeal(hero: Hero)
+}
+
+@enduml
