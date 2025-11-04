@@ -1,0 +1,52 @@
+@startuml
+
+class Hero {
+    + name: String
+    + hp: Int
+
+    + fun attack(slime: Slime)
+    - fun run()
+}
+
+class SuperHero extends Hero {
+    + sword: Sword?
+    + isFlying: Boolean
+}
+
+class Sword {
+
+}
+
+SuperHero o.. Sword
+
+class Slime {
+    + suffix: String
+    + hp: Int
+    + fun attack(hero: Hero)
+}
+
+class PoisonSlime extends Slime {
+    - poisonCount: Int
+    + fun attack(hero: Hero)
+}
+
+class Wand {
+    + name: String
+    + power: Double
+}
+
+class Wizard {
+    + name: String
+    + hp: Int
+    + mp: Int
+    + wand: Wand?
+    + fun heal(hero: Hero)
+}
+
+class GreatWizard extends Wizard {
+    + fun superHeal(hero: Hero)
+}
+
+Wizard o.. Wand
+
+@enduml
