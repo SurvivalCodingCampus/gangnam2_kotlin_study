@@ -3,7 +3,7 @@ package com.neouul.sesac.`06-abstract-interface`
 import com.neouul.sesac.`05-inheritance`.Slime
 
 // 추상 클래스
-abstract class Charactrer(
+abstract class Character(
     var name: String,
     var hp: Int,
 ) {
@@ -16,7 +16,7 @@ abstract class Charactrer(
 class Dancer(
     name: String,
     hp: Int,
-) : Charactrer(name, hp) {
+) : Character(name, hp) {
     override fun attack(slime: Slime) {
         // TODO()는 호출되는 즉시 NotImplementedError를 던짐
         TODO("Not yet implemented")
@@ -41,7 +41,7 @@ interface Healable {
 open class Hero(
     name: String,
     hp: Int = 100
-) : Charactrer(name, hp), Attackable {
+) : Character(name, hp), Attackable {
 //    override fun speak() {
 //        println("나는 사람입니다")
 //    }
