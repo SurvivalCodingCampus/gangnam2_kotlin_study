@@ -6,4 +6,5 @@ class Book(
     price: Int,
     color: String,
     var isbn: String,
-) : TangibleAsset(name, price, color)
+    override var weight: Double // 연습문제 4. 필드 추가
+) : TangibleAsset(name, price, color), Thing

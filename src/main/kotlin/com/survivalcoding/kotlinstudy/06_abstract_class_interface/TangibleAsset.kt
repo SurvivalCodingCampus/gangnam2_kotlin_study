@@ -5,4 +5,4 @@ abstract class TangibleAsset(
     name: String,
     price: Int,
     var color: String,
-) : Asset(name, price) // 연습문제 2. Asset 클래스 상속
+) : Asset(name, price), Thing   // 연습문제 2. Asset 클래스 상속, 연습문제 4. interface 구현
