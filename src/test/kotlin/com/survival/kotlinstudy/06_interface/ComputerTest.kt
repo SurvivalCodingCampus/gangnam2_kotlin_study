@@ -9,8 +9,8 @@ class ComputerTest {
     fun `Computer 인스턴스 생성 테스트`() {
 
         // given (준비)
-        val name = "책"
-        val price = 10000
+        val name = "Mac"
+        val price = 2401312
         val color = "Black"
         val markerName = "markerName"
         val computer = Computer(name = name, price = price, color = color, markerName = markerName)
@@ -28,8 +28,8 @@ class ComputerTest {
     fun `Computer 인스턴스 생성 후 weight 테스트`() {
 
         // given (준비)
-        val name = "책"
-        val price = 10000
+        val name = "Mac"
+        val price = 2401312
         val color = "Black"
         val markerName = "markerName"
         val weight = 50.5
