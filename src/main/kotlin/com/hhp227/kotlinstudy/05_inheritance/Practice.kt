@@ -71,6 +71,7 @@ class GreatWizard(name: String, hp: Int, wand: Wand) : Wizard(name, hp, wand) {
         }
         hero.hp += 25
         mp -= 5
+        println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
     }
 
     fun superHeal(hero: Hero) {
