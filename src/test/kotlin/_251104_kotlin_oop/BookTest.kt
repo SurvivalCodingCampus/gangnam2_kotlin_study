@@ -11,13 +11,13 @@ class BookTest {
         val beforeName = "before"
         val beforePrice = 1000
         val beforeColor = "red"
-        val Isbn = "123"
+        val isbn = "123"
         val beforeWeight = 100.0
         val afterName = "after"
         val afterPrice = 1001
         val afterColor = "blue"
         val afterWeight = 101.0
-        val book = Book(beforeName, beforePrice, beforeColor, Isbn, beforeWeight)
+        val book = Book(beforeName, beforePrice, beforeColor, isbn, beforeWeight)
         //when
         book.name = afterName
         book.price = afterPrice
