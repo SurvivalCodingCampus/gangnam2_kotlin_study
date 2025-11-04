@@ -1,8 +1,9 @@
 package com.luca.kotlinstudy._06_interface
 
 abstract class TangibleAsset(
-    var name: String,
-    var price: Int,
+    name: String,
+    price: Int,
     var color: String,
-) {
+    override var weight: Double
+) : Asset(name, price), Thing {
 }
