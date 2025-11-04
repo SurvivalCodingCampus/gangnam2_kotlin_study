@@ -16,3 +16,23 @@ class Man : Human {
 
     }
 }
+
+class Person {
+    // 나중에 초기화. 금지 (왠만하면 안 쓴다)
+    lateinit var name: String
+
+    // 나중에 초기화
+    val age: Int by lazy {
+        0
+    }
+
+    fun init() {
+        name = "홍길동"
+    }
+}
+
+fun main() {
+    val person = Person()
+//    println(person.name) // error
+    println(person.age)
+}
