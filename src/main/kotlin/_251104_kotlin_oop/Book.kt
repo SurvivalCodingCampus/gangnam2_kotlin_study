@@ -8,5 +8,5 @@ class Book(
     override var weight: Double,
 
     ) : TangibleAsset(name, price, color) {
-    
+
 }
