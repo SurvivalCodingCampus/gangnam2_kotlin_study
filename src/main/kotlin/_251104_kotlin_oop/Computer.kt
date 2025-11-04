@@ -4,6 +4,9 @@ class Computer(
     name: String,
     price: Int,
     color: String,
-    val isbn: String,
+    val makerName: String,
+    override var weight: Double,
 ) : TangibleAsset(name, price, color) {
+
+
 }

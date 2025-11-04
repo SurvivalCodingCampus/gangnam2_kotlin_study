@@ -4,6 +4,7 @@ abstract class TangibleAsset(
     name: String,
     price: Int,
     var color: String
-) : Asset(name, price) {
-}
 
+) : Asset(name, price), Thing {
+
+}
