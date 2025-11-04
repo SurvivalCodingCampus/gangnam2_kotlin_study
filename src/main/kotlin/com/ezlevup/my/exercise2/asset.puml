@@ -1,7 +1,9 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-interface Thing
+interface Thing {
+    weight: Double
+}
 
 abstract class Asset {
     name: String
@@ -14,9 +16,13 @@ abstract class TangibleAsset extends Asset implements Thing {
 
 abstract class IntangibleAsset extends Asset
 
-class Book extends TangibleAsset
+class Book extends TangibleAsset {
+    isbn: String
+}
 
-class Computer extends TangibleAsset
+class Computer extends TangibleAsset {
+    makerName: String
+}
 
 class Patent extends IntangibleAsset
 
