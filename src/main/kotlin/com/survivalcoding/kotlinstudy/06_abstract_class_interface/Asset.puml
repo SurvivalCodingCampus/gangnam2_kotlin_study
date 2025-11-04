@@ -39,10 +39,6 @@ Asset <|-- IntangibleAsset
 TangibleAsset <|-- Computer
 TangibleAsset <|-- Book
 IntangibleAsset <|-- Patent
-
-' 인터페이스 구현
 Thing <|..TangibleAsset
-Thing <|.. Computer
-Thing <|.. Book
 
 @enduml
