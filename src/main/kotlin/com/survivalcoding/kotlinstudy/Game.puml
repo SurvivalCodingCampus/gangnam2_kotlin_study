@@ -54,4 +54,6 @@ class Person {
     + birthYear: Int
     + age: Int
 }
+
+Wizard --> Wand : uses
 @enduml
