@@ -1,14 +1,19 @@
 @startuml
 skinparam classAttributeIconSize 0
 
+interface Thing {
+    + {abstract} weight: Double
+}
+
 abstract class Asset {
     + name: String
 }
 
-abstract class TangibleAsset extends Asset {
+abstract class TangibleAsset extends Asset implements Thing {
     + name: String,
     + price: Int,
     + color: String,
+    + weight: Double,
 }
 
 class Book extends TangibleAsset {
@@ -16,6 +21,7 @@ class Book extends TangibleAsset {
     + price: Int,
     + color: String,
     + isbn: String,
+    + weight: Double,
 }
 
 class Computer extends TangibleAsset {
@@ -23,6 +29,7 @@ class Computer extends TangibleAsset {
     + price: Int,
     + color: String,
     + makerName: String,
+    + weight: Double,
 }
 
 abstract class IntangibleAsset extends Asset {

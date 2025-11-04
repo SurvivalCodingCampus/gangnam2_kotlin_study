@@ -5,4 +5,10 @@ class Book(
     price: Int,
     color: String,
     var isbn: String,
-) : TangibleAsset(name, price, color)
+    weight: Double = BOOK_WEIGHT,
+) : TangibleAsset(name, price, color, weight) {
+
+    companion object {
+        const val BOOK_WEIGHT: Double = 1.0
+    }
+}

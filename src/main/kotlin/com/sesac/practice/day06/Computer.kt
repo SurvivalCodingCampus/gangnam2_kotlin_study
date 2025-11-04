@@ -5,4 +5,10 @@ class Computer(
     price: Int,
     color: String,
     var makerName: String,
-) : TangibleAsset(name, price, color)
+    weight: Double = COMPUTER_WEIGHT,
+) : TangibleAsset(name, price, color, weight) {
+
+    companion object {
+        const val COMPUTER_WEIGHT: Double = 5.0
+    }
+}
