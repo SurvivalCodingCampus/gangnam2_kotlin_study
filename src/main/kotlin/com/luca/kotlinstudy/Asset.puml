@@ -1,0 +1,33 @@
+@startuml
+
+interface Thing {
++ weight: Double
+}
+
+abstract class Asset{
+- name: String
+- price: Int
+}
+
+abstract class TangibleAsset extends Asset{
+- color: String
+- weight: Double
+}
+
+abstract class IntangibleAsset extends Asset{
+- registrant: String
+}
+
+class Book extends TangibleAsset{
+- isbn: String
+}
+class Computer extends TangibleAsset{
+- makerName: String
+}
+
+class Patent extends IntangibleAsset{
+- patentNumber: String
+}
+
+Thing <|.. TangibleAsset
+@enduml
