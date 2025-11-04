@@ -1,0 +1,29 @@
+@startuml
+scale 2
+
+interface Moveable {
+    + {abstract} fun move()
+}
+
+interface Attackable {
+    + {abstract} fun attack(slime: Slime)
+}
+
+abstract class Character {
+    + name: String
+    + hp: Int
+
+    - fun run()
+}
+
+class Hero extends Character implements Attackable, Moveable {
+    + fun attack(slime: Slime)
+    + fun move()
+}
+
+class SuperHero extends Hero {
+    + isFlying: Boolean
+}
+
+
+@enduml
