@@ -14,6 +14,8 @@ open class Wizard(
     hp: Int = MAX_HP, // HP가 음수가 될 때는 0이 되도록
     mp: Int = WIZARD_MAX_MP, // MP 0 이상
     var wand: Wand? = null,
+    private val healAmount: Int = 20,
+    private val healMpCost: Int = 10,
 ) {
     var name: String = name
         set(value) {
@@ -31,15 +33,14 @@ open class Wizard(
         }
 
     open fun heal(hero: Hero) {
-        if (mp <= 9) {
+        if (mp < healMpCost) {
             println("마나가 부족합니다.")
             return
         }
-        if (hero.hp >= HERO_MAX_HP) {
-            return
-        }
-        hero.hp += 20
-        mp -= 10
+        if (hero.hp >= HERO_MAX_HP) return
+
+        hero.hp = minOf(hero.hp + healAmount, HERO_MAX_HP)
+        mp -= healMpCost
         println("힐을 시전했습니다. 대상 HP: ${hero.hp}")
     }
 
