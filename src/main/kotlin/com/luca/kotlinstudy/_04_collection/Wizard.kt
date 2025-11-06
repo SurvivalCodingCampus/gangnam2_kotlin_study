@@ -6,11 +6,12 @@ import com.luca.kotlinstudy._02_instance_class.CLERIC_MAX_HP
 
 const val MIN_HP_MP = 0
 const val MIN_NAME_LENGTH = 3
+const val WIZARD_MAX_HP = 50
 const val WIZARD_MAX_MP = 100
 
 open class Wizard(
     name: String, // No null, 3문자 이상
-    hp: Int = CLERIC_MAX_HP, // HP가 음수가 될 때는 0이 되도록
+    hp: Int = WIZARD_MAX_HP, // HP가 음수가 될 때는 0이 되도록
     mp: Int = WIZARD_MAX_MP, // MP 0 이상
     var wand: Wand? = null,
     private val healAmount: Int = 20,
