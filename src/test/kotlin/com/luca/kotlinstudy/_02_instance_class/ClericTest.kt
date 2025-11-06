@@ -9,14 +9,15 @@ class ClericTest {
     @Test
     fun `selfAid를 사용하면 mp가 5 감소하고 hp가 최대치로 회복된다`() {
         // given
-        val cleric = Cleric(name = "루카", hp = 30, mp = 10)
+        val cleric = Cleric(name = nickName, hp = 30, mp = 10)
+        val oldMp = cleric.mp
 
         // when
         cleric.selfAid()
 
         // then
-        assertEquals(MAX_HP, cleric.hp)
-        assertEquals(5, cleric.mp)
+        assertEquals(CLERIC_MAX_HP, cleric.hp)
+        assertEquals(oldMp - SELF_AID_MP_COST, cleric.mp)
     }
 
     @Test
@@ -24,7 +25,7 @@ class ClericTest {
         val hpAmount = 10
         val mpAmount = 3
         // given
-        val cleric = Cleric(name = "루카", hp = hpAmount, mp = mpAmount)
+        val cleric = Cleric(name = nickName, hp = hpAmount, mp = mpAmount)
 
         // when
         cleric.selfAid()
@@ -36,68 +37,73 @@ class ClericTest {
 
     @Test
     fun `selfAid는 이미 HP가 최대일 때 실행되지 않는다`() {
-        val mpAmount = 9
-
         // given
-        val cleric = Cleric(name = "루카", hp = MAX_HP, mp = mpAmount)
+        val cleric = Cleric(name = nickName, hp = CLERIC_MAX_HP, mp = CLERIC_MAX_MP)
 
         // when
         cleric.selfAid()
 
         // then
-        assertEquals(MAX_HP, cleric.hp)
-        assertEquals(mpAmount, cleric.mp)
+        assertEquals(CLERIC_MAX_HP, cleric.hp)
+        assertEquals(CLERIC_MAX_MP, cleric.mp)
         println(cleric.mp)
     }
 
     @Test
     fun `pray는 mp가 최대치일 때 회복하지 않는다`() {
         // given
-        val cleric = Cleric(name = "루카", mp = MAX_MP)
+        val cleric = Cleric(name = nickName, mp = CLERIC_MAX_MP)
 
         // when
         val recovered = cleric.pray(3)
 
         // then
         assertEquals(0, recovered)
-        assertEquals(MAX_MP, cleric.mp)
+        assertEquals(CLERIC_MAX_MP, cleric.mp)
     }
 
     @Test
     fun `pray로 회복 시 최대치를 넘지 않아야 한다`() {
         val mpAmount = 9
         // given
-        val cleric = Cleric(name = "루카", mp = mpAmount)
+        val cleric = Cleric(name = nickName, mp = mpAmount)
 
         // when
         val recovered = cleric.pray(3)
 
         // then
-        assertTrue(recovered in 1..MAX_MP - mpAmount)
-        assertEquals(MAX_MP, cleric.mp)
+        assertTrue(recovered in 1..CLERIC_MAX_MP - mpAmount)
+        assertEquals(CLERIC_MAX_MP, cleric.mp)
     }
 
     @Test
     fun `생성자 확인`() {
-        val deciededName = "루카"
 
         // name, hp = 40, mp = 5 지정
-        val cleric = Cleric(name = deciededName, hp = 40, mp = 5)
-        assertEquals(deciededName, cleric.name)
-        assertEquals(40, cleric.hp)
-        assertEquals(5, cleric.mp)
+        val testHp1 = 40
+        val testMp1 = 5
+        val cleric = Cleric(name = nickName, hp = testHp1, mp = testMp1)
+        assertEquals(nickName, cleric.name)
+        assertEquals(testHp1, cleric.hp)
+        assertEquals(testMp1, cleric.mp)
 
         // name, hp 35 지정 후 MP는 최대 MP로 초기화
-        val cleric1 = Cleric(name = deciededName, hp = 35)
-        assertEquals(deciededName, cleric1.name)
-        assertEquals(35, cleric1.hp)
-        assertEquals(MAX_MP, cleric1.mp)
+        val testHp2 = 35
+        val cleric1 = Cleric(name = nickName, hp = testHp2)
+        assertEquals(nickName, cleric1.name)
+        assertEquals(testHp2, cleric1.hp)
+        assertEquals(CLERIC_MAX_MP, cleric1.mp)
 
 
         // name 만 지정 HP와 MP는 최대치로 초기화
-        val cleric2 = Cleric(name = deciededName)
-        assertEquals(deciededName, cleric2.name)
-        assertEquals(MAX_HP, cleric2.hp)
-        assertEquals(MAX_MP, cleric2.mp)
+        val cleric2 = Cleric(name = nickName)
+        assertEquals(nickName, cleric2.name)
+        assertEquals(CLERIC_MAX_HP, cleric2.hp)
+        assertEquals(CLERIC_MAX_MP, cleric2.mp)
+
+    }
+
+    companion object {
+        const val nickName = "루카"
     }
 }

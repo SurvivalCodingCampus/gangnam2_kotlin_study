@@ -2,14 +2,14 @@ package com.luca.kotlinstudy._04_collection
 
 import com.luca.kotlinstudy._02_instance_class.HERO_MAX_HP
 import com.luca.kotlinstudy._02_instance_class.Hero
-import com.luca.kotlinstudy._02_instance_class.MAX_HP
+import com.luca.kotlinstudy._02_instance_class.CLERIC_MAX_HP
 
 const val GREATWIZARD_MAX_MP = 150
 
 
 class GreatWizard(
     name: String,
-    hp: Int = MAX_HP,
+    hp: Int = CLERIC_MAX_HP,
     mp: Int = GREATWIZARD_MAX_MP,
     wand: Wand? = null
 ) : Wizard(
