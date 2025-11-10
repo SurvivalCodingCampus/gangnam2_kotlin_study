@@ -9,6 +9,9 @@
 
 ## 연습문제 2
 
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/7a4cc356-b36f-4634-94cf-40819e088288" />
+
+
 1. val obj: X = A() 로 A인스턴스를 생성한 후, 변수 obj에서 호출할 수 있는 메소드를 a(), b(), c() 중에 골라보시오
 > a()  
 > 변수 obj는 인터페이스 X로 선언되어 있는데, X에는 메서드 a()만 존재하므로 obj로는 a()만 호출할 수 있다
