@@ -6,6 +6,7 @@ class Computer(
     name: String,
     price: Int,
     color: String,
-    var makerName: String
-) : TangibleAsset(name, price, color) {
+    var makerName: String,
+    weight: Double,
+) : TangibleAsset(name, price, color, weight) {
 }
