@@ -1,0 +1,94 @@
+@startuml
+
+interface 진영 {
+    xmen진영여부(): Boolean
+}
+class marvel진영 implements 진영 {}
+class dc진영 implements 진영 {}
+class xmen진영 implements 진영 {}
+
+class 플레이어 {
+    진영: 진영
+    배틀타입: 배틀타입
+}
+
+interface 배틀타입 {}
+class 일대일 implements 배틀타입 {}
+class 팀배틀 implements 배틀타입 {}
+
+interface 타입 {
+    기계타입여부(): Boolean
+}
+class 인간 implements 타입 {}
+class 강화인간 implements 타입 {}
+class 기계 implements 타입 {}
+
+abstract class 영웅 implements 공격할수있는, 강화받을수있는 {
+    진영: 진영
+    타입: 타입
+    에너지포인트: Int
+}
+
+abstract class marvel영웅 extends 영웅 {
+    진영 = marvel진영
+}
+
+abstract class xmen영웅 extends 영웅 implements 자가치유할수있는 {
+    진영 = xmen진영
+    타입 = 강화인간
+}
+
+abstract class 시설 {
+    진영: 진영
+    타입: 타입
+}
+
+abstract class marvel시설 extends 시설 {
+    진영 = marvel진영
+}
+
+abstract class xmen시설 extends 시설 implements 자가치유할수있는 {
+    진영 = xmen진영
+    타입 = 강화인간
+}
+
+interface 공격할수있는 {
+    공격한다(영웅)
+}
+
+interface 강화받을수있는 {
+    강화가능여부(): Boolean
+}
+
+interface 강화할수있는 {
+    강화한다(강화받을수있는영웅)
+}
+
+interface 정보수집할수있는 {
+    정보수집한다()
+}
+
+interface 수리할수있는 {
+    수리한다(기계타입영웅)
+}
+
+interface 자가치유할수있는 {
+    자가치유한다(시간)
+}
+
+' marvel
+class 호크아이 extends marvel영웅 {}
+class 블랙위도우 extends marvel영웅 implements 강화할수있는 {}
+class 아이언맨 extends marvel영웅 {}
+class 워머신 extends marvel영웅 {}
+class 자비스 extends marvel영웅 implements 정보수집할수있는, 수리할수있는 {}
+
+class marvel건물 extends marvel시설 {}
+
+' xman
+class 울버린 extends xmen영웅 {}
+class 비스트 extends xmen영웅 {}
+
+class xmen건물 extends xmen시설 {}
+
+@enduml
