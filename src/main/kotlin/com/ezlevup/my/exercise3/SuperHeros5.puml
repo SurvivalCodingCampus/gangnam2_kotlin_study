@@ -32,16 +32,16 @@ abstract class 시설 extends 유닛 {
 }
 
 abstract class Marvel시설 extends 시설 {
-    진영 = marvel진영
+    진영 = Marvel
 }
 
 abstract class Xmen시설 extends 시설 implements 자가치유할수있는 {
-    진영 = xmen진영
+    진영 = Xmen
     타입 = 강화인간
 }
 
 abstract class Dc시설 extends 시설 implements 방어막자동재생할수있는 {
-    진영 = dc진영
+    진영 = Dc
     방어막: Int
 }
 
@@ -83,16 +83,16 @@ interface 방어막자동재생할수있는 {
 }
 
 abstract class Marvel영웅 extends 영웅 {
-    진영 = marvel
+    진영 = Marvel
 }
 
 abstract class Xmen영웅 extends 영웅 implements 자가치유할수있는 {
-    진영 = xmen
+    진영 = Xmen
     타입 = 강화인간
 }
 
 abstract class Dc영웅 extends 영웅 implements 방어막자동재생할수있는 {
-    진영 = dc
+    진영 = Dc
     방어막: Int
 }
 
