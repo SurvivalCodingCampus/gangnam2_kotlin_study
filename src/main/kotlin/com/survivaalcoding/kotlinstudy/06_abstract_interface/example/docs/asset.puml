@@ -1,0 +1,45 @@
+@startuml
+
+Asset <|-- TangibleAsset
+Thing <|-- TangibleAsset
+
+Asset <|-- IntangibleAsset
+
+TangibleAsset <|-- Book
+TangibleAsset <|-- Computer
+
+IntangibleAsset <|-- Patent
+
+abstract Asset {
+    - name: String
+    - price: Int
+    + {abstract} getInfo(): String
+}
+
+abstract class TangibleAsset {
+    - stock: Int
+    - color: String
+    + decreaseStock(quantity: Int)
+    + rental(quantity: Int): Boolean
+    - isAvailableRental(quantity: Int): Boolean
+}
+
+abstract class IntangibleAsset {
+}
+
+interface Thing {
+    - weight: Double
+}
+
+class Book {
+    - isbn: String
+}
+
+class Computer {
+    - makeName: String
+}
+
+class Patent {
+}
+
+@enduml
