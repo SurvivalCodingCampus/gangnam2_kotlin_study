@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+abstract class Asset {
+    + name: String
+    + price: Int
+}
+
+interface Thing {
+    + {abstract} weight: Double
+}
+
+abstract class TangibleAsset extends Asset implements Thing {
+    + name: String
+    + price: Int
+    + color: String
+    + weight: Double
+}
+
+class Computer extends TangibleAsset {
+    + name: String
+    + price: Int
+    + color: String
+    + markerName: String
+    + weight: Double
+}
+
+class Book extends TangibleAsset {
+    + name: String
+    + price: Int
+    + color: String
+    + isbn : String
+    + weight: Double
+}
+
+abstract class IntangibleAsset extends Asset{
+    + name: String
+    + price: Int
+}
+
+class Patent extends IntangibleAsset {
+    + name: String
+    + price: Int
+}
+@enduml
