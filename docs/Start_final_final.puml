@@ -10,7 +10,7 @@ interface Extractable {
 }
 
 interface Attackable {
-    fun attack(unit: Thing)
+    fun attack(unit: Family)
 }
 
 ' SCV는 힐 가능 -> 비즈니스 로직으로 처리'
