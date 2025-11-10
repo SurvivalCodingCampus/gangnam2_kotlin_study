@@ -59,7 +59,7 @@ interface Terran {
 class Marine extends Unit implements Terran, Attackable, Bionic, Healable {}
 
 class Medic extends Unit implements Terran, Bionic, Healable {
-    - fun heal(target: Healable)
+    + fun heal(target: Healable)
 }
 
 class Tank extends Unit implements Terran, Attackable, Mechanic {}
@@ -67,8 +67,8 @@ class Tank extends Unit implements Terran, Attackable, Mechanic {}
 class Vulture extends Unit implements Terran, Attackable, Mechanic {}
 
 class Scv extends Unit implements Terran, Attackable, Mechanic, Healable {
-    - fun getMineral()
-    - fun fix(target: Mechanic)
+    + fun getMineral()
+    + fun fix(target: Mechanic)
 }
 
 
