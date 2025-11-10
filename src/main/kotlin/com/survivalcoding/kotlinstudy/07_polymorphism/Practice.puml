@@ -1,0 +1,24 @@
+@startuml
+skinparam dpi 200
+
+
+' 인터페이스
+interface X {
+    + a()
+}
+
+' 추상 클래스
+abstract class Y implements X {
+    + b()
+}
+
+' 일반 클래스들
+class A extends Y {
+    + c()
+}
+
+class B extends Y{
+    + c()
+}
+
+@enduml
