@@ -29,7 +29,7 @@ open class Hero(
 
         fun setRandomMoney() { // 클래의 메서드가 아니라 유틸함수다. 인스턴스를 위한 것이 아님.
             MONEY = Random.nextInt(1000)
-            // Hero.name에 접근하려면?l
+            // Hero.name에 접근하려면?
             // 메모리가 달라서 서로 모르기 때문에 따로 생성을 해줘야한다.
             val hero = Hero("홍길동")
             hero.name = ""

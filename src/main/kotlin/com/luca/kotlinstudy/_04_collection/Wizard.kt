@@ -1,7 +1,6 @@
 package com.luca.kotlinstudy._04_collection
 
 import com.luca.kotlinstudy._02_instance_class.Hero
-import com.luca.kotlinstudy._02_instance_class.CLERIC_MAX_HP
 
 const val MIN_HP_MP = 0
 const val MIN_NAME_LENGTH = 3

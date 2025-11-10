@@ -41,8 +41,8 @@ class WandTest {
     }
 
     companion object {
-        val availablePower = 0.5
-        val invalidPower = 0.4
-        val overPower = 101.0
+        const val availablePower = 0.5
+        const val invalidPower = 0.4
+        const val overPower = 101.0
     }
 }

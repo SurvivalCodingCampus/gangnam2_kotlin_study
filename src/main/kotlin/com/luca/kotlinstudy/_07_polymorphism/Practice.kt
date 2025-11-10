@@ -43,7 +43,7 @@ fun main() {
 //  문제 1
     val obj: X = A()
 //  정답은 ? a() 타입은 결국 X이기 때문에 a
-// A를 생성했지만 컴파일러상 obj는 X 타입으로 취급
+//// A를 생성했지만 컴파일러상 obj는 X 타입으로 취급
 
 //  문제 2
     val y1: Y = A()
@@ -59,7 +59,7 @@ fun main() {
     val b = B()
 //  정답은 ? A와 B는 전부 Y클래스를 상속 그래서 공통타입은 Y
     // List의 타입은 Y
-    val list: List<Y> = listOf(a,b)
+    val list: List<Y> = listOf(a, b)
     // 각 요소를 꺼내어 각 인스턴스의 b를 호출
     for (item in list) {
         item.b()
