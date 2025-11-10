@@ -1,0 +1,87 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class 진영 {}
+
+class Marvel extends 진영 {
+    유닛들 : list<유닛>
+}
+class Dc extends 진영 implements 방어막 {
+    유닛들 : list<유닛>
+}
+class Xmen extends 진영 implements 자가치료힐 {
+    유닛들 : list<유닛>
+}
+
+class Skill {}
+
+class 배틀타입 {}
+
+enum 배틀타입 {
+    1:1
+    팀배틀
+}
+
+
+abstract class 유닛 {}
+
+abstract class 영웅 extends 유닛 {
+    hp : Int
+    mp : Int
+    skills : list<Skill>
+    공격()
+}
+abstract class 시설 extends 유닛 {}
+
+interface 힐 {}
+interface 받는힐 implements 힐 {}
+interface 주는힐 implements 힐 {}
+interface 자가치료힐 implements 힐 {}
+
+interface 방어막 {}
+
+interface Human implements 받는힐 {}
+interface 강화인간 implements 받는힐 {}
+interface 기계 implements 받는힐 {}
+
+' marvel
+class Hawkeye extends 영웅 implements Human {}
+class 블랙위도우 extends 영웅 implements Human, 주는힐 {
+
+}
+class 아이언맨 extends 영웅 implements 기계 {}
+class 워머신 extends 영웅 implements 기계 {}
+class 자비스 extends 영웅 implements 기계 {
+    정보수집()
+    수리(기계)
+}
+
+' dc
+class 슈퍼맨 extends Human {}
+class 사이보그 extends 기계 {}
+
+' xman
+class 울버린 extends 강화인간 {}
+class 비스트 extends 강화인간 {}
+
+
+class GamePlay {
+    gameType: 배틀타입
+    player : list<Player>
+}
+
+class Player {
+    num: Int
+    teamNum: Int
+    진영
+}
+
+
+
+
+
+
+
+
+
+@enduml

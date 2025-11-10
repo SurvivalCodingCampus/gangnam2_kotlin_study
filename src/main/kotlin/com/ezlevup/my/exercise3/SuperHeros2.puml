@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface 진영 {}
+class marvel implements 진영 {}
+class dc implements 진영 {}
+class xmen implements 진영 {}
+
+class 플레이어 {
+    진영: 진영
+    배틀타입: 배틀타입
+}
+
+interface 배틀타입 {}
+class 일대일 implements 배틀타입 {}
+class 팀배틀 implements 배틀타입 {}
+
+abstract class 영웅 implements 공격할수있는, 강화받을수있는 {
+    진영: 진영
+    타입: 타입
+    에너지포인트: Int
+    fun 인간타입여부(): Boolean
+    fun 기계타입여부(): Boolean
+}
+
+abstract class 시설 {
+    진영: 진영
+    타입: 타입
+}
+
+interface 타입 {}
+class 인간 implements 타입 {}
+class 강화인간 implements 타입 {}
+class 기계 implements 타입 {}
+
+interface 공격할수있는 {
+    fun 공격한다(영웅)
+}
+
+interface 강화받을수있는 {
+    fun 강화가능여부(): Boolean
+}
+
+interface 강화할수있는 {
+    fun 강화한다(강화받을수있는영웅)
+}
+
+interface 정보수집할수있는 {
+    fun 정보수집한다()
+}
+
+interface 수리할수있는 {
+    fun 수리한다(기계타입영웅)
+}
+
+' marvel
+class 호크아이 extends 영웅 {}
+class 블랙위도우 extends 영웅 implements 강화할수있는 {}
+class 아이언맨 extends 영웅 {}
+class 워머신 extends 영웅 {}
+class 자비스 extends 영웅 implements 정보수집할수있는, 수리할수있는 {}
+@enduml

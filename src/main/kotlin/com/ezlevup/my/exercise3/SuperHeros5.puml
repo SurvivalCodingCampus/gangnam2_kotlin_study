@@ -1,0 +1,144 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class 진영 {}
+
+class Marvel extends 진영 {
+
+}
+class Dc extends 진영 {
+
+}
+class Xmen extends 진영 {
+
+}
+
+class Skill {}
+
+abstract class 유닛 {
+    진영: 진영
+    타입: 타입
+    hp: Int
+}
+
+interface 타입 {}
+class Human implements 타입 {}
+class 강화인간 implements 타입 {}
+class 기계 implements 타입 {}
+
+
+
+abstract class 시설 extends 유닛 {
+}
+
+abstract class Marvel시설 extends 시설 {
+    진영 = marvel진영
+}
+
+abstract class Xmen시설 extends 시설 implements 자가치유할수있는 {
+    진영 = xmen진영
+    타입 = 강화인간
+}
+
+abstract class Dc시설 extends 시설 implements 방어막자동재생할수있는 {
+    진영 = dc진영
+    방어막: Int
+}
+
+class Marvel건물 extends Marvel시설 {}
+class Xmen건물 extends Xmen시설 {}
+class Dc건물 extends Dc시설 {}
+
+interface 정보수집할수있는 {
+    정보수집한다()
+}
+
+interface 수리할수있는 {
+    수리한다(기계)
+}
+
+interface 공격할수있는 {
+    공격한다(유닛)
+}
+
+interface 강화할수있는 {
+    강화한다(강화받을수있는영웅)
+}
+
+abstract class 영웅 extends 유닛 implements 공격할수있는 {
+    skills: list<Skill>
+    공격()
+}
+
+interface 자가치유할수있는 {
+    자가치유한다(시간)
+}
+
+interface 방어막자동재생할수있는 {
+    방어막자동재생한다(전투여부)
+}
+
+abstract class Marvel영웅 extends 영웅 {
+    진영 = marvel
+}
+
+abstract class Xmen영웅 extends 영웅 implements 자가치유할수있는 {
+    진영 = xmen
+    타입 = 강화인간
+}
+
+abstract class Dc영웅 extends 영웅 implements 방어막자동재생할수있는 {
+    진영 = dc
+    방어막: Int
+}
+
+
+' marvel
+class 호크아이 extends Marvel영웅 {}
+class 블랙위도우 extends Marvel영웅 implements 강화할수있는 {}
+class 아이언맨 extends Marvel영웅 {}
+class 워머신 extends Marvel영웅 {}
+class 자비스 extends Marvel영웅 implements 수리할수있는, 정보수집할수있는 {
+}
+
+' dc
+class 슈퍼맨 extends Dc영웅 {}
+class 사이보그 extends Dc영웅 {}
+
+' xman
+class 울버린 extends Xmen영웅 {}
+class 비스트 extends Xmen영웅 {}
+
+enum 배틀타입 {
+    1:1
+    팀배틀
+}
+
+class GamePlay {
+    gameType: 배틀타입
+    player : list<Player>
+}
+
+class Player {
+    num: Int
+    teamNum: Int
+    진영: 진영
+    유닛들: list<유닛>
+    팀: map<Int, 팀구성>
+}
+
+class 팀구성 {
+    팀영웅들: List<영웅>
+    팀구성한다(선택한영웅들: List<영웅>)
+    모두공격한다()
+    모두이동한다()
+}
+
+
+
+
+
+
+
+
+@enduml
