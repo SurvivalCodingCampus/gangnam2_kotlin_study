@@ -1,15 +1,15 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class 진영 {}
+interface 진영 {}
 
-class Marvel extends 진영 {
-
-}
-class Dc extends 진영 {
+class Marvel implements 진영 {
 
 }
-class Xmen extends 진영 {
+class Dc implements 진영 {
+
+}
+class Xmen implements 진영 {
 
 }
 
@@ -61,11 +61,15 @@ interface 공격할수있는 {
     공격한다(유닛)
 }
 
+interface 이동할수있는 {
+    이동한다()
+}
+
 interface 강화할수있는 {
     강화한다(강화받을수있는영웅)
 }
 
-abstract class 영웅 extends 유닛 implements 공격할수있는 {
+abstract class 영웅 extends 유닛 implements 공격할수있는, 이동할수있는 {
     skills: list<Skill>
     공격()
 }
