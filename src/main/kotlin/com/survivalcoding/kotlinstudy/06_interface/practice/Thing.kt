@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`06_abstract_interface`.practice
+package com.survivalcoding.kotlinstudy.`06_interface`.practice
 
 /*
 3번.

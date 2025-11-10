@@ -1,7 +1,7 @@
-package com.survivalcoding.kotlinstudy.`06_abstract_interface`.practice.asset.tangible
+package com.survivalcoding.kotlinstudy.`06_interface`.practice.asset.tangible
 
-import com.survivalcoding.kotlinstudy.`06_abstract_interface`.practice.Thing
-import com.survivalcoding.kotlinstudy.`06_abstract_interface`.practice.asset.Asset
+import com.survivalcoding.kotlinstudy.`06_interface`.practice.Thing
+import com.survivalcoding.kotlinstudy.`06_interface`.practice.asset.Asset
 
 /*
 1번.
