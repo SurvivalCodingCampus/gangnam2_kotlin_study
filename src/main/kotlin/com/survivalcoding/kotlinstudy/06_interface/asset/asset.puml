@@ -1,0 +1,34 @@
+@startuml
+scale 2
+
+'interface Thing {
+'    double getWeight()
+'    void setWeight(double weight)
+'}
+
+interface Thing {
+    weight: Double  // getter, setter
+}
+
+abstract class Asset {
+    name: String,
+    price: Int,
+}
+
+abstract class TangibleAsset extends Asset implements Thing {
+    color: String,
+}
+
+abstract class IntangibleAsset extends Asset {
+
+}
+
+class Book extends TangibleAsset {
+    isbn: String,
+}
+
+class Computer extends TangibleAsset  {
+    makerName: String,
+}
+
+@enduml
