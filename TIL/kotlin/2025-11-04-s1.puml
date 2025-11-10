@@ -1,0 +1,29 @@
+@startuml
+
+interface Organism {
+    + forceConnection: Int
+    + useForce()
+}
+
+interface Alien extends Organism {
+    + sleep() { }
+}
+
+interface Human extends Organism {
+    + numberOfLegs: Int
+    + isKing: Boolean =
+
+    + speak()
+    + sleep() { }
+}
+
+class Man() implements Human, Alien {
+    forceConnection: Int
+    numberOfLegs: Int
+    useForce()
+    speak()
+    sleep()
+
+}
+
+@enduml
