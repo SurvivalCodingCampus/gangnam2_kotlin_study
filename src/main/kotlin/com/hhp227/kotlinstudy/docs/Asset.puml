@@ -12,16 +12,10 @@ abstract class Asset {
 }
 
 abstract class TangibleAsset extends Asset implements Thing {
-    - name: String
-    - price: Int
-    - color: String
     - weight: Double <<override>>
 }
 
 abstract class IntangibleAsset extends Asset {
-    - name: String
-    - price: Int
-    - color: String
 }
 
 class Book extends TangibleAsset {
