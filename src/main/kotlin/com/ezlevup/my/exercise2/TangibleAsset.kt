@@ -2,8 +2,9 @@ package com.ezlevup.my.exercise2
 
 abstract class TangibleAsset(
     name: String,
-    var price: Int,
+    price: Int,
     var color: String,
-) : Asset(name), Thing {
+    override var weight: Double,
+) : Asset(name, price), Thing {
 
 }

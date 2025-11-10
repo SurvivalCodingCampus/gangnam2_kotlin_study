@@ -2,26 +2,26 @@
 'https://plantuml.com/class-diagram
 
 interface Thing {
-    weight: Double
+    + weight: Double
 }
 
 abstract class Asset {
-    name: String
+    + name: String
+    + price: Int
 }
 
 abstract class TangibleAsset extends Asset implements Thing {
-    price: Int
-    color: String
+    + color: String
 }
 
 abstract class IntangibleAsset extends Asset
 
 class Book extends TangibleAsset {
-    isbn: String
+    + isbn: String
 }
 
 class Computer extends TangibleAsset {
-    makerName: String
+    + makerName: String
 }
 
 class Patent extends IntangibleAsset

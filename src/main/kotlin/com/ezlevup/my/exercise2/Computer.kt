@@ -5,7 +5,7 @@ class Computer(
     price: Int,
     color: String,
     var makerName: String,
-    override var weight: Double,
-) : TangibleAsset(name, price, color) {
+    weight: Double,
+) : TangibleAsset(name, price, color, weight) {
 
 }
