@@ -52,4 +52,7 @@ class GreatWizard extends Wizard {
     + fun superHeal(hero: Hero)
 }
 
+Wizard o-- Wand : has-a
+
+
 @enduml
