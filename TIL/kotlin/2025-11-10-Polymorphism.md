@@ -127,5 +127,57 @@ if (character is Wizard) {
 - 마찬가지로, 부모 클래스 타입의 인수나 리턴 값을 이용하여, 다른 클래스를 모아서 처리 가능.
 - 동일시 취급 해도, 각각의 인스턴스는 각 클래스의 정의를 따르고 다른 동작을 한다.
 
+### 연습문제 1
+
+- (1)
+
+```kotlin
+val item: Item = Sword()
+```
+
+Sword 인스턴스
+
+Sword 를 생성했지만 컴파일러에게는 Item 로 보임.
+
+- (2)
+
+```kotlin
+val a: Monster = Slime
+```
+
+Slime 인스턴스
+
+Slime 을 생성했지만 컴파일러에게는 Monster 로 보임.
+
+### 연습문제 2
+
+1. a()
+2. y1.a() // "Aa"
+   y2.a() // "Ba"
+
+### 연습문제 3
+
+1. List<Y>
+
+```kotlin
+fun main() {
+    val obj: X = A()
+    // obj.a() // ok
+
+    val y1: Y = A()
+    val y2: Y = B()
+    // y1.a()
+    // y2.a()
+
+    val list: List<Y> = listOf(y1, y2)
+
+    for (i: Y in list) {
+        println(i.a())
+    }
+}
+```
+
+
+
 
 

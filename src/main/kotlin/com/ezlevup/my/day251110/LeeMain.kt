@@ -38,5 +38,5 @@ fun main() {
     val slime = Slime("A")
 
     character.attack(slime)
-    character.fireball(slime)
+    // character.fireball(slime) // 컴파일 에러. Character 클래스에는 fireball() 메서드가 없음.
 }
