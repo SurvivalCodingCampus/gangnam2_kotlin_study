@@ -57,12 +57,12 @@ class 자비스 extends 영웅 implements 기계 {
 }
 
 ' dc
-class 슈퍼맨 extends Human {}
-class 사이보그 extends 기계 {}
+class 슈퍼맨 extends 영웅 implements Human {}
+class 사이보그 extends 영웅 implements 기계 {}
 
 ' xman
-class 울버린 extends 강화인간 {}
-class 비스트 extends 강화인간 {}
+class 울버린 extends 영웅 implements 강화인간 {}
+class 비스트 extends 영웅 implements 강화인간 {}
 
 
 class GamePlay {
