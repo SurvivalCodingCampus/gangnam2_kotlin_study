@@ -1,0 +1,73 @@
+@startuml
+'https://plantuml.com/class-diagram
+' =---interface '
+
+'interface Moveable {
+'    fun move()
+'}
+'
+'interface Repairable {
+'    fun repair(unit: MechanicUnit)
+'}
+'
+'interface Extractable {
+'    fun extract(): Int
+'}
+'
+'interface Attackable {
+'    fun attack(unit: Thing)
+'}
+'
+'' SCV는 힐 가능 -> 비즈니스 로직으로 처리'
+'interface Healable {
+'    fun heal(unit: Unit)
+'}
+
+interface Unit {
+}
+
+interface Structure {
+}
+
+interface Bionic {
+}
+
+interface Mechanic {
+}
+
+
+abstract class 종족 {
+    hp: Int
+    name: String
+}
+class Terran extends 종족 {
+}
+
+class Zerg extends 종족 implements Bionic {
+    fun selfHeal()
+}
+
+class Protoss extends 종족 {
+}
+
+class Marine extends Terran implements Bionic, Unit {
+}
+
+
+class Medic extends Terran implements Bionic, Unit{
+}
+
+class Tank extends Terran implements Mechanic, Unit{
+}
+class Vulture extends Terran implements Mechanic, Unit{
+}
+class Scv extends Terran implements Mechanic, Unit{
+}
+
+class Zergling extends Zerg implements Unit {
+}
+
+class Hydra extends Zerg implements Unit{
+}
+
+@enduml

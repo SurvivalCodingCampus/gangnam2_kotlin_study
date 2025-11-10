@@ -1,0 +1,122 @@
+@startuml
+'https://plantuml.com/class-diagram
+' =---interface '
+
+'interface Moveable {
+'    fun move()
+'}
+'
+'interface Repairable {
+'    fun repair(unit: MechanicUnit)
+'}
+'
+'interface Extractable {
+'    fun extract(): Int
+'}
+'
+'interface Attackable {
+'    fun attack(unit: Thing)
+'}
+'
+'' SCV는 힐 가능 -> 비즈니스 로직으로 처리'
+'interface Healable {
+'    fun heal(unit: Unit)
+'}
+
+interface Unit {
+}
+
+interface Structure {
+}
+
+interface Bionic {
+}
+
+interface Mechanic {
+}
+
+
+
+abstract class 종족 {
+    var hp: Int
+    var name: String
+}
+class Terran extends 종족 {
+}
+
+class TerranUnit extends Terran implements Unit {
+}
+
+class TerranBionicUnit extends TerranUnit implements Bionic {
+}
+
+class TerranMechanicUnit extends TerranUnit implements Mechanic {
+}
+
+class TerranStructure extends Terran implements Structure {
+}
+
+class TerranBionicStructure extends TerranStructure implements Bionic {
+}
+
+class TerranMechanicStructure extends TerranStructure implements Mechanic {
+}
+
+
+class Zerg extends 종족 {
+    fun selfHeal()
+}
+
+class ZergBionic extends Zerg implements Bionic {
+}
+
+class ZergBionicUnit extends ZergBionic implements Unit {
+}
+
+
+class ZergBionicStructure extends ZergBionic implements Structure {
+}
+
+
+class Protoss extends 종족 {
+}
+
+class ProtossUnit extends Protoss implements Unit {
+}
+
+class ProtossBionicUnit extends ProtossUnit implements Bionic {
+}
+
+class ProtossMechanicUnit extends ProtossUnit implements Mechanic {
+}
+
+class ProtossStructure extends Protoss implements Structure {
+}
+
+class ProtossBionicStructure extends ProtossStructure implements Bionic {
+}
+
+class ProtossMechanicStructure extends ProtossStructure implements Mechanic {
+}
+
+class Marine extends TerranBionicUnit {
+}
+
+
+class Medic extends TerranBionicUnit {
+}
+
+class Tank extends TerranMechanicUnit {
+}
+class Vulture extends TerranMechanicUnit  {
+}
+class Scv extends TerranMechanicUnit {
+}
+
+class Zergling extends ZergBionicUnit {
+}
+
+class Hydra extends ZergBionicUnit {
+}
+
+@enduml
