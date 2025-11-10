@@ -1,6 +1,8 @@
 package com.hhp227.kotlinstudy.`03_encapsulation`
 
 import com.hhp227.kotlinstudy.`02_instance_class`.Hero
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.math.max
 
 /*
@@ -14,16 +16,15 @@ import kotlin.math.max
 지팡이의 마력은 0.5 이상 100.0 이하여야 한다.
 마법사의 MP는 0 이상이어야 한다.
 HP가 음수가 되는 상황에서는 대신 0을 설정 되도록 한다.
- */
 
-/*
-연습문제4 - Wizard 수정
-속성:
-mp: Int (초기값 100)
-메서드:
-heal(hero: Hero): Unit의 hp를 20 회복시키고 자신의 mp를 10 소모
-mp가 부족하면 "마나가 부족합니다" 출력
-힐을 성공하면 "힐을 시전했습니다. 대상 HP: ${hero.hp}" 출력
+연습문제2
+Person 클래스를 작성하시오.
+
+이름과 태어난 해를 생성자로 받는다 (name, birthYear)
+이름과 태어난 해는 한번 정해지면 수정이 불가능하다.
+age 프로퍼티를 통해 나이를 제공하지만, 임의로 수정은 불가능하다.
+나이 계산은 올해년도에서 birthYear 년도를 뺀 값을 리턴한다
+현재 시간과 날짜를 구하는 방법은 검색 해 볼 것
  */
 
 open class Wizard(
@@ -91,4 +92,15 @@ class Wand(
         require(name.length > 2) { "이름은 3문자 이상이어야 합니다" }
         require(this@Wand.power in 0.5..100.0) { "지팡이의 마력은 0.5이상 100.0이하여야 합니다" }
     }
+}
+
+class Person(
+    val name: String,
+    val birthYear: Int
+) {
+    val age: Int
+        get() {
+            val formatter = DateTimeFormatter.ofPattern("yyyy")
+            return LocalDate.now().format(formatter).toInt() - birthYear
+        }
 }

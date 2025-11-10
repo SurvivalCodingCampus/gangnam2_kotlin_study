@@ -37,7 +37,7 @@ Cleric클래스에 관하여, 2가지 수정을 하시오
 이 클래스는 Cleric() 과 같이 이름을 지정하지 않는 경우에는 인스턴스화 할 수 없다고 한다. (이름이 없는 성직자는 존재 할 수 없음)
  */
 
-class Cleric(
+class Practice(
     val name: String,
     var hp: Int = MAX_HP,
     var mp: Int = MAX_MP
@@ -60,13 +60,10 @@ class Cleric(
             return 0
         }
         val result = time + Random.nextInt(0, 3)
+        val actualRecovery = minOf(result, MAX_MP - mp)
 
-        if (result >= MAX_MP) {
-            mp = MAX_MP
-            return MAX_MP
-        }
-        mp += result
-        return result
+        mp += actualRecovery
+        return actualRecovery
     }
 
     companion object {
