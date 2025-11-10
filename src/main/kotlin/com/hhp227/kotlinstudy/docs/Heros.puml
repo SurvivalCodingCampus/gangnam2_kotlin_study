@@ -117,7 +117,6 @@ note left of Wolverine
 end note
 Hero <|-- Wolverine
 Hero <|-- Beast
-Facility <|-- Facility
 Wolverine ..|> ISelfHeal
 Beast ..|> ISelfHeal
 Facility ..|> ISelfHeal : <<XMen only>>
