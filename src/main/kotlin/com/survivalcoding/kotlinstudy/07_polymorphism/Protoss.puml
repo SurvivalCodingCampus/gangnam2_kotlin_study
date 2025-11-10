@@ -1,0 +1,59 @@
+@startuml
+scale 2
+
+skinparam ranksep 200
+<style>
+  arrow {
+    LineThickness 2
+  }
+</style>
+
+title Protoss  + Terran Medic
+
+
+abstract class Object {
+    + hp: Int
+    + name: String
+}
+
+abstract class Unit extends Object {
+    + fun move()
+}
+
+abstract class Structure extends Object {
+    + fun produceUnit(user: User)
+}
+
+class User {
+    + mineral: Int
+}
+
+
+interface Protoss {
+    + shield: Int
+    + fun getShield()
+}
+
+interface Bionic {}
+interface Mechanic {
+    + fun getMechanicHp(amount: Int)
+}
+interface Attackable {
+    + atk : Int
+    + fun attack(target: Unit)
+}
+interface Healable {
+    + fun getBionicHp(amount: Int)
+}
+
+class Zealot extends Unit implements Protoss, Attackable, Bionic, Healable {}
+class Dragun extends Unit implements Protoss, Attackable, Mechanic {}
+
+
+interface Terran {}
+
+class Medic extends Unit implements Terran, Bionic, Healable {
+   + fun heal(target: Healable)
+}
+
+@enduml

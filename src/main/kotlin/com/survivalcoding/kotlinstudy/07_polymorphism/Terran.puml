@@ -1,0 +1,60 @@
+@startuml
+scale 2
+
+skinparam ranksep 200
+<style>
+  arrow {
+    LineThickness 2
+  }
+</style>
+
+abstract class Object {
+    + hp: Int
+    + name: String
+}
+
+abstract class Unit extends Object {
+    + fun move()
+}
+
+abstract class Structure extends Object {
+    + fun produceUnit(user: User)
+}
+
+class User{
+    + mineral: Int
+}
+
+interface Bionic {}
+
+interface Mechanic {
+    + fun getMechanicHp(amount: Int)
+}
+
+interface Attackable {
+    + atk : Int
+    + fun attack(target: Unit)
+}
+
+interface Healable {
+    + fun getBionicHp(amount: Int)
+}
+
+interface Terran {}
+
+class Marine extends Unit implements Terran, Attackable, Bionic, Healable {}
+
+class Medic extends Unit implements Terran, Bionic, Healable {
+    + fun heal(target: Healable)
+}
+
+class Tank extends Unit implements Terran, Attackable, Mechanic {}
+
+class Vulture extends Unit implements Terran, Attackable, Mechanic {}
+
+class Scv extends Unit implements Terran, Attackable, Mechanic, Healable {
+    + fun getMineral()
+    + fun fix(target: Mechanic)
+}
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+scale 2
+
+skinparam ranksep 200
+<style>
+  arrow {
+    LineThickness 2
+  }
+</style>
+
+title Zerg
+
+abstract class Object {
+    + hp: Int
+    + name: String
+}
+
+abstract class Unit extends Object {
+    + fun move()
+}
+
+abstract class Structure extends Object {
+    + fun produceUnit(user: User)
+}
+
+class User{
+    + mineral: Int
+}
+
+interface Bionic {}
+
+interface Attackable {
+    + atk : Int
+    + fun attack(target: Unit)
+}
+
+interface Healable {
+    + fun getBionicHp(amount: Int)
+}
+
+
+interface Zerg {
+    + fun recoveryHp()
+}
+
+class Zergling extends Unit implements Zerg, Attackable, Bionic, Healable {}
+
+class Hydra extends Unit implements Zerg, Attackable, Bionic, Healable {}
+
+@enduml
