@@ -1,7 +1,6 @@
 package com.survivalcoding.kotlinstudy.`07_polymorphism`.practice
 
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class ABTest {
     @Test
@@ -18,5 +17,17 @@ class ABTest {
 
         y1.a()
         y2.a()
+    }
+
+    @Test
+    fun `List를 만들어서 각각 인스턴스의 b() 메서드를 호출하기`() {
+        val alphabets: List<Y> = listOf(
+            A(),
+            B(),
+        )
+
+        alphabets.forEach { alphabet ->
+            alphabet.b()
+        }
     }
 }
