@@ -1,0 +1,194 @@
+@startuml
+' --- 타입/열거 ---
+enum Faction {
+  Marvel
+  DC
+  XMen
+}
+
+enum UnitType {
+  Human
+  Enhanced
+  Tech
+}
+
+enum BattleMode {
+  OneOnOne
+  TeamBattle
+}
+
+' --- 공통 인터페이스/추상 ---
+interface IUnit {
+  +id: String
+  +name: String
+  +type: UnitType
+  +isInCombat(): Boolean
+}
+
+abstract class Skill {
+  +name: String
+  +energyCost: int
+  +use(user: Hero, target: IUnit)
+}
+
+class EnergyPool {
+  -current: int
+  -max: int
+  +consume(amount:int): boolean
+  +recharge(amount:int)
+}
+
+' --- Hero / Facility ---
+abstract class Hero {
+  +id: String
+  +name: String
+  +faction: Faction
+  +type: UnitType
+  +energy: EnergyPool
+  +skills: List~Skill~
+  +canAttack(): boolean
+  +performSkill(s: Skill, target: IUnit)
+}
+
+class Facility {
+  +id: String
+  +name: String
+  +faction: Faction
+  +type: UnitType
+  +isOperational(): boolean
+}
+
+' --- 특수 역할(인터페이스) ---
+interface ISupport {
+  +applySupport(target: Hero)
+}
+
+interface IRepair {
+  +repair(target: Hero)
+}
+
+interface ISelfHeal {
+  +autoHeal(period:int)
+}
+
+interface IShielded {
+  +shieldValue: int
+  +regenerateShield()
+}
+
+' --- 구체 영웅 클래스 (설계 목적) ---
+class Hawkeye
+class BlackWidow
+class IronMan
+class WarMachine
+class Jarvis
+
+class Wolverine
+class Beast
+
+class Superman
+class Cyborg
+
+' 상속 관계
+Hero <|-- Hawkeye
+Hero <|-- BlackWidow
+Hero <|-- IronMan
+Hero <|-- WarMachine
+Hero <|-- Jarvis
+
+Hero <|-- Wolverine
+Hero <|-- Beast
+
+Hero <|-- Superman
+Hero <|-- Cyborg
+
+' Jarvis 는 "지원 AI" 역할을 가짐
+Jarvis ..|> IRepair
+Jarvis ..|> ISupport : (정보수집 역할 포함)\n(예: gatherInfo())
+
+' BlackWidow는 공격 대신 지원/강화 전용 (지원 인터페이스 구현)
+BlackWidow ..|> ISupport
+
+' 일부 영웅/시설 특성 연결 (진영 규칙 반영)
+' XMen: 모든 유닛 Enhanced + 자가 치유
+note left of Wolverine
+  XMen 유닛은 모두 UnitType = Enhanced
+  모든 영웅/시설은 시간이 지나면 자가 치유 (ISelfHeal)
+end note
+Hero <|-- Wolverine
+Hero <|-- Beast
+Facility <|-- Facility
+Wolverine ..|> ISelfHeal
+Beast ..|> ISelfHeal
+Facility ..|> ISelfHeal : <<XMen only>>
+
+' DC: 모든 유닛은 Shield 보유 및 자동 재생
+note right of Superman
+  DC 유닛/시설은 기본 방어막(Shield)을 가짐.
+  방어막은 비전투 시 자동 재생.
+end note
+Superman ..|> IShielded
+Cyborg ..|> IShielded
+Facility ..|> IShielded : <<DC only>>
+
+' 타입 특성 (명시)
+Superman : type = Human
+Cyborg : type = Tech
+
+' 공격 가능성: 대부분 영웅은 공격 가능, BlackWidow는 예외적 비공격자(지원 전용)
+note top of Hero
+  대부분의 Hero는 공격 가능
+  BlackWidow는 직접 공격 대신 다른 인간형 영웅을 지원/강화
+  Jarvis는 Tech이지만 BlackWidow의 강화 대상 예외 허용
+end note
+
+' --- 플레이어 / 팀 / 전투 ---
+class Player {
+  +id: String
+  +name: String
+  +selectedFaction: Faction
+  +teams: List~Team~
+}
+
+class Team {
+  +id: String
+  +name: String
+  +members: List~Hero~
+  +addMember(h:Hero)
+  +removeMember(h:Hero)
+  +attackAll(target: IUnit)
+  +moveAll(destination)
+  +useSkillAll(skill:Skill, target: IUnit)
+}
+
+class Battle {
+  +id: String
+  +mode: BattleMode
+  +participants: List~Player~
+  +start()
+  +end()
+}
+
+' 연관관계
+Player "1" o-- "*" Team
+Team "1" *-- "*" Hero : contains
+Player "1" -- "*" Hero : owns (optionally)
+
+Battle "1" *-- "*" Player
+
+' --- 규칙/제약 사항을 노트로 정리 ---
+note bottom
+  규칙 요약:
+   * 진영: Marvel, DC, XMen
+   * 유닛 타입: Human, Enhanced, Tech
+   * Marvel: Hawkeye(Human), BlackWidow(Human, support-only), IronMan(Tech), WarMachine(Tech), Jarvis(Tech, Support AI — 수리/정보수집)
+   * BlackWidow: 인간형 영웅을 지원/강화 (단, Jarvis는 예외적으로 강화 대상 허용)
+   * XMen: 모든 영웅/시설은 Enhanced, 시간이 지나면 자가 치유(ISelfHeal)
+   * XMen 시설은 BlackWidow의 강화 대상이 아님
+   * DC: 모든 유닛/시설은 기본 방어막(IShielded), 비전투 시 방어막 자동 재생
+   * Superman: Human, Cyborg: Tech
+   * 에너지 포인트(EnergyPool)는 스킬 사용에 소비됨
+   * 팀(Team)을 통해 다수 영웅을 묶어 한 번에 공격/이동/스킬 사용 가능
+end note
+
+@enduml
