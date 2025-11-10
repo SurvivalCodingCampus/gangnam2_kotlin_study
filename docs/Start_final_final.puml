@@ -51,7 +51,7 @@ interface MechanicStructure implements Mechanic, Structure {
 abstract class Family {
     hp: Int
     name: String
-    mineral: Int
+    mineral: Int (companion object)
 }
 
 abstract class Terran extends Family {
