@@ -15,6 +15,6 @@ fun main() {
     val list: List<Y> = listOf(y1, y2)
 
     for (i: Y in list) {
-        println(i.a())
+        i.a()
     }
 }
