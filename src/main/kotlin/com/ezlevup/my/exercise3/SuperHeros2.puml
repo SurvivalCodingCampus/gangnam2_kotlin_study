@@ -42,7 +42,7 @@ interface 강화받을수있는 {
 }
 
 interface 강화할수있는 {
-    fun 강화한다(강화받을수있는영웅)
+    fun 강화한다(강화받을수있는)
 }
 
 interface 정보수집할수있는 {
@@ -50,7 +50,7 @@ interface 정보수집할수있는 {
 }
 
 interface 수리할수있는 {
-    fun 수리한다(기계타입영웅)
+    fun 수리한다(영웅)
 }
 
 ' marvel
