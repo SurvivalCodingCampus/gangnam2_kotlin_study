@@ -1,0 +1,23 @@
+@startuml
+
+interface X {
+    + fun a()
+}
+
+abstract class Y implements X {
+    + {abstract} fun b()
+}
+
+class A extends Y {
+    + fun a() { println("Aa") } <<override>>
+    + fun b() { println("Ab") } <<override>>
+    + fun c() { println("Ac") }
+}
+
+class B extends Y {
+    + fun a() { println("Ba") } <<override>>
+    + fun b() { println("Bb") } <<override>>
+    + fun c() { println("Bc") }
+}
+
+@enduml
