@@ -1,0 +1,76 @@
+@startuml star
+
+abstract class 종족 {
+
+}
+
+abstract class Terran extends 종족 {
+    
+}
+
+abstract class Zerg extends 종족 {
+
+}
+
+abstract class Protoss extends 종족 {
+
+}
+
+interface Unit {
+}
+
+interface Structure {
+}
+
+interface Bionic {
+
+}
+
+interface Mechanic {
+
+}
+
+interface BionicUnit implements Unit, Bionic {
+}
+
+interface BionicStructure implements Structure, Bionic {
+}
+
+interface MechanicUnit implements Unit, Mechanic {
+}
+
+interface MechanicStructure implements Structure, Mechanic {
+}
+
+class Marine extends Terran implements BionicUnit {
+
+}
+
+class Medic extends Terran implements BionicUnit {
+
+}
+
+class Tank extends Terran implements MechanicUnit {
+
+}
+
+class Vulture extends Terran implements MechanicUnit {
+
+}
+
+class Scv extends Terran implements MechanicUnit {
+}
+
+class Zergling extends Zerg implements BionicUnit {
+}
+
+class Hydra extends Zerg implements BionicUnit {
+}
+
+class Zealot extends Protoss implements BionicUnit {
+}
+
+class Dragun extends Protoss implements MechanicUnit {
+}
+
+@enduml
