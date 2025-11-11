@@ -26,8 +26,9 @@ fun main() {
     println(h1 === h2) // 인스턴스는 하나기 때문에 인스턴스 복사라고 하지 않는다.
     println(h1 == h3)
 
-    val slime1 = Slime("A")
-    val slime2 = slime1.copy()
+    // 슬라임에 open 붙여서 data 빼줌
+    //val slime1 = Slime("A")
+    //val slime2 = slime1.copy()
 
-    println(slime1 === slime2)
+   // println(slime1 === slime2)
 }

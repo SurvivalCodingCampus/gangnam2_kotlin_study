@@ -2,7 +2,7 @@ package com.luca.kotlinstudy._05_inheritance
 
 import com.luca.kotlinstudy._02_instance_class.Hero
 
-data class Slime(
+open class Slime(
     val suffix: String,
     val hp: Int = 10
 ) {
