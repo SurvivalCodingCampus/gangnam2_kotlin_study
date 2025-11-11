@@ -14,6 +14,7 @@ class Book(
     val author: String,
     val publishedDate: LocalDateTime = LocalDateTime.now(),
 ) : Comparable<Book> {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -34,8 +35,8 @@ class Book(
         return other.publishedDate.compareTo(this.publishedDate)
     }
 
-    fun deepCopy(book: Book): Book {
-        return Book(book.title, book.author, book.publishedDate)
+    fun deepCopy(): Book {
+        return Book(this.title, this.author, this.publishedDate)
     }
 
     override fun hashCode(): Int {
