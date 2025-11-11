@@ -45,9 +45,9 @@ class BookTest {
 
         assertTrue(book1 == book2)
         assertFalse(book1 === book2)
-        assertTrue(book1.publishedDate == book2.publishedDate)
+        assertTrue(book1.publishedDate === book2.publishedDate)
         assertTrue(book1 == book3)
         assertFalse(book1 === book3)
-        assertTrue(book1.publishedDate == book3.publishedDate)
+        assertFalse(book1.publishedDate === book3.publishedDate)
     }
 }
