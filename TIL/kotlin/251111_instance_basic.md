@@ -10,7 +10,7 @@ Kotlin에서는 `Any`가 이에 해당한다.
 
 ## 컬렉션 비교 `equals()`
 - `List`는 `hashCode()`를 무시하고, `equals()`로 비교
-- `Set`은 `hashcCode()`로 비교
+- `Set`은 `hashCode()`로 비교
   - `hashCode()` 값이 다르면 다른 객체로 처리
   - `hashCode()` 값이 같으면 `equals()`로 비교
 

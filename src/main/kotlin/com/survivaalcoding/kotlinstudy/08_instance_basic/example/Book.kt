@@ -18,6 +18,8 @@ class Book(
     )
 
     override fun compareTo(other: Book): Int {
+        if (this == other) return 0
+
         return this.publishedDate.compareTo(other.publishedDate) * -1
     }
 
@@ -35,13 +37,12 @@ class Book(
 
     override fun hashCode(): Int {
         var result = title.hashCode()
-        result = 31 * result + publishedDate.hashCode()
+        result = 31 * result + publishedDate.toLocalDate().hashCode()
         return result
     }
 
-//    override fun toString(): String {
-//        return "Book(title='$title', author='$author', publishedDate=$publishedDate)"
-//    }
-
+    override fun toString(): String {
+        return "Book(title='$title', author='$author', publishedDate=$publishedDate)"
+    }
 
 }
