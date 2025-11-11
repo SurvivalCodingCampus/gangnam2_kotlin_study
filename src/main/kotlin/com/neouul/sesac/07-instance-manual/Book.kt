@@ -10,6 +10,8 @@ class Book(
     override fun compareTo(other: Book): Int {
         if (this == other) return 0
 
+        if (this.publishedDate == other.publishedDate) return 0
+
         // other보다 이전에 출간했다면 1 리턴, 이후라면 -1 리턴
         // sorted는 기본적으로 오름차순, 즉 먼저 두고 싶은 쪽이 작은쪽으로 생각해서 -1 리턴해야함
         return if (this.publishedDate.isBefore(other.publishedDate)) 1 else -1
