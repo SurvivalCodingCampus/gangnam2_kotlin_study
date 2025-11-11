@@ -3,6 +3,7 @@ package com.neouul.sesac.`07-instance-manual`
 import org.junit.Assert.*
 import org.junit.Test
 import java.time.LocalDateTime
+import kotlin.test.assertFalse
 
 class BookTest {
     @Test
@@ -62,5 +63,49 @@ class BookTest {
         val book2 = Book(title, author, date2)
 
         assertNotEquals(book1, book2)
+    }
+
+    @Test
+    fun `Book 인스턴스를 담는 컬렉션에서 sorted() 수행하면 출간일이 신상 순서대로 잘 정렬되는 경우`() {
+        val title = "제목"
+        val author = "나"
+        val date1 = LocalDateTime.of(2025, 9, 11, 0, 0, 0)
+        val date2 = LocalDateTime.of(2025, 11, 11, 0, 0, 0)
+        val date3 = LocalDateTime.of(2025, 11, 8, 0, 0, 0)
+        val date4 = LocalDateTime.of(2025, 5, 11, 0, 0, 0)
+//        val dateList = listOf<LocalDateTime>(date1, date2, date3, date3)
+//        val sortedDateList = dateList.sorted()
+
+        val book1 = Book(title, author, date1)
+        val book2 = Book(title, author, date2)
+        val book3 = Book(title, author, date3)
+        val book4 = Book(title, author, date4)
+        val bookList = listOf<Book>(book1, book2, book3, book4)
+        println(bookList)
+        val sortedBookList = bookList.sorted()
+        println(sortedBookList)
+
+//        sortedDateList.forEachIndexed { index, time ->
+//            assertEquals(time, sortedBookList[index].publishedDate)
+//        }
+        assertEquals(book2, sortedBookList[0])
+        assertEquals(book3, sortedBookList[1])
+        assertEquals(book1, sortedBookList[2])
+        assertEquals(book4, sortedBookList[3])
+    }
+
+    @Test
+    fun `Book의 깊은 복사를 통해서 인스턴스가 잘 생성된 경우`() {
+        val title = "하이"
+        val author = "나"
+        val date = LocalDateTime.of(2025, 11, 11, 0, 0, 0)
+
+        val book = Book(title, author, date)
+        val copiedBook = book.deepCopy()
+
+        assertEquals(book.title, copiedBook.title)
+        assertEquals(book.author, copiedBook.author)
+        assertEquals(book.publishedDate, copiedBook.publishedDate)
+        assertFalse(book.publishedDate === copiedBook.publishedDate)
     }
 }
