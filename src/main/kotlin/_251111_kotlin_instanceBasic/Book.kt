@@ -33,5 +33,5 @@ class Book(
     }
 
     fun deepCopy() = Book(title, author, publishedDate) //깊은 복사
-    
+
 }
