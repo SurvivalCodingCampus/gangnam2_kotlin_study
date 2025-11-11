@@ -16,7 +16,7 @@ class Book(
         author,
         LocalDateTime.of(
             publishedDate.year,
-            publishedDate.month,
+            publishedDate.monthValue,
             publishedDate.dayOfMonth,
             publishedDate.hour,
             publishedDate.minute,
@@ -36,7 +36,7 @@ class Book(
 
         if (title != other.title) return false
         if (publishedDate.year != other.publishedDate.year) return false
-        if (publishedDate.month != other.publishedDate.month) return false
+        if (publishedDate.monthValue != other.publishedDate.monthValue) return false
         if (publishedDate.dayOfMonth != other.publishedDate.dayOfMonth) return false
 
         return true
@@ -44,9 +44,9 @@ class Book(
 
     override fun hashCode(): Int {
         var result = title.hashCode()
-        result = 31 * result + publishedDate.year.hashCode()
-        result = 31 * result + publishedDate.month.hashCode()
-        result = 31 * result + publishedDate.dayOfMonth.hashCode()
+        result = 31 * result + publishedDate.year
+        result = 31 * result + publishedDate.monthValue
+        result = 31 * result + publishedDate.dayOfMonth
         return result
     }
 
