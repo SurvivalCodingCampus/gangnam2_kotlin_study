@@ -53,5 +53,6 @@ fun LocalDateTime.deepCopy(): LocalDateTime {
         this.hour,
         this.minute,
         this.second,
+        this.nano,
     )
 }
