@@ -43,7 +43,7 @@ fun main() {
     // 동일한지 비교
     val book1 = Book("해리포터", "롤링")
     val book2 = Book("해리포터", "헤르미온느")
-    println(book1 == book2) // ture
+    println(book1 == book2) // true
     println(book1 === book2) // false -> 이건 단지 객체의 메모리 주소를 비교하는 것
 
     val books = mutableSetOf<Book>()
