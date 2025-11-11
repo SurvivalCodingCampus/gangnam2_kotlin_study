@@ -103,4 +103,25 @@ class BookTest {
         assertEquals(false, book1 == book2)
     }
 
+    @Test
+    fun `Book 인스턴스를 담고 있는 컬렉션에 대해 sorted() 수행 시 출간일이 신상 순서대로 정렬되는지 테스트`() {
+        // given (준비)
+        val first = LocalDateTime.of(2025, 1, 1, 12, 0)
+        val second = LocalDateTime.of(2024, 1, 1, 12, 0)
+        val third = LocalDateTime.of(2023, 1, 1, 12, 0)
+
+        val book1 = Book(title = "책1", author = "저자1", publishedDate = second)
+        val book2 = Book(title = "책2", author = "저자2", publishedDate = first)
+        val book3 = Book(title = "책3", author = "저자3", publishedDate = third)
+
+        val bookList = listOf(book1, book2, book3)
+
+        val expectedList = listOf(book2, book1, book3)
+
+        // when (실행)
+        val sortedList = bookList.sorted()
+        // then (검증)
+        assertEquals(expectedList, sortedList)
+
+    }
 }
