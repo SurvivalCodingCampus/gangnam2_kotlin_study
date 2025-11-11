@@ -7,7 +7,7 @@ const val MAX_HP = 100
 open class Hero(
     var name: String = "",
     var hp: Int = MAX_HP
-) {
+) : Comparable<Hero> {
     init {
         println("Hero init")
     }
@@ -37,6 +37,32 @@ open class Hero(
     fun sleep() {
         hp = 100
         println("")
+    }
+
+    fun copy(name: String = this.name, hp: Int = this.hp): Hero {
+        return Hero(
+            name = name,
+            hp = hp
+        )
+    }
+
+    override fun toString(): String {
+        return "Hero(hp=$hp, name=$name)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return this.name == (other as Hero).name && this.hp == other.hp
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + hp.hashCode()
+        return result
+    }
+
+    override fun compareTo(other: Hero): Int {
+        if (this == other) return 0
+        return this.name.compareTo(other.name)
     }
 }
 
