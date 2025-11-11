@@ -25,7 +25,13 @@ class BookTest {
 
         val results = books.sortedBy { it.publishedDate.publishedLocalDate }
 
-        println(results)
+        val expected = listOf(
+            Book("무정", "이광수", PublishedDate(LocalDate.of(1917, 1, 1))),
+            Book("운수 좋은 날", "현진건", PublishedDate(LocalDate.of(1924, 6, 11))),
+            Book("날개", "이상", PublishedDate(LocalDate.of(1936, 9, 3)))
+        )
+
+        assertEquals(expected, results)
     }
 
     @Test
