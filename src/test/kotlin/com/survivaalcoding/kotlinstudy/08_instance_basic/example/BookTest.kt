@@ -174,4 +174,57 @@ class BookTest {
         assertThat(book1).isNotEqualTo(book2)
         assertThat(book1).isNotSameAs(book2)
     }
+
+    @Test
+    fun `정렬 시 출간일이 신상 순서대로 정렬이 되어야 한다`() {
+        // given
+        val title1 = "title1"
+        val title2 = "title2"
+        val title3 = "title3"
+        val title4 = "title4"
+        val title5 = "title5"
+        val author1 = "author1"
+        val author2 = "author2"
+        val author3 = "author3"
+        val author4 = "author4"
+        val author5 = "author5"
+        val publishedDate1 = LocalDateTime.of(2025, 1, 1, 0, 0)
+        val publishedDate2 = LocalDateTime.of(2025, 11, 5, 0, 0)
+        val publishedDate3 = LocalDateTime.of(2025, 11, 1, 0, 0)
+        val publishedDate4 = LocalDateTime.of(2025, 5, 2, 0, 0)
+        val publishedDate5 = LocalDateTime.of(2025, 3, 7, 0, 0)
+
+        val book1 = Book(title1, author1, publishedDate1)
+        val book2 = Book(title2, author2, publishedDate2)
+        val book3 = Book(title3, author3, publishedDate3)
+        val book4 = Book(title4, author4, publishedDate4)
+        val book5 = Book(title5, author5, publishedDate5)
+
+        // when
+        val books = listOf(book1, book2, book3, book4, book5)
+        val sortedBooks = books.sorted()
+
+        // then
+        assertThat(sortedBooks).hasSize(5)
+            .containsExactly(book2, book3, book4, book5, book1)
+    }
+
+    @Test
+    fun `Book 객체의 깊은 복사를 제공한다`() {
+        // given
+        val title = "title"
+        val author = "author"
+        val publishedDate = LocalDateTime.of(2025, 11, 11, 0, 0)
+
+        val book = Book(title, author, publishedDate)
+
+        // when
+        val deepCopyBook = book.deepCopy()
+
+        // then
+        assertThat(book).isEqualTo(deepCopyBook)
+        assertThat(book).isNotSameAs(deepCopyBook)
+        assertThat(book.publishedDate).isEqualTo(deepCopyBook.publishedDate)
+        assertThat(book.publishedDate).isNotSameAs(deepCopyBook.publishedDate)
+    }
 }

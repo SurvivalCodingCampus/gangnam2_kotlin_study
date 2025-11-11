@@ -15,4 +15,10 @@ fun main() {
     heroes.sortedWith { a, b -> a.name.compareTo(b.name) }
     heroes.sortedWith(compareBy { it.name })
     heroes.sortedBy { it.name }
+
+    val person1 = Person("홍", 10)
+    val person2 = person1.copy()
+    println(person1)
+    println(person2)
+    println(person1 === person2)
 }

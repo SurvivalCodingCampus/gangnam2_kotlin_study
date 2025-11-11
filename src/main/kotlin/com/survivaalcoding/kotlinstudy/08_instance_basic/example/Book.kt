@@ -6,7 +6,21 @@ class Book(
     val title: String,
     val author: String,
     val publishedDate: LocalDateTime = LocalDateTime.now()
-) {
+) : Comparable<Book> {
+    fun deepCopy(
+        title: String = this.title,
+        author: String = this.author,
+        publishedDate: LocalDateTime = this.publishedDate
+    ) = Book(
+        title,
+        author,
+        publishedDate = LocalDateTime.of(publishedDate.toLocalDate(), publishedDate.toLocalTime())
+    )
+
+    override fun compareTo(other: Book): Int {
+        return this.publishedDate.compareTo(other.publishedDate) * -1
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -24,4 +38,10 @@ class Book(
         result = 31 * result + publishedDate.hashCode()
         return result
     }
+
+//    override fun toString(): String {
+//        return "Book(title='$title', author='$author', publishedDate=$publishedDate)"
+//    }
+
+
 }
