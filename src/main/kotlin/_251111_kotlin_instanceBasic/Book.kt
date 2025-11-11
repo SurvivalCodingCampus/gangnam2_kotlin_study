@@ -32,7 +32,7 @@ class Book(
 
     override fun compareTo(other: Book): Int {
         if (this == other) return 0
-        return this.publishedDate.compareTo(other.publishedDate) * -1
+        return this.publishedDate.toString().substring(0,10).compareTo(other.publishedDate.toString().substring(0,10)) * -1
     }
     fun deepCopy() = Book(title, author, publishedDate) //깊은 복사
 
