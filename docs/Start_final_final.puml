@@ -1,0 +1,95 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Repairable {
+    fun repair(mechanic: Mechanic)
+}
+
+interface Extractable {
+    fun extract(): Int
+}
+
+interface Attackable {
+    fun attack(unit: Family)
+}
+
+' SCV는 힐 가능 -> 비즈니스 로직으로 처리'
+interface Healable {
+    fun heal(unit: Unit)
+}
+
+
+interface Unit {
+    fun move()
+}
+
+
+interface Structure {
+}
+
+interface Bionic {
+}
+
+interface Mechanic {
+}
+
+interface BionicUnit implements Bionic, Unit {
+}
+
+interface MechanicUnit implements Mechanic, Unit, Attackable{
+}
+
+interface BionicStructure implements Bionic, Structure {
+}
+
+interface MechanicStructure implements Mechanic, Structure {
+}
+
+
+
+
+abstract class Family {
+    hp: Int
+    name: String
+    mineral: Int (companion object)
+}
+
+abstract class Terran extends Family {
+}
+
+abstract class Zerg extends Family {
+    fun selfHeal()
+}
+
+abstract class Protoss extends Family {
+    shield : Int
+    fun recoveryShield()
+}
+
+class Marine extends Terran implements BionicUnit, Attackable{
+}
+
+
+class Medic extends Terran implements BionicUnit, Healable{
+}
+
+class Tank extends Terran implements MechanicUnit{
+}
+class Vulture extends Terran implements MechanicUnit{
+}
+class Scv extends Terran implements MechanicUnit , Repairable, Extractable{
+}
+
+class Zergling extends Zerg implements BionicUnit,Attackable{
+}
+
+class Hydra extends Zerg implements BionicUnit,Attackable{
+}
+
+class Zealot extends Protoss implements BionicUnit,Attackable {
+}
+
+class Dragun extends Protoss implements MechanicUnit,Attackable {
+}
+
+@enduml

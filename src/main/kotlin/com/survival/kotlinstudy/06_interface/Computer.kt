@@ -5,5 +5,6 @@ class Computer(
     price: Int,
     color: String,
     var markerName: String,
-) : TangibleAsset(name, price, color) {
+    weight: Double,
+) : TangibleAsset(name, price, color, weight) {
 }

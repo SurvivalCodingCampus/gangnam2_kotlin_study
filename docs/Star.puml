@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' ----interface----
+
+interface Moveable {
+    fun move()
+}
+
+interface Repairable {
+    fun repair(unit: MechanicUnit)
+}
+
+interface Extractable {
+    fun extract(): Int
+}
+
+interface Attackable {
+    fun attack(unit: Thing)
+}
+
+' SCV는 힐 가능 -> 비즈니스 로직으로 처리'
+interface Healable {
+    fun heal(unit: Unit)
+}
+
+interface Bionic {
+}
+
+interface Mechanic {
+}
+
+
+abstract class Thing {
+    + jongjok: ENUM
+    + name: String
+    + hp : String
+    + mineral: Int
+}
+
+abstract class Structure extends Thing{
+
+}
+
+abstract class Unit extends Thing implements Moveable{
+
+}
+
+abstract class BionicUnit implements Unit, Bionic {
+}
+
+abstract class BionicStructure implements Structure, Bionic {
+}
+
+abstract class MechanicUnit implements Unit, Mechanic {
+}
+
+abstract class MechanicStructure implements Structure, Mechanic {
+}
+
+
+class Marine implements BionicUnit, Attackable{
+
+}
+
+class Medic implements BionicUnit, Healable{
+
+}
+
+class Tank implements MechanicUnit, Attackable{
+
+}
+
+class Vulture implements MechanicUnit, Attackable{
+
+}
+
+class Scv implements MechanicUnit, Attackable, Repairable, Extractable{
+
+}
+@enduml
