@@ -9,7 +9,7 @@ abstract class Asset{
 - price: Int
 }
 
-abstract class TangibleAsset extends Asset{
+abstract class TangibleAsset extends Asset implements Thing{
 - color: String
 - weight: Double
 }
@@ -29,5 +29,4 @@ class Patent extends IntangibleAsset{
 - patentNumber: String
 }
 
-Thing <|.. TangibleAsset
 @enduml

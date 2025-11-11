@@ -1,6 +1,5 @@
 package com.luca.kotlinstudy._04_collection
 
-import com.luca.kotlinstudy._02_instance_class.HERO_MAX_HP
 import com.luca.kotlinstudy._02_instance_class.Hero
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -25,22 +24,20 @@ class GreatWizardTest {
     fun `힐을 하면 MP가 5가 닳는다`() {
         val greatWizard = GreatWizard(name = availableName, mp = availableMana)
         val hero = Hero(name = availableName, hp = heroHp)
-        val healCost = 25
-        val healManaCost = 5
 
 
         val beforeHeal = hero.hp
         greatWizard.heal(hero)
         val afterHeal = hero.hp
 
-        assertEquals(beforeHeal + healCost, afterHeal)
-        assertEquals(availableMana - healManaCost, greatWizard.mp)
+        assertEquals(beforeHeal + GreatWizard.DEFAULT_HEAL_AMOUNT, afterHeal)
+        assertEquals(availableMana - GreatWizard.DEFAULT_HEAL_MP_COST, greatWizard.mp)
     }
 
     @Test
     fun `힐을 했을 때 대상이 MAX면 heal이 발동하지 않는다`() {
         val greatWizard = GreatWizard(name = availableName, mp = availableMana)
-        val hero = Hero(name = availableName, hp = HERO_MAX_HP)
+        val hero = Hero(name = availableName, hp = Hero.DEFAULT_MAX_HP)
 
         val beforeHeal = hero.hp
         greatWizard.heal(hero)
@@ -69,20 +66,18 @@ class GreatWizardTest {
     fun `superHeal을 하면 MP가 50이 닳는다`() {
         val greatWizard = GreatWizard(name = availableName, mp = availableMana)
         val hero = Hero(name = availableName, hp = heroHp)
-        val healManaCost = 50
-
 
         greatWizard.superHeal(hero)
         val afterHeal = hero.hp
 
-        assertEquals(afterHeal, HERO_MAX_HP)
-        assertEquals(availableMana - healManaCost, greatWizard.mp)
+        assertEquals(afterHeal, Hero.DEFAULT_MAX_HP)
+        assertEquals(availableMana - GreatWizard.DEFAULT_SUPERHEAL_MP_COST, greatWizard.mp)
     }
 
     @Test
     fun `힐을 했을 때 대상이 MAX면 superHeal이 발동하지 않는다`() {
         val greatWizard = GreatWizard(name = availableName, mp = availableMana)
-        val hero = Hero(name = availableName, hp = HERO_MAX_HP)
+        val hero = Hero(name = availableName, hp = Hero.DEFAULT_MAX_HP)
 
         val beforeHeal = hero.hp
         greatWizard.superHeal(hero)
@@ -91,7 +86,8 @@ class GreatWizardTest {
         assertEquals(beforeHeal, afterHeal)
         assertEquals(availableMana, greatWizard.mp)
     }
-    companion object{
+
+    companion object {
         val heroHp = 1
         val availableMana = 50
     }

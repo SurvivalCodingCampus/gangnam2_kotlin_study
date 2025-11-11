@@ -1,9 +1,6 @@
 package com.luca.kotlinstudy._04_collection
 
-import com.luca.kotlinstudy._04_collection.WizardTest.Companion.availablePower
 import com.luca.kotlinstudy._04_collection.WizardTest.Companion.invalidName
-import com.luca.kotlinstudy._04_collection.WizardTest.Companion.invalidPower
-import com.luca.kotlinstudy._04_collection.WizardTest.Companion.overPower
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -33,7 +30,7 @@ class WandTest {
     @Test
     fun `완드 마력이 정상범주 일 때 설정된다`() { // 0.5 <= 정상범주 <=100
         val wand = Wand(name = availableName, power = availablePower)
-        assertEquals(availablePower, wand.power,1e-9)
+        assertEquals(availablePower, wand.power, 1e-9)
     }
 
     @Test
@@ -41,5 +38,11 @@ class WandTest {
         assertThrows(IllegalArgumentException::class.java) {
             Wand(name = availableName, power = overPower)
         }
+    }
+
+    companion object {
+        const val availablePower = 0.5
+        const val invalidPower = 0.4
+        const val overPower = 101.0
     }
 }

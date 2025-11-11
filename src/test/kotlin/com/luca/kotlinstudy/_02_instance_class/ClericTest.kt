@@ -16,8 +16,8 @@ class ClericTest {
         cleric.selfAid()
 
         // then
-        assertEquals(CLERIC_MAX_HP, cleric.hp)
-        assertEquals(oldMp - SELF_AID_MP_COST, cleric.mp)
+        assertEquals(Cleric.DEFAULT_MAX_HP, cleric.hp)
+        assertEquals(oldMp - Cleric.SELF_AID_MP_COST, cleric.mp)
     }
 
     @Test
@@ -38,28 +38,28 @@ class ClericTest {
     @Test
     fun `selfAid는 이미 HP가 최대일 때 실행되지 않는다`() {
         // given
-        val cleric = Cleric(name = nickName, hp = CLERIC_MAX_HP, mp = CLERIC_MAX_MP)
+        val cleric = Cleric(name = nickName, hp = Cleric.DEFAULT_MAX_HP, mp = Cleric.DEFAULT_MAX_MP)
 
         // when
         cleric.selfAid()
 
         // then
-        assertEquals(CLERIC_MAX_HP, cleric.hp)
-        assertEquals(CLERIC_MAX_MP, cleric.mp)
+        assertEquals(Cleric.DEFAULT_MAX_HP, cleric.hp)
+        assertEquals(Cleric.DEFAULT_MAX_MP, cleric.mp)
         println(cleric.mp)
     }
 
     @Test
     fun `pray는 mp가 최대치일 때 회복하지 않는다`() {
         // given
-        val cleric = Cleric(name = nickName, mp = CLERIC_MAX_MP)
+        val cleric = Cleric(name = nickName, mp = Cleric.DEFAULT_MAX_MP)
 
         // when
         val recovered = cleric.pray(3)
 
         // then
         assertEquals(0, recovered)
-        assertEquals(CLERIC_MAX_MP, cleric.mp)
+        assertEquals(Cleric.DEFAULT_MAX_MP, cleric.mp)
     }
 
     @Test
@@ -72,8 +72,8 @@ class ClericTest {
         val recovered = cleric.pray(3)
 
         // then
-        assertTrue(recovered in 1..CLERIC_MAX_MP - mpAmount)
-        assertEquals(CLERIC_MAX_MP, cleric.mp)
+        assertTrue(recovered in 1..Cleric.DEFAULT_MAX_MP - mpAmount)
+        assertEquals(Cleric.DEFAULT_MAX_MP, cleric.mp)
     }
 
     @Test
@@ -92,14 +92,14 @@ class ClericTest {
         val cleric1 = Cleric(name = nickName, hp = testHp2)
         assertEquals(nickName, cleric1.name)
         assertEquals(testHp2, cleric1.hp)
-        assertEquals(CLERIC_MAX_MP, cleric1.mp)
+        assertEquals(Cleric.DEFAULT_MAX_MP, cleric1.mp)
 
 
         // name 만 지정 HP와 MP는 최대치로 초기화
         val cleric2 = Cleric(name = nickName)
         assertEquals(nickName, cleric2.name)
-        assertEquals(CLERIC_MAX_HP, cleric2.hp)
-        assertEquals(CLERIC_MAX_MP, cleric2.mp)
+        assertEquals(Cleric.DEFAULT_MAX_HP, cleric2.hp)
+        assertEquals(Cleric.DEFAULT_MAX_MP, cleric2.mp)
 
     }
 

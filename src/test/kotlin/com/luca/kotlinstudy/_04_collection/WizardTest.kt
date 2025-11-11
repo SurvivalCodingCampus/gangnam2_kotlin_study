@@ -1,6 +1,5 @@
 package com.luca.kotlinstudy._04_collection
 
-import com.luca.kotlinstudy._02_instance_class.HERO_MAX_HP
 import com.luca.kotlinstudy._02_instance_class.Hero
 import org.junit.Assert.*
 import org.junit.Test
@@ -53,8 +52,6 @@ class WizardTest {
     @Test
     fun `힐을 하면 MP가 10이 닳는다`() {
         val heroHp = 30
-        val healCost = 20
-        val healManaCost = 10
 
         val wizard = Wizard(name = availableName, mp = availableMana)
         val hero = Hero(name = availableName, hp = heroHp)
@@ -63,14 +60,14 @@ class WizardTest {
         wizard.heal(hero)
         val afterHeal = hero.hp
 
-        assertEquals(beforeHeal + healCost, afterHeal)
-        assertEquals(availableMana - healManaCost, wizard.mp)
+        assertEquals(beforeHeal + Wizard.DEFAULT_HEAL_AMOUNT, afterHeal)
+        assertEquals(availableMana - Wizard.DEFAULT_HEAL_MP_COST, wizard.mp)
     }
 
     @Test
     fun `힐을 했을 때 대상이 MAX면 heal이 발동하지 않는다`() {
         val wizard = Wizard(name = availableName, mp = availableMana)
-        val hero = Hero(name = availableName, hp = HERO_MAX_HP)
+        val hero = Hero(name = availableName, hp = Hero.DEFAULT_MAX_HP)
 
         val beforeHeal = hero.hp
         wizard.heal(hero)
@@ -82,9 +79,6 @@ class WizardTest {
 
     companion object {
         val invalidName = "루카" // 2글자
-        val availablePower = 0.5
-        val invalidPower = 0.4
-        val overPower = 101.0
         val availableMana = 10
     }
 }
