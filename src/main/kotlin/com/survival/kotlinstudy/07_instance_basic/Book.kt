@@ -35,5 +35,15 @@ class Book(
         return this.publishedDate.toLocalDate().compareTo(other.publishedDate.toLocalDate()) * -1
     }
 
-    fun deepCopy() = Book(title, author, publishedDate)
+    fun deepCopy(
+        title: String = this.title,
+        author: String = this.author,
+        publishedDate: LocalDateTime = this.publishedDate,
+    ) = Book(
+        title,
+        author,
+        LocalDateTime.of(
+            publishedDate.toLocalDate(), publishedDate.toLocalTime()
+        ),
+    )
 }

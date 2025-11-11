@@ -142,6 +142,8 @@ class BookTest {
 
         // then (검증)
         assertNotSame(book1, book2)
+        assertNotSame(book1.publishedDate, book2.publishedDate)
         assertEquals(book1, book2)
+        assertEquals(book1.publishedDate,book2.publishedDate)
     }
 }
