@@ -1,0 +1,16 @@
+@startuml
+class A extends Y{
+fun c()
+}
+
+class B extends Y{
+fun c()
+}
+abstract class Y implements X{
+abstract fun b()
+}
+interface X{
+fun a()
+}
+
+@enduml
