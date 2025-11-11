@@ -1,13 +1,13 @@
 package com.survival.kotlinstudy.`07_instance_basic`
 
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class Book(
     val title: String,
     val author: String,
     val publishedDate: LocalDateTime = LocalDateTime.now(),
-) {
+) : Comparable<Book> {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -29,10 +29,10 @@ class Book(
         return "Book(title='$title', author='$author', publishedDate=$publishedDate)"
     }
 
+    override fun compareTo(other: Book): Int {
+        if (this == other) return 0
 
+        return this.publishedDate.toLocalDate().compareTo(other.publishedDate.toLocalDate()) * -1
+    }
 
-}
-
-fun main() {
-    println(LocalDateTime.now())
 }
