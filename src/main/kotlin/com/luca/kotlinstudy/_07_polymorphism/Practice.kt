@@ -1,6 +1,6 @@
 package com.luca.kotlinstudy._07_polymorphism
 
-class Practice2 {
+class Practice {
 }
 
 interface X {
