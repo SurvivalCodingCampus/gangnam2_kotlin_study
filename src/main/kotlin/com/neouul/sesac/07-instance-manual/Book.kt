@@ -6,12 +6,13 @@ class Book(
     val title: String,
     val author: String,
     val publishedDate: LocalDateTime = LocalDateTime.now(),
-) : Comparable<LocalDateTime> {
-    override fun compareTo(other: LocalDateTime): Int {
+) : Comparable<Book> {
+    override fun compareTo(other: Book): Int {
         if (this == other) return 0
 
-        // other보다 이전에 출간했다면 -1 리턴, 이후라면 1 리턴
-        return if (this.publishedDate.isBefore(other)) -1 else 1
+        // other보다 이전에 출간했다면 1 리턴, 이후라면 -1 리턴
+        // sorted는 기본적으로 오름차순, 즉 먼저 두고 싶은 쪽이 작은쪽으로 생각해서 -1 리턴해야함
+        return if (this.publishedDate.isBefore(other.publishedDate)) 1 else -1
     }
 
     override fun toString(): String {
@@ -52,13 +53,4 @@ fun LocalDateTime.deepCopy(): LocalDateTime {
         this.minute,
         this.second,
     )
-}
-
-fun main(){
-    val b1 = Book("1", "sk", LocalDateTime.of(2025,11,1,0,0,0))
-
-    val b2 = Book("1", "sk", LocalDateTime.of(2025,11,3,0,0,0))
-
-    val list = listOf<Book>(b1, b2)
-    val sortedList = list.sorted()
 }
