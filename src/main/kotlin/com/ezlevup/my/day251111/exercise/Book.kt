@@ -57,7 +57,7 @@ fun main() {
     books.forEach { t -> println(t) }
 
     println("==========================================================")
-    //books.sortWith(compareByDescending { it.publishedData })
+    //books.sortWith(compareByDescending { it.publishedDate })
     //books.forEach { t -> println(t) }
 
     println("정렬 후")
