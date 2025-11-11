@@ -13,7 +13,7 @@ class BookTest {
         val price = 10000
         val color = "Black"
         val isbn = "123123"
-        val book = Book(name = name, price = price, color = color, isbn = isbn)
+        val book = Book(name = name, price = price, color = color, isbn = isbn, weight = 0.0)
 
         // when (실행)
 
@@ -33,7 +33,7 @@ class BookTest {
         val color = "Black"
         val isbn = "123123"
         val weight = 11.4
-        val book = Book(name = name, price = price, color = color, isbn = isbn)
+        val book = Book(name = name, price = price, color = color, isbn = isbn,weight = 0.0)
 
         // when (실행)
         book.weight = weight
