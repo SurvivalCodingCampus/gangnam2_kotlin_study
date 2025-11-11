@@ -21,11 +21,12 @@ class Book(
             publishedDate.hour,
             publishedDate.minute,
             publishedDate.second,
+            publishedDate.nano,
         ),
     )
 
     override fun compareTo(other: Book): Int {
-        return other.publishedDate.compareTo(this.publishedDate)
+        return other.publishedDate.toLocalDate().compareTo(this.publishedDate.toLocalDate())
     }
 
     override fun equals(other: Any?): Boolean {
