@@ -26,7 +26,7 @@ const val MAX_HP: Int = 10 // 컴파일 타임
 open class Hero(
     var name: String, // (값 == 불변)
     var hp: Int = MAX_HP,
-) {
+) : Comparable<Hero> {
 
     init {
         println("1. Hero의 init")
@@ -69,6 +69,44 @@ open class Hero(
     fun sleep() {
         MONEY = 200
     }
+
+    fun copy(
+        name: String = this.name,
+        hp: Int = this.hp,
+    ): Hero {
+        return Hero(
+            name = name,
+            hp = hp,
+        )
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Hero) return false
+
+        if (hp != other.hp) return false
+        if (name != other.name) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = hp
+        result = 31 * result + name.hashCode()
+        return result
+    }
+
+    override fun compareTo(other: Hero): Int {
+        if (this == other) return 0
+
+        return this.name.compareTo(other.name) * -1
+    }
+
+
+    override fun toString(): String {
+        return "Hero(hp=$hp, name='$name')"
+    }
+
 }
 
 // f(x) = x + 4
