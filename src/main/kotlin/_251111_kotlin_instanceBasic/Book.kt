@@ -20,7 +20,10 @@ class Book(
     }
 
     override fun hashCode(): Int {
-        return publishedDate.hashCode()
+        var result = title.hashCode()
+        result = 31 * result + author.hashCode()
+        result = 31 * result + publishedDate.hashCode()
+        return result
     }
 
     override fun toString(): String {
@@ -31,7 +34,6 @@ class Book(
         if (this == other) return 0
         return this.publishedDate.compareTo(other.publishedDate) * -1
     }
-
     fun deepCopy() = Book(title, author, publishedDate) //깊은 복사
 
 }
