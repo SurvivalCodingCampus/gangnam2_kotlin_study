@@ -3,6 +3,7 @@ package com.survival.kotlinstudy.`07_instance_basic`
 import org.junit.Test
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
+import kotlin.test.assertNotSame
 
 class BookTest {
 
@@ -123,5 +124,24 @@ class BookTest {
         // then (검증)
         assertEquals(expectedList, sortedList)
 
+    }
+
+    @Test
+    fun `책을 깊은 복사 하기 테스트`() {
+
+        // given (준비)
+        val title = "책"
+        val author = "저자1"
+        val publishedDate = LocalDateTime.of(2024, 1, 1, 10, 0)
+
+        val book1 = Book(title = title, author = author, publishedDate = publishedDate)
+
+        // when (실행)
+
+        val book2 = book1.deepCopy()
+
+        // then (검증)
+        assertNotSame(book1, book2)
+        assertEquals(book1, book2)
     }
 }
