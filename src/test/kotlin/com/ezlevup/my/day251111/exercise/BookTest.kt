@@ -36,7 +36,7 @@ class BookTest {
     }
 
     @Test
-    fun `Book equals 실패 확인`() {
+    fun `Book equals 타이틀이 다를 때 실패 확인`() {
         // given
         val title: String = "A"
         val author: String = "a"
@@ -45,6 +45,24 @@ class BookTest {
 
         val title2: String = "B"
         val book2 = Book(title = title2, author = author, publishedDate = publishedDate)
+
+        // when
+        val isEqual: Boolean = (book1 == book2)
+
+        // then
+        assertFalse(isEqual)
+    }
+
+    @Test
+    fun `Book equals 날짜가 틀릴 때 실패 확인`() {
+        // given
+        val title: String = "A"
+        val author: String = "a"
+        val publishedDate: LocalDateTime = LocalDateTime.of(2025, 11, 1, 0, 0)
+        val book1 = Book(title = title, author = author, publishedDate = publishedDate)
+
+        val publishedDate2: LocalDateTime = LocalDateTime.of(2025, 12, 1, 0, 0)
+        val book2 = Book(title = title, author = author, publishedDate = publishedDate2)
 
         // when
         val isEqual: Boolean = (book1 == book2)
