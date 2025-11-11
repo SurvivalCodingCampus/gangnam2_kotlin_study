@@ -1,4 +1,4 @@
-package com.survival.kotlinstudy.`07_polymorphism`
+package com.survival.kotlinstudy.`06_interface`
 
 fun main() {
     val obj: X = A()

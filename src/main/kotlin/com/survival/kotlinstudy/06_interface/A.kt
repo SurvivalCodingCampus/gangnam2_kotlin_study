@@ -1,4 +1,4 @@
-package com.survival.kotlinstudy.`07_polymorphism`
+package com.survival.kotlinstudy.`06_interface`
 
 class A : Y() {
     override fun b() {
