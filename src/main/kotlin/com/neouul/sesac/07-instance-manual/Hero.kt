@@ -50,7 +50,7 @@ class Hero(
 class Slime(
     var name: String,
     var hp: Int = 10,
-){
+) {
     companion object {
         const val DAMAGE = 5
     }
