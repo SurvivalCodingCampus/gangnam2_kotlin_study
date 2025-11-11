@@ -1,7 +1,7 @@
 @startuml
 
 Asset <|-- TangibleAsset
-Thing <|-- TangibleAsset
+Thing <|.. TangibleAsset
 
 Asset <|-- IntangibleAsset
 

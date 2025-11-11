@@ -1,7 +1,7 @@
 package com.survivaalcoding.kotlinstudy.`06_abstract_interface`.example
 
 class Computer(
-    override var weight: Double,
+    weight: Double,
     name: String,
     price: Int,
     stock: Int,
