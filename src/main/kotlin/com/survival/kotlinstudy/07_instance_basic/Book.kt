@@ -46,4 +46,6 @@ class Book(
             publishedDate.toLocalDate(), publishedDate.toLocalTime()
         ),
     )
+
+//    fun deepCopy() = Book(title,author,publishedDate)
 }
