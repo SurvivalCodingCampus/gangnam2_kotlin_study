@@ -8,6 +8,10 @@ class Word(var word: String) {
         }
     }
 
+    fun isConsonant(index: Int): Boolean {
+        return !isVowel(index)
+    }
+
     companion object {
         val VOWELS = listOf("a", "e", "i", "o", "u")
     }
