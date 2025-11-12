@@ -19,8 +19,10 @@ class StrongBox<E>(keyType: KeyType) {
     }
 
     fun get(): E? {
-        if (lockCount == 0) return _data
-        lockCount -= 1
-        return null
+        if (lockCount > 0) {
+            lockCount--
+            return null
+        }
+        return _data
     }
 }
