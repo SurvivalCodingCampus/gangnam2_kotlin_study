@@ -21,7 +21,7 @@ class WordTest {
     @Test
     fun `isVowel() 호출시 i번째 글자가 모음일 경우 true를 반환한다`() {
         // given
-        val vowel = "aeiou"
+        val vowel = "aeIoU"
         val word = Word(vowel)
 
         for (i in 0..4) {
@@ -62,7 +62,7 @@ class WordTest {
     @Test
     fun `isConsonant() 호출시 i번째 글자가 자음이 아닐 경우 false를 반환한다`() {
         // given
-        val notConsonant = "aeiou"
+        val notConsonant = "aeIoU"
         val word = Word(notConsonant)
 
         for (i in 0..4) {

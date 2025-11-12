@@ -6,7 +6,9 @@ class Word(var word: String) {
             return false
         }
 
-        return when (word.substring(index, index + 1)) {
+        val text = word.substring(index, index + 1).lowercase()
+
+        return when (text) {
             in VOWELS -> true
             else -> false
         }
