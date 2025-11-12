@@ -18,7 +18,7 @@ open class Hero(
     var name: String = "",
     var hp: Int = 0,
     val maxHp: Int = MAX_HP
-) {
+): Comparable<Hero> {
     init {
         println("Hero의 init")
     }
@@ -55,4 +55,35 @@ open class Hero(
         MONEY = 10
 
     }
+
+    override fun compareTo(other: Hero): Int {
+        if (this == other) return 0
+
+        return this.name.compareTo(other.name) * -1
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Hero
+
+        if (hp != other.hp) return false
+        if (name != other.name) return false
+
+        return true
+    }
+
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + hp
+        return result
+    }
+
+    override fun toString(): String {
+        return "Hero(name='$name', hp=$hp, maxHp=$maxHp)"
+    }
+
+
 }

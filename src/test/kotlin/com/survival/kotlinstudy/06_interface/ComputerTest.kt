@@ -13,7 +13,7 @@ class ComputerTest {
         val price = 2401312
         val color = "Black"
         val markerName = "markerName"
-        val computer = Computer(name = name, price = price, color = color, markerName = markerName)
+        val computer = Computer(name = name, price = price, color = color, markerName = markerName,weight = 0.0)
 
         // when (실행)
 
@@ -35,7 +35,7 @@ class ComputerTest {
         val weight = 50.5
 
         // when (실행)
-        val computer = Computer(name = name, price = price, color = color, markerName = markerName)
+        val computer = Computer(name = name, price = price, color = color, markerName = markerName,weight = 0.0)
         computer.weight = weight
 
 
