@@ -21,7 +21,7 @@ class Word(var word: String) {
             throw IndexOutOfBoundsException("범위를 벗어났습니다.")
         }
 
-        return vowelString.contains(word.substring(i, i + 1))
+        return vowelString.contains(word.substring(i, i + 1).lowercase())
     }
 
     fun isConsonant(i: Int): Boolean {
@@ -29,6 +29,6 @@ class Word(var word: String) {
             throw IndexOutOfBoundsException("범위를 벗어났습니다.")
         }
 
-        return !vowelString.contains(word.substring(i, i + 1))
+        return !vowelString.contains(word.substring(i, i + 1).lowercase())
     }
 }
