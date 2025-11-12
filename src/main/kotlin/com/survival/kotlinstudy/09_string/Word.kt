@@ -8,6 +8,9 @@ class Word(var word: String) {
     }
 
     fun isConsonant(i: Int): Boolean {
+        if (!word[i].isLetter()) {
+            return false
+        }
         return !vowelList.contains(word.substring(i, i + 1).lowercase())
     }
 }
