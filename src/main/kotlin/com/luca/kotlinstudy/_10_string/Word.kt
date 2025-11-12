@@ -1,6 +1,6 @@
 package com.luca.kotlinstudy._10_string
 
-class Word(var word: String) {
+class Word(val word: String) {
 
     /*
     i 번째 글자가 모음인지 알려주는 isVowel() 메서드를 완성하시오
