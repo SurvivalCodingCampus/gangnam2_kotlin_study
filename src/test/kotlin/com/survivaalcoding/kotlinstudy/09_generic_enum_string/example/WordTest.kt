@@ -128,4 +128,113 @@ class WordTest {
             .isInstanceOf(IllegalArgumentException::class.java)
     }
 
+    @Test
+    fun `consonant의 0번째 문자는 자음이다`() {
+        // given
+        val index = 0
+        val consonant = "consonant"
+        val word = Word(consonant)
+
+        // when
+        val actual = word.isConsonant(index)
+
+        // then
+        assertThat(actual).isTrue
+    }
+
+    @Test
+    fun `consonant의 1번째 문자는 모음이다`() {
+        // given
+        val index = 1
+        val consonant = "consonant"
+        val word = Word(consonant)
+
+        // when
+        val actual = word.isConsonant(index)
+
+        // then
+        assertThat(actual).isFalse
+    }
+
+    @Test
+    fun `consonant의 마지막 인덱스 문자는 자음이다`() {
+        // given
+        val consonant = "consonant"
+        val index = consonant.length - 1
+        val word = Word(consonant)
+
+        // when
+        val actual = word.isConsonant(index)
+
+        // then
+        assertThat(actual).isTrue
+    }
+
+    @Test
+    fun `aeiou는 모두 자음이 아니다`() {
+        // given
+        val aeiou = "aeiou"
+        val word = Word(aeiou)
+
+        // when
+        val actual = (0 until aeiou.length).map { word.isConsonant(it) }
+
+        // then
+        assertThat(actual.all { it }).isFalse
+    }
+
+    @Test
+    fun `bdjpv는 모두 자음이다`() {
+        // given
+        val bdjpv = "bdjpv"
+        val word = Word(bdjpv)
+
+        // when
+        val actual = (0 until bdjpv.length).map { word.isConsonant(it) }
+
+        // then
+        assertThat(actual.all { it }).isTrue
+    }
+
+    @Test
+    fun `자음인지 알려주는 함수에 인덱스 값을 음수로 전달하면 예외가 발생한다`() {
+        // given
+        val any = "any"
+        val negative = -1
+
+        val word = Word(any)
+
+        // when
+        // then
+        assertThatThrownBy { word.isConsonant(negative) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `자음인지 알려주는 함수에 인덱스 값을 문자열 길이와 같은 값으로 전달하면 예외가 발생한다`() {
+        // given
+        val any = "any"
+        val wordLength = any.length
+
+        val word = Word(any)
+
+        // when
+        // then
+        assertThatThrownBy { word.isConsonant(wordLength) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `자음인지 알려주는 함수에 인덱스 값을 문자열 길이보다 큰 값을 전달하면 예외가 발생한다`() {
+        // given
+        val any = "any"
+        val wordLength = any.length + 1
+
+        val word = Word(any)
+
+        // when
+        // then
+        assertThatThrownBy { word.isConsonant(wordLength) }
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
 }
