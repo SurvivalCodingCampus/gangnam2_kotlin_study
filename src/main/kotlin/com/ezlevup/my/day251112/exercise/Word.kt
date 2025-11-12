@@ -5,16 +5,13 @@ val vowel = listOf<String>("a", "e", "i", "o", "u")
 class Word(
     var word: String,
 ) {
+
+    fun isValidIndex(i: Int): Boolean {
+        return i >= 0 && i < word.length
+    }
+
     fun isVowel(i: Int): Boolean {
-        if (i < 0) {
-            return false
-        }
-
-        if (word.isEmpty()) {
-            return false
-        }
-
-        if (word.length < i) {
+        if (isValidIndex(i) == false) {
             return false
         }
 
@@ -22,11 +19,22 @@ class Word(
         val result = vowel.contains(str)
         return result
     }
+
+    fun isConsonant(i: Int): Boolean {
+        if (isValidIndex(i) == false) {
+            return false
+        }
+
+        return !isVowel(i)
+    }
 }
 
 fun main() {
     val word = Word("lee is apple")
-    println(word.isVowel(-1))
+    println(word.isVowel(1))
+    println(word.isConsonant(1))
+    println(word.isConsonant(0))
+
 }
 
 
