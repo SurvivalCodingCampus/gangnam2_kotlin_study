@@ -1,4 +1,4 @@
-package _251112_generic_enum_string
+package _251112_generic_enum_string.generic_and_enum_class
 
 class StrongBox<T>(keyType: KeyType) {
     private var instance: T? = null

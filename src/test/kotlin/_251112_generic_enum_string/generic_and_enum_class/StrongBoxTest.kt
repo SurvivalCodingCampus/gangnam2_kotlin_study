@@ -1,4 +1,4 @@
-package _251112_generic_enum_string
+package _251112_generic_enum_string.generic_and_enum_class
 
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -62,5 +62,4 @@ class StrongBoxTest {
         assertNotEquals(null, returnStrongBox3)
         assertNotEquals(null, returnStrongBox4)
     }
-
 }
