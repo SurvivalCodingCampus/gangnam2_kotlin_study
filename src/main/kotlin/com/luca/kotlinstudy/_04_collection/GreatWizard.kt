@@ -1,7 +1,6 @@
 package com.luca.kotlinstudy._04_collection
 
 import com.luca.kotlinstudy._02_instance_class.Hero
-import com.luca.kotlinstudy._02_instance_class.CLERIC_MAX_HP
 
 
 class GreatWizard(

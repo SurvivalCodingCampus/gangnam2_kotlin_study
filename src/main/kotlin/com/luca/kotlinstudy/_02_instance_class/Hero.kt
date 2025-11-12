@@ -14,7 +14,7 @@ fun main() {
 open class Hero(
     var name: String = "",
     hp: Int = DEFAULT_MAX_HP
-) {
+) : Comparable<Hero> {
     var hp: Int = hp
         set(value) {
             field = if (value > DEFAULT_MAX_HP) DEFAULT_MAX_HP else value
@@ -52,6 +52,41 @@ open class Hero(
     fun sleep() {
     }
 
+    fun copy(
+        // 자바
+        name: String = this.name,
+        hp: Int = this.hp,
+    ): Hero {
+        return Hero(
+            name = name,
+            hp = hp,
+        )
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Hero) return false
+
+        if (hp != other.hp) return false
+        if (name != other.name) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = hp
+        result = 31 * result + name.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "Hero(hp=$hp, name='$name')"
+    }
+
+    override fun compareTo(other: Hero): Int {
+        if (this == other) return 0
+        return this.name.compareTo(other.name) * -1 // * -1 혹은 this 앞에 - 를 붙이면 반대로 sort할 수 있다.
+    }
     //    // 연습 때는 한 번에 클래스를 치지만 실제로 쓸 때는 분산을 해주자.
 //    class Slime(hp: Int) { // var 를 안붙이면 활용할 수 가 없다. 수정X
 //        val level = 10
