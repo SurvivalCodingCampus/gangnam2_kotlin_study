@@ -14,7 +14,7 @@ class WordTest {
         // when (실행)
 
         // then (검증)
-        assertEquals(expected,word.isVowel(4))
+        assertEquals(expected, word.isVowel(4))
     }
 
     @Test
@@ -26,7 +26,7 @@ class WordTest {
         // when (실행)
 
         // then (검증)
-        assertEquals(expected,word.isConsonant(2))
+        assertEquals(expected, word.isConsonant(2))
     }
 
     @Test
@@ -38,8 +38,8 @@ class WordTest {
         // when (실행)
 
         // then (검증)
-        assertEquals(expected,word.isConsonant(3))
-        assertEquals(expected,word.isVowel(3))
+        assertEquals(expected, word.isConsonant(3))
+        assertEquals(expected, word.isVowel(3))
     }
 
 }
