@@ -18,6 +18,15 @@ class WordTest {
         assertEquals(wordString, word.word)
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun `Word를 영어단어가 아니면 에러가 발생한다`() {
+        // given
+        val wordString = "a b c"
+
+        // when // then
+        Word(wordString)
+    }
+
     @Test
     fun `isVowel() 호출시 i번째 글자가 모음일 경우 true를 반환한다`() {
         // given
