@@ -2,6 +2,10 @@ package com.sesac.practice.day09.string
 
 class Word(var word: String) {
     fun isVowel(index: Int): Boolean {
+        if (index < 0 || index >= word.length) {
+            return false
+        }
+
         return when (word.substring(index, index + 1)) {
             in VOWELS -> true
             else -> false

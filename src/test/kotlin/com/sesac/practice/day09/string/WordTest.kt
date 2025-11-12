@@ -73,4 +73,32 @@ class WordTest {
             assertFalse(actual)
         }
     }
+
+    @Test
+    fun `index가 글자수보다 크거나 같을 경우 false를 반환한다`() {
+        // given
+        val wordString = "abc"
+        val word = Word(wordString)
+
+        // when
+        val index = wordString.length
+        val actual = word.isVowel(index)
+
+        // then
+        assertFalse(actual)
+    }
+
+    @Test
+    fun `index가 음수일 경우 false를 반환한다`() {
+        // given
+        val wordString = "abc"
+        val word = Word(wordString)
+
+        // when
+        val index = -1
+        val actual = word.isVowel(index)
+
+        // then
+        assertFalse(actual)
+    }
 }
