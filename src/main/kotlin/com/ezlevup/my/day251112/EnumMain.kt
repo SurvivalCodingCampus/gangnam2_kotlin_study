@@ -8,9 +8,9 @@ enum class AuthState {
 
 fun something(authState: AuthState) {
     when (authState) {
-        AuthState.AUTH -> TODO()
-        AuthState.UN -> TODO()
-        AuthState.UNKNOWN -> TODO()
+        AuthState.AUTH -> println("A")
+        AuthState.UN -> println("B")
+        AuthState.UNKNOWN -> println("C")
     }
 }
 
