@@ -76,7 +76,7 @@ class WordTest {
                     println("\"${instance.word[index]}\"는 자음이 아닙니다: false 리턴")
                 }
 
-                ch.isLetter() -> {
+                ch in 'A'..'Z' || ch in 'a'..'z' -> {
                     assertTrue(instance.isConsonant(index))
                     println("\"${instance.word[index]}\"는 자음입니다: true 리턴")
                 }
@@ -117,7 +117,6 @@ class WordTest {
 
         instance.word.forEachIndexed { index, ch ->
             assertFalse(instance.isConsonant(index))
-            println("\"${instance.word[index]}\"는 자음이 아닙니다: false 리턴")
         }
     }
 }
