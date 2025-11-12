@@ -1,5 +1,7 @@
 package com.hhp227.kotlinstudy.`09_generic_string`
 
+import kotlin.math.max
+
 /*
 연습문제1
 다음 조건을 만족하는 금고인 StrongBox 클래스를 정의하시오.
@@ -37,13 +39,15 @@ class StrongBox<T>(
 ) {
     private var instance: T? = null
 
+    private var count = type.count
+
     fun put(value: T) {
         instance = value
     }
 
     fun get(): T? {
-        type.count--
-        return if (type.count > 0) null else instance
+        count = max(0, count - 1)
+        return if (count > 0) null else instance
     }
 
     enum class KeyType(var count: Int) {
