@@ -18,17 +18,17 @@ class BookTest {
     @Test
     fun `sorted()를 수행하면 출간일이 신상 순서대로 정렬하는지 확인`() {
         val books = listOf(
-            Book("날개", "이상", PublishedDate(LocalDate.of(1936, 9, 3))),
             Book("운수 좋은 날", "현진건", PublishedDate(LocalDate.of(1924, 6, 11))),
+            Book("날개", "이상", PublishedDate(LocalDate.of(1936, 9, 3))),
             Book("무정", "이광수", PublishedDate(LocalDate.of(1917, 1, 1)))
         )
 
-        val results = books.sortedBy { it.publishedDate.publishedLocalDate }
+        val results = books.sorted()
 
         val expected = listOf(
-            Book("무정", "이광수", PublishedDate(LocalDate.of(1917, 1, 1))),
+            Book("날개", "이상", PublishedDate(LocalDate.of(1936, 9, 3))),
             Book("운수 좋은 날", "현진건", PublishedDate(LocalDate.of(1924, 6, 11))),
-            Book("날개", "이상", PublishedDate(LocalDate.of(1936, 9, 3)))
+            Book("무정", "이광수", PublishedDate(LocalDate.of(1917, 1, 1)))
         )
 
         assertEquals(expected, results)
