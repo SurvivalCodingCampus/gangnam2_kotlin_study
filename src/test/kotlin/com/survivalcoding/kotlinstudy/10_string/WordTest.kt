@@ -59,6 +59,7 @@ class WordTest {
         assertFalse(word.isVowel(1))
     }
 
+    @Test
     fun `모음 검사 false - 빈 문자열`() {
         // given
         val word = Word(blank)
