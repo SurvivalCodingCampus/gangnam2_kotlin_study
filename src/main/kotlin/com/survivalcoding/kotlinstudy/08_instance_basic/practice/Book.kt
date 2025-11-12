@@ -41,10 +41,10 @@ class Book(
     val title: String,
     val author: String,
     val publishedDate: PublishedDate,
-) {
+) : Comparable<Book> {
     override fun hashCode(): Int {
         var result = title.hashCode()
-//      result = 31 * result + author.hashCode()
+        result = 31 * result + author.hashCode()
         result = 31 * result + publishedDate.hashCode()
         return result
     }
@@ -67,4 +67,8 @@ class Book(
     }
 
     fun deepCopy() = Book(title, author, publishedDate.deepCopy())
+
+    override fun compareTo(other: Book): Int {
+        return other.publishedDate.publishedLocalDate.compareTo(this.publishedDate.publishedLocalDate)
+    }
 }
