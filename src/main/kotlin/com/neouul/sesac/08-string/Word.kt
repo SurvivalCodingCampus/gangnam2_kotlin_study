@@ -20,7 +20,8 @@ class Word(var word: String) {
         if (isVowel(index)) return false
 
         // 문자라면 true, 아니라면(문장부호 등) false 리턴
-        val target = word.substring(index, index + 1)
-        return target.single().isLetter()   // Returns true if this character is a letter
+        // isLetter를 썼더니 유니코드에 포함된 모든 문자에 대해서 true를 리턴함
+        val targetChar = word.substring(index, index + 1).single()
+        return targetChar in 'A'..'Z' || targetChar in 'a'..'z'
     }
 }
