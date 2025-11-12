@@ -60,6 +60,7 @@ class StrongBoxTest {
         strongBox1.put("컴퓨터")
 
         assertEquals(strongBox1.count, expect)
+        assertEquals(strongBox1.instance, "컴퓨터")
     }
 
     @Test
