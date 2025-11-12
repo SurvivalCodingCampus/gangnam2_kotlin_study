@@ -9,7 +9,7 @@ class StrongBox<T>(private var keyType: KeyType) {
     }
 
     fun get(): T? {
-        if(keyCounter == keyType.keyNumber) return _data
+        if (keyCounter == keyType.keyNumber) return _data
         keyCounter++
         return null
     }

@@ -8,7 +8,7 @@ class Word(var word: String) {
 //            'a', 'e', 'i', 'o', 'u' -> true
 //            else -> false
 //        }
-        val target = word.substring(index, index+1)
+        val target = word.substring(index, index + 1)
         return target == "a" || target == "e" || target == "i" || target == "u" || target == "o"
     }
 
