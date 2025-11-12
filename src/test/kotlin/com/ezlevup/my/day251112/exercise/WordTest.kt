@@ -85,4 +85,32 @@ class WordTest {
         // then
         assertFalse(result)
     }
+
+    @Test
+    fun `Word 자음 성공 확인`() {
+        // giver
+        val txt = "lee is apple"
+        val word = Word(txt)
+
+        // when
+        val i: Int = 0
+        val result: Boolean = word.isConsonant(i)
+
+        // then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Word 자음 실패 확인`() {
+        // giver
+        val txt = "lee is apple"
+        val word = Word(txt)
+
+        // when
+        val i: Int = 1
+        val result: Boolean = word.isConsonant(i)
+
+        // then
+        assertFalse(result)
+    }
 }
