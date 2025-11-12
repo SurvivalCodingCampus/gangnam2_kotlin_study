@@ -35,9 +35,9 @@ class StrongBoxTest {
         strongBox.put(data)
 
         // 정해진 횟수까지는 null을 반환, 그 이후부터 data값 반환
-        repeat(key.keyNumber){
-           assertTrue(strongBox.getCounter() <= strongBox.getKey().keyNumber)
-           assertNull(strongBox.get())
+        repeat(key.keyNumber) {
+            assertTrue(strongBox.getCounter() <= strongBox.getKey().keyNumber)
+            assertNull(strongBox.get())
         }
     }
 
@@ -49,7 +49,7 @@ class StrongBoxTest {
 
         strongBox.put(data)
         // 정해진 횟수까지는 호출해도 null 반환
-        repeat(key.keyNumber){
+        repeat(key.keyNumber) {
             strongBox.get()
         }
 
