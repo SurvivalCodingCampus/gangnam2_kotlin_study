@@ -23,7 +23,7 @@ fun main() {
 const val MAX_HP: Int = 10 // 컴파일 타임
 
 // 동적
-open class Hero(
+open class  Hero(
     var name: String, // (값 == 불변)
     var hp: Int = MAX_HP,
 ) : Comparable<Hero> {
