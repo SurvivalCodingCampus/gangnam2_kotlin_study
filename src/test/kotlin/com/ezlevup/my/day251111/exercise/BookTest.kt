@@ -123,11 +123,17 @@ class BookTest {
     @Test
     fun `Book deepCopy 확인`() {
         // Given
-        val book1 = Book("title1", "author1", LocalDateTime.of(2025, 11, 11, 0, 0))
+        val title: String = "A"
+        val author: String = "a"
+        val publishedDate: LocalDateTime = LocalDateTime.of(2025, 11, 1, 0, 0)
+        val book1 = Book(title, author, publishedDate)
         val book2 = book1.deepCopy()
 
         // When & Then
         assertFalse(book1 === book2)
+        assertEquals(title, book2.title)
+        assertEquals(author, book2.author)
+        assertEquals(publishedDate, book2.publishedDate)
     }
 
 }
