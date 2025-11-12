@@ -18,12 +18,17 @@ class KeyData {
     }
 }
 
-class StrongBox<T>(val keyType: KeyType) {
-    private var attemptCount: Int = 0
+class StrongBox<T>(
+    val keyType: KeyType = KeyType.PADLOCK,
+) {
+    private var _attemptCount: Int = 0
     private var data: T? = null
 
+    val attemptCount: Int
+        get() = _attemptCount
+
     fun incrementAttempt() {
-        attemptCount++
+        _attemptCount++
     }
 
     fun put(data: T) {
