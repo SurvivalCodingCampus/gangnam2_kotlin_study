@@ -19,24 +19,21 @@ class KeyData {
 }
 
 class StrongBox<T>(val keyType: KeyType) {
-    private var _userCount: Int = 0
-    private var _data: T? = null
+    private var attemptCount: Int = 0
+    private var data: T? = null
+
+    fun incrementAttempt() {
+        attemptCount++
+    }
 
     fun put(data: T) {
-        _data = data
+        this.data = data
     }
 
     fun get(): T? {
-        _userCount++
-
-        val result: Boolean = when (keyType) {
-            KeyType.PADLOCK -> (_userCount >= (KeyData.MAX_ATTEMPTS[KeyType.PADLOCK] ?: 0))
-            KeyType.BUTTON -> (_userCount >= (KeyData.MAX_ATTEMPTS[KeyType.BUTTON] ?: 0))
-            KeyType.DIAL -> (_userCount >= (KeyData.MAX_ATTEMPTS[KeyType.DIAL] ?: 0))
-            KeyType.FINGER -> (_userCount >= (KeyData.MAX_ATTEMPTS[KeyType.FINGER] ?: 0))
-        }
-
-        return if (result) _data else null
+        incrementAttempt()
+        val result: Boolean = (attemptCount >= (KeyData.MAX_ATTEMPTS[keyType] ?: 0))
+        return if (result) data else null
     }
 }
 
