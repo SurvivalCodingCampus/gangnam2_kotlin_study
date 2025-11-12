@@ -13,6 +13,11 @@ class StrongBox<T>(private var keyType: KeyType) {
         keyCounter++
         return null
     }
+
+    // 테스트를 위한 getter
+    fun getKey(): KeyType = keyType
+    fun getCounter(): Int = keyCounter
+    fun getData(): T? = _data
 }
 
 // Since each enum is an instance of the enum class, it can be initialized
