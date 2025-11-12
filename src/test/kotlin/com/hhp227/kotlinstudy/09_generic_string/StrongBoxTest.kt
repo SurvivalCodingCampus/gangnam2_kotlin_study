@@ -45,21 +45,23 @@ class StrongBoxTest {
     @Test
     fun `키 타입에 따라 정해진 횟수만큼은 열리지 않는다, 횟수에 도달하면 잠금이 해제되어 열린다`() {
         val strongBox1 = StrongBox<Int>(StrongBox.KeyType.Button)
-        var padlockCount = 10_000
+        var buttonCount = 10_000
 
         strongBox1.put(1)
 
         assertFalse(strongBox1.get() == 1)
         assertTrue(strongBox1.get() == null)
 
-        padlockCount -= 2
+        buttonCount -= 2
 
-        while (padlockCount > 1) {
+        while (buttonCount > 1) {
             assertTrue(strongBox1.get() == null)
-            padlockCount--
+            buttonCount--
         }
 
-        assertIs<Int>(strongBox1.get())
-        assertTrue(strongBox1.get() == 1)
+        val result = strongBox1.get()
+
+        assertIs<Int>(result)
+        assertTrue(result == 1)
     }
 }
