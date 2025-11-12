@@ -7,3 +7,11 @@ enum class KeyType(val cnt: Int) {
     DIAL(30000),
     FINGER(1000000)
 }
+
+fun main() {
+
+    val str1 = "문자열"
+    val str2 = "문자열"
+
+    println(str1 === str2)
+}
