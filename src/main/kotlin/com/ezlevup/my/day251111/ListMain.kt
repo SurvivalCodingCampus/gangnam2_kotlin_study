@@ -5,8 +5,8 @@ import com.ezlevup.my.Hero
 fun main() {
     var heroes = mutableListOf<Hero>()
 
-    val h1 = Hero(1, 2)
-    val h2 = Hero(3, 4)
+    val h1 = Hero("lee", 1, 2)
+    val h2 = Hero("kim", 3, 4)
 
     heroes.add(h1)
     println(heroes.size)
