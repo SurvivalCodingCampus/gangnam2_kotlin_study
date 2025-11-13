@@ -107,7 +107,7 @@ println(s1.lowercase() == s2.lowercase()) // true
 ```kotlin
 val s1 = "KOTLIN"
 
-println(s1.lebgth) // 6
+println(s1.length) // 6
 println(s1.isEmpty()) // false
 ```
 
