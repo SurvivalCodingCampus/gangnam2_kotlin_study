@@ -14,6 +14,11 @@ object KeyData {
         KeyType.DIAL to 30_000,
         KeyType.FINGER to 1_000_000,
     )
+
+    fun isMaxAttemptsReached(keyType: KeyType, attemptCount: Int): Boolean {
+        val maxAttempts = MAX_ATTEMPTS[keyType] ?: 0
+        return attemptCount >= maxAttempts
+    }
 }
 
 
@@ -36,7 +41,7 @@ class StrongBox<T>(
 
     fun get(): T? {
         incrementAttempt()
-        val result: Boolean = (attemptCount >= (KeyData.MAX_ATTEMPTS[keyType] ?: 0))
+        val result = KeyData.isMaxAttemptsReached(keyType, attemptCount)
         return if (result) data else null
     }
 }
