@@ -6,7 +6,7 @@ val String.Companion.ENTER: String
     get() = "\n"
 
 fun main() {
-    var file = File("save.txt")
+    var file = File("source.txt")
 
     // 새로 쓰기
     file.writeText("hello world")
