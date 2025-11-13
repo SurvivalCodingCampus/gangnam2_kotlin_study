@@ -43,11 +43,12 @@ class DefaultFileOperationsTest {
     fun `원본 파일에 접근할 권한이 없으면 예외가 발생한다`() {
         // given
         val source = File(UN_ACCESS_FILE)
+        source.createNewFile()
+        source.setReadable(false)
+
         val destination = File(DESTINATION_FILE)
 
         val defaultFileOperations = DefaultFileOperations()
-
-        source.setReadable(false)
 
         // when
         // then
@@ -82,10 +83,10 @@ class DefaultFileOperationsTest {
         // given
         val source = File(SOURCE_FILE)
         val destination = File(DESTINATION_FILE)
+        destination.createNewFile()
+        destination.setWritable(false)
 
         val defaultFileOperations = DefaultFileOperations()
-
-        destination.setWritable(false)
 
         // when
         // then

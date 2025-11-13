@@ -24,9 +24,9 @@ dependencies {
 **JSON과 동일한 필드명인 경우 `@Serializable` 어노테이션을 붙이면 된다.**
 
 ```kotlin
-import kotlin.serialization.Serializable
-import kotlin.serialization.json.Json
-import kotlin.serialization.encodeFromString
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeFromString
 
 @Serializable
 data class User(val name: String, val email: String)
