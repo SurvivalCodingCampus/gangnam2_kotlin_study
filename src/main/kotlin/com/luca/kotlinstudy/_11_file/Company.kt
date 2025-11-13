@@ -14,7 +14,7 @@ data class Company(val employee: Employee, val department: Department) {
 }
 
 @Serializable
-data class Employee(var name: String, var age: Int)
+data class Employee(val name: String, val age: Int)
 
 @Serializable
-data class Department(var name: String, var leader: Employee)
+data class Department(val name: String, val leader: Employee)
