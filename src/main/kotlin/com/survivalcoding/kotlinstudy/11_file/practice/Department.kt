@@ -24,7 +24,7 @@ class Department(
     fun toJson() = """
         {
             "name": "$name",
-            "leader": "${leader.toJson()}"
+            "leader": ${leader.toJson()}
         }
     """.trimIndent()
 }
