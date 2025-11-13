@@ -17,6 +17,12 @@ fun main() {
     println("=================")
     val str5 = "hel" + getLo()
     println(str1 === str5)
+
+    println("Hello".replace(Regex("[elo]"), "!!"))
+
+    'a'.isLetter()
 }
 
-fun getLo() = "lo"
+fun getLo(): String {
+    return "lo"
+}
