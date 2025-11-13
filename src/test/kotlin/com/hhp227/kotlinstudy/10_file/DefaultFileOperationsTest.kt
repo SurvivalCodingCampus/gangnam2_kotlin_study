@@ -48,6 +48,7 @@ class DefaultFileOperationsTest {
         targetFile.setWritable(false)
 
         assertFails { fileOperations.copyFile(file, targetFile) }
+        file.delete()
         targetFile.delete()
     }
 
