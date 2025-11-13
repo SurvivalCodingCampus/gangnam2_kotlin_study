@@ -2,13 +2,13 @@ package com.survivaalcoding.kotlinstudy.`10_exception_file_serialization`.exampl
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.Before
+import org.junit.After
 import org.junit.Test
 import java.io.File
 
 class DefaultFileOperationsTest {
-    @Before
-    fun setUp() {
+    @After
+    fun tearDown() {
         val unAccessFile = File(UN_ACCESS_FILE)
         if (unAccessFile.exists()) {
             unAccessFile.delete()
