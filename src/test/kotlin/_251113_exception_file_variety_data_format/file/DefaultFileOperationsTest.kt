@@ -3,6 +3,7 @@
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class DefaultFileOperationsTest {
 
@@ -16,7 +17,7 @@ class DefaultFileOperationsTest {
         //when
         defaultFileOperations.copyFile(sourceFile, destFile)
         //then
-        assertEquals(true, sourceFile.readText() == destFile.readText())
+        assertEquals(sourceFile.readText(), destFile.readText())
         sourceFile.delete()
         destFile.delete()
     }
