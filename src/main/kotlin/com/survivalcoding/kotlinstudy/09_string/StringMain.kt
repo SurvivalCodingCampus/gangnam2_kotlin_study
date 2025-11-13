@@ -25,6 +25,4 @@ fun main() {
     }
     println(time)
 
-
-
 }
