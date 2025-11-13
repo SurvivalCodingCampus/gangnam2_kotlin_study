@@ -25,7 +25,7 @@ class DefaultFileOperationsTest {
 
     @Test
     fun `정상 복사 테스트`() {
-        // givn
+        // given
         val source = File(SOURCE).apply { writeText(FILE_TEXT) }
         val destination = File(DESTINATION)
 

@@ -20,10 +20,10 @@ class ExceptionTest {
         val original = INT_TEXT
 
         // when
-        val reslut = StringToInt(original)
+        val result = StringToInt(original)
 
         // then
-        assertEquals(TEXT_TO_INT, reslut)
+        assertEquals(TEXT_TO_INT, result)
     }
 
     @Test
