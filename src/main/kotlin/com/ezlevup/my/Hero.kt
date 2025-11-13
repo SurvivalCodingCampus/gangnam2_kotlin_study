@@ -1,8 +1,9 @@
 package com.ezlevup.my
 
 class Hero(
-    val hp: Int,
-    val mp: Int,
+    val name: String,
+    val hp: Int = 0,
+    val mp: Int = 0,
 ) : Comparable<Hero> {
     override fun compareTo(other: Hero): Int {
         println("compareTo")
