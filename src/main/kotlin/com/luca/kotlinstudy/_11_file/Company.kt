@@ -8,8 +8,13 @@ import java.io.File
 @Serializable
 data class Company(val employee: Employee, val department: Department) {
     fun saveToFile() {
-        val json = Json.encodeToString(this)
-        File("company.txt").writeText(json)
+        try {
+            val json = Json.encodeToString(this)
+            File("company.txt").writeText(json)
+        } catch (e: Exception) {
+            println("파일 저장 중 오류 발생: ${e.message}")
+            throw e
+        }
     }
 }
 
