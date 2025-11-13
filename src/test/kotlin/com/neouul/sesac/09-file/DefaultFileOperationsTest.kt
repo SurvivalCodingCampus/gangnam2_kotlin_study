@@ -49,11 +49,11 @@ class DefaultFileOperationsTest {
     fun `copyFile 메서드 성공 - 원본 파일이 존재하지 않는 경우 예외 처리`() {
         // given
         mockkStatic("com.neouul.sesac.mock.InputKt")
-        every { readInput() } returns "new.txt"
+        val newFile = tempFolder.newFile("new.txt")
+        every { readInput() } returns newFile.absolutePath
 
         val file1 = File("a.txt")
         val file2 = tempFolder.newFile("b.txt")
-        val newFile = File("new.txt")
         newFile.writeText("Hello World!")
 
         // when
@@ -63,18 +63,17 @@ class DefaultFileOperationsTest {
         val string1 = newFile.readText()
         val string2 = file2.readText()
         assertEquals(string1, string2)
-        newFile.delete()
     }
 
     @Test
     fun `copyFile 메서드 성공 - 원본 파일과 대상 파일이 같은 경우 예외 처리`() {
         // given
         mockkStatic("com.neouul.sesac.mock.InputKt")
-        every { readInput() } returns "new.txt"
+        val newFile = tempFolder.newFile("new.txt")
+        every { readInput() } returns newFile.absolutePath
 
         val file1 = tempFolder.newFile("b.txt")
         val file2 = file1
-        val newFile = File("new.txt")
         file1.writeText("Hello World!")
 
         // when
@@ -84,6 +83,5 @@ class DefaultFileOperationsTest {
         val string1 = file1.readText()
         val string2 = newFile.readText()
         assertEquals(string1, string2)
-        newFile.delete()
     }
 }
