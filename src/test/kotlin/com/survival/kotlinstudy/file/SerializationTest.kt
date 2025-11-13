@@ -21,5 +21,7 @@ class SerializationTest {
 
         // then (검증)
         assertEquals(leaderString,file.readText())
+
+        file.delete()
     }
 }
