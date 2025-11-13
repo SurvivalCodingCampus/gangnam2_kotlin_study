@@ -8,7 +8,7 @@ interface FileOperations {
 }
 
 // 테스트용 파일 만들고 -> 삭제까지
-class FileManager() : FileOperations {
+class FileManager : FileOperations {
     override fun copyFile(src: File, destination: File) {
         try {
             val text = src.readText()

@@ -18,7 +18,7 @@ fun main() {
     println(user)
     println(jsonString)
     
-    // 역질렬화: json 형태의 String을 객체로
+    // 역직렬화: json 형태의 String을 객체로
     val obj = Json.decodeFromString<User>(jsonString)
     println(obj)
 }
