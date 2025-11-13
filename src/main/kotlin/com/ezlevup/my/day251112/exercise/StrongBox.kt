@@ -7,19 +7,18 @@ enum class KeyType {
     FINGER,
 }
 
-class KeyData {
-    companion object {
-        val MAX_ATTEMPTS = mapOf(
-            KeyType.PADLOCK to 1024,
-            KeyType.BUTTON to 10_000,
-            KeyType.DIAL to 30_000,
-            KeyType.FINGER to 1_000_000,
-        )
-    }
+object KeyData {
+    val MAX_ATTEMPTS = mapOf(
+        KeyType.PADLOCK to 1024,
+        KeyType.BUTTON to 10_000,
+        KeyType.DIAL to 30_000,
+        KeyType.FINGER to 1_000_000,
+    )
 }
 
+
 class StrongBox<T>(
-    val keyType: KeyType = KeyType.PADLOCK,
+    val keyType: KeyType,
 ) {
     private var _attemptCount: Int = 0
     private var data: T? = null
