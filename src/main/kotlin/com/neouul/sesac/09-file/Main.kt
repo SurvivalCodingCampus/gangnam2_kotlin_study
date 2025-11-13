@@ -8,6 +8,6 @@ fun main() {
 
     val fileAA = File("a.txt")
     println(fileA == fileAA)
-    DefaultFileOperations().copyFile(fileA, fileAA)
+//    DefaultFileOperations().copyFile(fileA, fileAA)
     DefaultFileOperations().copyFile(fileA, fileB)
 }

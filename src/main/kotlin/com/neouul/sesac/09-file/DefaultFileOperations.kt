@@ -1,5 +1,6 @@
 package com.neouul.sesac.`09-file`
 
+import com.neouul.sesac.mock.readInput
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -25,7 +26,7 @@ class DefaultFileOperations : FileOperations {
     }
 
     private fun inputPath(): File {
-        val path = readln()     // null 입력되면 터짐
+        val path = readInput()     // null 입력되면 터짐
         return File(path)
     }
 }
