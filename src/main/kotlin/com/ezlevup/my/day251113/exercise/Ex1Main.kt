@@ -6,9 +6,9 @@ class Ex1 {
             try {
                 return s.toInt()
             } catch (e: NumberFormatException) {
-                0
+                println("NumberFormatException")
             } catch (e: Exception) {
-                0
+                println("Exception")
             }
             return 0
         }
