@@ -12,7 +12,7 @@ class DefaultFileOperationsTest {
         private const val SOURCE = "./save.txt"
         private const val DESTINATION = "./save_copy.txt"
         private const val NO_EXIST_SOURCE = "./no_exist.txt"
-        private const val FILE_TEXT = "Hello wolrd!!!!"
+        private const val FILE_TEXT = "Hello world!!!!"
         private const val EMPTY_FILE_TEXT = ""
     }
 
