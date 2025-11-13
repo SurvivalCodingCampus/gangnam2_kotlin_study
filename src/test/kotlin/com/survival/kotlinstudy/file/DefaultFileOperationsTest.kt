@@ -41,7 +41,7 @@ class DefaultFileOperationsTest {
         val destination = File("destination.txt")
 
         // then (검증)
-        fileOperator.copyFile(nonExistentSource,destination)
+        fileOperator.copyFile(nonExistentSource, destination)
 
         assertFalse(destination.exists(), "대상 파일이 생성되지 않았어야 합니다.")
     }
