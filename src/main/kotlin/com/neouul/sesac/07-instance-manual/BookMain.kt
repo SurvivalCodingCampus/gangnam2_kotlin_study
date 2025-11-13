@@ -14,4 +14,10 @@ fun main() {
     println(sortedList)
 
     println(b1 == b4)
+
+    val set = mutableSetOf<Book>()
+    set.add(b1)
+    println(set)
+    set.remove(b4)
+    println(set.size)
 }

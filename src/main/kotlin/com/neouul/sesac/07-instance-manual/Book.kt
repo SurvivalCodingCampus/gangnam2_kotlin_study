@@ -37,7 +37,9 @@ class Book(
 
     override fun hashCode(): Int {
         var result = title.hashCode()
-        result = 31 * result + publishedDate.hashCode()
+        result = 31 * result + publishedDate.year.hashCode()
+        result = 31 * result + publishedDate.month.hashCode()
+        result = 31 * result + publishedDate.dayOfMonth.hashCode()
         return result
     }
 
