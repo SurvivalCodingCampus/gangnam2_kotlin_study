@@ -9,4 +9,7 @@ fun main() {
     }
     println(num)
 
+    println("kotlin".matches(Regex("[a-k]otlin"))) //true
+
+
 }
