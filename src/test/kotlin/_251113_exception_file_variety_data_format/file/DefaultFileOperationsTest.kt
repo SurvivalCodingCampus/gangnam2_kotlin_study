@@ -31,6 +31,8 @@ class DefaultFileOperationsTest {
         //when
         defaultFileOperations.copyFile(sourceFile, destFile)
         //then
+        assertEquals(false, sourceFile.exists())
+        assertEquals(false, destFile.exists())
 
     }
 
