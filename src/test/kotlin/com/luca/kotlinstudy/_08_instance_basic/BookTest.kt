@@ -36,9 +36,9 @@ class BookTest {
 
     @Test
     fun `sorted()를 했을 때 신상 순서대로 정렬 되는지 확인`() {
-        val old = Book("A", "A", dt(2023, 12, 31))
-        val mid = Book("B", "B", dt(2024, 1, 1))
-        val new = Book("C", "C", dt(2025, 10, 28))
+        val old = Book("Luca", "Luca", dt(2023, 12, 31))
+        val mid = Book("Luca", "Luca", dt(2024, 1, 1))
+        val new = Book("Luca", "Luca", dt(2025, 10, 28))
         val sorted = listOf(old, mid, new).sorted() // Comparable 사용
 
         assertEquals(listOf(new, mid, old), sorted)
