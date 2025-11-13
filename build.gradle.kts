@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.2.0"
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 group = "com.survivalcoding"
@@ -12,6 +13,8 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     testImplementation("junit:junit:4.13.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 }
 
 tasks.test {
