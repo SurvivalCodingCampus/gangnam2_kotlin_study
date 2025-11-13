@@ -1,6 +1,6 @@
 package com.ezlevup.my.day251112.exercise
 
-val vowel = listOf<String>("a", "e", "i", "o", "u")
+val vowel = setOf<String>("a", "e", "i", "o", "u")
 
 class Word(
     var word: String,
@@ -11,9 +11,7 @@ class Word(
     }
 
     fun isVowel(i: Int): Boolean {
-        if (isValidIndex(i) == false) {
-            return false
-        }
+        if (!isValidIndex(i)) return false
 
         val str = word.lowercase().substring(i, i + 1)
         val result = vowel.contains(str)
@@ -21,9 +19,7 @@ class Word(
     }
 
     fun isConsonant(i: Int): Boolean {
-        if (isValidIndex(i) == false) {
-            return false
-        }
+        if (!isValidIndex(i)) return false
 
         return !isVowel(i)
     }
