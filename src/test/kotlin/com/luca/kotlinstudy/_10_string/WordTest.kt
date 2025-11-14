@@ -51,6 +51,7 @@ class WordTest {
         val word = Word("1234")
         assertFalse(word.isConsonant(1))
     }
+
     @Test
     fun `모음 체크 +숫자를 넣었을 때 False`() {
         val word = Word("1234")
@@ -58,14 +59,14 @@ class WordTest {
     }
 
     @Test
-    fun `스페이스 부분을 체크해도 false`(){
+    fun `스페이스 부분을 체크해도 false`() {
         val word = Word("Hello World")
         assertFalse(word.isVowel(5))
         assertFalse(word.isConsonant(5))
     }
 
     @Test
-    fun `인덱스 길이보다 길게 넣으면 false`(){
+    fun `인덱스 길이보다 길게 넣으면 false`() {
         val word = Word("LUCA")
         assertFalse(word.isConsonant(5))
         assertFalse(word.isVowel(5))

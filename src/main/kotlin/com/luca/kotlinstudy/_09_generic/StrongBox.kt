@@ -9,13 +9,10 @@ class StrongBox<E>(private val keyType: KeyType) {
 
     fun get(): E? {
         count++
-        val result = if(count > keyType.count) _data else null
+        val result = if (count > keyType.count) _data else null
         return result
     }
 }
-// 카운트 횟수일때 null
-// 카운트 넘어갈 때 _data
-// 키타입 횟수 확인?
 
 enum class KeyType(val count: Int) {
     PADLOCK(1024),

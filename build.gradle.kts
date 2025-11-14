@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.kotlin.jvm") version "2.0.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
 group = "com.survivalcoding"
@@ -18,6 +19,9 @@ dependencies {
 
     // 이미지 비교 라이브러리 (필요 시)
     testImplementation("com.github.romankh3:image-comparison:4.4.0")
+
+    // Kotlinx Serialization (JSON)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 }
 
 tasks.test {
