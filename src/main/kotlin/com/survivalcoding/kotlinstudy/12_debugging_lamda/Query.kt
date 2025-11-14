@@ -23,21 +23,21 @@ fun main() {
 
     // 2. 거래자가 근무하는 모든 도시를 중복 없이 나열하시오
     println(transactions.map { it.trader.city }
+        .sortedBy { it }
         .toSet()
-        .sorted()
     )
 
     // 3. 케임브리지에서 근무하는 모든 거래자를 찾아서 이름순으로 정렬하여 나열하시오
     println(transactions.filter { it.trader.city == "Cambridge" }
         .map { it.trader.name }
+        .sortedBy { it }
         .toSet()
-        .sorted()
     )
 
     // 4. 모든 거래자의 이름을 알파벳순으로 정렬하여 나열하시오
     println(transactions.map { it.trader.name }
+        .sortedBy { it }
         .toSet()
-        .sorted()
     )
 
     // 5. 밀라노에 거래자가 있는가?
@@ -46,6 +46,7 @@ fun main() {
     // 6. 케임브리지에 거주하는 거래자의 모든 트랙잭션값을 출력하시오
     println(transactions.filter { it.trader.city == "Cambridge" }
         .map { it.value }
+        .sortedBy { it }
     )
 
     // 7. 전체 트랜잭션 중 최대값은 얼마인가?
