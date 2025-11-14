@@ -26,6 +26,8 @@ public fun String.toIntOrZero(): Int {
         this.toInt()
     } catch (e: NumberFormatException) {
         0
+    } catch (e: IllegalArgumentException) {
+        0
     } catch (e: Exception) {
         0
     }
