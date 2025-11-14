@@ -42,7 +42,6 @@ fun main() {
     FileManager().save("company.txt", jsonDepartment)
 
     val loadFile: String = FileManager().load("company.txt")
-    val employee2 = null
     val department2 = Json.decodeFromString<Department>(loadFile)
     println(department2)
 
