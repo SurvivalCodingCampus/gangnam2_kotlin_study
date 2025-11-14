@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`12_debugging_lamda`
+package com.survivalcoding.kotlinstudy.`12_debugging_lambda`
 
 import java.io.File
 import kotlin.test.Test

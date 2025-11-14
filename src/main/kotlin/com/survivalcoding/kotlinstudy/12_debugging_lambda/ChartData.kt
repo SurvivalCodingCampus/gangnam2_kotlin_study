@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`12_debugging_lamda`
+package com.survivalcoding.kotlinstudy.`12_debugging_lambda`
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
