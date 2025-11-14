@@ -123,7 +123,6 @@ class FileManagerTest {
 
         // when & then
         assertNotNull(fileManager)
-        
     }
 
     @Test
