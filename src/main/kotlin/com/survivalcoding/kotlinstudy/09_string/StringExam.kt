@@ -10,6 +10,10 @@ fun main() {
     val str3 = String("hello".toCharArray())    // heap
     println(str1 === str3)
 
+    val nullableString : String? = null
+
+    println(nullableString!!.length)
+
     println("=================")
     val str4 = "hel" + "lo"
     println(str1 === str4)
