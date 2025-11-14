@@ -28,5 +28,6 @@ data class Department(val name: String, val leader: Employee)
 fun main(){
     val e = Employee("홍길동",(41))
     val d = Department("총무부",e)
-    println(d)
+    val c = Company(d)
+    println(c)
 }

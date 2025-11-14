@@ -10,14 +10,14 @@ class CompanyTest {
     fun `부서 JSON 파일 생성되는지 테스트`() {
         val employee = Employee("홍길동", 41)
         val department = Department("총무부", employee)
-        val company = Company(employee, department)
+        val company = Company(department)
 
 
         company.saveToFile()
         val file = File("company.txt")
         val text = file.readText()
 
-        assertEquals(employee, company.employee)
+        assertEquals(employee, department.leader)
         assertEquals(department, company.department)
         assertTrue(file.exists())
         assertEquals("company.txt", file.name)
