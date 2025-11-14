@@ -45,7 +45,7 @@ class EmployeeTest {
         // when
         val json = Json.encodeToString(employee)
 
-        // than
+        // then
         val expected = """{"name":"$name","age":$age}"""
         assertEquals(json, expected)
     }
