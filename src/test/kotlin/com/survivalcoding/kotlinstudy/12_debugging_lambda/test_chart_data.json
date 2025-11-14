@@ -1,0 +1,16 @@
+{
+  "collectionChartDataList": [
+    {
+      "collectionName": "collection1",
+      "collectionSalePrice": [
+        {
+          "price": 10.5,
+          "cvtDatetime": "2023-01-01T00:00:00"
+        }
+      ]
+    },
+    {
+      "collectionName": "collection2"
+    }
+  ]
+}
