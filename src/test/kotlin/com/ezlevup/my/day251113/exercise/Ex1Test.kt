@@ -20,7 +20,7 @@ class Ex1Test {
     }
 
     @Test
-    fun `Sting toIntOrZero 실패`() {
+    fun `String toIntOrZero 실패`() {
         // given
         val numString: String = "10.9"
 
