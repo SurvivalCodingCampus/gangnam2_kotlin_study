@@ -18,7 +18,7 @@ class DefaultFileOperations : FileOperations {
             val context = source.readText();
             destination.writeText(context)
         } catch (e: Exception) {
-            throw IllegalArgumentException("파일 복사 실패 ${e.message}")
+            throw IllegalArgumentException("파일 복사 실패 ${e.message}", e)
         }
     }
 }
