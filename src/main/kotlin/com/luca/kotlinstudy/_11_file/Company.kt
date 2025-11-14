@@ -6,11 +6,12 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 @Serializable
-data class Company(val employee: Employee, val department: Department) {
+data class Company(val department: Department) {
     fun saveToFile() {
         try {
-            val json = Json.encodeToString(this)
+            val json = Json.encodeToString(department)
             File("company.txt").writeText(json)
+            println(json)
         } catch (e: Exception) {
             println("파일 저장 중 오류 발생: ${e.message}")
             throw e
@@ -23,3 +24,9 @@ data class Employee(val name: String, val age: Int)
 
 @Serializable
 data class Department(val name: String, val leader: Employee)
+
+fun main(){
+    val e = Employee("홍길동",(41))
+    val d = Department("총무부",e)
+    println(d)
+}
