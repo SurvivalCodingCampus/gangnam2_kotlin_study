@@ -2,6 +2,7 @@ package com.ezlevup.my.day251113.exercise
 
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertTrue
@@ -121,6 +122,7 @@ class FileManagerTest {
         val fileManager: FileManager = FileManager()
 
         // when & then
+        assertNotNull(fileManager)
     }
 
     @Test
