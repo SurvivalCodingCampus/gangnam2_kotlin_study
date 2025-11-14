@@ -10,7 +10,7 @@ class CollectionChartDataTest {
 
     companion object {
         private const val TEST_FILE_PATH =
-            "src/test/kotlin/com/survivalcoding/kotlinstudy/12_debugging_lamda/test_chart_data.json"
+            "src/test/kotlin/com/survivalcoding/kotlinstudy/12_debugging_lambda/test_chart_data.json"
 
         // 첫 번째 데이터
         private const val FIRST_NAME = "collection1"
