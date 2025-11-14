@@ -6,7 +6,7 @@ import org.junit.Test
 
 class Ex1Test {
     @Test
-    fun `Sting toIntOrZero 성공`() {
+    fun `String toIntOrZero 성공`() {
         // given
         val numString: String = "10"
         val numInt: Int = 10
