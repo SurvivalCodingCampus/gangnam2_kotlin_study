@@ -19,13 +19,21 @@ class DefaultFileOperationsTest {
     fun `DefaultFileOperations 파일 복사 성공`() {
         // given
         val operations = DefaultFileOperations()
-
-        // when
         val sourceFile = File("source.txt")
+        sourceFile.writeText("test content")  // 테스트 파일 생성
         val destFile = File("destination.txt")
 
-        // then
-        operations.copyFile(sourceFile, destFile)
+        try {
+            // when
+            operations.copyFile(sourceFile, destFile)
+
+            // then
+            assert(destFile.exists())
+        } finally {
+            // cleanup
+            sourceFile.delete()
+            destFile.delete()
+        }
     }
 
     @Test(expected = IllegalArgumentException::class)
