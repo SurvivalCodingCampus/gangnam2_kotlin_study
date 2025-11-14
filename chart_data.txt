@@ -872,9 +872,6 @@
       ]
     },
     {
-      "collectionName": "collection68"
-    },
-    {
       "collectionName": "collection69",
       "collectionSalePrice": [
         {
