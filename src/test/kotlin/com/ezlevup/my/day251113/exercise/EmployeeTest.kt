@@ -83,6 +83,9 @@ class EmployeeTest {
         val expected = """{"name":"$departmentName","leader":{"name":"$name","age":$age}}"""
         val loadFile: String = FileManager().load("company.txt")
         assertEquals(expected, loadFile)
+
+        // 테스트 파일 정리
+        File("company.txt").delete()
     }
 
     @Test
