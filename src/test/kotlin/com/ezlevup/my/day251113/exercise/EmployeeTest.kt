@@ -117,8 +117,8 @@ class EmployeeTest {
 
 class FileManagerTest {
     @Test
-    fun `파일매니저 생성장`() {
-        // giver
+    fun `파일매니저 생성자`() {
+        // given
         val fileManager: FileManager = FileManager()
 
         // when & then
@@ -127,7 +127,7 @@ class FileManagerTest {
 
     @Test
     fun `파일매니저 파일 생성`() {
-        // giver
+        // given
         val fileManager: FileManager = FileManager()
 
         // when
