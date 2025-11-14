@@ -872,7 +872,17 @@
       ]
     },
     {
-      "collectionName": "collection68"
+      "collectionName": "collection68",
+      "collectionSalePrice": [
+        {
+          "price": 92.25,
+          "cvtDatetime": "2023-03-26T08:22:40"
+        },
+        {
+          "price": 92.50,
+          "cvtDatetime": "2023-03-26T08:22:50"
+        }
+      ]
     },
     {
       "collectionName": "collection69",

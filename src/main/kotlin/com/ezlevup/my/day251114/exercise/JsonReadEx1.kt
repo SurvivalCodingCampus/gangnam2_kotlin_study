@@ -13,7 +13,7 @@ data class RootData(
 @Serializable
 data class CollectionChartDataList(
     var collectionName: String,
-    var collectionSalePrice: List<CollectionSalePrice>? = null
+    var collectionSalePrice: List<CollectionSalePrice>
 )
 
 @Serializable
@@ -22,19 +22,39 @@ data class CollectionSalePrice(
     var cvtDatetime: String,
 )
 
+object ChartDataLoader {
+    private var chartData: RootData? = null
+
+    private fun jsonLoad(fileName: String): String {
+        return File(fileName).readText()
+    }
+
+    fun chartDataLoad(fileName: String): RootData? {
+        if (chartData != null) return chartData
+
+        val json = jsonLoad(fileName)
+        try {
+            chartData = Json.decodeFromString<RootData>(json)
+        } catch (e: MissingFieldException) {
+            println(e.message)
+            throw IllegalArgumentException("필수 필드 누락 오류: ${e.message}")
+        } catch (e: Exception) {
+            println(e.stackTraceToString())
+            throw IllegalArgumentException("알수 없는 오류: ${e.message}")
+        }
+
+        return chartData
+    }
+}
+
 
 fun main() {
     val fileName: String = "chart_data.json"
     val json = File(fileName).readText()
     // println(json)
 
-    try {
-        val rootData = Json.decodeFromString<RootData>(json)
-        println(rootData.collectionChartDataList.count())
-    } catch (e: MissingFieldException) {
-        println(e.message)
-    } catch (e: Exception) {
-        e.stackTraceToString()
-    }
+    val chartData = ChartDataLoader.chartDataLoad(fileName)
+    println(chartData)
+    println(chartData?.collectionChartDataList!!.count())
 
 }
