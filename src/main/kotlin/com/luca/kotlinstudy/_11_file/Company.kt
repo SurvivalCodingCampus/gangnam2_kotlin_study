@@ -26,7 +26,7 @@ data class Employee(val name: String, val age: Int)
 data class Department(val name: String, val leader: Employee)
 
 fun main(){
-    val e = Employee("홍길동",(41))
+    val e = Employee("홍길동",41)
     val d = Department("총무부",e)
     val c = Company(d)
     println(c)
