@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.io.File
 import java.io.FileNotFoundException
+import kotlin.io.readText
 
 @Serializable
 data class CollectionChartDataList(
@@ -22,17 +23,25 @@ data class CollectionSale(
     val cvtDatetime: String
 )
 
+const val JSON_FILE_PATH ="C:\\Users\\MisterJerry\\IdeaProjects\\gangnam2_kotlin_study\\src\\main\\kotlin\\_251114_debugging_lambda_expression\\debugging\\chart_data.json"
+
+fun jsonToObject(json:String): CollectionChartDataList{
+    return Json.decodeFromString(json)
+}
+
 fun main() {
     val file: String? = try {
-        File("chart_data.txt").readText()
+        File(JSON_FILE_PATH).readText()
     } catch (e: FileNotFoundException) {
         null
     }
     if (file != null) {
-        val collectionChartDataList: CollectionChartDataList = Json.decodeFromString(file)
+        val collectionChartDataList= jsonToObject(file)
         println(collectionChartDataList)
     } else {
         println("파일을 찾지 못했습니다.")
     }
+
+
 
 }
