@@ -44,7 +44,8 @@ fun main() {
     println(transactions.any { it.trader.city == "Milan" })
 
     // 6. 케임브리지에 거주하는 거래자의 모든 트랙잭션값을 출력하시오
-    transactions.map{it.value}
+    transactions.filter { it.trader.city == "Cambridge" }
+        .map { it.value }
         .forEach { println(it) }
 
     // 7. 전체 트랜잭션 중 최대값은 얼마인가?
