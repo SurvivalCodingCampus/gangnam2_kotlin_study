@@ -1,4 +1,4 @@
-package com.luca.kotlinstudy._12_debugging_lamda
+package com.luca.kotlinstudy._12_debugging_lambda
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json

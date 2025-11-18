@@ -11,6 +11,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+
     // JUnit4용 kotlin-test 바인딩
     testImplementation(kotlin("test-junit"))
 
@@ -42,4 +44,12 @@ tasks.test {
 
 kotlin {
     jvmToolchain(21)
+}
+
+tasks.withType<JavaExec>().configureEach {
+    jvmArgs("-Dfile.encoding=UTF-8")
+}
+
+tasks.test {
+    systemProperty("file.encoding", "UTF-8")
 }

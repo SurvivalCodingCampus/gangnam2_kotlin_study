@@ -1,4 +1,4 @@
-package com.luca.kotlinstudy._12_debugging_lamda
+package com.luca.kotlinstudy._12_debugging_lambda
 
 data class Trader(val name: String, val city: String)
 
