@@ -66,14 +66,14 @@ fun main() {
     println("7 ===========================================================")
     // 7. 전체 트랜잭션 중 최대값은 얼마인가?
     // println(transactions.map { it.value }.reduce(::max))
-    transactions.maxOf { it.value }
+    println(transactions.maxOf { it.value })
     // 1000
 
     println("8 ===========================================================")
     // 8. 전체 트랜잭션 중 최소값은 얼마인가?
     // println(transactions.map { it.value }
     //    .reduce { acc, i -> min(acc, i) })
-    transactions.minOf { it.value }
+    println(transactions.minOf { it.value })
     // 300
 
 }
