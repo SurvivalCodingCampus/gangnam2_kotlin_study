@@ -1,8 +1,5 @@
 package com.ezlevup.my.day251114.exercise
 
-import kotlin.math.max
-import kotlin.math.min
-
 data class Trader(val name: String, val city: String)
 
 data class Transaction(val trader: Trader, val year: Int, val value: Int)
@@ -68,13 +65,15 @@ fun main() {
 
     println("7 ===========================================================")
     // 7. 전체 트랜잭션 중 최대값은 얼마인가?
-    println(transactions.map { it.value }.reduce(::max))
+    // println(transactions.map { it.value }.reduce(::max))
+    transactions.maxOf { it.value }
     // 1000
 
     println("8 ===========================================================")
     // 8. 전체 트랜잭션 중 최소값은 얼마인가?
-    println(transactions.map { it.value }
-        .reduce { acc, i -> min(acc, i) })
+    // println(transactions.map { it.value }
+    //    .reduce { acc, i -> min(acc, i) })
+    transactions.minOf { it.value }
     // 300
 
 }

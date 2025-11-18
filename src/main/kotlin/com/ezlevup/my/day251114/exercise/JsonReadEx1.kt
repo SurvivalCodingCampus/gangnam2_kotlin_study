@@ -50,7 +50,7 @@ object ChartDataLoader {
 
 fun main() {
     val fileName: String = "chart_data.json"
-    val json = File(fileName).readText()
+    // val json = File(fileName).readText()
     // println(json)
 
     val chartData = ChartDataLoader.chartDataLoad(fileName)
