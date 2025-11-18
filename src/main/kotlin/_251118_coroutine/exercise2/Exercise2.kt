@@ -1,4 +1,4 @@
-﻿package _251118_coroutine
+﻿package _251118_coroutine.exercise2
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
