@@ -3,6 +3,7 @@ package com.ezlevup.my.day251118.exercise
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.time.Duration.Companion.seconds
 
 
 interface Chirpable {
@@ -19,8 +20,12 @@ class Bird(
     override fun chirp() {
         chirpCount++
         println("$chirpText / $chirpIntervalSec sec / $chirpCount 번")
-
     }
+}
+
+object BirdConfig {
+    const val MAX_DURATION_SEC = 10
+    const val ONE_SECOND_MILLIS = 1_000L
 }
 
 fun main() = runBlocking {
@@ -30,16 +35,29 @@ fun main() = runBlocking {
 
     val birds = listOf<Bird>(bird1, bird2, bird3)
 
-    birds.forEach { bird ->
+    val jobs = birds.map { bird ->
         launch {
-            repeat(4) {
+            while (true) {
                 bird.chirp()
-                delay(bird.chirpIntervalSec * 1000L)
+                //delay(bird.chirpIntervalSec * BirdConfig.ONE_SECOND_MILLIS)
+                delay(bird.chirpIntervalSec.seconds)
             }
         }
     }
 
-    return@runBlocking
+    val maxSec: Int = BirdConfig.MAX_DURATION_SEC
+    var currentSec: Int = 0 // 현재 진행한 초
+    val timerJob = launch {
+        while (currentSec < maxSec) {
+            currentSec++
+            delay(BirdConfig.ONE_SECOND_MILLIS)
+            println("$currentSec sec")
+        }
+
+        jobs.forEach { job -> job.cancel() }
+    }
+
+    timerJob.join()
 }
 
 
