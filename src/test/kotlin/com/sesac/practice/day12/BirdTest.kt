@@ -2,13 +2,13 @@ package com.sesac.practice.day12
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
 class BirdTest {
     @Test
-    fun `새들이 4번만 운다`() = runBlocking {
+    fun `새들이 4번만 운다`() = runTest {
         // given
         val cryTimes = 4
 
@@ -58,7 +58,7 @@ class BirdTest {
     }
 
     @Test
-    fun `새들이 10초 동안 운다`() = runBlocking {
+    fun `새들이 10초 동안 운다`() = runTest {
         // given
         val timeMillis = 10_000L
 
