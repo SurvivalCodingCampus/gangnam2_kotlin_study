@@ -1,11 +1,13 @@
 package com.survivalcoding.kotlinstudy.`11_lamda`
 
+import kotlin.collections.filter
+
 data class Trader(val name: String, val city: String)
 
 data class Transaction(val trader: Trader, val year: Int, val value: Int)
 
 fun main() {
-    val transactions = listOf(
+    val transactions: Iterable<Transaction> = listOf(
         Transaction(Trader("Brian", "Cambridge"), 2011, 300),
         Transaction(Trader("Raoul", "Cambridge"), 2012, 1000),
         Transaction(Trader("Raoul", "Cambridge"), 2011, 400),
@@ -19,12 +21,24 @@ fun main() {
     println(transactions.filter { it.year == 2011 }
         .sortedBy { it.value }
         .map { it.trader.name }
-        .toSet()
+        .distinct() // set -> list
     )
 
-    transactions.filter { it.year == 2011 }
-        .sortedBy { it.value }
-        .map { it.trader.name }
-        .toSet()
-        .forEach { println(it) }
+    someFunction {
+        println("Hello World")
+    }
+
+    transactions.maxOf { transaction: Transaction -> transaction.value }
+
+//    transactions.filter { it.year == 2011 }
+//        .sortedBy { it.value }
+//        .map { it.trader.name }
+//        .toSet()
+//        .forEach { println(it) }
+}
+
+inline fun someFunction(lambda: () -> Unit) {
+    println("someFunction!!!!")
+    lambda()
+    println("someFunction????")
 }
