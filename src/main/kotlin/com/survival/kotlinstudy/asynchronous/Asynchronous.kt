@@ -1,5 +1,6 @@
 package com.survival.kotlinstudy.asynchronous
 
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -19,7 +20,7 @@ suspend fun bird3() {
     println("짹짹")
 }
 
-fun main() = runBlocking {
+fun main(): Unit = runBlocking {
     launch {
         repeat(4) {
             bird1()
@@ -35,4 +36,7 @@ fun main() = runBlocking {
             bird3()
         }
     }
+//    async { repeat(4) { bird1() } }
+//    async { repeat(4) { bird2() } }
+//    async { repeat(4) { bird3() } }
 }
