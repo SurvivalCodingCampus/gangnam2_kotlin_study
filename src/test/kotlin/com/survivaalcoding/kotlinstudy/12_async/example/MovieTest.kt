@@ -3,7 +3,6 @@ package com.survivaalcoding.kotlinstudy.`12_async`.example
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class MovieTest {
     @Test
