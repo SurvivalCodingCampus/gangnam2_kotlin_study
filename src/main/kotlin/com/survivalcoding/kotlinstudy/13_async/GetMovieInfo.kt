@@ -7,7 +7,6 @@ suspend fun getMovieInfo(): Movie {
     delay(1000)
     val json = """{"title": "Star Wars", "director": "George Lucas", "year" : 1997}"""
 
-    // TODO: Movie 데이터를 리턴하도록 작성
-    val result = Json.decodeFromString<Movie>(json)
-    return result
+    // Movie 데이터를 리턴
+    return Json.decodeFromString<Movie>(json)
 }
