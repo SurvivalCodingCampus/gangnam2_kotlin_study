@@ -1,16 +1,14 @@
 package com.luca.kotlinstudy._13_Async
 
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.NonCancellable.cancel
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 
 fun main(): Unit = runBlocking {
-    async { firstBird() }
-    async { secondBird() }
-    async { thirdBird() }
+    launch { firstBird() }
+    launch { secondBird() }
+    launch { thirdBird() }
 }
 
 suspend fun firstBird() {
