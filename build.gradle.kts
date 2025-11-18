@@ -16,6 +16,12 @@ dependencies {
     testImplementation("junit:junit:4.13.1")
     //직렬화 역직렬화 관련 라이브러리
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    //coroutine관련 라이브러리
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+
+    //코루틴 테스트 관련 라이브러리
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6")
+
 
 }
 
