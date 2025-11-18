@@ -45,11 +45,3 @@ tasks.test {
 kotlin {
     jvmToolchain(21)
 }
-
-tasks.withType<JavaExec>().configureEach {
-    jvmArgs("-Dfile.encoding=UTF-8")
-}
-
-tasks.test {
-    systemProperty("file.encoding", "UTF-8")
-}
