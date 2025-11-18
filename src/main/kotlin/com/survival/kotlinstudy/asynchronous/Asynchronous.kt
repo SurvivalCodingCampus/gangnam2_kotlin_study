@@ -21,21 +21,26 @@ suspend fun bird3() {
 }
 
 fun main(): Unit = runBlocking {
-    launch {
-        repeat(4) {
-            bird1()
+    val job = launch {
+        launch {
+            while (true) {
+                bird1()
+            }
+        }
+        launch {
+            while (true) {
+                bird2()
+            }
+        }
+        launch {
+            while (true) {
+                bird3()
+            }
         }
     }
-    launch {
-        repeat(4) {
-            bird2()
-        }
-    }
-    launch {
-        repeat(4) {
-            bird3()
-        }
-    }
+    delay(10000)
+    job.cancel()
+    println("10초 지남~")
 //    async { repeat(4) { bird1() } }
 //    async { repeat(4) { bird2() } }
 //    async { repeat(4) { bird3() } }
