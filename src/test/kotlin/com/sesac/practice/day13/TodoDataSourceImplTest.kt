@@ -8,7 +8,7 @@ class TodoDataSourceImplTest {
     @Test
     fun `todo_json 파일을 읽어서 Todo 객체로 변환한다`() = runTest {
         // given
-        val filename = "json/todo.json"
+        val filename = "data/todo.json"
         val dataSource = TodoDataSourceImpl(filename)
 
         // when
@@ -24,7 +24,7 @@ class TodoDataSourceImplTest {
     @Test
     fun `todos_json 파일을 읽어서 Todo 객체 리스트로 변환한다`() = runTest {
         // given
-        val filename = "json/todos.json"
+        val filename = "data/todos.json"
         val dataSource = TodoDataSourceImpl(filename)
 
         // when

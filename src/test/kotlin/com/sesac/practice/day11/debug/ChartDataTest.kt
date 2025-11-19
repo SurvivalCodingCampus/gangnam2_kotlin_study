@@ -10,7 +10,7 @@ class ChartDataTest {
     @Test
     fun `json 차트 데이터를 역직렬화한다`() {
         // given
-        val file = File("chart_data.json")
+        val file = File("data/chart_data.json")
         val json = file.readText()
 
         // when
