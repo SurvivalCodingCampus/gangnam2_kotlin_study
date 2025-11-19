@@ -40,8 +40,13 @@ class StockDataSourceImpl : StockDataSource {
         val file = File("listing_status.csv")
         val stockLines = file.readLines()
 
-        // val stocks = mutableListOf<StockListing>()
-        val stocks = stockLines.drop(1).map { parseStockListing(it) }
+        val stocks = mutableListOf<StockListing>()
+
+        for (i in stockLines.indices) {
+            if (i == 0) continue
+            val line = stockLines[i]
+            stocks.add(parseStockListing(line))
+        }
 
         return stocks
     }
