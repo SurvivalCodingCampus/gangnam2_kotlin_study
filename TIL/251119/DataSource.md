@@ -6,14 +6,16 @@
 
 - 돌아가고 있다면 손대지말고 놔두기.
 - delay() 테스트를 하려고 한다면 코틀린 코루틴 테스트 라이브러리가 있다. 런블러킹 대싱 런테스트를 사용하면 딜레이가 스킵된다.
-https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/
+  https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/
+
 ``` kotlin
 main() : Unit // Unit 넣어주기
 ```
+
 - 1차는 순차실행 너무 느리면 병렬 고민
 - 서스펜드 : 딜레이 같이 간다.
 - 기본으로 도는 쓰레드 : 메인쓰레드 , 오래 걸리는 동작 : 백그라운드 쓰레드
-- data : 이퀄스 투스트링 해쉬코드 카피  . 카피 너무 중요하다
+- data : 이퀄스 투스트링 해쉬코드 카피 . 카피 너무 중요하다
 
 # DataSource란?
 
@@ -22,14 +24,14 @@ main() : Unit // Unit 넣어주기
 - 앱은 단독으로 데이터를 만들어내지 않는다.
 - 대부분의 앱은 외부에서 데이터를 받아와서 화면에 보여준다.
 
-```kotlin
+```
 DataSource = 편의점, 마트, 창고
-- 각각에서 물건을 직접 가져옴
-- 실제 저장소 접근
+-각각에서 물건을 직접 가져옴
+        -실제 저장소 접근
 
 Repository = 장보기 대행 서비스
-- 상황에 맞게 다양한 곳을 조합
-- 데이터 취합,로직,정책 제공
+-상황에 맞게 다양한 곳을 조합
+-데이터 취합, 로직, 정책 제공
 ```
 
 # DataSource의 역할
@@ -47,7 +49,7 @@ Repository = 장보기 대행 서비스
 - JSON (웹 API에서 자주 사용)
 - XML
 - CSV (엑셀 같은 형식)
-- RDBMS (MySQL, PostgreSQL 등 관계형 DB)
+- RDBMS (MySQL, PostgresSQL 등 관계형 DB)
 - NoSQL (MongoDB, Firebase Firestore 등)
 
 ## 예시 1 도서관 앱
@@ -68,8 +70,10 @@ Repository = 장보기 대행 서비스
 
 - 접두어로 저장소 유형 표시
 - 구현 기술이 명확할 경우 해당 이름 사용
+
 1. FileUserDataSource VS DatabaseUserDataSource
 2. NetworkUserDataSource VS RemoteUserDataSource
+
 - Impl 접미사를 사용하는 이름 관례
     - 구현체임을 명확히 표시
     - 인터페이스와 구현체 구분 용이
