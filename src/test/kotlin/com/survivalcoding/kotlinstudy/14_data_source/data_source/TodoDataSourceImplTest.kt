@@ -49,7 +49,7 @@ class TodoDataSourceImplTest {
 
     @Test
     fun `Todos 리스트 역직렬화`() = runBlocking {
-        // when
+        // given
         val todos = dataSource.getTodos()
 
         // when
