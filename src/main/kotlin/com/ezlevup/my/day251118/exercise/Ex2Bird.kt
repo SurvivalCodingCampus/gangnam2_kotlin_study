@@ -28,7 +28,7 @@ object BirdConfig {
     const val ONE_SECOND_MILLIS = 1_000L
 }
 
-fun main() = runBlocking {
+fun main(): Unit = runBlocking {
     val bird1 = Bird("꾸욱", 1)
     val bird2 = Bird("까악", 2)
     val bird3 = Bird("짹짹", 3)
