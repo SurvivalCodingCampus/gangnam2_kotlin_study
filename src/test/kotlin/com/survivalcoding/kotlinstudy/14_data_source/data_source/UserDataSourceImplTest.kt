@@ -5,6 +5,8 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class UserDataSourceImplTest {
     companion object {
@@ -64,5 +66,31 @@ class UserDataSourceImplTest {
         assertEquals(USER_1_COMPANY_NAME, user.company.name)
         assertEquals(USER_1_COMPANY_PHRASE, user.company.catchPhrase)
         assertEquals(USER_1_COMPANY_BS, user.company.bs)
+    }
+
+    @Test
+    fun `랜덤 사용자 역직렬화 검증`() = runBlocking {
+        // given
+        val users = dataSource.getUsers()
+
+        // when
+        val randomUser = users.random() // 랜덤 1명
+
+        // then
+        assertNotNull(randomUser.id)
+        assertTrue(randomUser.name.isNotBlank())
+        assertTrue(randomUser.username.isNotBlank())
+        assertTrue(randomUser.email.isNotBlank())
+
+        assertNotNull(randomUser.address)
+        assertTrue(randomUser.address.street.isNotBlank())
+        assertTrue(randomUser.address.city.isNotBlank())
+
+        assertNotNull(randomUser.address.geo.lat)
+        assertNotNull(randomUser.address.geo.lng)
+
+        assertTrue(randomUser.company.name.isNotBlank())
+        assertTrue(randomUser.company.catchPhrase.isNotBlank())
+        assertTrue(randomUser.company.bs.isNotBlank())
     }
 }
