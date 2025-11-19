@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 @Serializable
-data class TodoList(
+data class User(
     val id: Int,
     val name: String,
     val username: String,
@@ -41,23 +41,23 @@ data class Company(
     val bs: String,
 )
 
-interface TodoListDataSource {
-    suspend fun getTodos(): List<TodoList>
+interface UserDataSource {
+    suspend fun getUsers(): List<User>
 }
 
 class TodoListDataSourceImpl(
     private val filePath: String
-) : TodoListDataSource {
-    override suspend fun getTodos(): List<TodoList> = withContext(Dispatchers.IO) {
+) : UserDataSource {
+    override suspend fun getUsers(): List<User> = withContext(Dispatchers.IO) {
         val jsonString = File(filePath).readText()
-        Json.decodeFromString<List<TodoList>>(jsonString)
+        Json.decodeFromString<List<User>>(jsonString)
     }
 }
 
 fun main(): Unit = runBlocking {
-    val dataSource: TodoListDataSource = TodoListDataSourceImpl(
-        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todoList.json"
+    val dataSource: UserDataSource = TodoListDataSourceImpl(
+        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/users.json"
     )
-    val todo = dataSource.getTodos()
+    val todo = dataSource.getUsers()
     println(todo)
 }
