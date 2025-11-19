@@ -33,18 +33,14 @@ class StockDataSourceImpl : StockDataSource {
             row[5],
             row[6]
         )
-
     }
 
     override suspend fun getStockListings(): List<StockListing> {
         val file = File("listing_status.csv")
-        val stockLines = file.readLines()
-
         val stocks = mutableListOf<StockListing>()
 
-        for (i in stockLines.indices) {
-            if (i == 0) continue
-            val line = stockLines[i]
+        file.forEachLine { line ->
+            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) return@forEachLine
             stocks.add(parseStockListing(line))
         }
 
