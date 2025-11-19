@@ -35,8 +35,8 @@ class StockDataSourceImpl(
             .drop(1) // 헤더 첫줄 제거
             .map { it.split(",") }
             .filter { parts ->
-                // name 이 비어있는 항목 제거
-                parts[1].isNotBlank() // name이 빈문자열, 공백이 아니여야 true, null은 스플릿해서 없음
+                // 필드 개수가 충분하고 name이 비어있지 않은 항목만 유지
+                parts.size >= 7 && parts[1].isNotBlank() // isNotBlank :name이 빈문자열, 공백이 아니여야 true, null은 스플릿해서 없음
             }
             .map { parts ->
                 StockListing(
