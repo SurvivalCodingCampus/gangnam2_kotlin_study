@@ -4,7 +4,10 @@ import com.survivalcoding.kotlinstudy.`14_data_source`.model.StockListing
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.time.LocalDate
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertIs
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class StockDataSourceImplTest {
     companion object {
@@ -58,7 +61,10 @@ class StockDataSourceImplTest {
         assertTrue(randomStock.assetType.isNotBlank())
 
         assertNotNull(randomStock.ipoDate)
-        assertNull(randomStock.delistingDate)
+        
+        randomStock.delistingDate?.let {
+            assertIs<LocalDate>(it)
+        }
 
         assertNotNull(randomStock.status)
         assertTrue(randomStock.status.isNotBlank())
