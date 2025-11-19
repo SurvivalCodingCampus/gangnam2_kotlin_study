@@ -62,7 +62,8 @@ class TodoDataSourceImpl : TodoDataSource, FileLoad {
     override fun <T> loadFile(filename: String): T {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as T
+        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
+            ?: throw TypeCastException("변환할 수 없습니다.")
     }
 }
 
@@ -84,7 +85,8 @@ class UserDataSourceImpl : UserDataSource, FileLoad {
     override fun <T> loadFile(filename: String): T {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T ?: throw TypeCastException("")
+        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
+            ?: throw TypeCastException("변환할 수 없습니다.")
     }
 }
 
@@ -127,7 +129,8 @@ class StockDataSourceImpl : StockDataSource, FileLoad {
     override fun <T> loadFile(filename: String): T {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readLines) as T
+        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readLines) as? T
+            ?: throw TypeCastException("변환할 수 없습니다.")
     }
 }
 
