@@ -9,8 +9,9 @@ class StockDataSourceImpl : StockDataSource {
         val resultList = mutableListOf<StockListing>()
         val file = File("docs/data_source/listing_status.csv")
         val lines = file.readLines()
-        for(line in lines){
-            if(line == lines[0]) continue
+
+        for (line in lines) {
+            if (line == lines[0]) continue
 
             val fields = line.split(',')
 
@@ -29,6 +30,7 @@ class StockDataSourceImpl : StockDataSource {
                 )
             }
         }
+
         return resultList
     }
 
@@ -42,8 +44,4 @@ class StockDataSourceImpl : StockDataSource {
     private fun toLocalDate(string: String): LocalDate {
         return LocalDate.parse(string)
     }
-}
-
-fun main(): Unit = runBlocking {
-    println(StockDataSourceImpl().getStockListings())
 }
