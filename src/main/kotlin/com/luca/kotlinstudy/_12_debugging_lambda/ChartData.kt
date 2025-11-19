@@ -32,7 +32,7 @@ fun loadChartData(jsonFile: File): ChartRoot {
 }
 
 fun main() {
-    val file = File("src/main/kotlin/com/luca/kotlinstudy/_12_debugging_lamda/chart_data.json")
+    val file = File("src/main/kotlin/com/luca/kotlinstudy/_12_debugging_lambda/chart_data.json")
 
     val result = loadChartData(file)
 
