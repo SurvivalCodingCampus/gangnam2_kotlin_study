@@ -21,18 +21,30 @@ interface StockDataSource {
 }
 
 class StockDataSourceImpl : StockDataSource {
+
+    fun parseStockListing(line: String): StockListing {
+        val row = line.split(',')
+        return StockListing(
+            row[0],
+            row[1],
+            row[2],
+            row[3],
+            row[4],
+            row[5],
+            row[6]
+        )
+
+    }
+
     override suspend fun getStockListings(): List<StockListing> {
         val file = File("listing_status.csv")
         val stockLines = file.readLines()
 
         val stocks = mutableListOf<StockListing>()
 
-        for (i in stockLines.indices) {
-            if (i == 0) continue
-            val line = stockLines[i]
-            val row = line.split(',')
-            val stock = StockListing(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
-            stocks.add(stock)
+        stockLines.forEachIndexed { index, line ->
+            if (index == 0) return@forEachIndexed
+            stocks.add(parseStockListing(line))
         }
 
         return stocks
