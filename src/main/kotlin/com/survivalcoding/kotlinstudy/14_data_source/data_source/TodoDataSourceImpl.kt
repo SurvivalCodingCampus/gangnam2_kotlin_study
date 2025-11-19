@@ -1,7 +1,6 @@
 package com.survivalcoding.kotlinstudy.`14_data_source`.data_source
 
 import com.survivalcoding.kotlinstudy.`14_data_source`.model.Todo
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import java.io.File
 
