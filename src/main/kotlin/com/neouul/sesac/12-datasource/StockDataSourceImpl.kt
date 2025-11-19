@@ -1,6 +1,5 @@
 package com.neouul.sesac.`12-datasource`
 
-import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.time.LocalDate
 
@@ -34,14 +33,15 @@ class StockDataSourceImpl : StockDataSource {
         return resultList
     }
 
-    private fun toNullOrDate(string: String): LocalDate? {
+    // private 함수들 테스트 위해서 public으로
+    fun toNullOrDate(string: String): LocalDate? {
         if (string.lowercase() == "null") {
             return null
         }
         return toLocalDate(string)
     }
 
-    private fun toLocalDate(string: String): LocalDate {
+    fun toLocalDate(string: String): LocalDate {
         return LocalDate.parse(string)
     }
 }
