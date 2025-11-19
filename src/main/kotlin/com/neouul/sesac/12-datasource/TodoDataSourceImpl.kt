@@ -5,7 +5,14 @@ import java.io.File
 
 class TodoDataSourceImpl : TodoDataSource {
     override suspend fun getTodo(): Todo {
-        val file = File("docs/file/todo.json")
+        val file = File("docs/data_source/todo.json")
+        val json = file.readText()
+
+        return Json.decodeFromString(json)
+    }
+
+    override suspend fun getTodos(): List<Todo> {
+        val file = File("docs/data_source/todos.json")
         val json = file.readText()
 
         return Json.decodeFromString(json)
