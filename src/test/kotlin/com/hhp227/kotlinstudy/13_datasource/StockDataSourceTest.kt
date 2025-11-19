@@ -33,7 +33,7 @@ class StockDataSourceTest {
     }
 
     @Test
-    fun `User리스트 마지막 객체가 일치한지 테스트`() = runTest {
+    fun `StockListings 마지막 객체가 일치한지 테스트`() = runTest {
         val expected = StockListing("ZZZ", "TEST TICKER FOR UTP", "NYSE ARCA", "Stock", "2014-10-31", "null", "Active")
         val stockListings = stockDataSource.getStockListings()
         val lastStock = stockListings.last()
