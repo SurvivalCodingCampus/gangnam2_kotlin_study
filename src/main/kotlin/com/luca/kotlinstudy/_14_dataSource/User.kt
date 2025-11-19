@@ -1,5 +1,6 @@
 package com.luca.kotlinstudy._14_dataSource
 
+import com.luca.kotlinstudy._14_dataSource.TodoListDataSourceImpl.Companion.usersFilePath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -52,12 +53,14 @@ class TodoListDataSourceImpl(
         val jsonString = File(filePath).readText()
         Json.decodeFromString<List<User>>(jsonString)
     }
+
+    companion object {
+        val usersFilePath = "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/users.json"
+    }
 }
 
 fun main(): Unit = runBlocking {
-    val dataSource: UserDataSource = TodoListDataSourceImpl(
-        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/users.json"
-    )
+    val dataSource: UserDataSource = TodoListDataSourceImpl(usersFilePath)
     val todo = dataSource.getUsers()
     println(todo)
 }

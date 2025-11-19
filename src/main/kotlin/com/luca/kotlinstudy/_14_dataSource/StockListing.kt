@@ -1,5 +1,6 @@
 package com.luca.kotlinstudy._14_dataSource
 
+import com.luca.kotlinstudy._14_dataSource.StockDataSourceImpl.Companion.stockFilePath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -49,12 +50,14 @@ class StockDataSourceImpl(
                 )
             }
     }
+
+    companion object {
+        val stockFilePath = "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/listing_status.csv"
+    }
 }
 
 fun main() = runBlocking {
-    val dataSource: StockDataSource = StockDataSourceImpl(
-        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/listing_status.csv"
-    )
+    val dataSource: StockDataSource = StockDataSourceImpl(stockFilePath)
     val stockListing = dataSource.getStockListings()
     println(stockListing)
 }

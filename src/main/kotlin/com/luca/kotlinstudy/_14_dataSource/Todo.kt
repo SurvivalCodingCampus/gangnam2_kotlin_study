@@ -1,5 +1,7 @@
 package com.luca.kotlinstudy._14_dataSource
 
+import com.luca.kotlinstudy._14_dataSource.TodoDataSourceImpl.Companion.todoFilePath
+import com.luca.kotlinstudy._14_dataSource.TodoDataSourceImpl.Companion.todosFilePath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -33,15 +35,17 @@ class TodoDataSourceImpl(
         val jsonString = File(filePath).readText()
         Json.decodeFromString<List<Todo>>(jsonString)
     }
+    companion object {
+        val todoFilePath = "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todo.json"
+        val todosFilePath = "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todos.json"
+    }
 }
 
 fun main() = runBlocking {
     val dataSourceTodo: TodoDataSource = TodoDataSourceImpl(
-        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todo.json"
-    )
+        todoFilePath    )
     val dataSourceTodos: TodoDataSource = TodoDataSourceImpl(
-        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todos.json"
-    )
+        todosFilePath    )
     val todo = dataSourceTodo.getTodo()
     val todos = dataSourceTodos.getTodos()
     println(todo)
