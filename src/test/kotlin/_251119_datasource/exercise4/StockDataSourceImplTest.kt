@@ -31,13 +31,12 @@ class StockDataSourceImplTest {
     }
 
     @Test
-    fun `name이 없는 경우 null로 들어가는지 테스트 `() = runTest {
+    fun `name이 없는 경우 빈 값이 들어가야한다 `() = runTest {
         //given
         val stockDataSourceImpl = StockDataSourceImpl()
         //when
         val result = stockDataSourceImpl.getStockListings()
         //then
-        //첫 데이터 검사
-        assertEquals("null", result[result.lastIndex - 1].delistingDate)
+        assertEquals("", result[result.lastIndex - 1].name)
     }
 }
