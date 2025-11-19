@@ -2,7 +2,9 @@ package com.survivaalcoding.kotlinstudy.`13_datasource`.example
 
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import kotlin.test.assertContains
 import kotlin.test.assertEquals
+import kotlin.test.assertIs
 
 class TodoDataSourceImplTest {
     @Test
@@ -20,10 +22,9 @@ class TodoDataSourceImplTest {
             val actual = TodoDataSourceImpl().getTodo()
 
             // then
-            assertEquals(todo.id, actual.id)
-            assertEquals(todo.userId, actual.userId)
-            assertEquals(todo.title, actual.title)
-            assertEquals(todo.completed, actual.completed)
+            assertIs<List<Todo>>(actual)
+            assertEquals(actual.size, 200)
+            assertContains(actual, todo)
         }
     }
 }
