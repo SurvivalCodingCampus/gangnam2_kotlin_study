@@ -1,6 +1,8 @@
 package com.ezlevup.my.day251119.exercise
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import java.io.File
 
@@ -20,7 +22,12 @@ interface StockDataSource {
     suspend fun getStockListings(): List<StockListing>
 }
 
-class StockDataSourceImpl : StockDataSource {
+class StockDataSourceImpl(
+    private val file: File = File("listing_status.csv"),
+) : StockDataSource {
+
+    val stocks = mutableListOf<StockListing>()
+    private var lastLoadedAt: Long = 0L // 마지막으로 파일 변경 시간
 
     fun parseStockListing(line: String): StockListing {
         val row = line.split(',')
@@ -35,13 +42,23 @@ class StockDataSourceImpl : StockDataSource {
         )
     }
 
-    override suspend fun getStockListings(): List<StockListing> {
-        val file = File("listing_status.csv")
-        val stocks = mutableListOf<StockListing>()
-
+    suspend fun loadFromFile() = withContext(Dispatchers.IO) {
+        stocks.clear()
         file.forEachLine { line ->
-            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) return@forEachLine
+            // 첫 줄 제외
+            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) {
+                return@forEachLine
+            }
+
             stocks.add(parseStockListing(line))
+        }
+    }
+
+    override suspend fun getStockListings(): List<StockListing> {
+        val lastModified: Long = file.lastModified() // 파일이 마지막으로 수정된 시간
+        if (stocks.count() == 0 || lastModified != lastLoadedAt) {
+            loadFromFile()
+            lastLoadedAt = lastModified
         }
 
         return stocks
