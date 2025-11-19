@@ -32,4 +32,21 @@ class SerializationUtilsTest {
         assertEquals(todo.title, actual.title)
         assertEquals(todo.completed, actual.completed)
     }
+
+    @Test
+    fun `csv 데이터를 json 데이터로 변경할 수 있다`() {
+        // given
+        val csvData = """
+            symbol,name,exchange,assetType,ipoDate,delistingDate,status
+            -P-HIZ,Presurance Holdings Inc,NASDAQ,Stock,2023-08-30,null,Active            
+        """.trimIndent()
+
+        val jsonData = """[{"symbol": "-P-HIZ","name": "Presurance Holdings Inc","exchange": "NASDAQ","assetType": "Stock","ipoDate": "2023-08-30","delistingDate": null,"status": "Active"}]""".trimIndent()
+
+        // when
+        val actual = SerializationUtils.csvToJson(csvData)
+
+        // then
+        assertEquals(jsonData, actual)
+    }
 }
