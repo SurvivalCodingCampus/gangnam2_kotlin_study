@@ -28,7 +28,7 @@ class StockDataSourceImpl(
         val lines = File(filePath).readLines()
 
         // CSV 헤더 읽기 (첫 줄)
-        val header = lines.first().split(",")
+        // val header = lines.first().split(",")
 
         lines
             .drop(1) // 헤더 첫줄 제거
