@@ -1,6 +1,5 @@
 package com.luca.kotlinstudy._14_dataSource
 
-import com.luca.kotlinstudy._12_debugging_lambda.loadChartData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
