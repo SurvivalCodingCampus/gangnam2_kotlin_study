@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 // 연습문제 1
 @Serializable
-data class Todo (
+data class Todo(
     val userId: Int,
     val id: Int,
     val title: String,
