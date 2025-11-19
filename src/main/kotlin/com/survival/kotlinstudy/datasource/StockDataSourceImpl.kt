@@ -27,7 +27,7 @@ class StockDataSourceImpl : StockDataSource {
     }
 }
 
-fun main(): Unit = runBlocking{
+fun main(): Unit = runBlocking {
     val stock = StockDataSourceImpl()
 
     println(stock.getStockListings().joinToString("\n"))
