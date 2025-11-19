@@ -1,8 +1,6 @@
-package com.luca.kotlinstudy._13_Async
+package com.luca.kotlinstudy._13_async
 
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 // 코루틴 기본 동작 : 순차 실행
