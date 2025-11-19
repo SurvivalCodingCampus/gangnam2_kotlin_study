@@ -17,6 +17,7 @@ data class Todo(
 
 interface TodoDataSource {
     suspend fun getTodo(): Todo
+    suspend fun getTodos(): List<Todo>
 }
 
 class TodoDataSourceImpl(
@@ -27,12 +28,22 @@ class TodoDataSourceImpl(
         val jsonString = File(filePath).readText()
         Json.decodeFromString<Todo>(jsonString)
     }
+
+    override suspend fun getTodos(): List<Todo> = withContext(Dispatchers.IO) {
+        val jsonString = File(filePath).readText()
+        Json.decodeFromString<List<Todo>>(jsonString)
+    }
 }
 
 fun main() = runBlocking {
-    val dataSource: TodoDataSource = TodoDataSourceImpl(
+    val dataSourceTodo: TodoDataSource = TodoDataSourceImpl(
         "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todo.json"
     )
-    val todo = dataSource.getTodo()
+    val dataSourceTodos: TodoDataSource = TodoDataSourceImpl(
+        "src/main/kotlin/com/luca/kotlinstudy/_14_dataSource/todos.json"
+    )
+    val todo = dataSourceTodo.getTodo()
+    val todos = dataSourceTodos.getTodos()
     println(todo)
+    println(todos)
 }
