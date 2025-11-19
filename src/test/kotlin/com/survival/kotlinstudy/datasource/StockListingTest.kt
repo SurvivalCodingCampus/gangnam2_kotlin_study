@@ -15,13 +15,13 @@ class StockListingTest {
 
         val stock = stockList.first()
         assertIs<List<StockListing>>(stockList)
-        assertEquals("-P-HIZ",stock.symbol)
-        assertEquals("Presurance Holdings Inc",stock.name)
-        assertEquals("NASDAQ",stock.exchange)
-        assertEquals("Stock",stock.assetType)
-        assertEquals("2023-08-30",stock.ipoDate)
-        assertEquals("null",stock.delistingDate)
-        assertEquals("Active",stock.status)
+        assertEquals("-P-HIZ", stock.symbol)
+        assertEquals("Presurance Holdings Inc", stock.name)
+        assertEquals("NASDAQ", stock.exchange)
+        assertEquals("Stock", stock.assetType)
+        assertEquals("2023-08-30", stock.ipoDate)
+        assertEquals("null", stock.delistingDate)
+        assertEquals("Active", stock.status)
     }
 
 }
