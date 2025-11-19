@@ -14,7 +14,6 @@ data class Company(val department: Department) {
             println(json)
         } catch (e: Exception) {
             println("파일 저장 중 오류 발생: ${e.message}")
-            throw e
         }
     }
 }
