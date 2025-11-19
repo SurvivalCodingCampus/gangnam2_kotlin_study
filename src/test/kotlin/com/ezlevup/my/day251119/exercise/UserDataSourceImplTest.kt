@@ -28,7 +28,7 @@ class UserDataSourceImplTest {
     }
 
     @Test
-    fun `UserData 데이터 불량이 있는지`(): Unit = runBlocking {
+    fun `UserData 데이터 불량이 없다`(): Unit = runBlocking {
         // given
         val userData = UserDataSourceImpl()
 

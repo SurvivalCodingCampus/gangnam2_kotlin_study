@@ -53,5 +53,16 @@ fun main(): Unit = runBlocking {
     val stockData = stockDataSource.getStockListings()
     stockData.take(5).forEach { println(it) }
     println(stockData.count())
+
+    // 불량 데이터 확인
+    stockData.filter { it ->
+        it.symbol.isNullOrEmpty()
+                || it.name.isNullOrEmpty()
+                || it.exchange.isNullOrEmpty()
+                || it.assetType.isNullOrEmpty()
+                || it.ipoDate == null
+                // || it.delistingDate.isNullOrEmpty()
+                || it.status.isNullOrEmpty()
+    }.forEach { println(it) }
 }
 
