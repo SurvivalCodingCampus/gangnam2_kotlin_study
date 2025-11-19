@@ -45,7 +45,7 @@ CSV는 JSON 대비 Key 가 없고 내용만 있기 때문에 Json 대비 대략 
  */
 
 interface FileLoad {
-    fun <T> loadFile(filename: String): T
+    fun <T> loadFile(filename: String): T?
 }
 
 class TodoDataSourceImpl : TodoDataSource, FileLoad {
@@ -58,13 +58,14 @@ class TodoDataSourceImpl : TodoDataSource, FileLoad {
         val jsonString = loadFile<String>("todos.json")
         return Json.decodeFromString(jsonString)
     }
-
     override fun <T> loadFile(filename: String): T {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
         return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
-            ?: throw TypeCastException("변환할 수 없습니다.")
+            ?: throw TypeCastException("변환 할 수 없습니다.")
     }
+
+
 }
 
 interface TodoDataSource {
@@ -86,7 +87,7 @@ class UserDataSourceImpl : UserDataSource, FileLoad {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
         return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
-            ?: throw TypeCastException("변환할 수 없습니다.")
+            ?: throw TypeCastException("변환 할 수 없습니다.")
     }
 }
 
@@ -123,7 +124,10 @@ class StockDataSourceImpl : StockDataSource, FileLoad {
     override suspend fun getStockListings(): List<StockListing> {
         val data = loadFile<List<String>>("listing_status.csv")
         val fieldNames = data.first().split(",")
-        return data.drop(1).map { row -> fieldNames.zip(row.split(",")).toMap().toObject() }
+        return data
+            .drop(1)
+            .map { row -> fieldNames.zip(row.split(",")).toMap().toObject() }
+            .filter { it.name.isNotBlank() }
     }
 
     override fun <T> loadFile(filename: String): T {
