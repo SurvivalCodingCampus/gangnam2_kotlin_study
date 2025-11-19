@@ -20,4 +20,17 @@ class TodoDataSourceImplTest {
         assertEquals("delectus aut autem", todo.title)
         assertEquals(false, todo.completed)
     }
+
+    @Test
+    fun `todos_json 파일을 읽어서 Todo 객체 리스트로 변환한다`() = runTest {
+        // given
+        val filename = "json/todos.json"
+        val dataSource = TodoDataSourceImpl(filename)
+
+        // when
+        val todos = dataSource.getTodos()
+
+        // then
+        assertEquals(200, todos.size)
+    }
 }
