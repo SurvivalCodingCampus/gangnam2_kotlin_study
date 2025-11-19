@@ -123,7 +123,10 @@ class StockDataSourceImpl : StockDataSource, FileLoad {
     override suspend fun getStockListings(): List<StockListing> {
         val data = loadFile<List<String>>("listing_status.csv")
         val fieldNames = data.first().split(",")
-        return data.drop(1).map { row -> fieldNames.zip(row.split(",")).toMap().toObject() }
+        return data
+            .drop(1)
+            .map { row -> fieldNames.zip(row.split(",")).toMap().toObject() }
+            .filter { it.name.isNotBlank() }
     }
 
     override fun <T> loadFile(filename: String): T {

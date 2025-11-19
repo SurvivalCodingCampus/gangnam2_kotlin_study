@@ -18,7 +18,7 @@ class StockDataSourceTest {
     @Test
     fun `Stock리스트 크기가 일치한지 테스트`() = runTest {
         val stockListing = stockDataSource.getStockListings()
-        val expected = 12414
+        val expected = 12365
 
         assertEquals(expected, stockListing.size)
     }
