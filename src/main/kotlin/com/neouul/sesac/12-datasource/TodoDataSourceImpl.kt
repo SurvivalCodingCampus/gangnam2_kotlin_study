@@ -17,4 +17,11 @@ class TodoDataSourceImpl : TodoDataSource {
 
         return Json.decodeFromString(json)
     }
+
+    override suspend fun getUsers(): List<User> {
+        val file = File("docs/data_source/users.json")
+        val json = file.readText()
+
+        return Json.decodeFromString(json)
+    }
 }
