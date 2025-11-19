@@ -44,7 +44,7 @@ fun main() = runBlocking {
 }
 ```
 
-* async : 결과가 필요한 비동기 작업을 처리할 때 사용되고 Deffered객체를 반환하여 Deffered객체를 통해 결과값을 제공 받을 수 있다.
+* async : 결과가 필요한 비동기 작업을 처리할 때 사용되고 Deferred객체를 반환하여 Deferred객체를 통해 결과값을 제공 받을 수 있다.
 
 ```kotlin
 fun main() = runBlocking {
@@ -201,3 +201,4 @@ Thread[#1,main,5,main]
 
 
 * 코루틴 개념에 대해 모호했었는데 이번 기회에 개념을 확립한 것 같습니다. 
+
