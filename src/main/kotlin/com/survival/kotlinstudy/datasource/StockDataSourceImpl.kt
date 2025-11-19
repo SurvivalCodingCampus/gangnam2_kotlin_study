@@ -6,8 +6,7 @@ import java.io.File
 class StockDataSourceImpl : StockDataSource {
     override suspend fun getStockListings(): List<StockListing> {
         val file = File("listing_status.csv")
-        val data = file.readLines().toMutableList()
-        data.removeAt(0)
+        val data = file.readLines().drop(1)
         val listStockListing = mutableListOf<StockListing>()
 
         data.forEach {
