@@ -84,7 +84,7 @@ class UserDataSourceImpl : UserDataSource, FileLoad {
     override fun <T> loadFile(filename: String): T {
         val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
             ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as T
+        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T ?: throw TypeCastException("")
     }
 }
 
