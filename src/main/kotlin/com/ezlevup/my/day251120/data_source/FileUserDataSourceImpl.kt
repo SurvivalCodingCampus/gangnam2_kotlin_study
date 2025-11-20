@@ -14,6 +14,6 @@ class FileUserDataSourceImpl(
     }
 
     override suspend fun getUsersTop10ByUserName(): List<User> {
-        return getUsers().sortedBy { it.username }.drop(10)
+        return getUsers().sortedBy { it.username }.take(10)
     }
 }
