@@ -18,7 +18,7 @@ class TodoDataSourceImplTest {
 
 
     @Test
-    fun `Todo 데이터 가지고 오기`() = runBlocking {
+    fun `Todo 데이터 가지고 오기`(): Unit = runBlocking {
         // given
         val todoDataSource = TodoDataSourceImpl()
 
@@ -30,7 +30,33 @@ class TodoDataSourceImplTest {
         assertEquals(1L, todo.userId)
         assertEquals(1L, todo.id)
         assertEquals("delectus aut autem", todo.title)
-        assertFalse(todo.completed)
+        assertFalse(todo.completed ?: false)
     }
+
+    @Test
+    fun `Todo 여러 데이터 가지고 오기`(): Unit = runBlocking {
+        // given
+        val todoDataSource = TodoDataSourceImpl()
+
+        // when
+        val todos = todoDataSource.getTodos()
+
+        // then
+        assertNotNull(todos)
+    }
+
+    @Test
+    fun `Todo 여러 데이터 불량이 있는지`(): Unit = runBlocking {
+        // given
+        val todoDataSource = TodoDataSourceImpl()
+
+        // when
+        val todos = todoDataSource.getTodos()
+        val invalidTodoCount: Int = todos.count { it -> it.userId == 0L || it.id == 0L || it.title.isNullOrEmpty() }
+
+        // then
+        assertEquals(0, invalidTodoCount)
+    }
+
 
 }

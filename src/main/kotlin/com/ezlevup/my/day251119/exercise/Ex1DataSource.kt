@@ -8,14 +8,15 @@ import java.io.File
 
 @Serializable
 data class Todo(
-    var userId: Long,
-    var id: Long,
-    var title: String,
-    var completed: Boolean,
+    var userId: Long? = 0,
+    var id: Long? = 0,
+    var title: String? = null,
+    var completed: Boolean? = false,
 )
 
 interface TodoDataSource {
     suspend fun getTodo(): Todo
+    suspend fun getTodos(): List<Todo>
 }
 
 class TodoDataSourceImpl : TodoDataSource {
@@ -24,12 +25,27 @@ class TodoDataSourceImpl : TodoDataSource {
         val json = file.readText()
         return Json.decodeFromString<Todo>(json)
     }
+
+    override suspend fun getTodos(): List<Todo> {
+        val file = File("todo_ex2.json")
+        val json = file.readText()
+        return Json.decodeFromString<List<Todo>>(json)
+    }
 }
 
 fun main(): Unit = runBlocking {
     val todoDataSource = TodoDataSourceImpl()
-    val todo = todoDataSource.getTodo()
-    println(todo)
+
+    // val todo = todoDataSource.getTodo()
+    // println(todo)
+
+    val todos = todoDataSource.getTodos()
+    todos.take(5).forEach { println(it) }
+    println(todos.count())
+
+    // 불량 데이터 확인
+    todos.filter { it -> it.userId == 0L || it.id == 0L || it.title.isNullOrEmpty() }
+        .forEach { println(it) }
 }
 
 
