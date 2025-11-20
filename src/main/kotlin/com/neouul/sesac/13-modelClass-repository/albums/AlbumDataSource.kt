@@ -4,13 +4,13 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 interface AlbumDataSource {
-    suspend fun jsonToAlbums(): List<Album>
+    suspend fun loadAlbums(): List<Album>
 }
 
 class AlbumDataSourceImpl(
     private val path: String = "docs/data_source/albums.json",
 ) : AlbumDataSource {
-    override suspend fun jsonToAlbums(): List<Album> {
+    override suspend fun loadAlbums(): List<Album> {
         val json = File(path).readText()
         return Json.decodeFromString(json)
     }

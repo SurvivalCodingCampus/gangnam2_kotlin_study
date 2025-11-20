@@ -4,15 +4,22 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 interface CommentDataSource {
-    suspend fun jsonToComments(): List<Comment>
+    suspend fun loadComments(): List<Comment>
 }
 
-class MockCommentDataSourceImpl(
+class CommentDataSourceImpl(
     private val path: String = "docs/data_source/comments.json",
 ) : CommentDataSource {
-
-    override suspend fun jsonToComments(): List<Comment> {
+    override suspend fun loadComments(): List<Comment> {
         val json = File(path).readText()
         return Json.decodeFromString(json)
+    }
+}
+
+class MockCommentDatasourceImpl(
+    private val comments: List<Comment>,
+): CommentDataSource {
+    override suspend fun loadComments(): List<Comment> {
+        return comments
     }
 }
