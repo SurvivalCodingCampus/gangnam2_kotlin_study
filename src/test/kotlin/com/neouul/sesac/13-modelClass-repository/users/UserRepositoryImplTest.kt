@@ -2,7 +2,6 @@ package com.neouul.sesac.`13-modelClass-repository`.users
 
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.plus
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Test
