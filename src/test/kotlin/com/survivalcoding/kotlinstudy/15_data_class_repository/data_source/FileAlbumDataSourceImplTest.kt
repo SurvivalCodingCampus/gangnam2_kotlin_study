@@ -12,7 +12,7 @@ class FileAlbumDataSourceImplTest {
         private const val AlBUMS_SIZE = 100
     }
 
-    private val dataSource = MockAlbumDataSourceImpl()
+    private val dataSource = FileAlbumDataSourceImpl()
 
     @Test
     fun `Album 리스트 확인 - 리스트 모두 불러보기`(): Unit = runBlocking {

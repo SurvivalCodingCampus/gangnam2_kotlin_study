@@ -16,7 +16,7 @@ class FileUserDataSourceImplTest {
         private const val USERS_SIZE = 10
     }
 
-    private val dataSource = MockUserDataSourceImpl()
+    private val dataSource = FileUserDataSourceImpl()
 
     @Test
     fun `리스트 확인 - 리스트 모두 불러보기`(): Unit = runBlocking {

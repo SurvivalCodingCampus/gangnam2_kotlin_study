@@ -13,7 +13,7 @@ class FileCommentDataSourceImplTest {
     }
 
 
-    private val dataSource = MockCommentDataSourceImpl()
+    private val dataSource = FileCommentDataSourceImpl()
 
 
     @Test

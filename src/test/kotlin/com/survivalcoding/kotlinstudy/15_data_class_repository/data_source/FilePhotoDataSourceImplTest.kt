@@ -12,7 +12,7 @@ class FilePhotoDataSourceImplTest {
         private const val PHOTOS_SIZE = 5000
     }
 
-    private val dataSource = MockPhotoDataSourceImpl()
+    private val dataSource = FilePhotoDataSourceImpl()
 
     @Test
     fun `리스트 확인 - 리스트 모두 불러보기`(): Unit = runBlocking {

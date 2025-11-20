@@ -12,7 +12,7 @@ class FileTodoDataSourceImplTest {
         private const val TODOS_SIZE = 200
     }
 
-    private val dataSource = MockTodoDataSourceImpl()
+    private val dataSource = FileTodoDataSourceImpl()
 
     @Test
     fun `리스트 확인 - 리스트 모두 불러보기`(): Unit = runBlocking {
