@@ -4,10 +4,9 @@ import _251120_test_double_model_class_repository.common_config.FILEPATH3
 import kotlinx.serialization.json.Json
 import java.io.File
 
-class TodoDataSourceImpl : TodoDataSource {
-
+class TodoDataSourceImpl(val filePath:String) : TodoDataSource {
     override suspend fun getAllMemo(): List<Todo> {
-        val file = File(FILEPATH3).readText()
+        val file = File(filePath).readText()
         return Json.decodeFromString(file)
     }
 }
