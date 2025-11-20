@@ -6,9 +6,9 @@ import com.luca.kotlinstudy._15_model_repository.model.Photo
 class MockPhotoDatasourceImpl : PhotoDatasource {
     override suspend fun getPhotos(albumId: Int): List<Photo> {
         val all = listOf(
-            Photo(albumId = 1, id = 1, title = "Mock Photo 1", url = "", thumbnailUrl = ""),
-            Photo(albumId = 1, id = 2, title = "Mock Photo 2", url = "", thumbnailUrl = ""),
-            Photo(albumId = 2, id = 3, title = "Mock Photo 3", url = "", thumbnailUrl = ""),
+            Photo(1, 1, "Mock Photo 1", "", ""),
+            Photo(1, 2, "Mock Photo 2", "", ""),
+            Photo(2, 3, "Mock Photo 3", "", ""),
         )
         val photos = all.filter { it.albumId == albumId }
         return photos
