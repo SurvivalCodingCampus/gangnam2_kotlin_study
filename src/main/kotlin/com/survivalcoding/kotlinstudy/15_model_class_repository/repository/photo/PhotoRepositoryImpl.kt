@@ -1,6 +1,6 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.photo
 
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.PhotoDataSource
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.photo.PhotoDataSource
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Photo
 
 class PhotoRepositoryImpl(

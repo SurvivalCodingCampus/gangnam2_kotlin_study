@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.todo
 
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Todo
 

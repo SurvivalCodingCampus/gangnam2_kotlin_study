@@ -1,11 +1,12 @@
 package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
 
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.MockUserDataSourceImpl
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.UserDataSource
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.user.MockUserDataSourceImpl
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.user.UserDataSource
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Address
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Company
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Geo
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.User
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.user.UserRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

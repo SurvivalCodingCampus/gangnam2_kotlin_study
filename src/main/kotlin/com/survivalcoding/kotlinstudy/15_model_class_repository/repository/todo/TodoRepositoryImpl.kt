@@ -1,6 +1,6 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.todo
 
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.TodoDataSource
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.todo.TodoDataSource
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Todo
 
 class TodoRepositoryImpl(

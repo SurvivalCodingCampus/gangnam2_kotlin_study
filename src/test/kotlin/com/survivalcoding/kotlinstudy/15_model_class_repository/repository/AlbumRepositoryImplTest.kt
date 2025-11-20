@@ -1,6 +1,7 @@
 package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
 
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.MockAlbumDataSourceImpl
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.album.MockAlbumDataSourceImpl
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.album.AlbumRepositoryImpl
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,5 +1,6 @@
 package com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source
 
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.photo.FilePhotoDataSourceImpl
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Photo
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

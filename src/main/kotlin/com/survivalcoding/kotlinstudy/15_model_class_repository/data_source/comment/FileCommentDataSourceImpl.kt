@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.comment
 
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Comment
 import com.survivalcoding.kotlinstudy.common.readJsonFile

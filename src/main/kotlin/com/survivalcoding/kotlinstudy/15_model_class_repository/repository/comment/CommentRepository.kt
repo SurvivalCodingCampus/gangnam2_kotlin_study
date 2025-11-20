@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.comment
 
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Comment
 

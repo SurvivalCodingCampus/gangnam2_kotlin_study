@@ -1,6 +1,6 @@
-package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository
+package com.survivalcoding.kotlinstudy.`15_model_class_repository`.repository.comment
 
-import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.CommentDataSource
+import com.survivalcoding.kotlinstudy.`15_model_class_repository`.data_source.comment.CommentDataSource
 import com.survivalcoding.kotlinstudy.`15_model_class_repository`.model.Comment
 
 class CommentRepositoryImpl(
