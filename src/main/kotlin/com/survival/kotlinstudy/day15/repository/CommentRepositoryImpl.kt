@@ -9,14 +9,13 @@ class CommentRepositoryImpl(
     private val dataSource: CommentDataSource
 ) : CommentRepository {
     override suspend fun getComments(postId: Int): List<Comment> {
-        val list = dataSource.getComments()
-        return list.filter { it.postId == postId }
+        return dataSource.getComments().filter { it.postId == postId }
     }
 
 }
 
 
-fun main(): Unit = runBlocking{
+fun main(): Unit = runBlocking {
     val filePath = "data/comments.json"
     val repository = CommentRepositoryImpl(MockCommentDataSourceImpl(filePath))
 
