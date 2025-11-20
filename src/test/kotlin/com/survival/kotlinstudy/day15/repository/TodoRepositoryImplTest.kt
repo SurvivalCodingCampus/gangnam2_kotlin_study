@@ -1,6 +1,6 @@
 package com.survival.kotlinstudy.day15.repository
 
-import com.survival.kotlinstudy.day15.datasource.MockTodoDataSourceImpl
+import com.survival.kotlinstudy.day15.datasource.FileTodoDataSourceImpl
 import com.survival.kotlinstudy.day15.model.Todo
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -13,7 +13,7 @@ class TodoRepositoryImplTest {
     @Test
     fun `TodoRepositoryImpl 의 getTodos() 테스트`(): Unit = runBlocking {
         val filePath = "data/todos.json"
-        val repository = TodoRepositoryImpl(MockTodoDataSourceImpl(filePath))
+        val repository = TodoRepositoryImpl(FileTodoDataSourceImpl(filePath))
         val expected = 200
 
 
@@ -29,7 +29,7 @@ class TodoRepositoryImplTest {
     @Test
     fun `TodoRepositoryImpl 의 getCompletedTodos() 테스트`(): Unit = runBlocking {
         val filePath = "data/todos.json"
-        val repository = TodoRepositoryImpl(MockTodoDataSourceImpl(filePath))
+        val repository = TodoRepositoryImpl(FileTodoDataSourceImpl(filePath))
 
 
         val list = repository.getCompletedTodos()

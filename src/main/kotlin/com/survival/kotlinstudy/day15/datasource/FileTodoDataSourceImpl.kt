@@ -4,7 +4,7 @@ import com.survival.kotlinstudy.day15.model.Todo
 import kotlinx.serialization.json.Json
 import java.io.File
 
-class MockTodoDataSourceImpl(
+class FileTodoDataSourceImpl(
     private val filePath: String
 ) : TodoDataSource {
 

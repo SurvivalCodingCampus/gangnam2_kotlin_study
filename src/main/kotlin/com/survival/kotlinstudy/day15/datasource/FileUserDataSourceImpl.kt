@@ -1,14 +1,14 @@
 package com.survival.kotlinstudy.day15.datasource
 
-import com.survival.kotlinstudy.day15.model.Album
+import com.survival.kotlinstudy.day15.model.User
 import kotlinx.serialization.json.Json
 import java.io.File
 
-class MockAlbumDataSourceImpl(
+class FileUserDataSourceImpl(
     private val filePath: String
-) : AlbumDataSource {
+) : UserDataSource {
 
-    override suspend fun getAlbums(): List<Album> {
+    override suspend fun getUsers(): List<User> {
         val file = File(filePath)
         return Json.decodeFromString(file.readText())
     }

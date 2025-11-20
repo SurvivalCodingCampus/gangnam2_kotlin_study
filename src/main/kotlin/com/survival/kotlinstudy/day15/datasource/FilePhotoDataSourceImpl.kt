@@ -4,7 +4,7 @@ import com.survival.kotlinstudy.day15.model.Photo
 import kotlinx.serialization.json.Json
 import java.io.File
 
-class MockPhotoDataSourceImpl(
+class FilePhotoDataSourceImpl(
     private val filePath: String
 ) : PhotoDataSource {
 

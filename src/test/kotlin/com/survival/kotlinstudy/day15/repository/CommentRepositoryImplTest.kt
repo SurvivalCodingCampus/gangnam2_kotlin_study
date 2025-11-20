@@ -9,10 +9,9 @@ class CommentRepositoryImplTest {
 
     @Test
     fun `CommentRepositoryImpl 의 getComments 테스트!`(): Unit = runBlocking {
-        val filePath = "data/comments.json"
         val expected = 5
         val postId = 1
-        val repository = CommentRepositoryImpl(MockCommentDataSourceImpl(filePath))
+        val repository = CommentRepositoryImpl(MockCommentDataSourceImpl())
         val list = repository.getComments(postId)
 
         assertEquals(expected, list.size)
