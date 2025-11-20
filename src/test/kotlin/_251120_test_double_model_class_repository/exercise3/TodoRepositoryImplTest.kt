@@ -10,7 +10,7 @@ class TodoRepositoryImplTest {
     val repository = TodoRepositoryImpl(mockTodoDataSourceImpl)
 
     @Test
-    fun `Mock객체의 메모가 4개 저장되어있다`() = runTest {
+    fun `Mock객체에 메모가 4개 저장되어있다`() = runTest {
         assertEquals(4, repository.getTodos().size)
     }
 

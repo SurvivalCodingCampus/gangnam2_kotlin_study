@@ -9,7 +9,7 @@ class UserRepositoryImplTest {
     val repository = UserRepositoryImpl(mockUserDataSourceImpl)
 
     @Test
-    fun `Mock객체의 유저가 2개 저장되어있다`() = runTest {
+    fun `Mock객체에 유저가 2개 저장되어있다`() = runTest {
         assertEquals(2, repository.getUsers().size)
     }
 
