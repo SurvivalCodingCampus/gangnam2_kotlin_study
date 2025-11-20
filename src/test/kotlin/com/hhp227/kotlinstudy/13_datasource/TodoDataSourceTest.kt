@@ -22,7 +22,7 @@ class TodoDataSourceTest {
 
     @Test
     fun `파일의 내용이 일치한지 확인`() {
-        val jsonString = todoDataSource.loadFile<String>("todo.json").trimIndent()
+        val jsonString = FileLoadUtil.loadFileToString("todo.json").trimIndent()
         val expected = """{
   "userId": 1,
   "id": 1,

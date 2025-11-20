@@ -2,8 +2,6 @@ package com.hhp227.kotlinstudy.`13_datasource`
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 /*
 과제1. 간단한 JSON 을 데이터 클래스로 변환
@@ -44,28 +42,16 @@ CSV는 JSON 대비 Key 가 없고 내용만 있기 때문에 Json 대비 대략 
 
  */
 
-interface FileLoad {
-    fun <T> loadFile(filename: String): T?
-}
-
-class TodoDataSourceImpl : TodoDataSource, FileLoad {
+class TodoDataSourceImpl : TodoDataSource {
     override suspend fun getTodo(): Todo {
-        val jsonString = loadFile<String>("todo.json")
+        val jsonString = FileLoadUtil.loadFileToString("todo.json")
         return Json.decodeFromString(jsonString)
     }
 
     override suspend fun getTodos(): List<Todo> {
-        val jsonString = loadFile<String>("todos.json")
+        val jsonString = FileLoadUtil.loadFileToString("todos.json")
         return Json.decodeFromString(jsonString)
     }
-    override fun <T> loadFile(filename: String): T {
-        val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
-            ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
-            ?: throw TypeCastException("변환 할 수 없습니다.")
-    }
-
-
 }
 
 interface TodoDataSource {
@@ -77,17 +63,10 @@ interface TodoDataSource {
 @Serializable
 data class Todo(val userId: Int, val id: Int, val title: String, val completed: Boolean)
 
-class UserDataSourceImpl : UserDataSource, FileLoad {
+class UserDataSourceImpl : UserDataSource {
     override suspend fun getUsers(): List<User> {
-        val jsonString = loadFile<String>("users.json")
+        val jsonString = FileLoadUtil.loadFileToString("users.json")
         return Json.decodeFromString(jsonString)
-    }
-
-    override fun <T> loadFile(filename: String): T {
-        val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
-            ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readText) as? T
-            ?: throw TypeCastException("변환 할 수 없습니다.")
     }
 }
 
@@ -120,21 +99,14 @@ interface StockDataSource {
     suspend fun getStockListings(): List<StockListing>
 }
 
-class StockDataSourceImpl : StockDataSource, FileLoad {
+class StockDataSourceImpl : StockDataSource {
     override suspend fun getStockListings(): List<StockListing> {
-        val data = loadFile<List<String>>("listing_status.csv")
+        val data = FileLoadUtil.loadFileToStringList("listing_status.csv")
         val fieldNames = data.first().split(",")
         return data
             .drop(1)
             .map { row -> fieldNames.zip(row.split(",")).toMap().toObject() }
             .filter { it.name.isNotBlank() }
-    }
-
-    override fun <T> loadFile(filename: String): T {
-        val inputStream = this::class.java.classLoader.getResourceAsStream(filename)
-            ?: throw IllegalArgumentException("$filename not found")
-        return BufferedReader(InputStreamReader(inputStream)).use(BufferedReader::readLines) as? T
-            ?: throw TypeCastException("변환할 수 없습니다.")
     }
 }
 
