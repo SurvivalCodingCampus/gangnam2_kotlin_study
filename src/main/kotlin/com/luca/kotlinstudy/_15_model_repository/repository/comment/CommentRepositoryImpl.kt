@@ -7,8 +7,8 @@ import com.luca.kotlinstudy._15_model_repository.model.Comment
 class CommentRepositoryImpl(
     private val dataSource: CommentDataSource
 ) : CommentRepository {
-
     override suspend fun getComments(postId: Int): List<Comment> {
-        return dataSource.getComments(postId)
+        val comments = dataSource.getComments(postId)
+        return comments
     }
 }
