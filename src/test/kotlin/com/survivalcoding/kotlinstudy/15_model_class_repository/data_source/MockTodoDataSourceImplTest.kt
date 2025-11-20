@@ -26,6 +26,7 @@ class MockTodoDataSourceImplTest {
         assertIs<List<Todo>>(todos)
     }
 
+    @Test
     fun `Todo 데이터 - 필드 타입 검사`() = runBlocking {
         // when
         val todos = dataSource.getTodos()

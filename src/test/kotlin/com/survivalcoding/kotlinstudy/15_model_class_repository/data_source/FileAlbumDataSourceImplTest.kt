@@ -9,7 +9,7 @@ import kotlin.test.assertTrue
 
 class FileAlbumDataSourceImplTest {
     companion object {
-        private const val AlBUMS_SIZE = 100
+        private const val ALBUMS_SIZE = 100
     }
 
     private val dataSource = FileAlbumDataSourceImpl()
@@ -21,7 +21,7 @@ class FileAlbumDataSourceImplTest {
 
         // then
         assertTrue(albums.isNotEmpty())
-        assertEquals(AlBUMS_SIZE, albums.size)
+        assertEquals(ALBUMS_SIZE, albums.size)
         assertIs<List<Album>>(albums)
     }
 

@@ -31,10 +31,12 @@ class FileTodoDataSourceImplTest {
         val todos = dataSource.getTodos()
 
         // then
-        todos.forEach { it is Todo }
-        todos.forEach { it.id is Int }
-        todos.forEach { it.userId is Int }
-        todos.forEach { it.title is String }
-        todos.forEach { it.completed is Boolean }
+        todos.forEach {
+            assertTrue(it is Todo)
+            assertTrue(it.id is Int)
+            assertTrue(it.userId is Int)
+            assertTrue(it.title is String)
+            assertTrue(it.completed is Boolean)
+        }
     }
 }
