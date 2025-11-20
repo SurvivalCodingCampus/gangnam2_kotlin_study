@@ -1,12 +1,12 @@
 package com.survival.kotlinstudy.day15.repository
 
-import com.survival.kotlinstudy.day15.datasource.CommentDatasource
+import com.survival.kotlinstudy.day15.datasource.CommentDataSource
 import com.survival.kotlinstudy.day15.datasource.MockCommentDataSourceImpl
 import com.survival.kotlinstudy.day15.model.Comment
 import kotlinx.coroutines.runBlocking
 
 class CommentRepositoryImpl(
-    private val dataSource: CommentDatasource
+    private val dataSource: CommentDataSource
 ) : CommentRepository {
     override suspend fun getComments(postId: Int): List<Comment> {
         val list = dataSource.getComments()
