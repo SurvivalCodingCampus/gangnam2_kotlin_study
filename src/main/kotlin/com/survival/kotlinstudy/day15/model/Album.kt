@@ -1,0 +1,7 @@
+package com.survival.kotlinstudy.day15.model
+
+data class Album(
+    val userId: Int,
+    val id: Int,
+    val title: String,
+)
