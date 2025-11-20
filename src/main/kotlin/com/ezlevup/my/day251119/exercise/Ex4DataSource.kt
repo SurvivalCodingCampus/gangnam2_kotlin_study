@@ -27,6 +27,7 @@ class StockDataSourceImpl(
 ) : StockDataSource {
 
     private val stocks = mutableListOf<StockListing>()
+    private var stocksSnapshot = listOf<StockListing>()
     private var lastLoadedAt: Long = 0L // 마지막으로 파일 변경 시간
 
     fun parseStockListing(line: String): StockListing {
@@ -64,9 +65,10 @@ class StockDataSourceImpl(
         if (forceReload || stocks.isEmpty() || lastModified != lastLoadedAt) {
             loadFromFile()
             lastLoadedAt = lastModified
+            stocksSnapshot = stocks
         }
 
-        return stocks
+        return stocksSnapshot
     }
 }
 
