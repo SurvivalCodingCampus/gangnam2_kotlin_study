@@ -14,7 +14,7 @@ class PhotoRepositoryImplTest {
 
         val list = repository.getPhotos(1)
 
-        assertEquals(50,list.size)
+        assertEquals(50, list.size)
 
 
     }

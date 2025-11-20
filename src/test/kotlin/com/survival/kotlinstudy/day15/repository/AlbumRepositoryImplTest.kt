@@ -14,7 +14,7 @@ class AlbumRepositoryImplTest {
 
         val list = repository.getAlbums(expected)
 
-        assertEquals(expected,list.size)
+        assertEquals(expected, list.size)
 
     }
 
@@ -26,7 +26,7 @@ class AlbumRepositoryImplTest {
 
         val list = repository.getAlbums()
 
-        assertEquals(expected,list.size)
+        assertEquals(expected, list.size)
 
     }
 }

@@ -7,6 +7,7 @@ import java.io.File
 class MockPhotoDataSourceImpl(
     private val filePath: String
 ) : PhotoDataSource {
+
     override suspend fun getPhotos(): List<Photo> {
         val file = File(filePath)
         return Json.decodeFromString(file.readText())

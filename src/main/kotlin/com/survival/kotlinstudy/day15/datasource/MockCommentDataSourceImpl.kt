@@ -7,6 +7,7 @@ import java.io.File
 class MockCommentDataSourceImpl(
     private val filePath: String
 ) : CommentDataSource {
+
     override suspend fun getComments(): List<Comment> {
         val file = File(filePath)
         return Json.decodeFromString(file.readText())
