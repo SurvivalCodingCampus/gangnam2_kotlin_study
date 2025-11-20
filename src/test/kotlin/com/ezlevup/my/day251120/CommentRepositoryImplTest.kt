@@ -1,5 +1,7 @@
 package com.ezlevup.my.day251120
 
+import com.ezlevup.my.day251120.data_source.MockCommentDatasourceImpl
+import com.ezlevup.my.day251120.repository.CommentRepositoryImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -35,7 +37,7 @@ class CommentRepositoryImplTest {
         // when
         val comments = commentRepository.getComments(1)
         val comment = comments[0]
-        
+
         // then
         val name: String = "lee1"
         assertEquals(name, comment.name)
