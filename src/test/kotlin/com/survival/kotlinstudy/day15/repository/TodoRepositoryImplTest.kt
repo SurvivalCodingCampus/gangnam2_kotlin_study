@@ -27,7 +27,7 @@ class TodoRepositoryImplTest {
     }
 
     @Test
-    fun `TodoRepositoryImpl의 getCompletedTodos() 테스트`(): Unit = runBlocking {
+    fun `TodoRepositoryImpl 의 getCompletedTodos() 테스트`(): Unit = runBlocking {
         val filePath = "data/todos.json"
         val repository = TodoRepositoryImpl(MockTodoDataSourceImpl(filePath))
 
