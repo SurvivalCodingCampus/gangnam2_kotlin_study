@@ -18,7 +18,7 @@ interface CommentDataSource {
     suspend fun getComments(postId: Int): List<Comment>
 }
 
-class MockCommentDatasourceImpl(
+class FileCommentDatasourceImpl(
     val fileName: String = "comments.json",
 ) : CommentDataSource {
     override suspend fun getComments(postId: Int): List<Comment> {
@@ -28,6 +28,16 @@ class MockCommentDatasourceImpl(
     }
 }
 
+class MockCommentDatasourceImpl(
+    val fileName: String = "no-file.json",
+) : CommentDataSource {
+    override suspend fun getComments(postId: Int): List<Comment> {
+        return listOf(
+            Comment(postId = 1, id = 1, name = "lee1", email = "lee1@naver.com", body = "f1"),
+            Comment(postId = 1, id = 2, name = "lee1", email = "lee2@naver.com", body = "f2"),
+        )
+    }
+}
 
 interface CommentRepository {
     suspend fun getComments(postId: Int): List<Comment>
@@ -42,11 +52,15 @@ class CommentRepositoryImpl(
 }
 
 fun main(): Unit = runBlocking {
-    val commentRepository = CommentRepositoryImpl(MockCommentDatasourceImpl())
+    val commentRepository = CommentRepositoryImpl(FileCommentDatasourceImpl())
     val result = commentRepository.getComments(1)
     result.take(1).forEach(::println)
     println(result.count())
 
+    CommentRepositoryImpl(MockCommentDatasourceImpl())
+        .getComments(1)
+        .take(1)
+        .forEach(::println)
 }
 
 

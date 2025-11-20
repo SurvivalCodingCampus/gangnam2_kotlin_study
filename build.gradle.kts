@@ -14,6 +14,7 @@ dependencies {
     // 키워드가 아닌 함수 호출로 변경됩니다.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("junit:junit:4.13.1")
+    testImplementation("io.mockk:mockk:1.14.6")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 }
