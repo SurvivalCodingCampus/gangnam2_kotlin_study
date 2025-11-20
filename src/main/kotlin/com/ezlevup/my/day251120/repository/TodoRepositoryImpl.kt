@@ -4,7 +4,7 @@ import com.ezlevup.my.day251120.data_source.TodoDataSource
 import com.ezlevup.my.day251120.model.Todo
 
 class TodoRepositoryImpl(
-    val todoDataSource: TodoDataSource
+    private val todoDataSource: TodoDataSource
 ) : TodoRepository {
     override suspend fun getTodos(): List<Todo> {
         return todoDataSource.getTodos()
