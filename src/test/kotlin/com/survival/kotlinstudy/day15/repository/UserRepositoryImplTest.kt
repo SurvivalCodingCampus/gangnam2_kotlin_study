@@ -1,6 +1,5 @@
 package com.survival.kotlinstudy.day15.repository
 
-import com.survival.kotlinstudy.day15.datasource.FileUserDataSourceImpl
 import com.survival.kotlinstudy.day15.datasource.MockUserDataSourceImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
