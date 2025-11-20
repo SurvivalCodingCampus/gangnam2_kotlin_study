@@ -3,6 +3,6 @@ package com.luca.kotlinstudy._15_model_repository.dataSource.photo
 import com.luca.kotlinstudy._15_model_repository.model.Photo
 
 
-interface PhotoDataSource {
+interface PhotoDatasource {
     suspend fun getPhotos(albumId: Int): List<Photo>
 }

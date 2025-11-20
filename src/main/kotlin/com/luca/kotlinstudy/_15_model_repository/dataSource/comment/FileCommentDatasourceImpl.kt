@@ -7,7 +7,7 @@ import java.io.File
 // JSON 파일에서 댓글 데이터를 읽어오는 DataSource 구현체
 class FileCommentDatasourceImpl(
     private val filePath: String
-) : CommentDataSource {
+) : CommentDatasource {
     override suspend fun getComments(postId: Int): List<Comment> {
         val jsonText = File(filePath).readText()
         val all: List<Comment> = Json.decodeFromString(jsonText)
