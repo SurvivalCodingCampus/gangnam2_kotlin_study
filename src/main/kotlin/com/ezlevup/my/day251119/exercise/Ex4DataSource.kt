@@ -26,7 +26,7 @@ class StockDataSourceImpl(
     private val file: File = File("listing_status.csv"),
 ) : StockDataSource {
 
-    val stocks = mutableListOf<StockListing>()
+    private val stocks = mutableListOf<StockListing>()
     private var lastLoadedAt: Long = 0L // 마지막으로 파일 변경 시간
 
     fun parseStockListing(line: String): StockListing {
