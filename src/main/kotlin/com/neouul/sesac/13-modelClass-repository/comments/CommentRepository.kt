@@ -8,6 +8,6 @@ class CommentRepositoryImpl(
     private val dataSource: CommentDataSource,
 ) : CommentRepository {
     override suspend fun getComments(postId: Int): List<Comment> {
-        return dataSource.jsonToComments().filter { it.postId == postId }
+        return dataSource.loadComments().filter { it.postId == postId }
     }
 }

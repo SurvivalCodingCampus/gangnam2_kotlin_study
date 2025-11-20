@@ -9,10 +9,10 @@ class TodoRepositoryImpl(
     private val dataSource: TodoDataSource,
 ) : TodoRepository {
     override suspend fun getTodos(): List<Todo> {
-        return dataSource.jsonToTodos()
+        return dataSource.loadTodos()
     }
 
     override suspend fun getCompletedTodos(): List<Todo> {
-        return dataSource.jsonToTodos().filter { it.completed } // it.completed == true와 같은 뜻 (조건식)
+        return dataSource.loadTodos().filter { it.completed } // it.completed == true와 같은 뜻 (조건식)
     }
 }

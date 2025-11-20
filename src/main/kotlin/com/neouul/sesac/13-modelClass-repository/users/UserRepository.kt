@@ -9,10 +9,10 @@ class UserRepositoryImpl(
     private val dataSource: UserDataSource,
 ) : UserRepository {
     override suspend fun getUsers(): List<User> {
-        return dataSource.jsonToUsers()
+        return dataSource.loadUsers()
     }
 
     override suspend fun getUsersTop10ByUserName(): List<User> {
-        return dataSource.jsonToUsers().sortedBy { it.name }.take(10)
+        return dataSource.loadUsers().sortedBy { it.name }.take(10)
     }
 }
