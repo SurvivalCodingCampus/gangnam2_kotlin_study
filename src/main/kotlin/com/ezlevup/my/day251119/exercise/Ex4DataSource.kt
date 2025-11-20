@@ -42,7 +42,7 @@ class StockDataSourceImpl(
         )
     }
 
-    suspend fun loadFromFile() = withContext(Dispatchers.IO) {
+    suspend fun loadFromFile(): Unit = withContext(Dispatchers.IO) {
         stocks.clear()
 //        file.forEachLine { line ->
 //            // 첫 줄 제외
@@ -52,8 +52,8 @@ class StockDataSourceImpl(
 //
 //            stocks.add(parseStockListing(line))
 //        }
-        
-        file.readLines().drop(1).map { parseStockListing(it) }
+
+        stocks.addAll(file.readLines().drop(1).map { parseStockListing(it) })
     }
 
     override suspend fun getStockListings(forceReload: Boolean): List<StockListing> {
