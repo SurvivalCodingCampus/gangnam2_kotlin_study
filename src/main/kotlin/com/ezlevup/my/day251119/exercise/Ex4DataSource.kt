@@ -44,14 +44,16 @@ class StockDataSourceImpl(
 
     suspend fun loadFromFile() = withContext(Dispatchers.IO) {
         stocks.clear()
-        file.forEachLine { line ->
-            // 첫 줄 제외
-            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) {
-                return@forEachLine
-            }
-
-            stocks.add(parseStockListing(line))
-        }
+//        file.forEachLine { line ->
+//            // 첫 줄 제외
+//            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) {
+//                return@forEachLine
+//            }
+//
+//            stocks.add(parseStockListing(line))
+//        }
+        
+        file.readLines().drop(1).map { parseStockListing(it) }
     }
 
     override suspend fun getStockListings(forceReload: Boolean): List<StockListing> {
