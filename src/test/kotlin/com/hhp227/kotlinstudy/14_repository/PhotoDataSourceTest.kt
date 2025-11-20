@@ -47,7 +47,7 @@ class PhotoDataSourceTest {
     }
 
     @Test
-    fun `Comment리스트 마지막 아이템이 일치한지 테스트`() = runTest {
+    fun `Photo리스트 마지막 아이템이 일치한지 테스트`() = runTest {
         val expected = Photo(
             albumId = 100,
             id = 5000,

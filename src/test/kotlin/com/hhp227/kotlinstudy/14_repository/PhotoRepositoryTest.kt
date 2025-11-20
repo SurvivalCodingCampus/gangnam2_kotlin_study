@@ -17,7 +17,7 @@ class PhotoRepositoryTest {
     }
 
     @Test
-    fun `AlbumRepository에서 99번 albumId의 Photo들을 가져와서 일치하는지 테스트`() = runTest {
+    fun `PhotoRepository에서 99번 albumId의 Photo들을 가져와서 일치하는지 테스트`() = runTest {
         val albumId = 99
         val photoList = photoRepository.getPhotos(albumId)
         val expected = listOf(
@@ -72,7 +72,6 @@ class PhotoRepositoryTest {
             Photo(99, 4949, "repellat ipsam saepe necessitatibus fugiat quo nemo", "https://via.placeholder.com/600/2d914b", "https://via.placeholder.com/150/2d914b"),
             Photo(99, 4950, "ex delectus ea corrupti aut odit voluptatum dolor", "https://via.placeholder.com/600/4d2bd9", "https://via.placeholder.com/150/4d2bd9")
         )
-
 
         assertEquals(expected, photoList)
     }

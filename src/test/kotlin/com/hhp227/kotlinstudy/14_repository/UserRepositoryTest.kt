@@ -16,7 +16,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    fun `UserRepository에서 username순으로 장랼되어 있는지 테스트`() = runTest {
+    fun `UserRepository에서 username순으로 정렬되어 있는지 테스트`() = runTest {
         val userList = userRepository.getUsersTop10ByUserName()
         val expected = listOf(
             "Antonette",
