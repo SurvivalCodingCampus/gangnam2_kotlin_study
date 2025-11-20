@@ -10,6 +10,6 @@ class MockUserDataSourceImpl(
     }
 
     override suspend fun getUsersTop10ByUserName(): List<User> {
-        return users.sortedBy { it.username }.drop(10)
+        return users.sortedBy { it.username }.take(10)
     }
 }
