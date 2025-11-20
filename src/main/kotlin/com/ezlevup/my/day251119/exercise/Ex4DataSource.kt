@@ -65,7 +65,7 @@ class StockDataSourceImpl(
         if (forceReload || stocks.isEmpty() || lastModified != lastLoadedAt) {
             loadFromFile()
             lastLoadedAt = lastModified
-            stocksSnapshot = stocks
+            stocksSnapshot = stocks.toList()
         }
 
         return stocksSnapshot
