@@ -33,7 +33,9 @@ class StockDataSourceImpl(
     fun parseStockListing(line: String): StockListing {
         val row = line.split(',')
 
-        require(row.size == 7) { "Invalid CSV line: expected 7 fields but got ${row.size}" }
+        if (row.size != 7) {
+            return StockListing()
+        }
 
         return StockListing(
             row[0],
