@@ -14,6 +14,9 @@ class StockDataSourceImpl : StockDataSource {
 
             val fields = line.split(',')
 
+            // 필드 개수 검증
+            if (fields.size < 7) continue
+
             // name이 공백 ("") 이거나 null일 때는 제외함
             if (fields[1].isNotBlank()) {
                 resultList.add(
