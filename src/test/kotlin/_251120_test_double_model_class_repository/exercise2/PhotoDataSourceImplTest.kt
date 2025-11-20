@@ -14,15 +14,6 @@ class PhotoDataSourceImplTest {
         val photo = photoDatasourceImpl.getAllPhotos()
         //then
 
-        /*
-    "albumId": 100,
-    "id": 5000,
-    "title": "error quasi sunt cupiditate voluptate ea odit beatae",
-    "url": "https://via.placeholder.com/600/6dd9cb",
-    "thumbnailUrl": "https://via.placeholder.com/150/6dd9cb"
-
-         */
-
         //맨앞
         assertEquals(1, photo.first().albumId)
         assertEquals(1, photo.first().id)
