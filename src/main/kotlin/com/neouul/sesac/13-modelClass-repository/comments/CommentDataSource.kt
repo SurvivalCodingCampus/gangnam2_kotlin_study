@@ -8,7 +8,7 @@ interface CommentDataSource {
 }
 
 class MockCommentDataSourceImpl(
-    private val path: String = "docs/data_source/comments.json"
+    private val path: String = "docs/data_source/comments.json",
 ) : CommentDataSource {
 
     override suspend fun jsonToComments(): List<Comment> {

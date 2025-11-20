@@ -5,7 +5,7 @@ interface CommentRepository {
 }
 
 class CommentRepositoryImpl(
-    private val dataSource: CommentDataSource
+    private val dataSource: CommentDataSource,
 ) : CommentRepository {
     override suspend fun getComments(postId: Int): List<Comment> {
         return dataSource.jsonToComments().filter { it.postId == postId }
