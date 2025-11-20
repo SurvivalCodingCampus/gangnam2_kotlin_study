@@ -2,12 +2,16 @@ package com.luca.kotlinstudy._15_model_repository
 
 import com.luca.kotlinstudy._15_model_repository.Main.Companion.COMMENT_PATH
 import com.luca.kotlinstudy._15_model_repository.Main.Companion.PHOTO_PATH
+import com.luca.kotlinstudy._15_model_repository.Main.Companion.TODO_PATH
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.FileCommentDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.MockCommentDatasourceImpl
-import com.luca.kotlinstudy._15_model_repository.dataSource.photo.FilePhotoDataSourceImpl
-import com.luca.kotlinstudy._15_model_repository.dataSource.photo.MockPhotoDataSourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.photo.FilePhotoDatasourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.photo.MockPhotoDatasourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.todo.FileTodoDatasourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.todo.MockTodoDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.repository.comment.CommentRepositoryImpl
 import com.luca.kotlinstudy._15_model_repository.repository.photo.PhotoRepositoryImpl
+import com.luca.kotlinstudy._15_model_repository.repository.todo.TodoRepositoryImpl
 import kotlinx.coroutines.runBlocking
 
 /*
@@ -15,8 +19,9 @@ import kotlinx.coroutines.runBlocking
 -> [comments.json 읽기] -> [List<Comment>] 반환
  */
 fun main() = runBlocking {
-    val commentDataSource = FileCommentDatasourceImpl(COMMENT_PATH)
-    val commentRepository = CommentRepositoryImpl(commentDataSource)
+    // comment
+    val commentDatasource = FileCommentDatasourceImpl(COMMENT_PATH)
+    val commentRepository = CommentRepositoryImpl(commentDatasource)
     val comments = commentRepository.getComments(1)
     println(comments)
     println("----------------------------------------")
@@ -26,16 +31,28 @@ fun main() = runBlocking {
     println(mockComments)
     println("----------------------------------------")
 
-    val photoDataSource = FilePhotoDataSourceImpl(PHOTO_PATH)
+    // photo
+    val photoDataSource = FilePhotoDatasourceImpl(PHOTO_PATH)
     val photoRepository = PhotoRepositoryImpl(photoDataSource)
     val photos = photoRepository.getPhotos(1)
     println(photos)
     println("----------------------------------------")
-
-    val mockPhotoDataSource = MockPhotoDataSourceImpl()
-    val mockPhotoRepository = PhotoRepositoryImpl(mockPhotoDataSource)
+    val mockPhotoDatasource = MockPhotoDatasourceImpl()
+    val mockPhotoRepository = PhotoRepositoryImpl(mockPhotoDatasource)
     val mockPhotos = mockPhotoRepository.getPhotos(1)
     println(mockPhotos)
+    println("----------------------------------------")
+
+    // todo
+    val todoDatasource = FileTodoDatasourceImpl(TODO_PATH)
+    val todoPhotoRepository = TodoRepositoryImpl(todoDatasource)
+    val todos = todoPhotoRepository.getTodos(1)
+    println(todos)
+    println("----------------------------------------")
+    val mockTodoDatasource = MockTodoDatasourceImpl()
+    val mockTodoRepository = TodoRepositoryImpl(mockTodoDatasource)
+    val mockTodos = mockTodoRepository.getTodos(1)
+    println(mockTodos)
     println("----------------------------------------")
 }
 
@@ -44,5 +61,7 @@ class Main() {
         const val COMMON_PATH = "src/main/kotlin/com/luca/kotlinstudy/_15_model_repository/dataSource/"
         const val COMMENT_PATH = COMMON_PATH + "comment/comments.json"
         const val PHOTO_PATH = COMMON_PATH + "photo/photos.json"
+        const val TODO_PATH = COMMON_PATH + "todo/todos.json"
+
     }
 }
