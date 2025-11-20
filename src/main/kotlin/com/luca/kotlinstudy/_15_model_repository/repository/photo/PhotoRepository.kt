@@ -3,5 +3,5 @@ package com.luca.kotlinstudy._15_model_repository.repository.photo
 import com.luca.kotlinstudy._15_model_repository.model.Photo
 
 interface PhotoRepository {
-    suspend fun getComments(albumId: Int): List<Photo>
+    suspend fun getPhotos(albumId: Int): List<Photo>
 }

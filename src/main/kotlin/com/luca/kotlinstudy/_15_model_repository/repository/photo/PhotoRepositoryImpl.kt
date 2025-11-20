@@ -6,7 +6,8 @@ import com.luca.kotlinstudy._15_model_repository.model.Photo
 class PhotoRepositoryImpl(
     private val dataSource: PhotoDataSource
 ) : PhotoRepository {
-    override suspend fun getComments(albumId: Int): List<Photo> {
-        return dataSource.getComments(albumId)
+    override suspend fun getPhotos(albumId: Int): List<Photo> {
+        val photos = dataSource.getPhotos(albumId)
+        return photos
     }
 }

@@ -2,8 +2,10 @@ package com.luca.kotlinstudy._15_model_repository
 
 import com.luca.kotlinstudy._15_model_repository.Main.Companion.COMMENT_PATH
 import com.luca.kotlinstudy._15_model_repository.Main.Companion.PHOTO_PATH
+import com.luca.kotlinstudy._15_model_repository.dataSource.comment.FileCommentDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.MockCommentDatasourceImpl
-import com.luca.kotlinstudy._15_model_repository.dataSource.photo.MockPhotoDatasourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.photo.FilePhotoDataSourceImpl
+import com.luca.kotlinstudy._15_model_repository.dataSource.photo.MockPhotoDataSourceImpl
 import com.luca.kotlinstudy._15_model_repository.repository.comment.CommentRepositoryImpl
 import com.luca.kotlinstudy._15_model_repository.repository.photo.PhotoRepositoryImpl
 import kotlinx.coroutines.runBlocking
@@ -13,15 +15,28 @@ import kotlinx.coroutines.runBlocking
 -> [comments.json 읽기] -> [List<Comment>] 반환
  */
 fun main() = runBlocking {
-    val commentDataSource = MockCommentDatasourceImpl(COMMENT_PATH)
+    val commentDataSource = FileCommentDatasourceImpl(COMMENT_PATH)
     val commentRepository = CommentRepositoryImpl(commentDataSource)
     val comments = commentRepository.getComments(1)
     println(comments)
+    println("----------------------------------------")
+    val mockDataSource = MockCommentDatasourceImpl()
+    val mockCommonRepository = CommentRepositoryImpl(mockDataSource)
+    val mockComments = mockCommonRepository.getComments(1)
+    println(mockComments)
+    println("----------------------------------------")
 
-    val photoDataSource = MockPhotoDatasourceImpl(PHOTO_PATH)
+    val photoDataSource = FilePhotoDataSourceImpl(PHOTO_PATH)
     val photoRepository = PhotoRepositoryImpl(photoDataSource)
-    val photos = photoRepository.getComments(1)
+    val photos = photoRepository.getPhotos(1)
     println(photos)
+    println("----------------------------------------")
+
+    val mockPhotoDataSource = MockPhotoDataSourceImpl()
+    val mockPhotoRepository = PhotoRepositoryImpl(mockPhotoDataSource)
+    val mockPhotos = mockPhotoRepository.getPhotos(1)
+    println(mockPhotos)
+    println("----------------------------------------")
 }
 
 class Main() {
