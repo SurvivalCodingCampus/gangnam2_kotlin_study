@@ -11,7 +11,7 @@ class CommentRepositoryImplTest {
     fun `postId에 해당하는 Comment 리스트를 가져올 수 있다`() {
         // given
         val postId = 1L
-        val postIdSize = 2
+        val postIdSize = 1
 
         val file = File("${DIR_PATH}${FILE_NAME}")
         val mockDataSource = MockCommentDataSourceImpl(file)
