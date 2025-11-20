@@ -5,7 +5,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 class FileTodoDataSourceImpl(
-    val fileName: String = "todos.json",
+    private val fileName: String = "todos.json",
 ) : TodoDataSource {
     override suspend fun getTodos(): List<Todo> {
         val file = File(fileName)
