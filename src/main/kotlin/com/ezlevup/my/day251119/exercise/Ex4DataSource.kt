@@ -19,7 +19,7 @@ data class StockListing(
 )
 
 interface StockDataSource {
-    suspend fun getStockListings(): List<StockListing>
+    suspend fun getStockListings(forceReload: Boolean = false): List<StockListing>
 }
 
 class StockDataSourceImpl(
@@ -54,9 +54,9 @@ class StockDataSourceImpl(
         }
     }
 
-    override suspend fun getStockListings(): List<StockListing> {
+    override suspend fun getStockListings(forceReload: Boolean): List<StockListing> {
         val lastModified: Long = file.lastModified() // 파일이 마지막으로 수정된 시간
-        if (stocks.count() == 0 || lastModified != lastLoadedAt) {
+        if (forceReload || stocks.isEmpty() || lastModified != lastLoadedAt) {
             loadFromFile()
             lastLoadedAt = lastModified
         }
