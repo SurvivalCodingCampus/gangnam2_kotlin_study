@@ -1,4 +1,4 @@
-package com.neouul.sesac.`13-modelClass-repository`
+package com.neouul.sesac.`13-modelClass-repository`.comments
 
 import kotlinx.serialization.json.Json
 import java.io.File

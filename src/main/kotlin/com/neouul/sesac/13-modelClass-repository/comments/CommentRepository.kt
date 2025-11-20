@@ -1,4 +1,4 @@
-package com.neouul.sesac.`13-modelClass-repository`
+package com.neouul.sesac.`13-modelClass-repository`.comments
 
 interface CommentRepository {
     suspend fun getComments(postId: Int): List<Comment>
