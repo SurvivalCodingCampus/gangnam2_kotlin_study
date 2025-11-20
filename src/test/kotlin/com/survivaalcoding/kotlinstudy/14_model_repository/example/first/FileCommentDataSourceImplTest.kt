@@ -5,18 +5,14 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File
 
-class MockCommentDataSourceImplTest {
+class FileCommentDataSourceImplTest {
     @Test
-    fun `Comment 리스트를 가져올 수 있다`() {
+    fun `json 파일 데이터를 Comment로 역직렬화 할 수 있다`() {
         // given
-        val jsonSize = 2
-        val expected = listOf(
-            Comment(1L, 1L, "comment1", "user1@gmail.com", "body1"),
-            Comment(2L, 2L, "comment2", "user2@gmail.com", "body2")
-        )
+        val jsonSize = 500
 
         val file = File("$DIR_PATH$FILE_NAME")
-        val mockDataSource = MockCommentDataSourceImpl(file)
+        val mockDataSource = FileCommentDataSourceImpl(file)
 
         runBlocking {
             // when
@@ -24,7 +20,6 @@ class MockCommentDataSourceImplTest {
 
             // then
             assertEquals(jsonSize, comments.size)
-            assertEquals(expected, comments)
         }
     }
 

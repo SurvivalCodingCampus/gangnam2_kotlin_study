@@ -6,27 +6,22 @@ import org.junit.Test
 import java.io.File
 import kotlin.test.assertIs
 
-class MockPhotoDataSourceImplTest {
+class FilePhotoDataSourceImplTest {
     @Test
-    fun `Photo 리스트를 가져올 수 있다`() {
+    fun `json 파일 데이터를 Photo로 역직렬화 할 수 있다`() {
         // given
-        val jsonSize = 2
-        val expected = listOf(
-            Photo(1L, 1L, "title1", "https://url1.com", "https://thubmail1.com"),
-            Photo(2L, 2L, "title2", "https://url2.com", "https://thubmail2.com")
-        )
+        val jsonSize = 5000
 
         val file = File("$DIR_PATH$FILE_NAME")
-        val mockDataSource = MockPhotoDataSourceImpl(file)
+        val mockDataSource = FilePhotoDataSourceImpl(file)
 
         runBlocking {
             // when
-            val actual = mockDataSource.getPhoto()
+            val photos = mockDataSource.getPhoto()
 
             // then
-            assertIs<List<Photo>>(actual)
-            assertEquals(jsonSize, actual.size)
-            assertEquals(expected, actual)
+            assertIs<List<Photo>>(photos)
+            assertEquals(jsonSize, photos.size)
         }
     }
 

@@ -1,21 +1,17 @@
 package com.survivaalcoding.kotlinstudy.`14_model_repository`.example.second
 
-import com.survivaalcoding.kotlinstudy.`14_model_repository`.example.first.CommentRepositoryImpl
-import com.survivaalcoding.kotlinstudy.`14_model_repository`.example.first.MockCommentDataSourceImpl
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File
+import kotlin.test.assertIs
 
 class PhotoRepositoryImplTest {
     @Test
     fun `albumId에 해당하는 Photo 리스트를 가져올 수 있다`() {
         // given
-        val albumId1 = 1L
-        val albumIdSize1 = 50
-
-        val albumId2 = 100L
-        val albumIdSize2 = 50
+        val albumId = 1L
+        val albumIdSize = 1
 
         val file = File("${DIR_PATH}${FILE_NAME}")
         val mockDataSource = MockPhotoDataSourceImpl(file)
@@ -23,12 +19,11 @@ class PhotoRepositoryImplTest {
 
         runBlocking {
             // when
-            val actual1 = photoRepository.getPhotos(albumId1)
-            val actual2 = photoRepository.getPhotos(albumId2)
+            val actual = photoRepository.getPhotos(albumId)
 
             // then
-            assertEquals(albumIdSize1, actual1.size)
-            assertEquals(albumIdSize2, actual2.size)
+            assertIs<List<Photo>>(actual)
+            assertEquals(albumIdSize, actual.size)
         }
 
     }
@@ -53,7 +48,8 @@ class PhotoRepositoryImplTest {
     }
 
     companion object {
-        private const val DIR_PATH = "src/main/kotlin/com/survivaalcoding/kotlinstudy/14_model_repository/example/second/"
+        private const val DIR_PATH =
+            "src/main/kotlin/com/survivaalcoding/kotlinstudy/14_model_repository/example/second/"
         private const val FILE_NAME = "photos.json"
     }
 }

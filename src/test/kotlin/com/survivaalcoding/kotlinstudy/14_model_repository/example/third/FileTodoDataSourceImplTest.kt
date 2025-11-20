@@ -4,30 +4,22 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File
-import kotlin.test.assertIs
 
-class MockTodoDataSourceImplTest {
+class FileTodoDataSourceImplTest {
     @Test
-    fun `Todo 데이터를 가져올 수 있다`() {
+    fun `json 파일 데이터를 Todo로 역직렬화 할 수 있다`() {
         // given
-        val jsonSize = 3
-        val expected = listOf(
-            Todo(1L, 1L, "title1", true),
-            Todo(2L, 2L, "title2", true),
-            Todo(3L, 1L, "title3", false)
-        )
+        val jsonSize = 200
 
         val file = File("$DIR_PATH$FILE_NAME")
-        val mockDataSource = MockTodoDataSourceImpl(file)
+        val mockDataSource = FileTodoDataSourceImpl(file)
 
         runBlocking {
             // when
             val actual = mockDataSource.getTodo()
 
             // then
-            assertIs<List<Todo>>(actual)
             assertEquals(jsonSize, actual.size)
-            assertEquals(expected, actual)
         }
     }
 

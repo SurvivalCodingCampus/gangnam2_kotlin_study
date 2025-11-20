@@ -11,7 +11,7 @@ class TodoRepositoryImplTest {
     @Test
     fun `Todo 전체 데이터를 조회한다`() {
         // given
-        val jsonSize = 200
+        val dataSize = 3
         val file = File("${DIR_PATH}${FILE_NAME}")
         val mockDataSource = MockTodoDataSourceImpl(file)
 
@@ -23,14 +23,14 @@ class TodoRepositoryImplTest {
 
             // then
             assertIs<List<Todo>>(actual)
-            assertEquals(jsonSize, actual.size)
+            assertEquals(dataSize, actual.size)
         }
     }
 
     @Test
     fun `completed 상태가 true인 것만 조회한다`() {
         // given
-        val expectedSize = 90
+        val expectedSize = 2
         val file = File("${DIR_PATH}${FILE_NAME}")
         val mockDataSource = MockTodoDataSourceImpl(file)
 

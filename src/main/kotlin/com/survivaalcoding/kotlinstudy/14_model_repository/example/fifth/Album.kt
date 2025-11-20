@@ -1,11 +1,10 @@
-package com.survivaalcoding.kotlinstudy.`14_model_repository`.example.third
+package com.survivaalcoding.kotlinstudy.`14_model_repository`.example.fifth
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Todo(
+data class Album(
     val id: Long,
     val userId: Long,
     val title: String,
-    val completed: Boolean
 )
