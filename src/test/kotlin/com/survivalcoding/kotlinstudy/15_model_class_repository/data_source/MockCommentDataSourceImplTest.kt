@@ -30,7 +30,7 @@ class MockCommentDataSourceImplTest {
     }
 
     @Test
-    fun `Comment Album mock 데이터 - 필드 타입 검사`() = runBlocking {
+    fun `Comment mock 데이터 - 필드 타입 검사`() = runBlocking {
         // when
         val comments = dataSource.getComments()
 
