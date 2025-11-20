@@ -4,12 +4,12 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class MockUserDataSourceImplTest {
+class FileUserDataSourceImplTest {
     @Test
     fun `users_json 파일을 읽어서 User 리스트로 반환한다`() = runTest {
         // given
         val pathname = "data/users.json"
-        val dataSource = MockUserDataSourceImpl(pathname)
+        val dataSource = FileUserDataSourceImpl(pathname)
 
         // when
         val users = dataSource.getUsers()

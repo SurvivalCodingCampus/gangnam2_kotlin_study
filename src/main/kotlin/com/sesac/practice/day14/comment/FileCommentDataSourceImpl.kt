@@ -1,13 +1,13 @@
-package com.sesac.practice.day14.photo
+package com.sesac.practice.day14.comment
 
 import com.sesac.practice.day14.decodeFromFile
 import java.io.File
 
-class MockPhotoDataSourceImpl(
+class FileCommentDataSourceImpl(
     private val pathname: String,
-) : PhotoDataSource {
+) : CommentDataSource {
 
-    override suspend fun getPhotos(): List<Photo> {
+    override suspend fun getComments(): List<Comment> {
         val file = File(pathname)
 
         return file.decodeFromFile()

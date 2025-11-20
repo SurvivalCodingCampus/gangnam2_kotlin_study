@@ -1,13 +1,13 @@
-package com.sesac.practice.day14.todo
+package com.sesac.practice.day14.user
 
 import com.sesac.practice.day14.decodeFromFile
 import java.io.File
 
-class MockTodoDataSourceImpl(
+class FileUserDataSourceImpl(
     private val pathname: String,
-) : TodoDataSource {
+) : UserDataSource {
 
-    override suspend fun getTodos(): List<Todo> {
+    override suspend fun getUsers(): List<User> {
         val file = File(pathname)
 
         return file.decodeFromFile()

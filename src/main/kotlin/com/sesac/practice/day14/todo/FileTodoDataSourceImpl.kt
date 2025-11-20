@@ -1,13 +1,13 @@
-package com.sesac.practice.day14.album
+package com.sesac.practice.day14.todo
 
 import com.sesac.practice.day14.decodeFromFile
 import java.io.File
 
-class MockAlbumDataSourceImpl(
+class FileTodoDataSourceImpl(
     private val pathname: String,
-) : AlbumDataSource {
+) : TodoDataSource {
 
-    override suspend fun getAlbums(): List<Album> {
+    override suspend fun getTodos(): List<Todo> {
         val file = File(pathname)
 
         return file.decodeFromFile()

@@ -6,15 +6,7 @@ import kotlin.test.assertEquals
 
 class TodoRepositoryImplTest {
 
-    private val dataSource = object : TodoDataSource {
-        override suspend fun getTodos(): List<Todo> {
-            return listOf(
-                Todo(1, 1, "title1", true),
-                Todo(2, 2, "title2", false),
-                Todo(3, 3, "title3", true),
-            )
-        }
-    }
+    private val dataSource = MockTodoDataSourceImpl()
 
     @Test
     fun `Todo 리스트를 가져온다`() = runTest {
