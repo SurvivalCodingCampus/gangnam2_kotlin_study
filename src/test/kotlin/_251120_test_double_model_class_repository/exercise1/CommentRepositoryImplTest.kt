@@ -4,9 +4,9 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class FileCommentRepositoryImplTest {
+class CommentRepositoryImplTest {
     val mockComment = MockCommentDatasourceImpl()
-    val repository = FileCommentRepositoryImpl(mockComment)
+    val repository = CommentRepositoryImpl(mockComment)
 
     @Test
     fun `postId가 1인 모의 데이터의 수는 1개이다`() = runTest {
