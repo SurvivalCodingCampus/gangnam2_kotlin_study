@@ -1,8 +1,6 @@
 package com.survivalcoding.kotlinstudy.`15_repository`.practice.users.repository
 
-import com.survivalcoding.kotlinstudy.`15_repository`.practice.users.data_source.MockUserDataSourceImpl
 import com.survivalcoding.kotlinstudy.`15_repository`.practice.users.data_source.UserDataSource
-import com.survivalcoding.kotlinstudy.`15_repository`.practice.users.model.User
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
