@@ -1,7 +1,6 @@
 package _251120_test_double_model_class_repository.exercise5
 
 import _251120_test_double_model_class_repository.common_config.FILEPATH5
-import _251120_test_double_model_class_repository.exercise3.TodoDataSourceImpl
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
