@@ -8,7 +8,7 @@ import org.junit.Test
 class AlbumRepositoryImplTest {
 
     private val mockDataSource = MockAlbumDatasourceImpl()
-    private val repository = AlbumRepositoryImpl(mockDataSource)
+    private val repository: AlbumRepository = AlbumRepositoryImpl(mockDataSource)
 
     @Test
     fun `limit이 null이면 모든 앨범을 반환한다`() = runBlocking {
