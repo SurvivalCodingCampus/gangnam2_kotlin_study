@@ -1,4 +1,4 @@
-package com.luca.kotlinstudy._15_model_repository.repository
+package com.luca.kotlinstudy._15_model_repository.repository.comment
 
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.CommentDataSource
 import com.luca.kotlinstudy._15_model_repository.model.Comment
