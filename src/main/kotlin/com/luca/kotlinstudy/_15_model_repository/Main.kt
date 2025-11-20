@@ -1,67 +1,96 @@
 package com.luca.kotlinstudy._15_model_repository
 
-import com.luca.kotlinstudy._15_model_repository.Main.Companion.COMMENT_PATH
-import com.luca.kotlinstudy._15_model_repository.Main.Companion.PHOTO_PATH
-import com.luca.kotlinstudy._15_model_repository.Main.Companion.TODO_PATH
+import com.luca.kotlinstudy._15_model_repository.Path.COMMENT_PATH
+import com.luca.kotlinstudy._15_model_repository.Path.PHOTO_PATH
+import com.luca.kotlinstudy._15_model_repository.Path.TODO_PATH
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.FileCommentDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.comment.MockCommentDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.photo.FilePhotoDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.photo.MockPhotoDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.todo.FileTodoDatasourceImpl
 import com.luca.kotlinstudy._15_model_repository.dataSource.todo.MockTodoDatasourceImpl
+import com.luca.kotlinstudy._15_model_repository.repository.comment.CommentRepository
 import com.luca.kotlinstudy._15_model_repository.repository.comment.CommentRepositoryImpl
+import com.luca.kotlinstudy._15_model_repository.repository.photo.PhotoRepository
 import com.luca.kotlinstudy._15_model_repository.repository.photo.PhotoRepositoryImpl
+import com.luca.kotlinstudy._15_model_repository.repository.todo.TodoRepository
 import com.luca.kotlinstudy._15_model_repository.repository.todo.TodoRepositoryImpl
 import kotlinx.coroutines.runBlocking
 
-/*
-[main] -> [CommentRepository]-> [CommentRepositoryImpl] -> [CommentDataSource] -> [MockCommentDataSourceImpl]
--> [comments.json 읽기] -> [List<Comment>] 반환
- */
 fun main() = runBlocking {
     // comment
-    val commentDatasource = FileCommentDatasourceImpl(COMMENT_PATH)
-    val commentRepository = CommentRepositoryImpl(commentDatasource)
-    val comments = commentRepository.getComments(1)
-    println(comments)
-    println("----------------------------------------")
-    val mockDataSource = MockCommentDatasourceImpl()
-    val mockCommonRepository = CommentRepositoryImpl(mockDataSource)
-    val mockComments = mockCommonRepository.getComments(1)
-    println(mockComments)
-    println("----------------------------------------")
+    printComments(
+        label = "Comment (File)",
+        repository = CommentRepositoryImpl(FileCommentDatasourceImpl(COMMENT_PATH))
+    )
+    printComments(
+        label = "Comment (Mock)",
+        repository = CommentRepositoryImpl(MockCommentDatasourceImpl())
+    )
 
     // photo
-    val photoDataSource = FilePhotoDatasourceImpl(PHOTO_PATH)
-    val photoRepository = PhotoRepositoryImpl(photoDataSource)
-    val photos = photoRepository.getPhotos(1)
-    println(photos)
-    println("----------------------------------------")
-    val mockPhotoDatasource = MockPhotoDatasourceImpl()
-    val mockPhotoRepository = PhotoRepositoryImpl(mockPhotoDatasource)
-    val mockPhotos = mockPhotoRepository.getPhotos(1)
-    println(mockPhotos)
-    println("----------------------------------------")
+    printPhotos(
+        label = "Photo (File)",
+        repository = PhotoRepositoryImpl(FilePhotoDatasourceImpl(PHOTO_PATH))
+    )
+    printPhotos(
+        label = "Photo (Mock)",
+        repository = PhotoRepositoryImpl(MockPhotoDatasourceImpl())
+    )
 
     // todo
-    val todoDatasource = FileTodoDatasourceImpl(TODO_PATH)
-    val todoPhotoRepository = TodoRepositoryImpl(todoDatasource)
-    val todos = todoPhotoRepository.getTodos(1)
-    println(todos)
-    println("----------------------------------------")
-    val mockTodoDatasource = MockTodoDatasourceImpl()
-    val mockTodoRepository = TodoRepositoryImpl(mockTodoDatasource)
-    val mockTodos = mockTodoRepository.getTodos(1)
-    println(mockTodos)
+    printTodos(
+        label = "Todo (File)",
+        repository = TodoRepositoryImpl(FileTodoDatasourceImpl(TODO_PATH))
+    )
+    printTodos(
+        label = "Todo (Mock)",
+        repository = TodoRepositoryImpl(MockTodoDatasourceImpl())
+    )
+}
+
+// 공통 경로 상수
+object Path {
+    private const val COMMON_PATH =
+        "src/main/kotlin/com/luca/kotlinstudy/_15_model_repository/dataSource/"
+
+    const val COMMENT_PATH = COMMON_PATH + "comment/comments.json"
+    const val PHOTO_PATH = COMMON_PATH + "photo/photos.json"
+    const val TODO_PATH = COMMON_PATH + "todo/todos.json"
+}
+
+// 출력 헬퍼들
+
+private suspend fun printComments(
+    label: String,
+    repository: CommentRepository
+) {
+    println("===== $label =====")
+    val comments = repository.getComments(1)
+    println(comments)
     println("----------------------------------------")
 }
 
-class Main() {
-    companion object {
-        const val COMMON_PATH = "src/main/kotlin/com/luca/kotlinstudy/_15_model_repository/dataSource/"
-        const val COMMENT_PATH = COMMON_PATH + "comment/comments.json"
-        const val PHOTO_PATH = COMMON_PATH + "photo/photos.json"
-        const val TODO_PATH = COMMON_PATH + "todo/todos.json"
+private suspend fun printPhotos(
+    label: String,
+    repository: PhotoRepository
+) {
+    println("===== $label =====")
+    val photos = repository.getPhotos(1)
+    println(photos)
+    println("----------------------------------------")
+}
 
-    }
+private suspend fun printTodos(
+    label: String,
+    repository: TodoRepository
+) {
+    println("===== $label =====")
+    val todos = repository.getTodos()
+    println(todos)
+
+    val completed = repository.getCompletedTodos()
+    println(completed)
+
+    println("----------------------------------------")
 }

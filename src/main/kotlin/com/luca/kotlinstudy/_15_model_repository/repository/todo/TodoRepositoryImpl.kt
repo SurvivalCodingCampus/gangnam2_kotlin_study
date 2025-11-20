@@ -6,8 +6,12 @@ import com.luca.kotlinstudy._15_model_repository.model.Todo
 class TodoRepositoryImpl(
     private val dataSource: TodoDatasource
 ) : TodoRepository {
-    override suspend fun getTodos(userId: Int): List<Todo> {
-        val todos = dataSource.getTodos(userId)
-        return todos
+
+    override suspend fun getTodos(): List<Todo> {
+        return dataSource.getTodos()
+    }
+
+    override suspend fun getCompletedTodos(): List<Todo> {
+        return dataSource.getTodos().filter { it.completed }
     }
 }
