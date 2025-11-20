@@ -13,6 +13,6 @@ class UserRepositoryImpl(
     }
 
     override suspend fun getUsersTop10ByUserName(): List<User> {
-        return dataSource.loadUsers().sortedBy { it.name }.take(10)
+        return dataSource.loadUsers().sortedBy { it.username }.take(10)
     }
 }
