@@ -13,7 +13,7 @@ class MockUserDatasourceImpl : UserDatasource {
                 name = "Luca",
                 username = "aluca",
                 email = "luca@test.com",
-                adress = Address(
+                address = Address(
                     street = "Street 1",
                     suite = "Suite 101",
                     city = "Busan",
@@ -33,7 +33,7 @@ class MockUserDatasourceImpl : UserDatasource {
                 name = "Ming",
                 username = "bing",
                 email = "ming@test.com",
-                adress = Address(
+                address = Address(
                     street = "Street 2",
                     suite = "Suite 202",
                     city = "Seoul",
@@ -53,7 +53,7 @@ class MockUserDatasourceImpl : UserDatasource {
                 name = "Sena",
                 username = "csena",
                 email = "sena@test.com",
-                adress = Address(
+                address = Address(
                     street = "Street 3",
                     suite = "Suite 303",
                     city = "Daegu",
