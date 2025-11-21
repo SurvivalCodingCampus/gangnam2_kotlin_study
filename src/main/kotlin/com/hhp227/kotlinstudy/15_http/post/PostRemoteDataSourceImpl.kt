@@ -1,20 +1,13 @@
 package com.hhp227.kotlinstudy.`15_http`.post
 
 import com.hhp227.kotlinstudy.`15_http`.Response
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.delete
-import io.ktor.client.request.get
-import io.ktor.client.request.patch
-import io.ktor.client.request.post
-import io.ktor.client.request.put
-import io.ktor.client.request.setBody
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
-import io.ktor.http.isSuccess
-import io.ktor.serialization.kotlinx.json.json
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 class PostRemoteDataSourceImpl(
@@ -29,41 +22,43 @@ class PostRemoteDataSourceImpl(
     }
 ) : PostRemoteDataSource {
     override suspend fun getPosts(): Response<List<Post>> {
-        val response = client.get("https://jsonplaceholder.typicode.com/posts")
+        val response = client.get(URL)
         return Response(
             response.status.value,
             response.headers,
-            Json.decodeFromString(response.bodyAsText())
+            response.body()
         )
     }
 
     override suspend fun getPost(id: Int): Response<Post?> {
-        val response = client.get("https://jsonplaceholder.typicode.com/posts/$id")
+        val response = client.get("$URL/$id")
         return if (!response.status.isSuccess()) {
             Response(response.status.value, response.headers, null)
         } else {
             Response(
                 response.status.value,
                 response.headers,
-                Json.decodeFromString(response.bodyAsText())
+                response.body()
             )
         }
     }
 
-    override suspend fun createPost(post: Post): Response<Post> {
-        val response = client.post("https://jsonplaceholder.typicode.com/posts") {
+    override suspend fun createPost(post: Post): Response<Post?> {
+        val response = client.post(URL) {
             contentType(ContentType.Application.Json)
             setBody(post)
         }
-        return Response(
+        return if (!response.status.isSuccess()) {
+            Response(response.status.value, response.headers, null)
+        } else Response(
             response.status.value,
             response.headers,
-            Json.decodeFromString(response.bodyAsText())
+            response.body()
         )
     }
 
     override suspend fun updatePost(id: Int, post: Post): Response<Post?> {
-        val response = client.put("https://jsonplaceholder.typicode.com/posts/$id") {
+        val response = client.put("$URL/$id") {
             contentType(ContentType.Application.Json)
             setBody(post)
         }
@@ -73,29 +68,37 @@ class PostRemoteDataSourceImpl(
             Response(
                 response.status.value,
                 response.headers,
-                Json.decodeFromString(response.bodyAsText())
+                response.body()
             )
         }
     }
 
-    override suspend fun patchPost(id: Int, post: Post): Response<Post> {
-        val response = client.patch("https://jsonplaceholder.typicode.com/posts/$id") {
+    override suspend fun patchPost(id: Int, post: Post): Response<Post?> {
+        val response = client.patch("$URL/$id") {
             contentType(ContentType.Application.Json)
             setBody(post)
         }
-        return Response(
+        return if (!response.status.isSuccess()) {
+            Response(response.status.value, response.headers, null)
+        } else Response(
             response.status.value,
             response.headers,
-            Json.decodeFromString(response.bodyAsText())
+            response.body()
         )
     }
 
     override suspend fun deletePost(id: Int): Response<Boolean> {
-        val response = client.delete("https://jsonplaceholder.typicode.com/posts/$id")
-        return Response(
+        val response = client.delete("$URL/$id")
+        return if (!response.status.isSuccess()) {
+            Response(response.status.value, response.headers, false)
+        } else Response(
             response.status.value,
             response.headers,
             true
         )
+    }
+
+    companion object {
+        const val URL = "https://jsonplaceholder.typicode.com/posts"
     }
 }

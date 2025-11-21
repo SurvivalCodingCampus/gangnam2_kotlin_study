@@ -7,6 +7,7 @@ import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import junit.framework.TestCase.assertFalse
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
@@ -209,6 +210,6 @@ class PostRemoteDataSourceImplTest {
         val result = dataSource.deletePost(999)
 
         assertEquals(404, result.statusCode)
-        assertTrue(result.data)
+        assertFalse(result.data)
     }
 }
