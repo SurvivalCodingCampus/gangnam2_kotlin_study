@@ -5,6 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertContentEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 
@@ -75,7 +76,7 @@ class ImageRepositoryImplTest {
         val result = repository.saveImageIfNotExists(url, path)
 
 
-        assertTrue(!result)
+        assertFalse(!result)
         assertTrue(file.exists())
 
         file.delete()
