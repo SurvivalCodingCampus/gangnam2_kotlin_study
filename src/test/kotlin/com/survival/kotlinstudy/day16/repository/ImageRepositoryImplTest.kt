@@ -41,8 +41,8 @@ class ImageRepositoryImplTest {
 
         urls.forEach { url ->
             val filename = url.substringAfterLast("/")
-            val savedPath = "$dir/$filename"
-            val file = File(savedPath)
+            val path = "$dir/$filename"
+            val file = File(path)
             assertTrue(file.exists())
             file.delete()
         }
