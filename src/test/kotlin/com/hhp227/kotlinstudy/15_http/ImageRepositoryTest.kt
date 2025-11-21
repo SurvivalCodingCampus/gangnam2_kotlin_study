@@ -67,7 +67,7 @@ class ImageRepositoryTest {
         imageRepository.saveImages(imageUrlListBefore, directoryPath)
         for (i in imageUrlListAfter.indices) {
             val url = imageUrlListAfter[i]
-            val filename = "$directoryPath\\image${i}_${Uuid.random().toHexString()}.jpg"
+            val filename = File(directoryPath, "image${i}_${Uuid.random().toHexString()}.jpg").path
             val isSaveImageSuccess = imageRepository.saveImageIfNotExists(url, filename)
 
             if (url !in imageUrlListBefore) {
