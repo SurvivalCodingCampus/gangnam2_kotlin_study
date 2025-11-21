@@ -304,7 +304,7 @@ class RemotePostDataSourceImplTest {
     }
 
     @Test
-    fun `존재하지 않는 ID로 부분 삭제 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 삭제 시 NoContent 받는다`() = runTest {
         // given
         val id = 2L
 
