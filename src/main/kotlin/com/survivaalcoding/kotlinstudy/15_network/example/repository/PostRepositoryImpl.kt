@@ -41,9 +41,7 @@ class PostRepositoryImpl(val dataSource: RemoteDataSource) : PostRepository {
     }
 
     override suspend fun deletePost(id: Long) {
-        val response = dataSource.deletePost(id)
-
-        return response.body
+        dataSource.deletePost(id)
     }
 
     override suspend fun getPostsByKeyword(keyword: String): List<Post> {

@@ -14,7 +14,9 @@ class RemoteDataSourceImpl(val httpClient: HttpClient = HttpClient(CIO)) : Remot
     override suspend fun getPosts(): Response<List<Post>> {
         val response = getHttpClient(BASE_URL)
 
-        return Response(getHeaders(response.headers), getStatusCode(response.status), getBody(response))
+        val body = if (response.status.isSuccess()) getBody<List<Post>>(response) else emptyList()
+
+        return Response(getHeaders(response.headers), getStatusCode(response.status), body)
     }
 
     override suspend fun getPost(id: Long): Response<Post?> {
@@ -77,7 +79,11 @@ class RemoteDataSourceImpl(val httpClient: HttpClient = HttpClient(CIO)) : Remot
     private fun getStatusCode(status: HttpStatusCode): Int = status.value
 
     private suspend inline fun <reified T> getBody(response: HttpResponse): T =
-        Json.decodeFromString(response.bodyAsText())
+        try {
+            Json.decodeFromString(response.bodyAsText())
+        } catch (e: Exception) {
+            throw IllegalStateException("응답 파싱 실패: ${e.message}", e)
+        }
 
     private fun getJsonData(post: Post): String = Json.encodeToString(post)
 
