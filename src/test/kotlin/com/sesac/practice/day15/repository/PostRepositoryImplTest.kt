@@ -47,5 +47,13 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(3, posts.size)
+        assertEquals(
+            listOf(
+                "keyword title",
+                "title keyword title",
+                "title keyword",
+            ),
+            posts.map { it.title },
+        )
     }
 }

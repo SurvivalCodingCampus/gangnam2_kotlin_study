@@ -53,7 +53,7 @@ class RemoteDataSourceImpl(
         return httpResponse.toResponse()
     }
 
-    override suspend fun deletePost(id: Long): Response<Void> {
+    override suspend fun deletePost(id: Long): Response<Unit> {
         val httpResponse = client.delete("$baseUrl/posts/$id")
 
         return httpResponse.toResponse()

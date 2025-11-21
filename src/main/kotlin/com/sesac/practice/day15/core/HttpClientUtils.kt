@@ -18,9 +18,9 @@ const val EMPTY_JSON_VALUE = "{}"
 suspend inline fun <reified T> HttpResponse.toResponse(): Response<T> {
     val statusCode = this.status.value
     val headerMap = this.headers.toMap()
-    val json = this.body<String>()
+    val json = this.body<String>().trim()
 
-    if (json == EMPTY_JSON_VALUE) {
+    if (json.isEmpty() || json == EMPTY_JSON_VALUE) {
         return Response(statusCode, headerMap)
     }
 

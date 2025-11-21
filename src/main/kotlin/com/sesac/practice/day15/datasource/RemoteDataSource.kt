@@ -9,5 +9,5 @@ interface RemoteDataSource {
     suspend fun createPost(post: Post): Response<Post>
     suspend fun updatePost(id: Long, post: Post): Response<Post>
     suspend fun patchPost(id: Long, post: Post): Response<Post>
-    suspend fun deletePost(id: Long): Response<Void>
+    suspend fun deletePost(id: Long): Response<Unit>
 }
