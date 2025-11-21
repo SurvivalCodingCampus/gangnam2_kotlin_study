@@ -1,0 +1,7 @@
+﻿package _251120_test_double_model_class_repository.common_config
+
+const val FILEPATH1 = "src\\main\\kotlin\\_251120_test_double_model_class_repository\\exercise1\\comments.json"
+const val FILEPATH2 = "src\\main\\kotlin\\_251120_test_double_model_class_repository\\exercise2\\photos.json"
+const val FILEPATH3 = "src\\main\\kotlin\\_251120_test_double_model_class_repository\\exercise3\\todos.json"
+const val FILEPATH4 = "src\\main\\kotlin\\_251120_test_double_model_class_repository\\exercise4\\users.json"
+const val FILEPATH5 = "src\\main\\kotlin\\_251120_test_double_model_class_repository\\exercise5\\albums.json"
