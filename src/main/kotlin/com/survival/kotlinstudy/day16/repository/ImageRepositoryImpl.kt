@@ -17,7 +17,7 @@ class ImageRepositoryImpl(
         urls.forEach { url ->
             val filename = url.substringAfterLast("/")
             val path = "$directory/$filename"
-            saveImage(url,path)
+            saveImage(url, path)
         }
     }
 

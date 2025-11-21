@@ -45,7 +45,7 @@ class ImageDataSourceImplTest {
 
     @Test
     fun `saveImage 테스트`(): Unit = runBlocking {
-        val bytes = byteArrayOf(9,8,7)
+        val bytes = byteArrayOf(9, 8, 7)
         val path = "savetest.png"
         val file = File(path)
 

@@ -10,7 +10,7 @@ import java.io.File
 
 class ImageDataSourceImpl(
     private val client: HttpClient = HttpClientFactory.create()
-): ImageDataSource {
+) : ImageDataSource {
     override suspend fun fetchImage(url: String): ByteArray {
         val response = client.get(url)
 

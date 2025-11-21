@@ -9,5 +9,5 @@ interface ImageRepository {
     suspend fun saveImages(urls: List<String>, directory: String)
 
     // 이미지가 존재하지 않는 경우에만 URL에서 다운로드하여 저장
-    suspend fun saveImageIfNotExists(url: String,path: String): Boolean
+    suspend fun saveImageIfNotExists(url: String, path: String): Boolean
 }

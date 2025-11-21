@@ -12,6 +12,6 @@ class PostRepositoryImplTest {
         val expected = 2
         val response = repository.getPostsByKeyword(keyword)
 
-        kotlin.test.assertEquals(response?.size,expected)
+        kotlin.test.assertEquals(response?.size, expected)
     }
 }

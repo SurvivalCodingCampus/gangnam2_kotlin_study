@@ -28,13 +28,12 @@ class RemoteDataSourceImplTest {
         val datasource = RemoteDataSourceImpl(client)
 
 
-
         val postsResponse = datasource.getPosts()
 
 
         assertEquals(postsResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",postsResponse.header[HttpHeaders.ContentType])
-        assertEquals(2,postsResponse.body?.size)
+        assertEquals("application/json", postsResponse.header[HttpHeaders.ContentType])
+        assertEquals(2, postsResponse.body?.size)
 
     }
 
@@ -52,20 +51,19 @@ class RemoteDataSourceImplTest {
         val datasource = RemoteDataSourceImpl(client)
 
 
-
         val postsResponse = datasource.getPosts()
 
 
         assertEquals(postsResponse.codeStatus, HttpStatusCode.NotFound.value)
-        assertEquals("application/json",postsResponse.header[HttpHeaders.ContentType])
-        assertEquals(2,postsResponse.body?.size)
+        assertEquals("application/json", postsResponse.header[HttpHeaders.ContentType])
+        assertEquals(2, postsResponse.body?.size)
 
     }
 
 
     @Test
     fun `getPost() 테스트 - 정상`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -85,16 +83,16 @@ class RemoteDataSourceImplTest {
         val postResponse = datasource.getPost(1)
 
         assertEquals(postResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",postResponse.header[HttpHeaders.ContentType])
-        assertEquals(postResponse.body?.id,1)
-        assertEquals(postResponse.body?.userId,1)
-        assertEquals(postResponse.body?.title,"title1")
-        assertEquals(postResponse.body?.body,"body1")
+        assertEquals("application/json", postResponse.header[HttpHeaders.ContentType])
+        assertEquals(postResponse.body?.id, 1)
+        assertEquals(postResponse.body?.userId, 1)
+        assertEquals(postResponse.body?.title, "title1")
+        assertEquals(postResponse.body?.body, "body1")
     }
 
     @Test
     fun `getPost() 테스트 - 에러`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -114,13 +112,13 @@ class RemoteDataSourceImplTest {
         val postResponse = datasource.getPost(1)
 
         assertEquals(postResponse.codeStatus, HttpStatusCode.InternalServerError.value)
-        assertEquals("application/json",postResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", postResponse.header[HttpHeaders.ContentType])
 
     }
 
     @Test
     fun `getPost() 테스트 - 존재하지 않는 ID`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -140,7 +138,7 @@ class RemoteDataSourceImplTest {
         val postResponse = datasource.getPost(9999)
 
         assertEquals(postResponse.codeStatus, HttpStatusCode.NotFound.value)
-        assertEquals("application/json",postResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", postResponse.header[HttpHeaders.ContentType])
 
 
     }
@@ -148,7 +146,7 @@ class RemoteDataSourceImplTest {
 
     @Test
     fun `createPost() 테스트 - 정상`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -168,16 +166,16 @@ class RemoteDataSourceImplTest {
         val createResponse = datasource.createPost(dummyPost)
 
         assertEquals(createResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",createResponse.header[HttpHeaders.ContentType])
-        assertEquals(createResponse.body?.id,1)
-        assertEquals(createResponse.body?.userId,1)
-        assertEquals(createResponse.body?.title,"title1")
-        assertEquals(createResponse.body?.body,"body1")
+        assertEquals("application/json", createResponse.header[HttpHeaders.ContentType])
+        assertEquals(createResponse.body?.id, 1)
+        assertEquals(createResponse.body?.userId, 1)
+        assertEquals(createResponse.body?.title, "title1")
+        assertEquals(createResponse.body?.body, "body1")
     }
 
     @Test
     fun `createPost() 테스트 - 에러`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -197,14 +195,14 @@ class RemoteDataSourceImplTest {
         val createResponse = datasource.createPost(dummyPost)
 
         assertEquals(createResponse.codeStatus, HttpStatusCode.InternalServerError.value)
-        assertEquals("application/json",createResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", createResponse.header[HttpHeaders.ContentType])
 
     }
 
 
     @Test
     fun `updatePost() 테스트 - 정상`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -221,19 +219,19 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val updateResponse = datasource.updatePost(1,dummyPost)
+        val updateResponse = datasource.updatePost(1, dummyPost)
 
         assertEquals(updateResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",updateResponse.header[HttpHeaders.ContentType])
-        assertEquals(updateResponse.body?.id,1)
-        assertEquals(updateResponse.body?.userId,1)
-        assertEquals(updateResponse.body?.title,"title1")
-        assertEquals(updateResponse.body?.body,"body1")
+        assertEquals("application/json", updateResponse.header[HttpHeaders.ContentType])
+        assertEquals(updateResponse.body?.id, 1)
+        assertEquals(updateResponse.body?.userId, 1)
+        assertEquals(updateResponse.body?.title, "title1")
+        assertEquals(updateResponse.body?.body, "body1")
     }
 
     @Test
     fun `updatePost() 테스트 - 에러`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -250,16 +248,16 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val updateResponse = datasource.updatePost(1,dummyPost)
+        val updateResponse = datasource.updatePost(1, dummyPost)
 
         assertEquals(updateResponse.codeStatus, HttpStatusCode.InternalServerError.value)
-        assertEquals("application/json",updateResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", updateResponse.header[HttpHeaders.ContentType])
 
     }
 
     @Test
     fun `updatePost() 테스트 - 존재하지 않는 ID`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -276,17 +274,17 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val updateResponse = datasource.updatePost(9999,dummyPost)
+        val updateResponse = datasource.updatePost(9999, dummyPost)
 
         assertEquals(updateResponse.codeStatus, HttpStatusCode.NotFound.value)
-        assertEquals("application/json",updateResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", updateResponse.header[HttpHeaders.ContentType])
 
 
     }
 
     @Test
     fun `patchPost() 테스트 - 정상`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -303,19 +301,19 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val patchResponse = datasource.patchPost(1,dummyPost)
+        val patchResponse = datasource.patchPost(1, dummyPost)
 
         assertEquals(patchResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",patchResponse.header[HttpHeaders.ContentType])
-        assertEquals(patchResponse.body?.id,1)
-        assertEquals(patchResponse.body?.userId,1)
-        assertEquals(patchResponse.body?.title,"title1")
-        assertEquals(patchResponse.body?.body,"body1")
+        assertEquals("application/json", patchResponse.header[HttpHeaders.ContentType])
+        assertEquals(patchResponse.body?.id, 1)
+        assertEquals(patchResponse.body?.userId, 1)
+        assertEquals(patchResponse.body?.title, "title1")
+        assertEquals(patchResponse.body?.body, "body1")
     }
 
     @Test
     fun `patchPost() 테스트 - 에러`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -332,16 +330,16 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val patchResponse = datasource.patchPost(1,dummyPost)
+        val patchResponse = datasource.patchPost(1, dummyPost)
 
         assertEquals(patchResponse.codeStatus, HttpStatusCode.InternalServerError.value)
-        assertEquals("application/json",patchResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", patchResponse.header[HttpHeaders.ContentType])
 
     }
 
     @Test
     fun `patchPost() 테스트 - 존재하지 않는 ID`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -358,17 +356,17 @@ class RemoteDataSourceImplTest {
         val client = HttpClient(mockEngine)
         val datasource = RemoteDataSourceImpl(client)
 
-        val patchResponse = datasource.patchPost(9999,dummyPost)
+        val patchResponse = datasource.patchPost(9999, dummyPost)
 
         assertEquals(patchResponse.codeStatus, HttpStatusCode.NotFound.value)
-        assertEquals("application/json",patchResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", patchResponse.header[HttpHeaders.ContentType])
 
 
     }
 
     @Test
     fun `deletePost() 테스트 - 정상`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -388,12 +386,12 @@ class RemoteDataSourceImplTest {
         val deleteResponse = datasource.deletePost(1)
 
         assertEquals(deleteResponse.codeStatus, HttpStatusCode.OK.value)
-        assertEquals("application/json",deleteResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", deleteResponse.header[HttpHeaders.ContentType])
     }
 
     @Test
     fun `deletePost() 테스트 - 에러`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -413,13 +411,13 @@ class RemoteDataSourceImplTest {
         val deleteResponse = datasource.deletePost(1)
 
         assertEquals(deleteResponse.codeStatus, HttpStatusCode.InternalServerError.value)
-        assertEquals("application/json",deleteResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", deleteResponse.header[HttpHeaders.ContentType])
 
     }
 
     @Test
     fun `deletePost() 테스트 - 존재하지 않는 ID`() = runBlocking {
-        val mockEngine = MockEngine {request ->
+        val mockEngine = MockEngine { request ->
             respond(
                 content = """
                     {
@@ -439,12 +437,10 @@ class RemoteDataSourceImplTest {
         val deleteResponse = datasource.deletePost(9999)
 
         assertEquals(deleteResponse.codeStatus, HttpStatusCode.NotFound.value)
-        assertEquals("application/json",deleteResponse.header[HttpHeaders.ContentType])
+        assertEquals("application/json", deleteResponse.header[HttpHeaders.ContentType])
 
 
     }
-
-
 
 
 }
