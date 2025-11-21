@@ -10,7 +10,7 @@ class UserRepositoryImplTest {
     @Test
     fun `getUsers가 User List를 반환하는지 - Mocking`() = runBlocking {
         // given:
-        // TodoDataSourceImpl를 모킹하여 실제 함수가 어떤 값을 반환하는지에 상관없이
+        // UserDataSourceImpl를 모킹하여 실제 함수가 어떤 값을 반환하는지에 상관없이
         // 항상 정해진 리스트를 반환하게 된다
         val mockDataSource = mockk<UserDataSourceImpl>()
         // suspend 함수는 coEvery 사용해야 함
@@ -51,6 +51,9 @@ class UserRepositoryImplTest {
         assertEquals("z", result[11].username)
         assertEquals("x", result[12].username)
         assertEquals("c", result[13].username)
+
+//        val expected = listOf("q", "w", "e", "r", "t", "y", "u", "i", "a", "s", "d", "z", "x", "c")
+//        assertEquals(expected, result.map { it.username })
     }
 
     @Test
@@ -94,5 +97,7 @@ class UserRepositoryImplTest {
         assertEquals("h", result[7].username)
         assertEquals("i", result[8].username)
         assertEquals("j", result[9].username)
+
+        assertEquals(10, result.size)
     }
 }

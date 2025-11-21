@@ -1,6 +1,5 @@
 package com.neouul.sesac.`13-modelClass-repository`.albums
 
-import com.neouul.sesac.`13-modelClass-repository`.todos.TodoRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -11,7 +10,7 @@ class AlbumRepositoryImplTest {
     @Test
     fun `getAlbums(null)이 모든 데이터를 반환하는지 - Mocking`() = runBlocking {
         // given:
-        // TodoDataSourceImpl를 모킹하여 실제 함수가 어떤 값을 반환하는지에 상관없이
+        // AlbumDataSourceImpl를 모킹하여 실제 함수가 어떤 값을 반환하는지에 상관없이
         // 항상 정해진 리스트를 반환하게 된다
         val mockDataSource = mockk<AlbumDataSourceImpl>()
         // suspend 함수는 coEvery 사용해야 함
