@@ -2,7 +2,6 @@ package com.survivalcoding.kotlinstudy.`10_file`
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import java.io.File
 
 @Serializable
 data class User(
