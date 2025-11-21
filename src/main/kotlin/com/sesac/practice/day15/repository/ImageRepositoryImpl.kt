@@ -1,12 +1,13 @@
 package com.sesac.practice.day15.repository
 
+import com.sesac.practice.day15.core.FileProvider
 import com.sesac.practice.day15.datasource.ImageDataSource
-import java.io.File
 
 class ImageRepositoryImpl(
     private val imageDataSource: ImageDataSource,
     private val defaultImageName: String = DEFAULT_IMAGE_NAME,
     private val defaultImageExtension: String = DEFAULT_IMAGE_EXTENSION,
+    private val fileProvider: FileProvider,
 ) : ImageRepository {
 
     override suspend fun saveImage(url: String, path: String) {
@@ -22,9 +23,7 @@ class ImageRepositoryImpl(
     }
 
     override suspend fun saveImageIfNotExist(url: String, path: String): Boolean {
-        val file = File(path)
-
-        if (file.exists()) {
+        if (fileProvider.exists(path)) {
             return false
         }
 
