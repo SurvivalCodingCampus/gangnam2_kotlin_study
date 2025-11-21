@@ -12,22 +12,24 @@ import kotlinx.serialization.json.Json
 class RemoteDataSourceImpl(
     private val client: HttpClient
 ) : RemoteDataSource {
+    private fun HttpResponse.toHeaderMap(): Map<String, String> {
+        return headers.entries().associate { it.key to it.value.joinToString("; ") }
+    }
+
     override suspend fun getPosts(): Response<List<Post>> {
         val response = client.get(urlString = "https://jsonplaceholder.typicode.com/posts")
         val body = Json.decodeFromString<List<Post>>(response.bodyAsText())
 
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
 
-        return Response(header = headers, codeStatus = response.status.value, body = body)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = body)
     }
 
     override suspend fun getPost(id: Int): Response<Post> {
         val response = client.get(urlString = "https://jsonplaceholder.typicode.com/posts/$id")
         val body = Json.decodeFromString<Post>(response.bodyAsText())
 
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
 
-        return Response(header = headers, codeStatus = response.status.value, body = body)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = body)
     }
 
     override suspend fun createPost(post: Post): Response<Post> {
@@ -38,8 +40,7 @@ class RemoteDataSourceImpl(
 
         val body = Json.decodeFromString<Post>(response.bodyAsText())
 
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
-        return Response(header = headers, codeStatus = response.status.value, body = body)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = body)
     }
 
     override suspend fun updatePost(id: Int, post: Post): Response<Post> {
@@ -50,9 +51,8 @@ class RemoteDataSourceImpl(
 
         val body = Json.decodeFromString<Post>(response.bodyAsText())
 
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
 
-        return Response(header = headers, codeStatus = response.status.value, body = body)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = body)
     }
 
     override suspend fun patchPost(id: Int, post: Post): Response<Post> {
@@ -62,16 +62,13 @@ class RemoteDataSourceImpl(
         }
 
         val body = Json.decodeFromString<Post>(response.bodyAsText())
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
 
-        return Response(header = headers, codeStatus = response.status.value, body = body)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = body)
     }
 
     override suspend fun deletePost(id: Int): Response<Post> {
         val response = client.delete("https://jsonplaceholder.typicode.com/posts/$id")
 
-        val headers = response.headers.entries().associate { it.key to it.value.joinToString(" ") }
-
-        return Response(header = headers, codeStatus = response.status.value, body = null)
+        return Response(header = response.toHeaderMap(), codeStatus = response.status.value, body = null)
     }
 }
