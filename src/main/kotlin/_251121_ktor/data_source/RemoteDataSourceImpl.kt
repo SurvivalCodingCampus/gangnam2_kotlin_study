@@ -1,7 +1,6 @@
 ﻿package _251121_ktor.data_source
 
 import _251121_ktor.core.BASEURL
-import _251121_ktor.core.HttpClientFactory
 import _251121_ktor.core.Response
 import _251121_ktor.model.Post
 import io.ktor.client.HttpClient
@@ -18,7 +17,7 @@ import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 
 class RemoteDataSourceImpl(
-    private val client: HttpClient = HttpClientFactory.create()
+    private val client: HttpClient //= HttpClientFactory.create()
 ) : RemoteDataSource {
 
     override suspend fun getPosts(): List<Post> {
