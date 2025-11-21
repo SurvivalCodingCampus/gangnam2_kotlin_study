@@ -96,11 +96,43 @@ class RemotePostDataSourceImplTest {
             }
 
             "$baseUrl/posts/2" -> {
-                respond(
-                    "{}",
-                    HttpStatusCode.NoContent,
-                    headersOf(HttpHeaders.ContentType, "application/json"),
-                )
+                when (request.method) {
+                    HttpMethod.Get -> {
+                        respond(
+                            "{}",
+                            HttpStatusCode.NoContent,
+                            headersOf(HttpHeaders.ContentType, "application/json"),
+                        )
+                    }
+
+                    HttpMethod.Put -> {
+                        respond(
+                            "{}",
+                            HttpStatusCode.NoContent,
+                            headersOf(HttpHeaders.ContentType, "application/json"),
+                        )
+                    }
+
+                    HttpMethod.Patch -> {
+                        respond(
+                            "{}",
+                            HttpStatusCode.NoContent,
+                            headersOf(HttpHeaders.ContentType, "application/json"),
+                        )
+                    }
+
+                    HttpMethod.Delete -> {
+                        respond(
+                            "{}",
+                            HttpStatusCode.NoContent,
+                            headersOf(HttpHeaders.ContentType, "application/json"),
+                        )
+                    }
+
+                    else -> {
+                        throw IllegalArgumentException("잘못된 요청입니다.")
+                    }
+                }
             }
 
             "$invalidUrl/posts" -> {
@@ -224,12 +256,56 @@ class RemotePostDataSourceImplTest {
     }
 
     @Test
-    fun `존재하지 않는 ID 요청 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 조회 시 NoContent 받는다`() = runTest {
         // given
         val id = 2L
 
         // when
         val response = dataSource.getPost(id)
+
+        // then
+        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `존재하지 않는 ID로 업데이트 시 NoContent 받는다`() = runTest {
+        // given
+        val id = 2L
+        val post = Post(1, id, "title2", "body2")
+
+        // when
+        val response = dataSource.updatePost(id, post)
+
+        // then
+        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `존재하지 않는 ID로 부분 업데이트 시 NoContent 받는다`() = runTest {
+        // given
+        val id = 2L
+        val post = Post(1, id, "title2", "body2")
+
+        // when
+        val response = dataSource.patchPost(id, post)
+
+        // then
+        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `존재하지 않는 ID로 부분 삭제 시 NoContent 받는다`() = runTest {
+        // given
+        val id = 2L
+
+        // when
+        val response = dataSource.deletePost(id)
 
         // then
         assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
