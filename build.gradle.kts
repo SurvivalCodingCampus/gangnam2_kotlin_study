@@ -25,7 +25,7 @@ dependencies {
     //통신관련 공식 라이브러리 ktor
     implementation("io.ktor:ktor-client-core:3.3.2")
     implementation("io.ktor:ktor-client-cio:3.3.2") //코루틴 되도록 처리
-
+    testImplementation("io.ktor:ktor-client-mock:3.3.2") //mockEngine을 이용하여 mock서버 만들기 위함
 }
 
 tasks.test {
