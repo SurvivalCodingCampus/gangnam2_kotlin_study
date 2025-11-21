@@ -19,8 +19,12 @@ class ImageRepositoryImpl(
     override suspend fun saveImages(urls: List<String>, directory: String) {
         val file = File(directory)
 
-        if (!file.exists()) file.mkdir()
-        if (file.isDirectory) urls.forEachIndexed { i, url -> saveImage(url, "$directory\\image${i}_${Uuid.random().toHexString()}.jpg") }
+        if (!file.exists()) file.mkdirs()
+        if (file.isDirectory) urls.forEachIndexed { i, url ->
+            val path = File(directory, "image${i}_${Uuid.random().toHexString()}.jpg").path
+
+            saveImage(url, path)
+        }
     }
 
     override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
