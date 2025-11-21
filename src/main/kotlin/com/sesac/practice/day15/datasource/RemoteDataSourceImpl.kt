@@ -7,7 +7,6 @@ import com.sesac.practice.day15.model.Post
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.serialization.json.Json
 
 class RemoteDataSourceImpl(
     private val client: HttpClient = HttpClientFactory.create(),
@@ -29,7 +28,7 @@ class RemoteDataSourceImpl(
     override suspend fun createPost(post: Post): Response<Post> {
         val httpResponse = client.post("$baseUrl/posts") {
             contentType(ContentType.Application.Json)
-            setBody(Json.encodeToString(post))
+            setBody(post)
         }
 
         return httpResponse.toResponse()
@@ -38,7 +37,7 @@ class RemoteDataSourceImpl(
     override suspend fun updatePost(id: Long, post: Post): Response<Post> {
         val httpResponse = client.put("$baseUrl/posts/$id") {
             contentType(ContentType.Application.Json)
-            setBody(Json.encodeToString(post))
+            setBody(post)
         }
 
         return httpResponse.toResponse()
@@ -47,7 +46,7 @@ class RemoteDataSourceImpl(
     override suspend fun patchPost(id: Long, post: Post): Response<Post> {
         val httpResponse = client.patch("$baseUrl/posts/$id") {
             contentType(ContentType.Application.Json)
-            setBody(Json.encodeToString(post))
+            setBody(post)
         }
 
         return httpResponse.toResponse()

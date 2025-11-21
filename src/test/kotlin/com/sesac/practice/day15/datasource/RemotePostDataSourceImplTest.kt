@@ -4,7 +4,9 @@ import com.sesac.practice.day15.model.Post
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.network.sockets.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Test
@@ -144,7 +146,9 @@ class RemotePostDataSourceImplTest {
             }
         }
     }
-    private val httpClient = HttpClient(mockEngine)
+    private val httpClient = HttpClient(mockEngine) {
+        install(ContentNegotiation) { json() }
+    }
     private val dataSource = RemoteDataSourceImpl(httpClient, baseUrl)
 
     @Test
