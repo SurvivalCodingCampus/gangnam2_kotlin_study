@@ -23,7 +23,9 @@ class PostRemoteDataSourceImpl(
 ) : PostRemoteDataSource {
     override suspend fun getPosts(): Response<List<Post>> {
         val response = client.get(URL)
-        return Response(
+        return if (!response.status.isSuccess())
+            Response(response.status.value, response.headers, emptyList())
+        else Response(
             response.status.value,
             response.headers,
             response.body()
