@@ -7,7 +7,7 @@ import kotlin.uuid.Uuid
 class ImageRepositoryImpl(
     private val imageDataSource: ImageDataSource
 ) : ImageRepository {
-    private val cache = LruCache<String, String>(5)
+    private val cache = LruCache<String, String>(10)
 
     override suspend fun saveImage(url: String, path: String) {
         val byteArray = imageDataSource.fetchImage(url)
