@@ -11,8 +11,8 @@ class ImageRepositoryImpl(
 
     override suspend fun saveImage(url: String, path: String) {
         val byteArray = imageDataSource.fetchImage(url)
-        cache[url] = path
         imageDataSource.saveImage(byteArray, path)
+        cache[url] = path
     }
 
     @OptIn(ExperimentalUuidApi::class)
