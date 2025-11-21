@@ -22,6 +22,9 @@ dependencies {
     //코루틴 테스트 관련 라이브러리
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
 
+    //통신관련 공식 라이브러리 ktor
+    implementation("io.ktor:ktor-client-core:3.3.2")
+    implementation("io.ktor:ktor-client-cio:3.3.2") //코루틴 되도록 처리
 
 }
 
