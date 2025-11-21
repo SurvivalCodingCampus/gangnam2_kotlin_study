@@ -26,14 +26,16 @@ class StockDataSourceImpl(
     private val file: File = File("listing_status.csv"),
 ) : StockDataSource {
 
-    private val stocks = mutableListOf<StockListing>()
+
     private var stocksSnapshot = listOf<StockListing>()
     private var lastLoadedAt: Long = 0L // 마지막으로 파일 변경 시간
 
     fun parseStockListing(line: String): StockListing {
         val row = line.split(',')
 
-        require(row.size >= 7) { "Invalid CSV line: expected 7 fields but got ${row.size}" }
+        if (row.size != 7) {
+            return StockListing()
+        }
 
         return StockListing(
             row[0],
@@ -46,26 +48,15 @@ class StockDataSourceImpl(
         )
     }
 
-    suspend fun loadFromFile(): Unit = withContext(Dispatchers.IO) {
-        stocks.clear()
-//        file.forEachLine { line ->
-//            // 첫 줄 제외
-//            if (line.startsWith("symbol,name,exchange,assetType,ipoDate,delistingDate,status")) {
-//                return@forEachLine
-//            }
-//
-//            stocks.add(parseStockListing(line))
-//        }
-
-        stocks.addAll(file.readLines().drop(1).map { parseStockListing(it) })
+    suspend fun loadFromFile(): List<StockListing> = withContext(Dispatchers.IO) {
+        return@withContext file.readLines().drop(1).map { parseStockListing(it) }
     }
 
     override suspend fun getStockListings(forceReload: Boolean): List<StockListing> {
         val lastModified: Long = file.lastModified() // 파일이 마지막으로 수정된 시간
-        if (forceReload || stocks.isEmpty() || lastModified != lastLoadedAt) {
-            loadFromFile()
+        if (forceReload || lastModified != lastLoadedAt) {
             lastLoadedAt = lastModified
-            stocksSnapshot = stocks.toList()
+            stocksSnapshot = loadFromFile().filter { !it.name.isNullOrEmpty() }
         }
 
         return stocksSnapshot
