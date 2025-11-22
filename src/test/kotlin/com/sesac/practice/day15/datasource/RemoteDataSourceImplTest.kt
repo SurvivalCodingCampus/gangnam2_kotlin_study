@@ -102,7 +102,7 @@ class RemoteDataSourceImplTest {
                     HttpMethod.Get -> {
                         respond(
                             "{}",
-                            HttpStatusCode.NoContent,
+                            HttpStatusCode.NotFound,
                             headersOf(HttpHeaders.ContentType, "application/json"),
                         )
                     }
@@ -110,7 +110,7 @@ class RemoteDataSourceImplTest {
                     HttpMethod.Put -> {
                         respond(
                             "{}",
-                            HttpStatusCode.NoContent,
+                            HttpStatusCode.NotFound,
                             headersOf(HttpHeaders.ContentType, "application/json"),
                         )
                     }
@@ -118,7 +118,7 @@ class RemoteDataSourceImplTest {
                     HttpMethod.Patch -> {
                         respond(
                             "{}",
-                            HttpStatusCode.NoContent,
+                            HttpStatusCode.NotFound,
                             headersOf(HttpHeaders.ContentType, "application/json"),
                         )
                     }
@@ -126,7 +126,7 @@ class RemoteDataSourceImplTest {
                     HttpMethod.Delete -> {
                         respond(
                             "{}",
-                            HttpStatusCode.NoContent,
+                            HttpStatusCode.NotFound,
                             headersOf(HttpHeaders.ContentType, "application/json"),
                         )
                     }
@@ -260,7 +260,7 @@ class RemoteDataSourceImplTest {
     }
 
     @Test
-    fun `존재하지 않는 ID로 조회 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 조회 시 NotFound 받는다`() = runTest {
         // given
         val id = 2L
 
@@ -268,13 +268,13 @@ class RemoteDataSourceImplTest {
         val response = dataSource.getPost(id)
 
         // then
-        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
         assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
         assertNull(response.body)
     }
 
     @Test
-    fun `존재하지 않는 ID로 업데이트 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 업데이트 시 NotFound 받는다`() = runTest {
         // given
         val id = 2L
         val post = Post(1, id, "title2", "body2")
@@ -283,13 +283,13 @@ class RemoteDataSourceImplTest {
         val response = dataSource.updatePost(id, post)
 
         // then
-        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
         assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
         assertNull(response.body)
     }
 
     @Test
-    fun `존재하지 않는 ID로 부분 업데이트 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 부분 업데이트 시 NotFound 받는다`() = runTest {
         // given
         val id = 2L
         val post = Post(1, id, "title2", "body2")
@@ -298,13 +298,13 @@ class RemoteDataSourceImplTest {
         val response = dataSource.patchPost(id, post)
 
         // then
-        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
         assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
         assertNull(response.body)
     }
 
     @Test
-    fun `존재하지 않는 ID로 삭제 시 NoContent 받는다`() = runTest {
+    fun `존재하지 않는 ID로 삭제 시 NotFound 받는다`() = runTest {
         // given
         val id = 2L
 
@@ -312,7 +312,7 @@ class RemoteDataSourceImplTest {
         val response = dataSource.deletePost(id)
 
         // then
-        assertEquals(HttpStatusCode.NoContent.value, response.statusCode)
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
         assertEquals(true, response.headers["Content-Type"]?.first()?.contains("application/json"))
         assertNull(response.body)
     }
