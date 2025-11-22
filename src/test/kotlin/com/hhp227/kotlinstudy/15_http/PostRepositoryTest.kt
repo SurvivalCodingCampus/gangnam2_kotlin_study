@@ -63,6 +63,7 @@ class PostRepositoryImplTest {
             "dignissimos eum dolor ut enim et delectus in"
         )
         val result = postRepository.getPostsByKeyword("eum")
+        println(result)
         val titles = result.map { it.title }
 
         assertEquals(expected.size, result.size)
