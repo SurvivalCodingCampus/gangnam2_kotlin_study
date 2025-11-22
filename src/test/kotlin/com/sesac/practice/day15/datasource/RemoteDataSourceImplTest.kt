@@ -11,6 +11,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -250,13 +251,15 @@ class RemoteDataSourceImplTest {
         assertNull(response.body)
     }
 
-    @Test(expected = ConnectTimeoutException::class)
+    @Test
     fun `네트워크 오류시 에러가 발생한다`() = runTest {
         // given
         val dataSourceImpl = RemoteDataSourceImpl(httpClient, invalidUrl)
 
         // when // then
-        dataSourceImpl.getPosts()
+        assertFailsWith<ConnectTimeoutException> {
+            dataSourceImpl.getPosts()
+        }
     }
 
     @Test

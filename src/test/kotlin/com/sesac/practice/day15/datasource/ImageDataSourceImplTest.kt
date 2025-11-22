@@ -8,6 +8,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.io.File
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class ImageDataSourceImplTest {
@@ -69,12 +70,14 @@ class ImageDataSourceImplTest {
         file.delete()
     }
 
-    @Test(expected = ApiException::class)
+    @Test
     fun `URL 에서 사진을 받지 못할 경우 에러가 발생한다`() = runTest {
         // given
         val url = "$baseUrl/error.png"
 
         // when // then
-        val bytes = dataSource.fetchImage(url)
+        assertFailsWith<ApiException> {
+            dataSource.fetchImage(url)
+        }
     }
 }
