@@ -2,6 +2,10 @@ package com.hhp227.kotlinstudy.`15_http`
 
 import com.hhp227.kotlinstudy.`15_http`.image.ImageDataSourceImpl
 import com.hhp227.kotlinstudy.`15_http`.image.ImageRepositoryImpl
+import io.ktor.client.*
+import io.ktor.client.engine.mock.*
+import io.ktor.http.*
+import io.ktor.utils.io.*
 import kotlinx.coroutines.test.runTest
 import java.io.File
 import kotlin.test.Test
@@ -12,7 +16,21 @@ import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 class ImageRepositoryTest {
-    val imageRepository = ImageRepositoryImpl(ImageDataSourceImpl())
+    lateinit var imageRepository: ImageRepositoryImpl
+
+    fun createMockClient(
+        status: HttpStatusCode,
+        responseBody: ByteArray
+    ): HttpClient {
+        val mockEngine = MockEngine { request ->
+            respond(
+                content = ByteReadChannel(responseBody),
+                status = status,
+                headers = headersOf(HttpHeaders.ContentType, "image/jpeg")
+            )
+        }
+        return HttpClient(mockEngine)
+    }
 
     @OptIn(ExperimentalUuidApi::class)
     @Test
@@ -20,6 +38,9 @@ class ImageRepositoryTest {
         val path = "image1_${Uuid.random().toHexString()}.jpg"
         val imageUrl = "https://i.namu.wiki/i/rPpdSo1zioMi6PVX7vflwnqejXQEweT3zoc0mQleUXkpmrSfHRyX_B7Pht0z0T_80it32D97ZYIJZ8mTRgiJ0Q.webp"
         val file = File(path)
+        val mockBytes = ByteArray(10) { 1 }
+        val client = createMockClient(HttpStatusCode.OK, mockBytes)
+        imageRepository = ImageRepositoryImpl(ImageDataSourceImpl(client))
 
         imageRepository.saveImage(imageUrl, path)
         assertTrue(file.exists())
@@ -37,6 +58,10 @@ class ImageRepositoryTest {
             "https://img0.yna.co.kr/photo/yna/YH/2023/04/10/PYH2023041016590001300_P4.jpg",
             "https://cdn.sports.hankooki.com/news/photo/202404/6861767_1079580_1631.jpg"
         )
+        val mockBytes = ByteArray(10) { 1 }
+        val client = createMockClient(HttpStatusCode.OK, mockBytes)
+        imageRepository = ImageRepositoryImpl(ImageDataSourceImpl(client))
+
         imageRepository.saveImages(imageUrlList, directoryPath)
         File(directoryPath).also { file ->
             val files = file.listFiles()
@@ -63,6 +88,9 @@ class ImageRepositoryTest {
             "https://cdn.sports.hankooki.com/news/photo/202404/6861767_1079580_1631.jpg"
         )
         val file = File(directoryPath)
+        val mockBytes = ByteArray(10) { 1 }
+        val client = createMockClient(HttpStatusCode.OK, mockBytes)
+        imageRepository = ImageRepositoryImpl(ImageDataSourceImpl(client))
 
         imageRepository.saveImages(imageUrlListBefore, directoryPath)
         for (i in imageUrlListAfter.indices) {

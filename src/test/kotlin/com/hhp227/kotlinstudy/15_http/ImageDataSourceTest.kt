@@ -71,7 +71,6 @@ class ImageDataSourceTest {
     @OptIn(ExperimentalUuidApi::class)
     @Test
     fun `saveImage 메소드로 이미지 저장하는지 테스트`() = runTest {
-        val imageUrl = "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2023/07/28/3799c277-b41b-4a79-8d57-6f34f49ee29c.jpg"
         val mockBytes = byteArrayOf(1, 2, 3)
         val client = createMockClient(HttpStatusCode.OK, mockBytes)
         imageDataSource = ImageDataSourceImpl(client)
