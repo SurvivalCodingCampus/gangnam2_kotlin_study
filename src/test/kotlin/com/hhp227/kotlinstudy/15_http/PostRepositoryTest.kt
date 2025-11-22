@@ -1,17 +1,60 @@
 package com.hhp227.kotlinstudy.`15_http`
 
+import com.hhp227.kotlinstudy.`13_datasource`.FileLoadUtil
 import com.hhp227.kotlinstudy.`15_http`.post.Post
 import com.hhp227.kotlinstudy.`15_http`.post.PostRemoteDataSourceImpl
+import com.hhp227.kotlinstudy.`15_http`.post.PostRepository
 import com.hhp227.kotlinstudy.`15_http`.post.PostRepositoryImpl
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.ByteReadChannel
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
+import kotlinx.serialization.json.Json
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class PostRepositoryImplTest {
-    val postRepository = PostRepositoryImpl(PostRemoteDataSourceImpl())
+    lateinit var postRepository: PostRepository
+
+    fun createMockClient(
+        statusCode: HttpStatusCode,
+        responseBody: String = "[]"
+    ): HttpClient {
+        return HttpClient(MockEngine) {
+            install(ContentNegotiation) {
+                json(Json {
+                    ignoreUnknownKeys = true
+                })
+            }
+            engine {
+                addHandler { request ->
+                    respond(
+                        content = ByteReadChannel(responseBody),
+                        status = statusCode,
+                        headers = headersOf(HttpHeaders.ContentType, "application/json")
+                    )
+                }
+            }
+        }
+    }
+
+    fun getMockJson() = FileLoadUtil.loadFileToString("posts.json").trimIndent()
 
     @Test
     fun `keyword(eum)가 포함된 게시글만 필터링되는지 테스트`() = runTest {
+        val client = createMockClient(
+            statusCode = HttpStatusCode.OK,
+            responseBody = getMockJson()
+        )
+        val dataSource = PostRemoteDataSourceImpl(client)
+        postRepository = PostRepositoryImpl(dataSource)
         val expected = listOf(
             "eum et est occaecati",
             "dolorem eum magni eos aperiam quia",
@@ -20,6 +63,7 @@ class PostRepositoryImplTest {
             "dignissimos eum dolor ut enim et delectus in"
         )
         val result = postRepository.getPostsByKeyword("eum")
+        println(result)
         val titles = result.map { it.title }
 
         assertEquals(expected.size, result.size)
@@ -28,6 +72,12 @@ class PostRepositoryImplTest {
 
     @Test
     fun `keyword(at)가 포함된 게시글만 필터링되는지 테스트`() = runTest {
+        val client = createMockClient(
+            statusCode = HttpStatusCode.OK,
+            responseBody = getMockJson()
+        )
+        val dataSource = PostRemoteDataSourceImpl(client)
+        postRepository = PostRepositoryImpl(dataSource)
         val expected = listOf(
             "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
             "ea molestias quasi exercitationem repellat qui ipsa sit aut",
@@ -88,6 +138,12 @@ class PostRepositoryImplTest {
 
     @Test
     fun `keyword(dolorem)가 포함된 게시글만 필터링되는지 테스트`() = runTest {
+        val client = createMockClient(
+            statusCode = HttpStatusCode.OK,
+            responseBody = getMockJson()
+        )
+        val dataSource = PostRemoteDataSourceImpl(client)
+        postRepository = PostRepositoryImpl(dataSource)
         val expected = listOf(
             "dolorem eum magni eos aperiam quia",
             "dolorem dolore est ipsam",
@@ -106,9 +162,28 @@ class PostRepositoryImplTest {
     }
 
     @Test
-    fun `statusCode가 200이 아닐 경우 빈 리스트를 반환`() = runTest {
-        val result = postRepository.getPostsByKeyword("Test")
+    fun `statusCode가 404일 경우 빈 리스트를 반환`() = runTest {
+        val mockClient = createMockClient(
+            statusCode = HttpStatusCode.NotFound
+        )
+        val dataSource = PostRemoteDataSourceImpl(mockClient)
+        val repository = PostRepositoryImpl(dataSource)
+
+        val result = repository.getPostsByKeyword("any")
 
         assertEquals(emptyList<Post>(), result)
+    }
+
+    @Test
+    fun `statusCode가 500일 경우 빈 리스트를 반환`() = runTest {
+        val mockClient = createMockClient(
+            statusCode = HttpStatusCode.InternalServerError
+        )
+        val dataSource = PostRemoteDataSourceImpl(mockClient)
+        val repository = PostRepositoryImpl(dataSource)
+
+        val result = repository.getPostsByKeyword("any")
+
+        assertTrue(result.isEmpty())
     }
 }
