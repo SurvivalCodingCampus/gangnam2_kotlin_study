@@ -14,7 +14,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-class RemotePostDataSourceImplTest {
+class RemoteDataSourceImplTest {
 
     private val baseUrl = "https://test.com"
     private val invalidUrl = "https://invalid.com"

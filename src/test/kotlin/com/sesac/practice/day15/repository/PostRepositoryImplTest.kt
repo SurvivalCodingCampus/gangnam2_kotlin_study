@@ -56,4 +56,21 @@ class PostRepositoryImplTest {
             posts.map { it.title },
         )
     }
+
+    @Test
+    fun `게시글을 가져오지 못할 경우 빈리스트를 반환한다`() = runTest {
+        // given
+        val keyword = "keyword"
+
+        coGiven { dataSource.getPosts() } returns Response(
+            400,
+            mapOf(),
+        )
+
+        // when
+        val posts = repository.getPostsByKeyword(keyword)
+
+        // then
+        assertEquals(0, posts.size)
+    }
 }

@@ -1,5 +1,6 @@
 package com.sesac.practice.day15.datasource
 
+import com.sesac.practice.day15.core.ApiException
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -18,6 +19,13 @@ class ImageDataSourceImplTest {
                 respond(
                     byteArrayOf(1, 2, 3),
                     HttpStatusCode.OK,
+                )
+            }
+
+            "$baseUrl/error.png" -> {
+                respond(
+                    "error",
+                    HttpStatusCode.BadRequest,
                 )
             }
 
@@ -59,5 +67,14 @@ class ImageDataSourceImplTest {
         assertEquals("png", file.extension)
 
         file.delete()
+    }
+
+    @Test(expected = ApiException::class)
+    fun `URL 에서 사진을 받지 못할 경우 에러가 발생한다`() = runTest {
+        // given
+        val url = "$baseUrl/error.png"
+
+        // when // then
+        val bytes = dataSource.fetchImage(url)
     }
 }
