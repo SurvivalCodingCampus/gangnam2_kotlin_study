@@ -143,7 +143,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        println(result.body.count())
+        println(result.body!!.count())
     }
 
     @Test
@@ -158,7 +158,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPosts.count(), result.body.count())
+        assertEquals(mockPosts.count(), result.body!!.count())
     }
 
     @Test
@@ -174,7 +174,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(searchId, result.body.id)
+        assertEquals(searchId, result.body!!.id)
     }
 
     @Test
@@ -189,7 +189,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test
@@ -204,7 +204,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test
@@ -219,7 +219,7 @@ class RemoteDataSourceImplTest {
         // then
         assertNotNull(result)
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test

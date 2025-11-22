@@ -137,7 +137,7 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPosts.count(), result.body.count())
+        assertEquals(mockPosts.count(), result.body!!.count())
     }
 
     @Test
@@ -151,7 +151,7 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPosts.count(), result.body.count())
+        assertEquals(mockPosts.count(), result.body!!.count())
     }
 
     @Test
@@ -165,7 +165,7 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test
@@ -179,7 +179,7 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test
@@ -193,7 +193,7 @@ class PostRepositoryImplTest {
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPostId8.id, result.body.id)
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test

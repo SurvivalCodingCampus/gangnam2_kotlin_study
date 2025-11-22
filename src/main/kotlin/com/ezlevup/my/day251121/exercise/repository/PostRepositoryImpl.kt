@@ -1,7 +1,7 @@
 package com.ezlevup.my.day251121.exercise.repository
 
+import com.ezlevup.my.day251121.exercise.core.Response
 import com.ezlevup.my.day251121.exercise.data_source.RemoteDataSource
-import com.ezlevup.my.day251121.exercise.data_source.Response
 import com.ezlevup.my.day251121.exercise.model.Post
 
 class PostRepositoryImpl(
@@ -38,6 +38,6 @@ class PostRepositoryImpl(
     }
 
     suspend fun getPostsByKeyword(keyword: String): List<Post> {
-        return getPosts().body.filter { it.title.contains(keyword) }
+        return getPosts().body!!.filter { it.title.contains(keyword) }
     }
 }
