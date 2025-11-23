@@ -4,10 +4,6 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.serialization.json.Json
 
-
-class HttpClientUtils {
-}
-
 data class Response<T>(
     val status: HttpStatusCode,
     val headers: Headers,
