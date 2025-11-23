@@ -42,7 +42,7 @@ suspend inline fun <reified T> HttpResponse.toCustomResponse(): Response<T> {
         null
     }
 
-    // Respons 생성
+    // Response 생성
     return Response(
         statusCode = statusCode,
         headers = headers,
