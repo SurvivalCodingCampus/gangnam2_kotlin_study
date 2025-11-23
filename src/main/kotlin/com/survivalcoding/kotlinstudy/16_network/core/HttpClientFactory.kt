@@ -33,7 +33,14 @@ suspend inline fun <reified T> HttpResponse.toCustomResponse(): Response<T> {
         .associate { it.key to it.value }
 
     // body 디코딩
-    val body = Json.decodeFromString<T>(this.bodyAsText())
+    val body = try {
+        Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+        }.decodeFromString<T>(this.bodyAsText())
+    } catch (e: Exception) {
+        null
+    }
 
     // Respons 생성
     return Response(
