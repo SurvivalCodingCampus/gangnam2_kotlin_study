@@ -1,0 +1,42 @@
+### GET 요청
+GET https://jsonplaceholder.typicode.com/posts
+
+### GET 요청
+GET https://jsonplaceholder.typicode.com/posts/1
+
+### POST 요청
+POST https://jsonplaceholder.typicode.com/posts/
+Content-Type: application/json
+
+{
+  "userId": 5,
+  "title": "hello",
+  "body": "World"
+}
+
+### PUT 요청
+PUT https://jsonplaceholder.typicode.com/posts/1
+Content-Type: application/json
+
+{
+  "userId": 5,
+  "title": "Kotlin",
+  "body": "World"
+}
+
+### PATCH 요청
+PATCH https://jsonplaceholder.typicode.com/posts/20
+Content-Type: application/json
+
+{
+  "title": "Kotlin"
+}
+
+### DELETE 요청
+DELETE https://jsonplaceholder.typicode.com/posts/100
+
+
+
+
+
+
