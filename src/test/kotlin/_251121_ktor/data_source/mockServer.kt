@@ -1,16 +1,19 @@
 ﻿package _251121_ktor.data_source
 
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.headersOf
+import io.ktor.client.engine.mock.*
+import io.ktor.http.*
+import io.ktor.http.HttpMethod.Companion.Get
+import io.ktor.http.HttpMethod.Companion.Post
+import io.ktor.http.HttpMethod.Companion.Put
 
 val mockEngine = MockEngine { request ->
-    when (request.url.encodedPath) {
-        "" -> {
-            respond(
-                status = HttpStatusCode.OK,
-                content = """[
+
+    when (request.method) {
+        Get -> {
+            when (request.url.toString()) {
+                "https://jsonplaceholder.typicode.com/posts" -> {
+                    respond(
+                        content = """[
   {
     "userId": 1,
     "id": 1,
@@ -612,13 +615,81 @@ val mockEngine = MockEngine { request ->
     "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
   }
 ]""",
-                headers = headersOf()
-            )
+                        status = HttpStatusCode.OK
+                    )
+                }
 
+                "https://jsonplaceholder.typicode.com/posts/${1..100}" -> {
+                    respond(
+                        content = """{
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  }""",
+                        status = HttpStatusCode.OK
+                    )
+                }
+
+                else -> {
+                    respond(
+                        content = "{}", // 문제의 빈 JSON 응답 본문
+                        status = HttpStatusCode.NotFound, // 404 상태 코드
+                    )
+                }
+
+            }
         }
 
+        Post -> {
+            when (request.url.toString()) {
+                "https://jsonplaceholder.typicode.com/posts" -> {
+                    respond(
+                        content = "{}",
+                        status = HttpStatusCode.OK
+                    )
+                }
+
+                else -> {
+                    respond(
+                        content = "{}",
+                        status = HttpStatusCode.NotFound
+                    )
+                }
+            }
+        }
+
+        Put -> {
+            when (request.url.toString()) {
+                "https://jsonplaceholder.typicode.com/posts" -> {
+                    respond(
+                        content = "{}",
+                        status = HttpStatusCode.OK
+                    )
+                }
+
+                else -> {
+                    respond(
+                        content = "[]",
+                        status = HttpStatusCode.NotFound
+                    )
+                }
+            }
+
+        }
+//        Patch->{
+//
+//
+//        }
+//        Delete->{
+//
+//        }
         else -> {
-            respond(status = HttpStatusCode.NotFound, content = "")
+            respond(
+                content = "[]",
+                status = HttpStatusCode.NotFound
+            )
         }
     }
+
 }

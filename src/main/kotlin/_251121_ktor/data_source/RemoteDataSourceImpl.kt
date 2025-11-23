@@ -1,33 +1,31 @@
 ﻿package _251121_ktor.data_source
 
 import _251121_ktor.core.BASEURL
-import _251121_ktor.core.Response
+import _251121_ktor.core.HttpClientFactory
 import _251121_ktor.model.Post
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.request.delete
-import io.ktor.client.request.get
-import io.ktor.client.request.patch
-import io.ktor.client.request.post
-import io.ktor.client.request.put
-import io.ktor.client.request.setBody
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
+import _251121_ktor.model.Response
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.serialization.json.Json
 
 class RemoteDataSourceImpl(
-    private val client: HttpClient //= HttpClientFactory.create()
+    private val client: HttpClient = HttpClientFactory.create()
 ) : RemoteDataSource {
 
-    override suspend fun getPosts(): List<Post> {
-        val response: Response<String> = client.get(BASEURL).body()
-        return Json.decodeFromString(response.body)
+    override suspend fun getPosts(): Response<List<Post>> {
+        val response = client.get(BASEURL)
+
+        return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
+
+        //Json.decodeFromString<Response<List<Post>>>(response.bodyAsText())
     }
 
-    override suspend fun getPost(id: Int): Post {
+    override suspend fun getPost(id: Int): Response<Post> {
         val response = client.get("$BASEURL/$id")
-        return Json.decodeFromString(response.bodyAsText())
+
+        return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
     }
 
     override suspend fun createPost(newPost: Post): Post {
