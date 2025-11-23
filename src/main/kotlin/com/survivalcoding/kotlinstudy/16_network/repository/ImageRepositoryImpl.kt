@@ -2,6 +2,7 @@ package com.survivalcoding.kotlinstudy.`16_network`.repository
 
 import com.survivalcoding.kotlinstudy.`16_network`.data_source.ImageDataSource
 import java.io.File
+import java.util.*
 
 class ImageRepositoryImpl(
     private val dataSource: ImageDataSource
@@ -12,8 +13,17 @@ class ImageRepositoryImpl(
     }
 
     override suspend fun saveImages(urls: List<String>, directory: String) {
+        File(directory).mkdirs()
 
+        urls.forEachIndexed { index, url ->
+            val extension = url.substringAfterLast(".", "jpg")  // 확장자 추출
+            val fileName = "${UUID.randomUUID()}.$extension"
+            val filePath = "$directory/$fileName"
+
+            saveImage(url, filePath)
+        }
     }
+
 
     override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
         val file = File(path)
