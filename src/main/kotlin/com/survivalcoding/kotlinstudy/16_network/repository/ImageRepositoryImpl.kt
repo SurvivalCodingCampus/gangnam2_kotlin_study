@@ -28,14 +28,16 @@ class ImageRepositoryImpl(
 
     override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
         val file = File(path)
+        
+        file.parentFile?.mkdirs()
+        val bytes = dataSource.fetchImage(url)
 
-        // 파일이 존재하면 False
-        if (file.exists()) {
+        // 파일 생성 성공 여부 확인
+        if (!file.createNewFile()) {
             return false
         }
 
         // 파일이 없으면 저장하고 True
-        val bytes = dataSource.fetchImage(url)
         dataSource.saveImage(bytes, path)
         return true
     }
