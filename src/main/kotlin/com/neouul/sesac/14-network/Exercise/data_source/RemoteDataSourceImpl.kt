@@ -5,12 +5,7 @@ import com.neouul.sesac.`14-network`.Exercise.core.ResponseFactory
 import com.neouul.sesac.`14-network`.Exercise.model.Post
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
-import io.ktor.client.request.delete
-import io.ktor.client.request.get
-import io.ktor.client.request.patch
-import io.ktor.client.request.post
-import io.ktor.client.request.put
-import io.ktor.client.request.setBody
+import io.ktor.client.request.*
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 
