@@ -34,6 +34,7 @@ dependencies {
 tasks.test {
     // 함수 호출
     useJUnitPlatform()
+    useJUnit()
 }
 
 kotlin {
