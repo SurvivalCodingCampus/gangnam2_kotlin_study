@@ -20,6 +20,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("junit:junit:4.13.1")
     testImplementation("io.mockk:mockk:1.13.11")
+    testImplementation("io.ktor:ktor-client-mock:3.3.2")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
