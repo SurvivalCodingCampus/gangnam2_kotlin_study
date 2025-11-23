@@ -16,7 +16,8 @@ class ImageRepositoryImpl(
         File(directory).mkdirs()
 
         urls.forEachIndexed { index, url ->
-            val extension = url.substringAfterLast(".", "jpg")  // 확장자 추출
+            val baseUrl = url.substringBefore("?")        // 파일 확장자가 포함된 순수한 파일 경로만 추출 (쿼리 스트링 제거)
+            val extension = baseUrl.substringAfterLast(".", "jpg")  // 확장자 추출
             val fileName = "${UUID.randomUUID()}.$extension"
             val filePath = "$directory/$fileName"
 
