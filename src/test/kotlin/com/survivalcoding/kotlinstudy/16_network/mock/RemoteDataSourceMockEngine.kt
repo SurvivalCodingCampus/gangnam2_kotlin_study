@@ -8,8 +8,6 @@ import io.ktor.utils.io.*
 // RemoteDataSourceImpl 테스트 전용 MockEngine
 object RemoteDataSourceMockEngine {
 
-    private const val BASE = "https://jsonplaceholder.typicode.com"
-
     // GET /posts 성공
     fun getPostsSuccess() = MockEngine { request ->
         respond(
