@@ -14,19 +14,19 @@ class RemoteDataSourceImplTest {
 
     companion object {
 
-        // Status Codes
+        // Status Code
         private const val STATUS_OK = 200
         private const val STATUS_CREATED = 201
         private const val STATUS_NOT_FOUND = 404
         private const val STATUS_SERVER_ERROR = 500
 
-        // IDs
+        // ID
         private const val USER_ID = 1
         private const val VALID_ID = 1
         private const val INVALID_ID = 9999
         private const val NEW_POST_ID = 0
 
-        // Titles
+        // Title
         private const val TITLE_HELLO = "Hello"
         private const val TITLE_NEW = "New"
         private const val TITLE_UPDATED = "Updated"
