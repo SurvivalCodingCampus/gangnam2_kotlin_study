@@ -5,11 +5,7 @@ import io.ktor.http.*
 import io.ktor.utils.io.*
 
 
-/**
- * RemoteDataSourceImpl 테스트 전용 MockEngine
- * URL + HTTP Method 기준으로 분기
- */
-
+// RemoteDataSourceImpl 테스트 전용 MockEngine
 object RemoteDataSourceMockEngine {
 
     private const val BASE = "https://jsonplaceholder.typicode.com"

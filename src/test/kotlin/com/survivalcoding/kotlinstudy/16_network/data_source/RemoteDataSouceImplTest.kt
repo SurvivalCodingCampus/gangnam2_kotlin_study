@@ -28,7 +28,7 @@ class RemoteDataSourceImplTest {
 
         // Title
         private const val TITLE_HELLO = "Hello"
-        private const val TITLE_NEW = "New"
+        private const val TITLE_CREATED = "Created"
         private const val TITLE_UPDATED = "Updated"
         private const val TITLE_PATCHED = "Patched"
 
@@ -102,15 +102,14 @@ class RemoteDataSourceImplTest {
         val newPost = Post(
             userId = USER_ID,
             id = NEW_POST_ID,
-            title = TITLE_NEW,
+            title = TITLE_CREATED,
             body = BODY_SAMPLE
         )
 
         val response = dataSource.createPost(newPost)
 
         assertEquals(STATUS_CREATED, response.statusCode)
-        assertEquals(TITLE_NEW, TITLE_NEW) // 유지 보수 목적 상수 체크
-        assertEquals(TITLE_NEW, TITLE_NEW)
+        assertEquals(TITLE_CREATED, response.body!!.title)
     }
 
     // PUT 성공
