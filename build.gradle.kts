@@ -26,6 +26,9 @@ dependencies {
     implementation("io.ktor:ktor-client-core:3.3.2")
     implementation("io.ktor:ktor-client-cio:3.3.2") //코루틴 되도록 처리
     testImplementation("io.ktor:ktor-client-mock:3.3.2") //mockEngine을 이용하여 mock서버 만들기 위함
+
+    implementation("io.ktor:ktor-client-content-negotiation:3.3.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.2")
 }
 
 tasks.test {

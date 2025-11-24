@@ -16,45 +16,42 @@ class RemoteDataSourceImpl(
 
     override suspend fun getPosts(): Response<List<Post>> {
         val response = client.get(BASEURL)
-
         return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
-
-        //Json.decodeFromString<Response<List<Post>>>(response.bodyAsText())
     }
 
     override suspend fun getPost(id: Int): Response<Post> {
         val response = client.get("$BASEURL/$id")
-
         return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
     }
 
-    override suspend fun createPost(newPost: Post): Post {
+    override suspend fun createPost(newPost: Post): Response<Post> {
         val response = client.post(BASEURL) {
             contentType(ContentType.Application.Json)
-            setBody(newPost)
+            setBody(Json.encodeToString(newPost.toString()))
         }
-        return Json.decodeFromString(response.bodyAsText())
+        return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
     }
 
-    override suspend fun updatePost(id: Int, updatePost: Post): Post {
-        val response = client.put("$BASEURL\$id") {
+    override suspend fun updatePost(id: Int, updatePost: Post): Response<Post> {
+        val response = client.put("$BASEURL/$id") {
             contentType(ContentType.Application.Json)
             setBody(updatePost)
         }
-        return Json.decodeFromString(response.bodyAsText())
+        return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
 
     }
 
-    override suspend fun patchPost(id: Int, updatePost: Post): Post {
-        val response = client.patch("$BASEURL\$id") {
+    override suspend fun patchPost(id: Int, updatePost: Post): Response<Post> {
+        val response = client.patch("$BASEURL/$id") {
             contentType(ContentType.Application.Json)
             setBody(updatePost)
         }
-        return Json.decodeFromString(response.bodyAsText())
+        return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
     }
 
-    override suspend fun deletePost(id: Int) {
-        val response = client.delete("$BASEURL\$id")
+    override suspend fun deletePost(id: Int): HttpStatusCode {
+        val response = client.delete("$BASEURL/$id")
+        return response.status
     }
 
 
