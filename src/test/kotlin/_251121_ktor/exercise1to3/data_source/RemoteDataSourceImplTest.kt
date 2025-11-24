@@ -32,7 +32,7 @@ class RemoteDataSourceImplTest {
     }
 
     @Test
-    fun `getpost함수 인자가 100을 넘어가는 경우 404 NotFount가 뜬다`() = runTest {
+    fun `getpost함수 인자가 100을 넘어가는 경우 404 NotFound가 뜬다`() = runTest {
         //when
         val result: Response<Post> = remoteDataSourceImpl.getPost(101)
         //then
