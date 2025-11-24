@@ -23,4 +23,11 @@ class PostRepositoryImplTest {
 
         assertEquals(12, posts.size)
     }
+
+    @Test
+    fun `getPostByKeyword(keyword) 메서드 성공 케이스 - zzz`() = runBlocking {
+        val posts = postRepository.getPostsByKeyword("zzz")
+
+        assertEquals(0, posts.size)
+    }
 }
