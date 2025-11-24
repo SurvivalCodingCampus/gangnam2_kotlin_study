@@ -1,7 +1,7 @@
-package _251121_ktor.data_source
+package _251121_ktor.exercise1to3.data_source
 
-import _251121_ktor.core.BASEURL
-import _251121_ktor.core.POSTSJSON
+import _251121_ktor.exercise1to3.core.BASEURL
+import _251121_ktor.exercise1to3.core.POSTSJSON
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import io.ktor.http.HttpMethod.Companion.Delete

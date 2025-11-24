@@ -1,4 +1,4 @@
-﻿package _251121_ktor.model
+﻿package _251121_ktor.exercise1to3.model
 
 
 import kotlinx.serialization.Serializable

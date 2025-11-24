@@ -1,7 +1,7 @@
-﻿package _251121_ktor.repository
+﻿package _251121_ktor.exercise1to3.repository
 
-import _251121_ktor.data_source.RemoteDataSourceImpl
-import _251121_ktor.data_source.mockEngine
+import _251121_ktor.exercise1to3.data_source.RemoteDataSourceImpl
+import _251121_ktor.exercise1to3.data_source.mockEngine
 import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*

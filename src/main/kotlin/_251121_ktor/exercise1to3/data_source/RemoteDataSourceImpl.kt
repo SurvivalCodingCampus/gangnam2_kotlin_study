@@ -1,9 +1,9 @@
-﻿package _251121_ktor.data_source
+﻿package _251121_ktor.exercise1to3.data_source
 
-import _251121_ktor.core.BASEURL
-import _251121_ktor.core.HttpClientFactory
-import _251121_ktor.model.Post
-import _251121_ktor.model.Response
+import _251121_ktor.exercise1to3.core.BASEURL
+import _251121_ktor.exercise1to3.core.HttpClientFactory
+import _251121_ktor.exercise1to3.model.Post
+import _251121_ktor.exercise1to3.model.Response
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

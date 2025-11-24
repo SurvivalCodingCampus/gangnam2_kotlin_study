@@ -1,6 +1,6 @@
-﻿package _251121_ktor.repository
+﻿package _251121_ktor.exercise1to3.repository
 
-import _251121_ktor.model.Post
+import _251121_ktor.exercise1to3.model.Post
 
 interface PostRepository {
     suspend fun getPostsByKeyword(keyword: String): List<Post>

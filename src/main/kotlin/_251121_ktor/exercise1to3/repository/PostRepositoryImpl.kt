@@ -1,7 +1,7 @@
-﻿package _251121_ktor.repository
+﻿package _251121_ktor.exercise1to3.repository
 
-import _251121_ktor.data_source.RemoteDataSource
-import _251121_ktor.model.Post
+import _251121_ktor.exercise1to3.data_source.RemoteDataSource
+import _251121_ktor.exercise1to3.model.Post
 
 class PostRepositoryImpl(
     val postDataSource: RemoteDataSource

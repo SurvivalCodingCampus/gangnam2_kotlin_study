@@ -1,4 +1,4 @@
-﻿package _251121_ktor.core
+﻿package _251121_ktor.exercise1to3.core
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
