@@ -27,7 +27,7 @@ class RemoteDataSourceImpl(
     override suspend fun createPost(newPost: Post): Response<Post> {
         val response = client.post(BASEURL) {
             contentType(ContentType.Application.Json)
-            setBody(Json.encodeToString(newPost.toString()))
+            setBody(newPost)
         }
         return Response(body = Json.decodeFromString(response.bodyAsText()), statusCode = response.status.toString())
     }
