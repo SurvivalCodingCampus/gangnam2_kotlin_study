@@ -5,7 +5,7 @@ import com.ezlevup.my.day251121.exercise.data_source.RemoteDataSource
 import com.ezlevup.my.day251121.exercise.model.Post
 
 class PostRepositoryImpl(
-    val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource
 ) : PostRepository {
     override suspend fun getPosts(): Response<List<Post>> {
         return remoteDataSource.getPosts()
