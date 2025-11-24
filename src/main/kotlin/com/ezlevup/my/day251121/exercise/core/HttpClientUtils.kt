@@ -2,6 +2,7 @@ package com.ezlevup.my.day251121.exercise.core
 
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
 data class Response<T>(
@@ -21,9 +22,13 @@ suspend inline fun <reified T> HttpResponse.toResponse(): Response<T> {
         return Response(statusCode, headers)
     }
 
-    return Response(
-        statusCode,
-        headers,
-        Json.decodeFromString<T>(json),
-    )
+    return try {
+        Response(
+            statusCode,
+            headers,
+            Json.decodeFromString<T>(json),
+        )
+    } catch (e: SerializationException) {
+        Response(statusCode, headers)
+    }
 }
