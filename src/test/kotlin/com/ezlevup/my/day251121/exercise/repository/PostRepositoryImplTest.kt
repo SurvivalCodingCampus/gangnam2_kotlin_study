@@ -161,7 +161,7 @@ class PostRepositoryImplTest {
         val postRepository = PostRepositoryImpl(RemoteDataSourceImpl(client))
 
         // when
-        val result = postRepository.getPost(mockPostId8.id)
+        val result = postRepository.createPost(mockPostId8)
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
