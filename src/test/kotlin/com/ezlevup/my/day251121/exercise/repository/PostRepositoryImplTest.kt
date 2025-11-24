@@ -141,17 +141,17 @@ class PostRepositoryImplTest {
     }
 
     @Test
-    fun getPost(): Unit = runBlocking {
+    fun `getPosts(id)`(): Unit = runBlocking {
         // given
-        val client: HttpClient = HttpClient(mockEngine)
+        val client: HttpClient = HttpClient(mockEngineId8)
         val postRepository = PostRepositoryImpl(RemoteDataSourceImpl(client))
 
         // when
-        val result = postRepository.getPosts()
+        val result = postRepository.getPosts(mockPostId8.id)
 
         // then
         assertEquals(HttpStatusCode.OK, result.status)
-        assertEquals(mockPosts.count(), result.body!!.count())
+        assertEquals(mockPostId8.id, result.body!!.id)
     }
 
     @Test
