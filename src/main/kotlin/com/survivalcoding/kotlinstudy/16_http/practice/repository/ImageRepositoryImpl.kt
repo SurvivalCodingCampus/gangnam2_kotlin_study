@@ -48,8 +48,7 @@ class ImageRepositoryImpl(
                         lower.endsWith(".jpeg") ||
                         lower.endsWith(".png") ||
                         lower.endsWith(".webp")
-            }
-            .isNotEmpty()
+            }?.isNotEmpty() == true
 
         if (hasImageFile) {
             return false

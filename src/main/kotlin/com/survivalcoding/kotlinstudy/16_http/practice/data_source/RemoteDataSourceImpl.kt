@@ -85,16 +85,6 @@ class RemoteDataSourceImpl(
         val response: HttpResponse =
             client.delete("https://jsonplaceholder.typicode.com/posts/$id")
 
-        val text: String = response.bodyAsText()
-
-        if (!response.status.isSuccess()) {
-            throw IllegalStateException("HTTP ${response.status.value}: $text")
-        }
-
-        return Response(
-            statusCode = response.status.value,
-            header = response.headers.toMap(),
-            body = Unit
-        )
+        return parseSuccess(response)
     }
 }
