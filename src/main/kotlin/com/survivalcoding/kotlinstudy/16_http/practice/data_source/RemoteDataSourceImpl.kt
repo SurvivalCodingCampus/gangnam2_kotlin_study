@@ -11,7 +11,7 @@ import io.ktor.util.*
 import kotlinx.serialization.json.Json
 
 class RemoteDataSourceImpl(
-    private val client: HttpClient = HttpClientFactory.creat()
+    private val client: HttpClient = HttpClientFactory.create()
 ) : RemoteDataSource {
     private val json = Json { explicitNulls = false }
 
