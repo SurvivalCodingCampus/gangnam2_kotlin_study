@@ -10,6 +10,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import io.ktor.util.toMap
 import kotlinx.serialization.json.Json
 
 class RemoteDataSourceImpl(
@@ -26,7 +27,8 @@ class RemoteDataSourceImpl(
     override suspend fun getPost(id: Int): Response<Post?> {
         val response = client.get("https://jsonplaceholder.typicode.com/posts/$id")
 
-        return ResponseFactory.create<Post>(response)
+        if (response.bodyAsText() == "{}") return ResponseFactory.createNull(response)
+        return ResponseFactory.create<Post?>(response)
     }
 
     // post 생성
@@ -43,26 +45,28 @@ class RemoteDataSourceImpl(
     override suspend fun updatePost(
         id: Int,
         post: Post
-    ): Response<Post> {
+    ): Response<Post?> {
         val response = client.put("https://jsonplaceholder.typicode.com/posts/$id") {
             contentType(ContentType.Application.Json)
             setBody(Json.encodeToString(post))
         }
 
-        return ResponseFactory.create<Post>(response)
+        if (response.bodyAsText() == "{}") return ResponseFactory.createNull(response)
+        return ResponseFactory.create<Post?>(response)
     }
 
     // post의 일부 속성 업데이트
     override suspend fun patchPost(
         id: Int,
         post: Post
-    ): Response<Post> {
+    ): Response<Post?> {
         val response = client.patch("https://jsonplaceholder.typicode.com/posts/$id") {
             contentType(ContentType.Application.Json)
             setBody(Json.encodeToString(post))
         }
 
-        return ResponseFactory.create<Post>(response)
+        if (response.bodyAsText() == "{}") return ResponseFactory.createNull(response)
+        return ResponseFactory.create<Post?>(response)
     }
 
     // post 삭제
