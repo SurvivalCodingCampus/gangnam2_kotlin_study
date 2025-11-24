@@ -33,7 +33,7 @@ class ImageRepositoryImpl(
     // 이미지가 존재하지 않는 경우에만 URL에서 다운로드하여 저장
     override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
         val file = File(path)
-        if (!file.exists()) return false
+        if (file.exists()) return false
 
         val bytes = dataSource.fetchImage(url)
         dataSource.saveImage(bytes, path)
