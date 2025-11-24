@@ -38,6 +38,6 @@ class PostRepositoryImpl(
     }
 
     suspend fun getPostsByKeyword(keyword: String): List<Post> {
-        return getPosts().body!!.filter { it.title.contains(keyword) }
+        return getPosts().body?.filter { it.title.contains(keyword) } ?: emptyList()
     }
 }
