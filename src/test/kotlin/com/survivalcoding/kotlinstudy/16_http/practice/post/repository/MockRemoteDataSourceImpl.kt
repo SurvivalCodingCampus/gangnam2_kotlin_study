@@ -12,13 +12,14 @@ class MockRemoteDataSourceImpl: RemoteDataSource {
     private val client = HttpClient(PostMockEngine.mockEngine)
     private val api = RemoteDataSourceImpl(client)
 
-    override suspend fun getPost(): Response<List<Post>> {
-        return Response(
-            statusCode = api.getPost().statusCode,
-            header = api.getPost().header,
-            body = api.getPost().body
-        )
-    }
+     override suspend fun getPost(): Response<List<Post>> {
+         val response = api.getPost()
+         return Response(
+             statusCode = response.statusCode,
+             header = response.header,
+             body = response.body
+         )
+     }
 
     override suspend fun getPost(id: Int): Response<Post> {
         TODO("Not yet implemented")
