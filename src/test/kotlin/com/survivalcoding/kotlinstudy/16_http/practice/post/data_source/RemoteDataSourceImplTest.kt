@@ -39,7 +39,6 @@ class RemoteDataSourceImplTest {
         val expectedId = 1
         val expectedTitle = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
 
-        println(result)
         assertEquals(expectedCode, result.statusCode)
         assertEquals(expectedId, result.body.id)
         assertEquals(expectedTitle, result.body.title)
