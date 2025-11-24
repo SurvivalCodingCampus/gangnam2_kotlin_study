@@ -1,7 +1,6 @@
 ﻿package _251121_ktor.exercise4.repository
 
 import _251121_ktor.exercise4.data_source.ImageDataSource
-import kotlinx.io.files.FileNotFoundException
 import java.io.File
 
 class ImageRepositoryImpl(
@@ -19,10 +18,9 @@ class ImageRepositoryImpl(
 
     override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
         val file = File(path)
-        try {
-            file.readText()
-            return true
-        } catch (e: FileNotFoundException) {
+        return if (file.exists()) {
+            true
+        } else {
             imageDataSource.saveImage(imageDataSource.fetchImage(url), path)
             return false
         }
