@@ -19,6 +19,9 @@ class ImageRepositoryImpl(
         val imageByte: ByteArray = dataSource.fetchImage(url)
 
         val rawName: String = url.substringAfterLast('/')
+        if (rawName.isBlank()) {
+        throw IllegalArgumentException("유효한 파일명을 추출할 수 없습니다: $url")
+        }
         val fileName: String = rawName.replace(Regex("[^A-Za-z0-9._-]"), "_")
 
         val filePath: String = File(dir, fileName).toString()
