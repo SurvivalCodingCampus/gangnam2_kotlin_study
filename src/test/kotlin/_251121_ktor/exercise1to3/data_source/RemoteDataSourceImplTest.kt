@@ -14,9 +14,7 @@ class RemoteDataSourceImplTest {
 
     val mockClient = HttpClient(mockEngine) {
         install(ContentNegotiation) {
-            // 🎯 Post 객체를 JSON으로 변환해 줄 JSON 직렬화 설정
             json(Json {
-                // 직렬화/역직렬화에 필요한 옵션을 추가합니다.
                 ignoreUnknownKeys = true
                 isLenient = true
             })
