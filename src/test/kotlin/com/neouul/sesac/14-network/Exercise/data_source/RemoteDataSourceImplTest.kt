@@ -786,12 +786,39 @@ class RemoteDataSourceImplTest {
     }
 
     // 실패 케이스
-//    @Test
-//    fun `(READ) getPost(id) 메서드 실패 - 존재하지 않는 ID(200) 요청`() = runBlocking {
-//        val response = remoteDataSource.getPost(200)
-//
-//        assertEquals(mapOf("Content-Type" to listOf("application/json")), response.header)
-//        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
-//        assertNull(response.body)
-//    }
+    @Test
+    fun `(READ) getPost(id) 메서드 실패 - 존재하지 않는 ID(200) 요청`() = runBlocking {
+        val response = remoteDataSource.getPost(200)
+
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `(UPDATE) updatePost(id, post) 메서드 실패 - 존재하지 않는 ID(200) 요청`() = runBlocking {
+        val expected = Json.decodeFromString<Post>(UPDATE_POST)
+
+        val response = remoteDataSource.updatePost(200, expected)
+
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `(UPDATE) patchPost(id, post) 메서드 실패 - 존재하지 않는 ID(200) 요청`() = runBlocking {
+        val expected = Json.decodeFromString<Post>(PATCH_POST)
+
+        val response = remoteDataSource.patchPost(200, expected)
+
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
+        assertNull(response.body)
+    }
+
+    @Test
+    fun `(DELETE) deletePost(id) 메서드 실패 - 존재하지 않는 ID(200) 요청`() = runBlocking {
+        val response = remoteDataSource.deletePost(200)
+
+        assertEquals(HttpStatusCode.NotFound.value, response.statusCode)
+        assertEquals(Unit, response.body)
+    }
 }
