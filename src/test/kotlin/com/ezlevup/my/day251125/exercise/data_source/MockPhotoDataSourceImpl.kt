@@ -13,10 +13,10 @@ class MockPhotoDataSourceImpl(
     mockPhotos: List<PhotoDto>
 ) : PhotoDataSource {
 
-    private val mockEngine = MockEngine.Companion { request ->
+    private val mockEngine = MockEngine { request ->
         respond(
             content = Json.Default.encodeToString(mockPhotos),
-            status = HttpStatusCode.Companion.OK,
+            status = HttpStatusCode.OK,
             headers = headersOf(HttpHeaders.ContentType, "application/json")
         )
     }
@@ -24,7 +24,7 @@ class MockPhotoDataSourceImpl(
     private val client: HttpClient = HttpClient(mockEngine)
 
     override suspend fun getPhotos(): Response<List<PhotoDto>> {
-        val httpResponse = client.get("https://")
+        val httpResponse = client.get("https://example.com/photos")
         return httpResponse.toResponse<List<PhotoDto>>()
     }
 }
