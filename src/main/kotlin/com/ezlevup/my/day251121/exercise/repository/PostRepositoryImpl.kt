@@ -11,8 +11,8 @@ class PostRepositoryImpl(
         return remoteDataSource.getPosts()
     }
 
-    override suspend fun getPosts(id: Int): Response<Post> {
-        return remoteDataSource.getPosts(id)
+    override suspend fun getPost(id: Int): Response<Post> {
+        return remoteDataSource.getPost(id)
     }
 
     override suspend fun createPost(post: Post): Response<Post> {

@@ -20,7 +20,7 @@ class RemoteDataSourceImpl(
         return httpResponse.toResponse<List<Post>>()
     }
 
-    override suspend fun getPosts(id: Int): Response<Post> {
+    override suspend fun getPost(id: Int): Response<Post> {
         val httpResponse = client.get("https://jsonplaceholder.typicode.com/posts/$id")
         val body = Json.decodeFromString<Post>(httpResponse.bodyAsText())
         return httpResponse.toResponse<Post>()

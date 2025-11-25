@@ -169,7 +169,7 @@ class RemoteDataSourceImplTest {
 
         // when
         val searchId = 8
-        val result = dataSource.getPosts(searchId)
+        val result = dataSource.getPost(searchId)
 
         // then
         assertNotNull(result)
