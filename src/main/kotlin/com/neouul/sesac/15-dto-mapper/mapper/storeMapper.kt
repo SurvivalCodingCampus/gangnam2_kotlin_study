@@ -1,21 +1,19 @@
 package com.neouul.sesac.`15-dto-mapper`.mapper
 
-import com.neouul.sesac.`15-dto-mapper`.core.slashFormatStringToLocalDateTime
+import com.neouul.sesac.`15-dto-mapper`.core.*
 import com.neouul.sesac.`15-dto-mapper`.dto.StoreDTO
 import com.neouul.sesac.`15-dto-mapper`.model.Store
 import java.time.LocalDateTime
 
 fun StoreDTO.toModel(): Store {
     return Store(
-        address = addr ?: "",
-        code = code ?: "",
-        createdAt = created_at?.slashFormatStringToLocalDateTime()
-            ?: LocalDateTime.of(2000, 1, 1, 0, 0, 0),
-        latitude = lat ?: 0.0,
-        longitude = lng ?: 0.0,
-        name = name ?: "",
-        remainStat = remain_stat ?: "",
-        stockAt = stock_at?.slashFormatStringToLocalDateTime()
-            ?: LocalDateTime.of(2000, 1, 1, 0, 0, 0),
+        address = addr ?: EMPTY_STRING,
+        code = code ?: EMPTY_STRING,
+        createdAt = created_at?.slashFormatStringToLocalDateTime() ?: EMPTY_LOCALDATETIME,
+        latitude = lat ?: EMPTY_DOUBLE,
+        longitude = lng ?: EMPTY_DOUBLE,
+        name = name ?: EMPTY_STRING,
+        remainStat = remain_stat ?: EMPTY_STRING,
+        stockAt = stock_at?.slashFormatStringToLocalDateTime() ?: EMPTY_LOCALDATETIME,
     )
 }
