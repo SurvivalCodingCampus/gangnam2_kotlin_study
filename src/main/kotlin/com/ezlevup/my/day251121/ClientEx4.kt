@@ -1,6 +1,6 @@
 package com.ezlevup.my.day251121
 
-import com.ezlevup.my.day251121.exercise.core.FileUtils
+import com.ezlevup.my.core.FileUtils
 import com.ezlevup.my.day251121.exercise.data_source.ImageDataSourceImpl
 import com.ezlevup.my.day251121.exercise.repository.ImageRepositoryImpl
 import kotlinx.coroutines.runBlocking

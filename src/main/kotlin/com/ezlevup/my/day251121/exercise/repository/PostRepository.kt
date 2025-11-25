@@ -1,6 +1,6 @@
 package com.ezlevup.my.day251121.exercise.repository
 
-import com.ezlevup.my.day251121.exercise.core.Response
+import com.ezlevup.my.core.Response
 import com.ezlevup.my.day251121.exercise.model.Post
 
 interface PostRepository {
