@@ -108,8 +108,9 @@ class RemoteDataSourceImplTest {
     @Test
     fun `deletePost(id)가 잘 동작하는지 확인`() = runBlocking {
         val result: Response<Unit> = api.deletePost(1)
+        val expectedCode = 200
 
-        assertEquals(200, result.statusCode)
+        assertEquals(expectedCode, result.statusCode)
     }
 
     // 네트워크 에러 케이스
