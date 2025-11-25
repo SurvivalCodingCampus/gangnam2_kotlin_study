@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StoreListDto(
-    val count: Int?,
-    val stores: List<StoreDto>?
+    val count: Int? = null,
+    val stores: List<StoreDto>? = null
 )
