@@ -14,10 +14,18 @@ class FileStoreDataSourceImpl(
     override suspend fun getStores(): Response<StoresDto> = withContext(Dispatchers.IO) {
         val file = File(pathname)
 
-        Response(
-            200,
-            mapOf(),
-            Json.decodeFromString(file.readText()),
-        )
+        try {
+            Response(
+                200,
+                mapOf(),
+                Json.decodeFromString(file.readText()),
+            )
+        } catch (_: Exception) {
+            Response(
+                500,
+                mapOf(),
+                null,
+            )
+        }
     }
 }

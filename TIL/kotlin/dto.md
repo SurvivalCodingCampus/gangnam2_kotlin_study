@@ -54,7 +54,7 @@ Dto 전체를 변환하는 것이 아니다. **필요한 부분**만 변환하�
 
 Json → DTO → Mapper를 활용하여 모델 클래스로 변환 → 모델 클래스
 
-```
+```text
 - data_source
   - TodoDataSource.kt
 - dto
