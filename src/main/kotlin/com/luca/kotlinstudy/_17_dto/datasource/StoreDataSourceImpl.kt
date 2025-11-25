@@ -10,7 +10,7 @@ import io.ktor.client.request.get
 import io.ktor.http.isSuccess
 import io.ktor.util.toMap
 
-class RemoteStoreDataSourceImpl(
+class StoreDataSourceImpl(
     private val httpClient: HttpClient = HttpClientFactory.create(),
     private val url: String =
         "https://gist.githubusercontent.com/junsuk5/2b34223fb2368d2bf44c85082745649a/raw/00cb276cb4f4f9573d868e88382f6f7f6759df31/mask_store.json"
