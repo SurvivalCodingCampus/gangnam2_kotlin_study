@@ -8,7 +8,9 @@ enum class PhotoType {
 
     companion object {
         fun fromString(type: String?): PhotoType {
-            if (type == null) UNKNOWN
+            if (type == null) {
+                return UNKNOWN
+            }
 
             return entries.firstOrNull {
                 it.name.equals(type, ignoreCase = true)
