@@ -1,4 +1,4 @@
-package com.ezlevup.my.day251121.exercise.core
+package com.ezlevup.my.core
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*

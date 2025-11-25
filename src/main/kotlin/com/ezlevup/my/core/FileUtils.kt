@@ -1,4 +1,4 @@
-package com.ezlevup.my.day251121.exercise.core
+package com.ezlevup.my.core
 
 import java.io.File
 

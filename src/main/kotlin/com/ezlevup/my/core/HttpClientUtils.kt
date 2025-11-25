@@ -1,4 +1,4 @@
-package com.ezlevup.my.day251121.exercise.core
+package com.ezlevup.my.core
 
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -29,6 +29,7 @@ suspend inline fun <reified T> HttpResponse.toResponse(): Response<T> {
             Json.decodeFromString<T>(json),
         )
     } catch (e: SerializationException) {
+        println(e.toString())
         Response(statusCode, headers)
     }
 }
