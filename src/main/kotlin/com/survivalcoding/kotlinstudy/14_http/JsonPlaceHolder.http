@@ -33,3 +33,7 @@ Content-Type: application/json
 
 ### DELETE 요청
 DELETE https://jsonplaceholder.typicode.com/posts/100
+
+
+### 지하철
+GET http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/%EC%84%9C%EC%9A%B8%EC%9A%B8

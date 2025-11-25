@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.repository.core
+package com.survivalcoding.kotlinstudy.core
 
 data class Response<T>(
     val statusCode: Int,
