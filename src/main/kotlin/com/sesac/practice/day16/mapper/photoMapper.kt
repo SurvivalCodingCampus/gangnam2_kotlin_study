@@ -6,7 +6,7 @@ import com.sesac.practice.day16.model.Photo
 import com.sesac.practice.day16.model.PhotoType
 
 fun PhotoDto.toModel(): Photo = Photo(
-    id = id?.toLongOrNull() ?: 0L,
+    id = id ?: 0L,
     type = PhotoType.parse(type),
     createdAt = parseDate(createdAt),
     title = title ?: "제목 없음",
