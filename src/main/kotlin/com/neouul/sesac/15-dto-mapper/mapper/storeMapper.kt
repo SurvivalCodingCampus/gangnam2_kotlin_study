@@ -3,7 +3,6 @@ package com.neouul.sesac.`15-dto-mapper`.mapper
 import com.neouul.sesac.`15-dto-mapper`.core.*
 import com.neouul.sesac.`15-dto-mapper`.dto.StoreDTO
 import com.neouul.sesac.`15-dto-mapper`.model.Store
-import java.time.LocalDateTime
 
 fun StoreDTO.toModel(): Store {
     return Store(
