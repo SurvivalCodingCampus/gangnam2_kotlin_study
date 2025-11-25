@@ -6,7 +6,7 @@ import java.time.LocalDate
 data class Photo(
     val caption: String,
     val content: String,
-    val createdAt: LocalDate,
+    val createdAt: LocalDate?,
     val id: Int,
     val title: String,
     val type: PhotoType,
