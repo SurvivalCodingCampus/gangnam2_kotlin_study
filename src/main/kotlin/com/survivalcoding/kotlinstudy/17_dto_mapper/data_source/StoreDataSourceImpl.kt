@@ -7,7 +7,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 
-class StoreDataSoruceImpl(
+class StoreDataSourceImpl(
     private val client: HttpClient = HttpClientFactory.create()
 ) : StoreDataSource {
     override suspend fun getStores(): List<StoreDto> {

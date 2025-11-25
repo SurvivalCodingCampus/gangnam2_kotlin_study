@@ -1,7 +1,7 @@
 package com.survivalcoding.kotlinstudy.`17_dto_mapper`.repository
 
 import com.survivalcoding.kotlinstudy.`17_dto_mapper`.data_source.StoreDataSource
-import com.survivalcoding.kotlinstudy.`17_dto_mapper`.mapper.toStore
+import com.survivalcoding.kotlinstudy.`17_dto_mapper`.mapper.toModel
 import com.survivalcoding.kotlinstudy.`17_dto_mapper`.model.Store
 
 class StoreRepositoryImpl(
@@ -14,6 +14,6 @@ class StoreRepositoryImpl(
                         !it.createdAt.isNullOrBlank() &&
                         !it.stockAt.isNullOrBlank()
             }
-            .map { it.toStore() }
+            .map { it.toModel() }
     }
 }
