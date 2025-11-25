@@ -1,7 +1,7 @@
 ﻿package _251125_dto_mapper.exercise1.data_source
 
 import _251125_dto_mapper.exercise1.FILEPATH
-import _251125_dto_mapper.exercise1.dto.StoreDto
+import _251125_dto_mapper.exercise1.dto.Stores
 import io.ktor.http.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -26,7 +26,7 @@ class StoreDataSourceImplTest {
         val response = storeDataSourceImpl.getAllStore()
         //then
         assertEquals(HttpStatusCode.OK, response.statusCode)
-        assertEquals(Json.decodeFromString<StoreDto>(file), response.body)
+        assertEquals(Json.decodeFromString<Stores>(file), response.body)
     }
 
 }

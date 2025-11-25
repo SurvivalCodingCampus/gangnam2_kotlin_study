@@ -2,8 +2,8 @@
 
 import _251125_dto_mapper.exercise1.FILEPATH
 import _251125_dto_mapper.exercise1.data_source.StoreDataSourceImpl
-import _251125_dto_mapper.exercise1.dto.StoreDto
-import _251125_dto_mapper.exercise1.mapper.toStore
+import _251125_dto_mapper.exercise1.dto.Stores
+import _251125_dto_mapper.exercise1.mapper.toModel
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Test
@@ -21,8 +21,8 @@ class StoreRepositoryImplTest {
         //then
         assertEquals(
             result,
-            Json.decodeFromString<StoreDto>(File(FILEPATH).readText())
-                .toStore().filter { it.remainStat.isNotEmpty() && it.stockAt.isNotEmpty() && it.createdAt.isNotEmpty() }
+            Json.decodeFromString<Stores>(File(FILEPATH).readText()).stores.map { it.toModel() }
+                .filter { it.remainStat.isNotEmpty() && it.stockAt.isNotEmpty() && it.createdAt.isNotEmpty() }
         )
 
 
