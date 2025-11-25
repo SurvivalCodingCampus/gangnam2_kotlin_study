@@ -1,9 +1,7 @@
-package com.neouul.sesac.`15-dto-mapper`.data_source
+package com.neouul.sesac.`15-dto-mapper`.stores.data_source
 
-import com.neouul.sesac.`15-dto-mapper`.dto.StoreDTO
-import com.neouul.sesac.`15-dto-mapper`.dto.StoreListDTO
-import com.neouul.sesac.`15-dto-mapper`.repository.StoreRepository
-import com.neouul.sesac.`15-dto-mapper`.repository.StoreRepositoryImpl
+import com.neouul.sesac.`15-dto-mapper`.stores.dto.StoreListDTO
+import com.neouul.sesac.`15-dto-mapper`.stores.repository.StoreRepositoryImpl
 import com.neouul.sesac.core.Response
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO

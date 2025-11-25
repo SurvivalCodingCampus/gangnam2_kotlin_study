@@ -1,4 +1,4 @@
-package com.neouul.sesac.`15-dto-mapper`.dto
+package com.neouul.sesac.`15-dto-mapper`.stores.dto
 
 import kotlinx.serialization.Serializable
 

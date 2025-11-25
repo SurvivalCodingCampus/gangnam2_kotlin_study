@@ -1,8 +1,11 @@
-package com.neouul.sesac.`15-dto-mapper`.mapper
+package com.neouul.sesac.`15-dto-mapper`.stores.mapper
 
-import com.neouul.sesac.`15-dto-mapper`.core.*
-import com.neouul.sesac.`15-dto-mapper`.dto.StoreDTO
-import com.neouul.sesac.`15-dto-mapper`.model.Store
+import com.neouul.sesac.`15-dto-mapper`.stores.core.EMPTY_DOUBLE
+import com.neouul.sesac.`15-dto-mapper`.stores.core.EMPTY_LOCALDATETIME
+import com.neouul.sesac.`15-dto-mapper`.stores.core.EMPTY_STRING
+import com.neouul.sesac.`15-dto-mapper`.stores.core.slashFormatStringToLocalDateTime
+import com.neouul.sesac.`15-dto-mapper`.stores.dto.StoreDTO
+import com.neouul.sesac.`15-dto-mapper`.stores.model.Store
 
 fun StoreDTO.toModel(): Store {
     return Store(

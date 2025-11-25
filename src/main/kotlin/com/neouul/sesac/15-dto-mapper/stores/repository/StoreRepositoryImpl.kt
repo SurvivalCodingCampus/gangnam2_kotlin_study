@@ -1,8 +1,8 @@
-package com.neouul.sesac.`15-dto-mapper`.repository
+package com.neouul.sesac.`15-dto-mapper`.stores.repository
 
-import com.neouul.sesac.`15-dto-mapper`.data_source.RemoteDataSource
-import com.neouul.sesac.`15-dto-mapper`.mapper.toModel
-import com.neouul.sesac.`15-dto-mapper`.model.Store
+import com.neouul.sesac.`15-dto-mapper`.stores.data_source.RemoteDataSource
+import com.neouul.sesac.`15-dto-mapper`.stores.mapper.toModel
+import com.neouul.sesac.`15-dto-mapper`.stores.model.Store
 
 class StoreRepositoryImpl(
     private val dataSource: RemoteDataSource,

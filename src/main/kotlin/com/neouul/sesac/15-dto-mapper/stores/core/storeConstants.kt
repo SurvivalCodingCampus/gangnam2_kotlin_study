@@ -1,4 +1,4 @@
-package com.neouul.sesac.`15-dto-mapper`.core
+package com.neouul.sesac.`15-dto-mapper`.stores.core
 
 import java.time.LocalDateTime
 
