@@ -5,21 +5,26 @@ import com.survival.kotlinstudy.day17.model.Store
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-fun String.toLocalDateTime(time: String = "yyyy/MM/dd HH:mm:ss"): LocalDateTime {
-    val formatter = DateTimeFormatter.ofPattern(time)
-    return LocalDateTime.parse(this, formatter)
+fun String.toLocalDateTime(time: String = "yyyy/MM/dd HH:mm:ss"): LocalDateTime? {
+    return try {
+        val formatter = DateTimeFormatter.ofPattern(time)
+        LocalDateTime.parse(this, formatter)
+    } catch (e: Exception) {
+        null
+    }
+
 }
 
 fun StoreDto.toModel(): Store {
     return Store(
         address = addr ?: "",
         code = code ?: "",
-        createdAt = createdAt?.toLocalDateTime() ?: LocalDateTime.now(),
+        createdAt = createdAt?.toLocalDateTime(),
         lat = lat ?: 0.0,
         lng = lng ?: 0.0,
         name = name ?: "",
         remainStat = remainStat ?: "",
-        stockAt = stockAt?.toLocalDateTime() ?: LocalDateTime.now(),
+        stockAt = stockAt?.toLocalDateTime(),
         type = type ?: "",
     )
 }

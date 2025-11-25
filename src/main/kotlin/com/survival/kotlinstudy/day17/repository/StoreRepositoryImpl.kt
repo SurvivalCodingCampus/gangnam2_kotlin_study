@@ -9,8 +9,9 @@ class StoreRepositoryImpl(
 ) : StoreRepository {
 
     override suspend fun getStores(): List<Store> {
-        val stores = datasource.getStores().stores
-        return stores?.filter { it.remainStat != null || it.createdAt != null || it.stockAt != null }
-            ?.map { it.toModel() } ?: emptyList()
+        val stores = datasource.getStores().stores ?: emptyList()
+
+        return stores.filter { it.remainStat != null || it.createdAt != null || it.stockAt != null }
+            .map { it.toModel() }
     }
 }

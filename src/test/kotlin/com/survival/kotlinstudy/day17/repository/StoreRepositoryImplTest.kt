@@ -18,7 +18,7 @@ class StoreRepositoryImplTest {
         val stores = repository.getStores()
 
 
-        assertEquals(expectedStoreCount,stores.size)
+        assertEquals(expectedStoreCount, stores.size)
     }
 }
 
