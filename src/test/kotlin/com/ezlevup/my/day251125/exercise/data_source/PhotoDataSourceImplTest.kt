@@ -6,8 +6,10 @@ import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import org.junit.After
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -96,5 +98,39 @@ class PhotoDataSourceImplTest {
         println(result.body?.count())
         result.body?.map(::println)
     }
+
+
+    @Test(expected = SerializationException::class)
+    fun `PhotoDto 타입 불일치`() {
+        // given
+        val invalidJson = """
+    [
+      {
+        "id": "not_a_number",
+        "type": "article"
+      }
+    ]
+    """.trimIndent()
+
+        // when & then
+        Json.decodeFromString<List<PhotoDto>>(invalidJson)
+    }
+
+
+    @Test
+    fun `PhotoDto id 가 null 경우`() {
+        val jsonWithoutId = """
+    [
+      {
+        "type": "article",
+        "title": "Test"
+      }
+    ]
+    """.trimIndent()
+
+        val result = Json.decodeFromString<List<PhotoDto>>(jsonWithoutId)
+        assertNull(result[0].id)
+    }
+
 
 }
