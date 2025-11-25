@@ -617,11 +617,11 @@ class MockRemoteDataSourceImpl : RemoteDataSource {
         )
     }
 
-    override suspend fun getPost(id: Int): Response<Post> {
+    override suspend fun getPost(id: Int): Response<Post?> {
         val body = Json.decodeFromString<List<Post>>(posts).firstOrNull { post -> post.id == id }
             ?: throw Exception("404 Not Found : 해당 id의 post가 존재하지 않습니다")
 
-        return Response<Post>(
+        return Response<Post?>(
             statusCode = 200,
             header = mapOf("Content-Type" to listOf("application/json")),
             body = body
@@ -641,11 +641,11 @@ class MockRemoteDataSourceImpl : RemoteDataSource {
     override suspend fun updatePost(
         id: Int,
         post: Post
-    ): Response<Post> {
+    ): Response<Post?> {
         Json.decodeFromString<List<Post>>(posts).firstOrNull { post -> post.id == id }
             ?: throw Exception("404 Not Found : 해당 id의 post가 존재하지 않습니다")
 
-        return Response<Post>(
+        return Response<Post?>(
             statusCode = 200,
             header = mapOf("Content-Type" to listOf("application/json")),
             body = post
@@ -656,11 +656,11 @@ class MockRemoteDataSourceImpl : RemoteDataSource {
     override suspend fun patchPost(
         id: Int,
         post: Post
-    ): Response<Post> {
+    ): Response<Post?> {
         Json.decodeFromString<List<Post>>(posts).firstOrNull { post -> post.id == id }
             ?: throw Exception("404 Not Found : 해당 id의 post가 존재하지 않습니다")
 
-        return Response<Post>(
+        return Response<Post?>(
             statusCode = 200,
             header = mapOf("Content-Type" to listOf("application/json")),
             body = post
