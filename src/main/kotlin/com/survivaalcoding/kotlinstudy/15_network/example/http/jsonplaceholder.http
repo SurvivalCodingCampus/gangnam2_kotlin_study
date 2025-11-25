@@ -1,0 +1,41 @@
+### GET posts 요청
+GET https://jsonplaceholder.typicode.com/posts
+
+### GET post 요청
+GET https://jsonplaceholder.typicode.com/posts/1
+
+### GET 존재하지 않는 post 요청
+GET https://jsonplaceholder.typicode.com/posts/9999
+
+
+### POST 요청
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: application/json
+
+{
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+}
+
+### PUT 요청
+PUT https://jsonplaceholder.typicode.com/posts/1
+Content-Type: application/json
+
+{
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+}
+
+### PATCH 요청
+PATCH https://jsonplaceholder.typicode.com/posts/1
+Content-Type: application/json
+
+{
+  "body": "foo",
+  "userId": 1
+}
+
+### DELETE 요청
+DELETE https://jsonplaceholder.typicode.com/posts/1
