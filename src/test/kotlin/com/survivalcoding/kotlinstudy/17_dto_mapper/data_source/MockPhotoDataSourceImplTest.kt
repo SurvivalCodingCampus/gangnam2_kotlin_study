@@ -20,7 +20,7 @@ class MockPhotoDataSourceImplTest {
 
     @Test
     fun `Mock DataSource - id String, Int 모두 정상 동작`() = runTest {
-        // givne
+        // given
         val dataSource = MockPhotoDataSourceImpl()
 
         // when

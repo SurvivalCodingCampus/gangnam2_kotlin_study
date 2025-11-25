@@ -11,9 +11,9 @@ data class Stores(
 
 @Serializable
 data class Store(
-    val address: String,
+    val address: String?,
     val createdAt: String? = null,
-    val name: String,
+    val name: String?,
     val remainStat: String? = null,
     val stockAt: String? = null,
 )
