@@ -70,7 +70,7 @@ class MockStoreDataSourceImpl : StoreDataSource {
     )
 
     private val storeList = StoreListDto(
-        count = 1,
+        count = 3,
         stores = listOf(store1, store2, store3)
     )
 

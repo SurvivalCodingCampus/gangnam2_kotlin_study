@@ -4,12 +4,13 @@ import com.survival.kotlinstudy.day17.dto.StoreDto
 import com.survival.kotlinstudy.day17.model.Store
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
-fun String.toLocalDateTime(time: String = "yyyy/MM/dd HH:mm:ss"): LocalDateTime? {
+fun String.toLocalDateTime(pattern: String = "yyyy/MM/dd HH:mm:ss"): LocalDateTime? {
     return try {
-        val formatter = DateTimeFormatter.ofPattern(time)
+        val formatter = DateTimeFormatter.ofPattern(pattern)
         LocalDateTime.parse(this, formatter)
-    } catch (e: Exception) {
+    } catch (e: DateTimeParseException) {
         null
     }
 

@@ -5,6 +5,7 @@ import com.survival.kotlinstudy.day17.model.Photo
 import com.survival.kotlinstudy.day17.model.PhotoType
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 fun PhotoDto.toModel(): Photo {
     return Photo(
@@ -24,11 +25,11 @@ fun PhotoDto.toModel(): Photo {
 }
 
 
-fun String.toLocalDate(time: String = "yyyy-MM-dd"): LocalDate? {
+fun String.toLocalDate(pattern: String = "yyyy-MM-dd"): LocalDate? {
     return try {
-        val formatter = DateTimeFormatter.ofPattern(time)
+        val formatter = DateTimeFormatter.ofPattern(pattern)
         LocalDate.parse(this, formatter)
-    } catch (e: Exception) {
+    } catch (e: DateTimeParseException) {
         null
     }
 }
