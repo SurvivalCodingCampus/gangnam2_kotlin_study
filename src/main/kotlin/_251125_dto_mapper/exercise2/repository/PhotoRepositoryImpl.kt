@@ -8,6 +8,6 @@ class PhotoRepositoryImpl(
     private val photoDataSourceImpl: PhotoDataSourceImpl
 ) : PhotoRepository {
     override suspend fun getAllPhotos(): List<Photo> {
-        return photoDataSourceImpl.getAllPhoto().map { it.toModel() }
+        return photoDataSourceImpl.getAllPhoto().body.map { it.toModel() }
     }
 }
