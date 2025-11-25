@@ -2,6 +2,8 @@ package com.survivalcoding.kotlinstudy.`17_dto_mapper`.data_source
 
 import com.survivalcoding.kotlinstudy.`17_dto_mapper`.dto.PhotoDto
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.jsonArray
 
 class MockPhotoDataSourceImpl : PhotoDataSource {
     private val data = """
@@ -50,8 +52,23 @@ class MockPhotoDataSourceImpl : PhotoDataSource {
     ]
 """.trimIndent()
 
+
     override suspend fun getPhotos(): List<PhotoDto> {
-        // 역직렬화
-        return Json.decodeFromString(data)
+        val json = Json {
+            ignoreUnknownKeys = true
+            isLenient = true  // 문자열 -> 숫자 허용
+        }
+        
+        // 요소 단위로 안전한 파싱
+        val jsonArray = json.parseToJsonElement(data).jsonArray
+
+        return jsonArray.mapNotNull { element ->
+            try {
+                json.decodeFromJsonElement<PhotoDto>(element)
+            } catch (e: Exception) {
+                // 하나의 항목이 문제여도 전체는 유지
+                null
+            }
+        }
     }
 }

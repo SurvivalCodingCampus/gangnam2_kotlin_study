@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PhotoDto(
     @SerialName("id")
-    val id: Int,
+    val id: String? = null, // 자동으로 Int도 String으로 받아짐
 
     @SerialName("type")
     val type: String? = null,
