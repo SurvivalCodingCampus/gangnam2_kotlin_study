@@ -7,7 +7,7 @@ import io.ktor.client.request.*
 import java.io.File
 
 class ImageDataSourceImpl(
-    private val client: HttpClient = HttpClientFactory.creat()
+    private val client: HttpClient = HttpClientFactory.create()
 ) : ImageDataSource {
     override suspend fun fetchImage(url: String): ByteArray {
         return client.get(url).body()
