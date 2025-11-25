@@ -6,7 +6,6 @@ import com.ezlevup.my.day251121.exercise.model.Post
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.serialization.json.Json
 
@@ -16,19 +15,19 @@ class RemoteDataSourceImpl(
 ) : RemoteDataSource {
     override suspend fun getPosts(): Response<List<Post>> {
         val httpResponse = client.get("https://jsonplaceholder.typicode.com/posts")
-        val body = Json.decodeFromString<List<Post>>(httpResponse.bodyAsText())
         return httpResponse.toResponse<List<Post>>()
     }
 
     override suspend fun getPost(id: Int): Response<Post> {
         val httpResponse = client.get("https://jsonplaceholder.typicode.com/posts/$id")
-        val body = Json.decodeFromString<Post>(httpResponse.bodyAsText())
         return httpResponse.toResponse<Post>()
     }
 
     override suspend fun createPost(post: Post): Response<Post> {
-        val httpResponse = client.post("https://jsonplaceholder.typicode.com/posts")
-        val body = Json.decodeFromString<Post>(httpResponse.bodyAsText())
+        val httpResponse = client.post("https://jsonplaceholder.typicode.com/posts") {
+            contentType(ContentType.Application.Json)
+            setBody(post)
+        }
         return httpResponse.toResponse<Post>()
     }
 
@@ -41,7 +40,6 @@ class RemoteDataSourceImpl(
             setBody(Json.encodeToString(post))
         }
 
-        val body = Json.decodeFromString<Post>(httpResponse.bodyAsText())
         return httpResponse.toResponse<Post>()
     }
 
@@ -54,7 +52,6 @@ class RemoteDataSourceImpl(
             setBody(Json.encodeToString(post))
         }
 
-        val body = Json.decodeFromString<Post>(httpResponse.bodyAsText())
         return httpResponse.toResponse<Post>()
     }
 
