@@ -1,6 +1,6 @@
 package com.survivalcoding.kotlinstudy.`17_dto`.practice.photo.model
 
-import kotlinx.datetime.LocalDate
+import java.time.LocalDate
 
 data class Photo(
     val id: Int,

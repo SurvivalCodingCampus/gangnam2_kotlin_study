@@ -1,6 +1,6 @@
 package com.survivalcoding.kotlinstudy.`17_dto`.practice.store.model
 
-import kotlinx.datetime.LocalDateTime
+import java.time.LocalDateTime
 
 data class Store (
     val address: String,
