@@ -1,0 +1,44 @@
+package com.survivalcoding.kotlinstudy.`16_network`.repository
+
+import com.survivalcoding.kotlinstudy.`16_network`.data_source.ImageDataSource
+import java.io.File
+import java.util.*
+
+class ImageRepositoryImpl(
+    private val dataSource: ImageDataSource
+) : ImageRepository {
+    override suspend fun saveImage(url: String, path: String) {
+        val bytes = dataSource.fetchImage(url)
+        dataSource.saveImage(bytes, path)
+    }
+
+    override suspend fun saveImages(urls: List<String>, directory: String) {
+        File(directory).mkdirs()
+
+        urls.forEachIndexed { index, url ->
+            val baseUrl = url.substringBefore("?")        // 파일 확장자가 포함된 순수한 파일 경로만 추출 (쿼리 스트링 제거)
+            val extension = baseUrl.substringAfterLast(".", "jpg")  // 확장자 추출
+            val fileName = "${UUID.randomUUID()}.$extension"
+            val filePath = "$directory/$fileName"
+
+            saveImage(url, filePath)
+        }
+    }
+
+
+    override suspend fun saveImageIfNotExists(url: String, path: String): Boolean {
+        val file = File(path)
+        
+        file.parentFile?.mkdirs()
+        val bytes = dataSource.fetchImage(url)
+
+        // 파일 생성 성공 여부 확인
+        if (!file.createNewFile()) {
+            return false
+        }
+
+        // 파일이 없으면 저장하고 True
+        dataSource.saveImage(bytes, path)
+        return true
+    }
+}
