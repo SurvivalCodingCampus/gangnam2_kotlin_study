@@ -9,7 +9,7 @@ data class Photo(
     val title: String,
     val content: String,
     val caption: String,
-    val created_at: LocalDate,
+    val createdAt: LocalDate,
 )
 
 enum class Type {
