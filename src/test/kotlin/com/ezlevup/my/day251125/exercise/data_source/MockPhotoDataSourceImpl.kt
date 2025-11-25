@@ -21,9 +21,7 @@ class MockPhotoDataSourceImpl(
         )
     }
 
-    private val client: HttpClient = HttpClient(mockEngine) {
-        // 설정
-    }
+    private val client: HttpClient = HttpClient(mockEngine)
 
     override suspend fun getPhotos(): Response<List<PhotoDto>> {
         val httpResponse = client.get("https://")
