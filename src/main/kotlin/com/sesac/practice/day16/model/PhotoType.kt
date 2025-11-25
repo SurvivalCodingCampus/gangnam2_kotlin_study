@@ -1,15 +1,15 @@
 package com.sesac.practice.day16.model
 
-enum class PhotoType {
-    ARTICLE, IMAGE, VIDEO, UNKNOWN;
+import com.sesac.practice.day16.model.PhotoType.*
 
-    companion object {
-        fun parse(type: String?): PhotoType =
-            when (type?.lowercase()) {
-                "article" -> ARTICLE
-                "image" -> IMAGE
-                "video" -> VIDEO
-                else -> UNKNOWN
-            }
-    }
+enum class PhotoType {
+    ARTICLE, IMAGE, VIDEO, UNKNOWN
 }
+
+fun String?.toPhotoType(): PhotoType =
+    when (this?.lowercase()?.trim()) {
+        "article" -> ARTICLE
+        "image" -> IMAGE
+        "video" -> VIDEO
+        else -> UNKNOWN
+    }

@@ -16,9 +16,7 @@ class PhotoRepositoryImplTest {
 
     @Test
     fun `Photo 리스트를 가져온다`() = runTest {
-        // given
-
-        // when
+        // given // when
         val photos = repository.getPhotos()
 
         // then
@@ -49,6 +47,11 @@ class PhotoRepositoryImplTest {
         assertEquals(1L, photo4.id)
 
         val photo5 = photos[4]
+        assertEquals(2L, photo2.id)
         assertEquals(PhotoType.UNKNOWN, photo5.type)
+
+        val photo6 = photos[5]
+        assertEquals(3L, photo3.id)
+        assertEquals(PhotoType.UNKNOWN, photo6.type)
     }
 }
