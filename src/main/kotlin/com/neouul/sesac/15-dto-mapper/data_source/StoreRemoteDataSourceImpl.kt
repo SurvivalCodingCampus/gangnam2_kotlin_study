@@ -2,6 +2,8 @@ package com.neouul.sesac.`15-dto-mapper`.data_source
 
 import com.neouul.sesac.`15-dto-mapper`.dto.StoreDTO
 import com.neouul.sesac.`15-dto-mapper`.dto.StoreListDTO
+import com.neouul.sesac.`15-dto-mapper`.repository.StoreRepository
+import com.neouul.sesac.`15-dto-mapper`.repository.StoreRepositoryImpl
 import com.neouul.sesac.core.Response
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -42,6 +44,10 @@ class StoreRemoteDataSourceImpl(
 }
 
 fun main(): Unit = runBlocking {
-//    val dataSource = StoreRemoteDataSourceImpl()
+    val dataSource = StoreRemoteDataSourceImpl()
 //    println(dataSource.getStores().body)
+
+    val repository = StoreRepositoryImpl(dataSource)
+//    println(repository.getStores())
+    println(repository.getStores().size)    // 222 - 1(필드없음) - 5(null) = 216
 }
