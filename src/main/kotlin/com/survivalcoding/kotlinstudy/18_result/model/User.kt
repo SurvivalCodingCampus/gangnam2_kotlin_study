@@ -4,35 +4,35 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class User(
-    val id: Int,
-    val name: String,
-    val username: String,
-    val email: String,
-    val address: Address,
-    val phone: String,
-    val website: String,
-    val company: Company,
+    val id: Int? = -1,
+    val name: String? = "",
+    val username: String? = "",
+    val email: String? = "",
+    val address: Address? = Address(),
+    val phone: String? = "",
+    val website: String? = "",
+    val company: Company? = Company(),
 )
 
 @Serializable
 data class Address(
-    val street: String,
-    val suite: String,
-    val city: String,
-    val zipcode: String,
-    val geo: Geo,
+    val street: String? = "",
+    val suite: String? = "",
+    val city: String? = "",
+    val zipcode: String? = "",
+    val geo: Geo? = Geo(),
 )
 
 @Serializable
 data class Geo(
-    val lat: Double,
-    val lng: Double,
+    val lat: Double? = 0.0,
+    val lng: Double? = 0.0,
 )
 
 
 @Serializable
 data class Company(
-    val name: String,
-    val catchPhrase: String,
-    val bs: String,
+    val name: String? = "",
+    val catchPhrase: String? = "",
+    val bs: String? = "",
 )
