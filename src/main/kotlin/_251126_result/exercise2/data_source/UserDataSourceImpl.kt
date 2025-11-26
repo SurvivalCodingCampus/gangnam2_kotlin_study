@@ -73,7 +73,7 @@ class UserDataSourceImpl(
                 if (response.status.isSuccess()) {
                     Response(body = user, status = response.status.toString(), "")
                 } else {
-                    throw ConnectException()
+                    throw ClientRequestException(response, "${response.status}")
                 }
             } catch (e: ConnectException) { //클라이언트 관련 exception
                 throw e
