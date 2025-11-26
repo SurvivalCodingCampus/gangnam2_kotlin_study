@@ -13,16 +13,16 @@ fun StoreDto.toStore(): Store {
         address = addr ?: "",
         code = code?.toIntOrNull() ?: 0,
         createdAt = if (created_at.isNullOrBlank()) {
-            LocalDateTime.of(1970, 1, 1, 0, 0, 0)             // LocalDateTime
+            LocalDateTime.of(1000, 1, 1, 0, 0, 0)
         } else {
-            LocalDateTime.parse(created_at, FORMATTER)  // LocalDateTime
+            LocalDateTime.parse(created_at, FORMATTER)
         },
         latitude = lat ?: 0.0,
         longitude = lng ?: 0.0,
         name = name ?: "",
         remainStat = remain_stat ?: "",
         stockAt = if (stock_at.isNullOrBlank()) {
-            LocalDateTime.of(1970, 1, 1, 0, 0, 0)
+            LocalDateTime.of(1000, 1, 1, 0, 0, 0)
         } else {
             LocalDateTime.parse(stock_at, FORMATTER)
         },
