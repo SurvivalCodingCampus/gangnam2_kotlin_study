@@ -2,11 +2,13 @@ package com.neouul.sesac.`16-result-pattern`.repository
 
 import com.neouul.sesac.`16-result-pattern`.core.NetworkError
 import com.neouul.sesac.`16-result-pattern`.data_source.UserDataSource
+import com.neouul.sesac.`16-result-pattern`.dto.UserDTO
 import com.neouul.sesac.`16-result-pattern`.mapper.toModel
 import com.neouul.sesac.`16-result-pattern`.model.User
 import com.neouul.sesac.core.Result
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 
 class UserRepositoryImpl(
     private val dataSource: UserDataSource
@@ -24,9 +26,8 @@ class UserRepositoryImpl(
             } else {    // 상태 코드가 200번대가 아닌 상황 처리
                 val statusCode = response.statusCode
                 when (statusCode) {
-                    in 400..499 -> Result.Error(NetworkError.HttpClientError(statusCode))
-                    in 500..599 -> Result.Error(NetworkError.HttpServerError(statusCode))
-                    else -> Result.Error(NetworkError.Unknown("HttpError: 상태 코드의 값이 범위를 벗어났습니다."))
+                    in 400..599 -> Result.Error(NetworkError.HttpError(statusCode))
+                    else -> Result.Error(NetworkError.Unknown("상태 코드 : $statusCode"))
                 }
             }
         } catch (e: TimeoutCancellationException) {
@@ -52,9 +53,8 @@ class UserRepositoryImpl(
             } else {
                 val statusCode = response.statusCode
                 when (statusCode) {
-                    in 400..499 -> Result.Error(NetworkError.HttpClientError(statusCode))
-                    in 500..599 -> Result.Error(NetworkError.HttpServerError(statusCode))
-                    else -> Result.Error(NetworkError.Unknown("HttpError: 상태 코드의 값이 범위를 벗어났습니다."))
+                    in 400..599 -> Result.Error(NetworkError.HttpError(statusCode))
+                    else -> Result.Error(NetworkError.Unknown("상태 코드 : $statusCode"))
                 }
             }
         } catch (e: TimeoutCancellationException) {
@@ -78,9 +78,8 @@ class UserRepositoryImpl(
             } else {
                 val statusCode = response.statusCode
                 when (statusCode) {
-                    in 400..499 -> Result.Error(NetworkError.HttpClientError(statusCode))
-                    in 500..599 -> Result.Error(NetworkError.HttpServerError(statusCode))
-                    else -> Result.Error(NetworkError.Unknown("HttpError: 상태 코드의 값이 범위를 벗어났습니다."))
+                    in 400..599 -> Result.Error(NetworkError.HttpError(statusCode))
+                    else -> Result.Error(NetworkError.Unknown("상태 코드 : $statusCode"))
                 }
             }
         } catch (e: TimeoutCancellationException) {
