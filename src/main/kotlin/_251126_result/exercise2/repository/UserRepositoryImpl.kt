@@ -30,15 +30,15 @@ class UserRepositoryImpl(
                     }
 
                     HttpStatusCode.InternalServerError.toString() -> {
-                        throw ServiceUnavailableException()
+                        Result.Error(NetworkError.HttpError(500))
                     }
 
                     HttpStatusCode.BadRequest.toString() -> {
-                        throw ConnectException()
+                        Result.Error(NetworkError.HttpError(400))
                     }
 
                     else -> {
-                        throw Exception()
+                        Result.Error(NetworkError.Unknown("status: ${response.status}"))
                     }
                 }
             } catch (e: TimeoutCancellationException) { //타임아웃 관련
