@@ -12,8 +12,9 @@ class StoreRepositoryImpl(
 
         if (response.body?.count != null && response.body.stores != null) {
             return response.body.stores
-                .filter { it?.remain_stat != null && it.stock_at != null && it.created_at != null }
-                .map { it?.toModel() as Store }
+                .filterNotNull()
+                .filter { it.remain_stat != null && it.stock_at != null && it.created_at != null }
+                .map { it.toModel() }
         }
         return listOf()
     }

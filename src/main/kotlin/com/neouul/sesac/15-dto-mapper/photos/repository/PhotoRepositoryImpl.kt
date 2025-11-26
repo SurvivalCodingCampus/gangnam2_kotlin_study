@@ -13,7 +13,7 @@ class PhotoRepositoryImpl(
         val response = dataSource.loadPhotos()
 
         if (response.body != null && response.body.isNotEmpty()) {
-            return response.body.map { it?.toModel() as Photo }
+            return response.body.filterNotNull().map { it.toModel() }
         }
         return listOf()
     }
