@@ -33,7 +33,7 @@ class UserRepositoryImplTest {
 
     @Test
     fun `findUser() - id값에 해당하는 유저가 없는경우 만들어놓은 NetworkError를 반환받는다`() = runTest {
-        val result = userRepositoryImpl.findUser(2)
+        val result = userRepositoryImpl.findUser(3)
         if (result is Result.Error) {
             assertEquals(NetworkError.UserNotFoundError, result.error)
         }
