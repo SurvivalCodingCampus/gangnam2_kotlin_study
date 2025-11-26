@@ -3,6 +3,7 @@ package com.survivalcoding.kotlinstudy.`18_result`.data_source
 import com.survivalcoding.kotlinstudy.`18_result`.core.HttpClientFactory
 import com.survivalcoding.kotlinstudy.`18_result`.core.Response
 import com.survivalcoding.kotlinstudy.`18_result`.dto.UserDto
+import com.survivalcoding.kotlinstudy.`18_result`.dto.UserRequestDto
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -41,17 +42,16 @@ class UserDataSourceImpl(
     }
 
     // POST /users
-    override suspend fun createUser(userDto: UserDto): Response<UserDto> = withContext(Dispatchers.IO) {
+    override suspend fun createUser(userDto: UserRequestDto): Response<Int> = withContext(Dispatchers.IO) {
         val response = client.post("$baseUrl/users") {
             contentType(ContentType.Application.Json)
             setBody(userDto)
         }
-        val body: UserDto? = response.body()
 
         Response(
             statusCode = response.status.value,
             headers = response.headers.toMap(),
-            body = body
+            body = response.body<Int>()
         )
     }
 
