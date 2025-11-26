@@ -10,10 +10,11 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import io.ktor.util.toMap
 
 class UserDataSourceImpl(
-    private val client: HttpClient = HttpClientFactory.create()
+    private val client: HttpClient = HttpClientFactory.client
 ) : UserDataSource {
 
     companion object {
@@ -22,8 +23,11 @@ class UserDataSourceImpl(
 
     override suspend fun findById(userId: String): Response<UserDTO> {
         val httpResponse = client.get("$BASE_URL/$userId")
-        val dto = httpResponse.body<UserDTO>()
-
+        val dto = if (httpResponse.status.isSuccess()) {
+            httpResponse.body<UserDTO>()
+        } else {
+            null
+        }
         return Response(
             statusCode = httpResponse.status.value,
             headers = httpResponse.headers.toMap(),
@@ -34,7 +38,11 @@ class UserDataSourceImpl(
     override suspend fun findAll(): Response<List<UserDTO>> {
         val httpResponse = client.get(BASE_URL)
 
-        val dtoList: List<UserDTO> = httpResponse.body()
+        val dtoList = if (httpResponse.status.isSuccess()) {
+            httpResponse.body<List<UserDTO>>()
+        } else {
+            null
+        }
 
         return Response(
             statusCode = httpResponse.status.value,
@@ -49,7 +57,11 @@ class UserDataSourceImpl(
             setBody(user)
         }
 
-        val dto = httpResponse.body<UserDTO>()
+        val dto = if (httpResponse.status.isSuccess()) {
+            httpResponse.body<UserDTO>()
+        } else {
+            null
+        }
 
         return Response(
             statusCode = httpResponse.status.value,

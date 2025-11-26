@@ -8,11 +8,9 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 object HttpClientFactory {
-    fun create(): HttpClient {
-        return HttpClient(CIO) {
-            install(HttpTimeout) {
-                requestTimeoutMillis = 10_000
-            }
+    val client: HttpClient by lazy {
+        HttpClient(CIO) {
+            install(HttpTimeout) { requestTimeoutMillis = 10_000 }
             install(ContentNegotiation) {
                 json(Json {
                     ignoreUnknownKeys = true
