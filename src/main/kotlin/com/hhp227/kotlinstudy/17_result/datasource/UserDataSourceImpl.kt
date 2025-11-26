@@ -40,7 +40,10 @@ class UserDataSourceImpl(
     }
 
     override suspend fun addUser(user: User): Response<Boolean> {
-        val response = client.post(URL)
+        val response = client.post(URL) {
+            contentType(ContentType.Application.Json)
+            setBody(user)
+        }
         return if (!response.status.isSuccess())
             Response(response.status.value, response.headers, false)
         else Response(
