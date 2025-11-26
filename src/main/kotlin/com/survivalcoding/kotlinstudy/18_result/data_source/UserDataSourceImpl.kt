@@ -2,6 +2,7 @@ package com.survivalcoding.kotlinstudy.`18_result`.data_source
 
 import com.survivalcoding.kotlinstudy.`18_result`.core.HttpClientFactory
 import com.survivalcoding.kotlinstudy.`18_result`.core.Response
+import com.survivalcoding.kotlinstudy.`18_result`.dto.CreatedIdDto
 import com.survivalcoding.kotlinstudy.`18_result`.dto.UserDto
 import com.survivalcoding.kotlinstudy.`18_result`.dto.UserRequestDto
 import io.ktor.client.*
@@ -48,11 +49,12 @@ class UserDataSourceImpl(
             setBody(userDto)
         }
 
+        val createdIdDto: CreatedIdDto? = response.body()
+
         Response(
             statusCode = response.status.value,
             headers = response.headers.toMap(),
-            body = response.body<Int>()
+            body = createdIdDto?.id
         )
     }
-
 }

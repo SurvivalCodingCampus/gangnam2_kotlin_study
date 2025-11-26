@@ -10,3 +10,9 @@ data class UserRequestDto(
     val username: String,
     val email: String,
 )
+
+// Post 요청 응답
+@Serializable
+data class CreatedIdDto(
+    val id: Int? = null
+)
