@@ -40,7 +40,7 @@ class UserDataSourceImpl(
                     }
 
                     else -> {
-                        throw Exception()
+                        throw Exception("Unknown 오류")
                     }
                 }
 
