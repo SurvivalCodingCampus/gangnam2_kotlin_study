@@ -7,7 +7,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 private val FORMATTER: DateTimeFormatter =
-    DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")
+    DateTimeFormatter.ofPattern("yyyy/MM/dd")
 
 fun PhotoDto.toPhoto(): Photo {
     return Photo(
@@ -23,9 +23,9 @@ fun PhotoDto.toPhoto(): Photo {
         caption = caption ?: "",
         content = content ?: "",
         createdAt = if (created_at.isNullOrBlank()) {
-            LocalDate.of(1000, 1, 1)             // LocalDateTime
+            LocalDate.of(1000, 1, 1)
         } else {
-            LocalDate.parse(created_at, FORMATTER)  // LocalDateTime
+            LocalDate.parse(created_at, FORMATTER)
         }
     )
 }
