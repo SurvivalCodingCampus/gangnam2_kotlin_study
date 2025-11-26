@@ -19,6 +19,27 @@ val mockEngine = MockEngine { request ->
                     )
                 }
 
+                "http://localhost/test/2.com" -> {
+                    respond(
+                        status = HttpStatusCode.OK,
+                        content = """{"name":"홍길동","age":43,"id":2}"""
+                    )
+                }
+
+                "http://localhost/test/4.com" -> {
+                    respond(
+                        status = HttpStatusCode.BadRequest,
+                        content = "{}"
+                    )
+                }
+
+                "http://localhost/test/5.com" -> {
+                    respond(
+                        status = HttpStatusCode.InternalServerError,
+                        content = "{}"
+                    )
+                }
+
                 "http://localhost/testall.com" -> {
                     respond(
                         status = HttpStatusCode.OK,
@@ -31,28 +52,6 @@ val mockEngine = MockEngine { request ->
                     respond(
                         status = HttpStatusCode.OK,
                         content = Json.encodeToString(User(name = "홍길동", age = 43, id = 1))
-                    )
-                }
-
-
-                "http://localhost/clienterror.com" -> {//클라이언트 에러
-                    respond(
-                        status = HttpStatusCode.NotFound,
-                        content = "{}"
-                    )
-                }
-
-                "http://localhost/servererror.com" -> {//server 에러
-                    respond(
-                        status = HttpStatusCode.InternalServerError,
-                        content = "{}"
-                    )
-                }
-
-                "http://localhost/pasringerror.com" -> {//파싱 에러
-                    respond(
-                        status = HttpStatusCode.OK,
-                        content = Json.encodeToString(InvalidUserType("서울시"))
                     )
                 }
 

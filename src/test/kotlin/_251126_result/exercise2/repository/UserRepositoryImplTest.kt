@@ -1,4 +1,4 @@
-﻿package _251126_result.exercise2.repository
+package _251126_result.exercise2.repository
 
 import _251126_result.exercise2.core.NetworkError
 import _251126_result.exercise2.core.Result
@@ -25,9 +25,9 @@ class UserRepositoryImplTest {
 
     @Test
     fun `findUser() - id값에 해당하는 유저를 반환받는다`() = runTest {
-        val result = userRepositoryImpl.findUser(1)
+        val result = userRepositoryImpl.findUser(2)
         if (result is Result.Success) {
-            assertEquals(Json.decodeFromString("""{"name":"홍길동","age":43,"id":1}"""), result.data)
+            assertEquals("""{"name":"홍길동","age":43,"id":2}""", result.data)
         }
     }
 
@@ -36,6 +36,22 @@ class UserRepositoryImplTest {
         val result = userRepositoryImpl.findUser(2)
         if (result is Result.Error) {
             assertEquals(NetworkError.UserNotFoundError, result.error)
+        }
+    }
+
+    @Test
+    fun `findUser() - id값이 4인경우 클라이언트 에러를 반환받는다`() = runTest {
+        val result = userRepositoryImpl.findUser(4)
+        if (result is Result.Error) {
+            assertEquals(NetworkError.NetWorkUnavailable, result.error)
+        }
+    }
+
+    @Test
+    fun `findUser() - id값이 5인경우 클라이언트 에러를 반환받는다`() = runTest {
+        val result = userRepositoryImpl.findUser(5)
+        if (result is Result.Error) {
+            assertEquals(NetworkError.HttpError(500), result.error)
         }
     }
 
@@ -56,7 +72,7 @@ class UserRepositoryImplTest {
     @Test
     fun `createUser() - 유저를 잘 생성한다`() = runTest {
         //when
-        val result = userRepositoryImpl.createUser(User(name = "이순신", age = 32, id = 2))
+        val result = userRepositoryImpl.createUser(Json.encodeToString(User(name = "이순신", age = 32, id = 2)))
         //then
         if (result is Result.Success) {
             assertEquals(User(name = "이순신", age = 32, id = 2), result.data)
@@ -67,7 +83,7 @@ class UserRepositoryImplTest {
     fun `createUser() - 이상한 Json데이터가 오면 ParseError를 반환한다`() = runTest {
         //when
         val result =
-            userRepositoryImpl.createUser(Json.decodeFromString("""{"name": "이순신","age": 9999999999999,"id" : 2}"""))
+            userRepositoryImpl.createUser("""{"age": 9999,"id" : 2}""")
         //then
         if (result is Result.Error) {
             assertEquals(NetworkError.ParseError, result.error)

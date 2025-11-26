@@ -5,5 +5,6 @@ import _251126_result.exercise2.model.User
 
 interface UserDataSource {
     suspend fun getAllUser(): Response<List<User>>
+    suspend fun findUserById(id: Int): Response<String>
     suspend fun createUser(user: User): Response<User>
 }
