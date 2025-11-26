@@ -30,15 +30,15 @@ class UserRepositoryImpl(
                     }
 
                     HttpStatusCode.InternalServerError.toString() -> {
-                        Result.Error(NetworkError.HttpError(500))
+                        return@withContext Result.Error(NetworkError.HttpError(500))
                     }
 
                     HttpStatusCode.BadRequest.toString() -> {
-                        Result.Error(NetworkError.HttpError(400))
+                        return@withContext Result.Error(NetworkError.HttpError(400))
                     }
 
                     else -> {
-                        Result.Error(NetworkError.Unknown("status: ${response.status}"))
+                        return@withContext Result.Error(NetworkError.Unknown("status: ${response.status}"))
                     }
                 }
             } catch (e: TimeoutCancellationException) { //타임아웃 관련
