@@ -1,6 +1,5 @@
 ﻿package _251126_result.exercise2.repository
 
-import UserRepository
 import _251126_result.exercise2.core.NetworkError
 import _251126_result.exercise2.core.Result
 import _251126_result.exercise2.data_source.UserDataSource

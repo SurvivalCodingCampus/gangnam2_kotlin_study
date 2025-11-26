@@ -1,4 +1,6 @@
-﻿import _251126_result.exercise2.core.NetworkError
+﻿package _251126_result.exercise2.repository
+
+import _251126_result.exercise2.core.NetworkError
 import _251126_result.exercise2.core.Result
 import _251126_result.exercise2.model.User
 
