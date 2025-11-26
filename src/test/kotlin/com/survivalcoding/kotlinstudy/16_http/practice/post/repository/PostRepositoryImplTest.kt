@@ -2,7 +2,7 @@ package com.survivalcoding.kotlinstudy.`16_http`.practice.post.repository
 
 import com.survivalcoding.kotlinstudy.`16_http`.practice.model.Post
 import com.survivalcoding.kotlinstudy.`16_http`.practice.repository.PostRepositoryImpl
-import com.survivalcoding.kotlinstudy.repository.core.Response
+import com.survivalcoding.kotlinstudy.`18_result`.practice.util.Response
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue

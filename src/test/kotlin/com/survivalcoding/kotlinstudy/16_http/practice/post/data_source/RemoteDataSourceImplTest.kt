@@ -2,7 +2,7 @@ package com.survivalcoding.kotlinstudy.`16_http`.practice.post.data_source
 
 import com.survivalcoding.kotlinstudy.`16_http`.practice.data_source.RemoteDataSourceImpl
 import com.survivalcoding.kotlinstudy.`16_http`.practice.model.Post
-import com.survivalcoding.kotlinstudy.repository.core.Response
+import com.survivalcoding.kotlinstudy.`18_result`.practice.util.Response
 import io.ktor.client.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.io.IOException
