@@ -14,18 +14,20 @@ import kotlinx.serialization.json.Json
 class UserDataSourceImpl(
     private val client: HttpClient = HttpClientProvider.client,
 ) : UserDataSource {
+    val baseUrl = "https://jsonplaceholder.typicode.com"
+
     override suspend fun getUsers(): Response<List<UserDto>> = withContext(Dispatchers.IO) {
-        val httpResponse = client.get("https://jsonplaceholder.typicode.com/users")
+        val httpResponse = client.get("$baseUrl/users")
         httpResponse.toResponse<List<UserDto>>()
     }
 
     override suspend fun getUser(id: Int): Response<UserDto> = withContext(Dispatchers.IO) {
-        val httpResponse = client.get("https://jsonplaceholder.typicode.com/users/${id}")
+        val httpResponse = client.get("$baseUrl/users/${id}")
         httpResponse.toResponse<UserDto>()
     }
 
     override suspend fun createUser(user: UserDto): Response<UserDto> = withContext(Dispatchers.IO) {
-        val httpResponse = client.post("https://jsonplaceholder.typicode.com/users") {
+        val httpResponse = client.post("$baseUrl/users") {
             contentType(ContentType.Application.Json)
             setBody(Json.encodeToString(user))  // 수동 직렬화
         }
