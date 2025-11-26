@@ -46,7 +46,9 @@ class UserRemoteDataSourceImpl(
     }
 
     override suspend fun getUsers(): Response<List<UserDTO?>?> = withContext(Dispatchers.IO) {
-        val response = client.get("$BASE_URL/users")
+        val response = withTimeout(10_000L) {
+            client.get("$BASE_URL/users")
+        }
 
         if (!response.status.isSuccess()) {
             return@withContext Response(
@@ -64,9 +66,11 @@ class UserRemoteDataSourceImpl(
     }
 
     override suspend fun createUser(user: User): Response<UserDTO?> = withContext(Dispatchers.IO) {
-        val response = client.post("$BASE_URL/users") {
-            contentType(ContentType.Application.Json)   // 서버에 전송할 컨텐츠 설정
-            setBody(Json.encodeToString(user))   // user 객체를 JSON으로 직렬화하여 본문에 포함
+        val response = withTimeout(10_000L) {
+            client.post("$BASE_URL/users") {
+                contentType(ContentType.Application.Json)   // 서버에 전송할 컨텐츠 설정
+                setBody(Json.encodeToString(user))   // user 객체를 JSON으로 직렬화하여 본문에 포함
+            }
         }
 
         if (!response.status.isSuccess()) {

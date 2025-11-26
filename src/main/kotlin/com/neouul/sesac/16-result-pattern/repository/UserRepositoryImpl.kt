@@ -2,13 +2,11 @@ package com.neouul.sesac.`16-result-pattern`.repository
 
 import com.neouul.sesac.`16-result-pattern`.core.NetworkError
 import com.neouul.sesac.`16-result-pattern`.data_source.UserDataSource
-import com.neouul.sesac.`16-result-pattern`.dto.UserDTO
 import com.neouul.sesac.`16-result-pattern`.mapper.toModel
 import com.neouul.sesac.`16-result-pattern`.model.User
 import com.neouul.sesac.core.Result
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.json.Json
 
 class UserRepositoryImpl(
     private val dataSource: UserDataSource
