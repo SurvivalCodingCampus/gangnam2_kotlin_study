@@ -3,11 +3,11 @@ package com.neouul.sesac.`15-dto-mapper`.photos.mapper
 import com.neouul.sesac.`15-dto-mapper`.photos.core.EMPTY_INT
 import com.neouul.sesac.`15-dto-mapper`.photos.core.EMPTY_LOCALDATE
 import com.neouul.sesac.`15-dto-mapper`.photos.core.EMPTY_STRING
+import com.neouul.sesac.`15-dto-mapper`.photos.core.toLocalDateOrNull
 import com.neouul.sesac.`15-dto-mapper`.photos.core.toType
 import com.neouul.sesac.`15-dto-mapper`.photos.dto.PhotoDTO
 import com.neouul.sesac.`15-dto-mapper`.photos.model.Photo
 import com.neouul.sesac.`15-dto-mapper`.photos.model.Type
-import java.time.LocalDate
 
 fun PhotoDTO.toModel(): Photo {
     return Photo(
@@ -17,6 +17,6 @@ fun PhotoDTO.toModel(): Photo {
         title = title ?: EMPTY_STRING,
         content = content ?: EMPTY_STRING,
         caption = caption ?: EMPTY_STRING,
-        createdAt = LocalDate.parse(created_at) ?: EMPTY_LOCALDATE,
+        createdAt = created_at?.toLocalDateOrNull() ?: EMPTY_LOCALDATE,
     )
 }
