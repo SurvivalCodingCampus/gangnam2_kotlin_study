@@ -1,5 +1,8 @@
 ﻿package _251126_result.exercise2.core
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 sealed class Result<out T, out E> {
     data class Success<out T>(
         val data: T
@@ -10,7 +13,7 @@ sealed class Result<out T, out E> {
     ) : Result<Nothing, E>()
 }
 
-
+@Serializable
 sealed class NetworkError {
     object NetWorkUnavailable : NetworkError()
     object TimeOut : NetworkError()
