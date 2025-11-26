@@ -4,6 +4,7 @@ import _251126_result.exercise2.core.NetworkError
 import _251126_result.exercise2.core.Result
 import _251126_result.exercise2.data_source.UserDataSource
 import _251126_result.exercise2.model.User
+import io.ktor.http.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withContext
@@ -11,7 +12,9 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import java.net.ConnectException
 import java.net.http.HttpTimeoutException
+import javax.naming.ServiceUnavailableException
 
 class UserRepositoryImpl(
     private val userDataSource: UserDataSource
@@ -20,15 +23,34 @@ class UserRepositoryImpl(
     override suspend fun findUser(id: Int): Result<String, NetworkError> {
         return withContext(Dispatchers.IO) {
             try {
-                Result.Success(userDataSource.findUserById(id).body)
-            } catch (e: NullPointerException) {
-                Result.Error(NetworkError.UserNotFoundError)
+                val response = userDataSource.findUserById(id)
+                when (response.status) {
+                    HttpStatusCode.OK.toString() -> {
+                        return@withContext Result.Success(response.body)
+                    }
+
+                    HttpStatusCode.InternalServerError.toString() -> {
+                        throw ServiceUnavailableException()
+                    }
+
+                    HttpStatusCode.BadRequest.toString() -> {
+                        throw ConnectException()
+                    }
+
+                    else -> {
+                        throw Exception()
+                    }
+                }
             } catch (e: TimeoutCancellationException) { //타임아웃 관련
                 Result.Error(NetworkError.TimeOut)
+            } catch (e: ServiceUnavailableException) {//서버관련 exception
+                Result.Error(NetworkError.HttpError(500))
             } catch (e: HttpTimeoutException) {
                 Result.Error(NetworkError.TimeOut)
             } catch (e: SerializationException) {
                 Result.Error(NetworkError.ParseError)
+            } catch (e: ConnectException) { //클라이언트 관련 exception
+                Result.Error(NetworkError.HttpError(400))
             } catch (e: Exception) {
                 Result.Error(NetworkError.Unknown("unknown"))
             }

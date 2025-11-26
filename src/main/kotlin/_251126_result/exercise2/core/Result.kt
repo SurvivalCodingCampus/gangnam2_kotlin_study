@@ -20,5 +20,4 @@ sealed class NetworkError {
     data class HttpError(val code: Int) : NetworkError()
     object ParseError : NetworkError()
     data class Unknown(val message: String) : NetworkError()
-    object UserNotFoundError : NetworkError()
 }

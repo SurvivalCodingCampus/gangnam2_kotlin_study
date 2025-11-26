@@ -28,6 +28,8 @@ class UserRepositoryImplTest {
         val result = userRepositoryImpl.findUser(2)
         if (result is Result.Success) {
             assertEquals("""{"name":"홍길동","age":43,"id":2}""", result.data)
+        } else {
+            throw AssertionError()
         }
     }
 
@@ -35,7 +37,9 @@ class UserRepositoryImplTest {
     fun `findUser() - id값에 해당하는 유저가 없는경우 만들어놓은 NetworkError를 반환받는다`() = runTest {
         val result = userRepositoryImpl.findUser(3)
         if (result is Result.Error) {
-            assertEquals(NetworkError.UserNotFoundError, result.error)
+            assertEquals(NetworkError.HttpError(400), result.error)
+        } else {
+            throw AssertionError()
         }
     }
 
@@ -43,7 +47,9 @@ class UserRepositoryImplTest {
     fun `findUser() - id값이 4인경우 클라이언트 에러를 반환받는다`() = runTest {
         val result = userRepositoryImpl.findUser(4)
         if (result is Result.Error) {
-            assertEquals(NetworkError.NetWorkUnavailable, result.error)
+            assertEquals(NetworkError.HttpError(400), result.error)
+        } else {
+            throw AssertionError()
         }
     }
 
@@ -52,6 +58,8 @@ class UserRepositoryImplTest {
         val result = userRepositoryImpl.findUser(5)
         if (result is Result.Error) {
             assertEquals(NetworkError.HttpError(500), result.error)
+        } else {
+            throw AssertionError()
         }
     }
 
@@ -65,6 +73,8 @@ class UserRepositoryImplTest {
                 Json.decodeFromString("""[{"name":"홍길동","age":43,"id":1},{"name":"이순신","age":22,"id":2},{"name":"흥부","age":43,"id":3}]"""),
                 result.data
             )
+        } else {
+            throw AssertionError()
         }
 
     }
@@ -76,6 +86,8 @@ class UserRepositoryImplTest {
         //then
         if (result is Result.Success) {
             assertEquals(User(name = "이순신", age = 32, id = 2), result.data)
+        } else {
+            throw AssertionError()
         }
     }
 
@@ -88,7 +100,7 @@ class UserRepositoryImplTest {
         if (result is Result.Error) {
             assertEquals(NetworkError.ParseError, result.error)
         } else {
-            throw Exception("디버깅용")
+            throw AssertionError()
         }
     }
 

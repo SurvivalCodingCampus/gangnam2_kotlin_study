@@ -3,9 +3,7 @@
 import _251126_result.exercise2.core.mockEngine
 import _251126_result.exercise2.model.User
 import io.ktor.client.*
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import org.junit.Before
@@ -19,12 +17,6 @@ class UserDataSourceImplTest {
     @Before
     fun `모의서버 초기화`() {
         mockClient = HttpClient(mockEngine) {
-            install(ContentNegotiation) {
-                json(Json {
-                    ignoreUnknownKeys = true
-                })
-            }
-
         }
         userDataSourceImpl = UserDataSourceImpl(mockClient)
 

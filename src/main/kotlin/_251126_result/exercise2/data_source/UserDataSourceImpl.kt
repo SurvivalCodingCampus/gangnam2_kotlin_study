@@ -58,30 +58,8 @@ class UserDataSourceImpl(
 
     override suspend fun findUserById(id: Int): Response<String> {
         return withContext(Dispatchers.IO) {
-            try {
-                val response = httpClient.get("test/${id}.com")
-                if (response.status == HttpStatusCode.OK) {
-                    Response(
-                        status = response.status.toString(),
-                        body = response.bodyAsText(),
-                        header = ""
-                    )
-                } else {
-                    Response(
-                        status = response.status.toString(),
-                        body = "",
-                        header = ""
-                    )
-                }
-            } catch (e: ConnectException) { //클라이언트 관련 exception
-                throw e
-            } catch (e: ServiceUnavailableException) {//서버관련 exception
-                throw e
-            } catch (e: Exception) {
-                throw e
-            }
-
-
+            val response = httpClient.get("test/${id}.com")
+            Response(status = response.status.toString(), body = response.bodyAsText(), header = "")
         }
     }
 
