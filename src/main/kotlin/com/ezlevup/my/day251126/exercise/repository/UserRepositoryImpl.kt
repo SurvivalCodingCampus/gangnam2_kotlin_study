@@ -11,7 +11,7 @@ import com.ezlevup.my.day251126.exercise.model.User
 import io.ktor.client.plugins.*
 
 class UserRepositoryImpl(
-    val userDataSource: UserDataSource = UserDataSourceImpl()
+    private val userDataSource: UserDataSource = UserDataSourceImpl()
 ) : UserRepository {
 
     private suspend fun <T, R> executeWithErrorHandling(
