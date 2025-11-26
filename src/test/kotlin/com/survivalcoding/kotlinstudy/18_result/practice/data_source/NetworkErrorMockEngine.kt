@@ -39,7 +39,7 @@ object NetworkErrorMockEngine {
                     }
 
                     else -> {
-                        error("MockEngine: /posts 엔드포인트에서 지원하지 않는 HTTP 메서드입니다. method=${request.method}")
+                        error("MockEngine: /users 엔드포인트에서 지원하지 않는 HTTP 메서드입니다. method=${request.method}")
                     }
                 }
             }
