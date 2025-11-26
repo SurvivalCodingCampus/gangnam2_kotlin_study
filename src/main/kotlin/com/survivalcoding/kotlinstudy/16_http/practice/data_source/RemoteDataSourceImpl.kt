@@ -1,6 +1,6 @@
 package com.survivalcoding.kotlinstudy.`16_http`.practice.data_source
 
-import com.survivalcoding.kotlinstudy.`16_http`.practice.HttpClientFactory
+import com.survivalcoding.kotlinstudy.HttpClientFactory
 import com.survivalcoding.kotlinstudy.`16_http`.practice.model.Post
 import com.survivalcoding.kotlinstudy.repository.core.Response
 import io.ktor.client.*

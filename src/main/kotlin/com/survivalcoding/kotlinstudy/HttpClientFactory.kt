@@ -1,4 +1,4 @@
-package com.survivalcoding.kotlinstudy.`16_http`.practice
+package com.survivalcoding.kotlinstudy
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
