@@ -7,6 +7,6 @@ class PostRepositoryImpl(
     private val dataSource: RemoteDataSource,
 ) : PostRepository {
     override suspend fun getPostsByKeyword(keyword: String): List<Post> {
-        return dataSource.getPosts().body.filter { it.title.contains(keyword) }
+        return dataSource.getPosts().body.filter { it.title.lowercase().contains(keyword.lowercase()) }
     }
 }
