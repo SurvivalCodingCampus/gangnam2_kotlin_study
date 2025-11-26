@@ -7,5 +7,5 @@ import com.neouul.sesac.core.Result
 interface UserRepository {
     suspend fun findUser(userId: Int): Result<User, NetworkError>
     suspend fun findAllUsers(): Result<List<User>, NetworkError>
-    suspend fun createUser(): Result<User, NetworkError>
+    suspend fun createUser(user: User): Result<User, NetworkError>
 }
