@@ -87,11 +87,23 @@ class UserDataSourceImpl(
 
     override suspend fun createUser(user: User): Response<User> {
         return withContext(Dispatchers.IO) {
-            val response = httpClient.post("test.com") {
-                setBody(Json.encodeToString(user))
-                contentType(ContentType.Application.Json)
+            try {
+                val response = httpClient.post("test.com") {
+                    setBody(Json.encodeToString(user))
+                    contentType(ContentType.Application.Json)
+                }
+                if (response.status.isSuccess()) {
+                    Response(body = user, status = response.status.toString(), "")
+                } else {
+                    throw ConnectException()
+                }
+            } catch (e: ConnectException) { //클라이언트 관련 exception
+                throw e
+            } catch (e: ServiceUnavailableException) {//서버관련 exception
+                throw e
+            } catch (e: Exception) {
+                throw e
             }
-            Response(body = user, status = response.status.toString(), "")
         }
     }
 }
