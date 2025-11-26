@@ -8,8 +8,8 @@ import com.ezlevup.my.day251126.exercise.mapper.toUser
 import com.ezlevup.my.day251126.exercise.mapper.toUserDto
 import com.ezlevup.my.day251126.exercise.model.NetworkError
 import com.ezlevup.my.day251126.exercise.model.User
-import com.sun.org.slf4j.internal.LoggerFactory
 import io.ktor.client.plugins.*
+import org.slf4j.LoggerFactory
 
 class UserRepositoryImpl(
     private val userDataSource: UserDataSource = UserDataSourceImpl()
