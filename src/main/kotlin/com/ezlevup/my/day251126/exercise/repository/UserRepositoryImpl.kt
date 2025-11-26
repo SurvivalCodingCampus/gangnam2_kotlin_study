@@ -8,11 +8,15 @@ import com.ezlevup.my.day251126.exercise.mapper.toUser
 import com.ezlevup.my.day251126.exercise.mapper.toUserDto
 import com.ezlevup.my.day251126.exercise.model.NetworkError
 import com.ezlevup.my.day251126.exercise.model.User
+import com.sun.org.slf4j.internal.LoggerFactory
 import io.ktor.client.plugins.*
 
 class UserRepositoryImpl(
     private val userDataSource: UserDataSource = UserDataSourceImpl()
 ) : UserRepository {
+    companion object {
+        private val logger = LoggerFactory.getLogger(UserRepositoryImpl::class.java)
+    }
 
     private suspend fun <T, R> executeWithErrorHandling(
         block: suspend () -> Response<T>,
@@ -41,7 +45,7 @@ class UserRepositoryImpl(
         } catch (e: java.io.IOException) {
             RepositoryResult.Error(NetworkError.NetworkUnavailable)
         } catch (e: Exception) {
-            println(e.toString())
+            logger.error("Unexpected error during repository operation", e)
             RepositoryResult.Error(NetworkError.NetworkUnavailable)
         }
     }
