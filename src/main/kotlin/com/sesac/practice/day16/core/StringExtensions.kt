@@ -17,7 +17,7 @@ fun String?.toPhotoType(): PhotoType =
 
 fun String?.toLocalDateTime(): LocalDateTime? = this?.let {
     try {
-        LocalDateTime.parse(this, ofPattern("yyyy/MM/dd HH:mm:ss"))
+        LocalDateTime.parse(it, ofPattern("yyyy/MM/dd HH:mm:ss"))
     } catch (_: DateTimeException) {
         null
     }
@@ -25,7 +25,7 @@ fun String?.toLocalDateTime(): LocalDateTime? = this?.let {
 
 fun String?.toLocalDate(): LocalDate? = this?.let {
     try {
-        LocalDate.parse(this, ofPattern("yyyy-MM-dd"))
+        LocalDate.parse(it, ofPattern("yyyy-MM-dd"))
     } catch (_: DateTimeException) {
         null
     }
