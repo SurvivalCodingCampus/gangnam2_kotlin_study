@@ -1,7 +1,7 @@
 package com.ezlevup.my.day251121.exercise.data_source
 
-import com.ezlevup.my.day251121.exercise.core.Response
-import com.ezlevup.my.day251121.exercise.core.toResponse
+import com.ezlevup.my.core.Response
+import com.ezlevup.my.core.toResponse
 import com.ezlevup.my.day251121.exercise.model.Post
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*

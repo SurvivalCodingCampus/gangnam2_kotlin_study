@@ -1,6 +1,6 @@
 package com.ezlevup.my.day251121.exercise.repository
 
-import com.ezlevup.my.day251121.exercise.core.FileUtils
+import com.ezlevup.my.core.FileUtils
 import com.ezlevup.my.day251121.exercise.data_source.ImageDataSource
 
 class ImageRepositoryImpl(
