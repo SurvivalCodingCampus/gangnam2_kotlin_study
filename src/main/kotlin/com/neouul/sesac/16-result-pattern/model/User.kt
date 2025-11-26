@@ -1,9 +1,9 @@
 package com.neouul.sesac.`16-result-pattern`.model
 
 data class User(
-    val id: Int,
+    val userId: Int,
     val name: String,
-    val username: String,
+    val userName: String,
     val email: String,
     val phone: String,
 )
