@@ -6,8 +6,12 @@ import io.ktor.http.*
 import kotlinx.coroutines.delay
 
 class MockTimeOutUserDataSourceImpl : UserDataSource {
+    companion object {
+        private const val DELAY_MS = 11_000L
+    }
+
     override suspend fun getUser(id: Int): Response<UserDto> {
-        delay(11_000L)
+        delay(DELAY_MS)
         return Response(
             codeStatus = HttpStatusCode.OK.value,
             header = mapOf(),
@@ -16,7 +20,7 @@ class MockTimeOutUserDataSourceImpl : UserDataSource {
     }
 
     override suspend fun getUsers(): Response<List<UserDto>> {
-        delay(11_000L)
+        delay(DELAY_MS)
         return Response(
             codeStatus = HttpStatusCode.OK.value,
             header = mapOf(),
@@ -25,7 +29,7 @@ class MockTimeOutUserDataSourceImpl : UserDataSource {
     }
 
     override suspend fun createUser(user: UserDto): Response<UserDto> {
-        delay(11_000L)
+        delay(DELAY_MS)
         return Response(
             codeStatus = HttpStatusCode.OK.value,
             header = mapOf(),

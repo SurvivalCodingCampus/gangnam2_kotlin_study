@@ -77,8 +77,8 @@ class UserRepositoryImplTest {
 
     @Test
     fun `Network 에러 발생 시 테스트`() = runTest {
-        val datasource = MockNetworkErrorUserDataSourceImpl()
-        val repository = UserRepositoryImpl(datasource)
+        val dataSource = MockNetworkErrorUserDataSourceImpl()
+        val repository = UserRepositoryImpl(dataSource)
 
         val result = repository.getUsers()
 

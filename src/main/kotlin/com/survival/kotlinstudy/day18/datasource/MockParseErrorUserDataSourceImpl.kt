@@ -6,7 +6,7 @@ import io.ktor.http.*
 import kotlinx.serialization.json.Json
 
 class MockParseErrorUserDataSourceImpl : UserDataSource {
-    val json = """
+    private val json = """
         {
         "userName": "userName1"
         }
