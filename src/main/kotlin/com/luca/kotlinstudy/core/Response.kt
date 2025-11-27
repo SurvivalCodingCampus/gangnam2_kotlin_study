@@ -1,4 +1,4 @@
-package com.luca.kotlinstudy._16_http.core
+package com.luca.kotlinstudy.core
 
 data class Response<T>(
     val statusCode: Int,

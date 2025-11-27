@@ -1,6 +1,6 @@
 package com.luca.kotlinstudy._16_http.repository
 
-import com.luca.kotlinstudy._16_http.core.Response
+import com.luca.kotlinstudy.core.Response
 import com.luca.kotlinstudy._16_http.datasource.RemoteDataSource
 import com.luca.kotlinstudy._16_http.model.Post
 import io.mockk.coEvery
