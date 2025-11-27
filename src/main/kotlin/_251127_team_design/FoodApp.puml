@@ -58,7 +58,8 @@ class Notification {
     content: String
     sendAt: LocalDateTime
     isRead: Boolean
-    readAt: LocalDateTime
+    readAt: LocalDateTime?
+    '읽지 않으면 시간이 없으므로 nullabletype으로 변경
 }
 
 class Review {
