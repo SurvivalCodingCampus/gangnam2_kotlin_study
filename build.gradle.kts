@@ -16,7 +16,12 @@ val serializationVersion = "1.9.0"
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    // Ktor MockEngine
     testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
+
+    // 코루틴 테스트용
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
     // kotlinx.serialization (Json)
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
@@ -28,7 +33,6 @@ dependencies {
     // Ktor Client 기본
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
-
 
     // Ktor Client: ContentNegotiation + kotlinx-json
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")

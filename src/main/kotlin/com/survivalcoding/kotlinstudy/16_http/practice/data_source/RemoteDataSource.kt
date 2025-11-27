@@ -1,7 +1,7 @@
 package com.survivalcoding.kotlinstudy.`16_http`.practice.data_source
 
 import com.survivalcoding.kotlinstudy.`16_http`.practice.model.Post
-import com.survivalcoding.kotlinstudy.repository.core.Response
+import com.survivalcoding.kotlinstudy.`18_result`.practice.util.Response
 
 interface RemoteDataSource {
     suspend fun getPost(): Response<List<Post>>
