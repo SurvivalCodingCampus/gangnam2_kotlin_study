@@ -69,8 +69,8 @@ class Review {
     updatedAt: LocalDateTime
     likeCount: Int
     dislikeCount: Int
-    isLike: Boolean
-    isDisLike: Boolean
+    voteType: VoteType
+
 }
 
 class SearchFilter {
@@ -113,7 +113,11 @@ enum NotiType {
     READ,
     UNREAD,
 }
-
+enum VoteType {
+    LIKE,
+    DISLIKE,
+    NONE
+}
 interface NotiRepository {
     suspend fun getNotifications(userId: Long, type:NotiType): List<Notification>
     suspend fun readNotifications(userId: Long, notiId: Long)
