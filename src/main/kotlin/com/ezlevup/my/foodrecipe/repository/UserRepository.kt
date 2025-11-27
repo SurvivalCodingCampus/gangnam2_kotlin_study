@@ -1,4 +1,4 @@
 package com.ezlevup.my.foodrecipe.repository
 
-interface UserRepository {
+interface AccountRepository {
 }
