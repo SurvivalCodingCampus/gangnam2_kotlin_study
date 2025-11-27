@@ -131,7 +131,7 @@ enum VoteType {
     NONE
 }
 interface NotiRepository {
-    suspend fun getNotifications(userId: Long, type:NotiType): List<Notification>
+    suspend fun getNotifications(userId: Long, type: NotiType): List<Notification>
     suspend fun readNotifications(userId: Long, notiId: Long)
 }
 @enduml
