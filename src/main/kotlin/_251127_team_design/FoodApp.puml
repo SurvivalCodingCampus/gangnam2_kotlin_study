@@ -72,6 +72,18 @@ class Review {
     voteType: VoteType
 
 }
+class Ingredient {
+    id: Long
+    name: String
+    quantity: String
+    imageUrl: String?
+
+}
+
+class Procedure {
+    id: Long
+    description: String
+}
 
 class SearchFilter {
     time: String?
