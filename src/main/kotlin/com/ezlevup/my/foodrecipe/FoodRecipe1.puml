@@ -1,0 +1,151 @@
+@startuml
+' Food Recipe class-diagram
+
+class Account {
+    id: Long
+    name: String
+    email: String
+    password: String
+    imageUrl: String
+    jobGrade: String
+    description: String
+    country: String
+    city: String
+    type: AccountType
+    followerCount: Int
+    followingCount: Int
+    savedRecipeIds: List<Long> ' 즐겨찾기 레시피, Recipe ID 만 저장
+    recentSearchRecipeIds: List<Long> ' 최근 검색한 레시피, Recipe ID 만 저장
+    followUserIds: List<Long>
+}
+
+enum AccountType {
+    EMAIL,
+    GOOGLE,
+    FACEBOOK,
+}
+
+' 재료
+class Ingredient {
+    name: String
+    imageUrl: String
+    amount: Double
+    unit: String ' 단위 (예: "g", "ml", "개")
+}
+
+' 조리 순서
+class Procedure {
+    step: Int
+    content: String
+}
+
+class Recipe {
+    id: Long
+    authorId: Long
+    title: String
+    category: Category
+    cookingTime: Int
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    shareUrl: String
+    videoUrl: String
+    averageRating: Double ' 별점
+    reviewCount: Int ' 총 리뷰수
+    ingredients: List<Ingredient>
+    procedures: List<Procedure>
+    reviews: List<Review>
+    imageUrl: String
+}
+
+enum Category {
+    CEREAL,
+    VEGETABLES,
+    DINNER,
+    CHINESE,
+    LOCAL_DISH,
+    FRUIT,
+    BREAKFAST,
+    SPANISH,
+    LUNCH,
+}
+
+
+class Notification {
+    id: Long
+    title: String
+    content: String
+    sentAt: LocalDateTime
+    isRead: Boolean
+    readAt: LocalDateTime
+}
+
+class Review {
+    id: Long
+    authorId: Long ' 리뷰 작성자
+    comment: String
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    likeCount: Int
+    dislikeCount: Int
+    isLike: Boolean
+    isDisLike: Boolean
+}
+
+class SearchFilter {
+    time: String?
+    rate: Int?
+    category: Category?
+}
+
+
+interface AccountRepository {
+    suspend fun login(email: String, pw: String): Result<Account, E>
+    suspend fun signUp(account: Account): Result<Account, E>
+    suspend fun getProfile(userId: Long): Result<Account, E>
+    suspend fun updateAccount(account: Account): Result<Account, E>
+    suspend fun follow(userId: Long, followUserId: Long): Result<Unit, E>
+    suspend fun unFollow(userId: Long, followUserId: Long): Result<Unit, E>
+
+    ' 즐겨 찾기한 레시피
+    suspend fun getSavedRecipes(userId: Long): Result<List<Recipe>, E>
+    suspend fun addSavedRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+    suspend fun unsaveRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+
+    ' 최근 검색 레시피
+    suspend fun recentSearchRecipe(userId: Long): Result<List<Recipe>, E>
+}
+
+interface ReviewRepository {
+    suspend fun likeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun dislikeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun createReview(userId: Long, recipeId: Long, review: Review): Result<Unit, E>
+    suspend fun editReview(userId: Long, recipeId: Long, review: Review): Result<Unit, E>
+    suspend fun deleteReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun getReviews(recipeId: Long): Result<List<Review>, E>
+}
+
+interface RecipeRepository {
+    suspend fun getRecipes(): Result<List<Recipe>, E>
+    suspend fun searchRecipes(search: String, searchFilter: SearchFilter): Result<List<Recipe>, E>
+    suspend fun createRecipe(userId: Long, recipe: Recipe): Result<Unit, E>
+    suspend fun editRecipe(userId: Long, recipe: Recipe): Result<Unit, E>
+    suspend fun deleteRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+    suspend fun rateRecipe(userId: Long, recipeId: Long, rate: Double): Result<Unit, E>
+}
+
+enum NotiType {
+    ALL,
+    READ,
+    UNREAD,
+}
+
+interface NotiRepository {
+    suspend fun getNotifications(userId: Long, type:NotiType): Result<List<Notification>, E>
+    suspend fun readNotifications(userId: Long, notiId: Long): Result<Unit, E>
+}
+
+
+' 관계 정의
+
+
+@enduml

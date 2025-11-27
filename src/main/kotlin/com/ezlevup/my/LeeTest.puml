@@ -24,4 +24,24 @@ HOURS
 MINUTES
 }
 
+interface 정보수집할수있는 {
+    정보수집한다()
+}
+
+interface 수리할수있는 {
+    수리한다(기계)
+}
+
+abstract class 시설 extends 유닛 {
+}
+
+abstract class Marvel시설 extends 시설 {
+    진영 = Marvel
+}
+
+abstract class Xmen시설 extends 시설 implements 자가치유할수있는 {
+    진영 = Xmen
+    타입 = 강화인간
+}
+
 @enduml
