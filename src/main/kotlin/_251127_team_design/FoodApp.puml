@@ -105,7 +105,7 @@ interface RecipeRepository {
     suspend fun searchRecipes(search: String, searchFilter: SearchFilter): List<Recipe>
     suspend fun saveRecipe(userId: Long, recipe: Recipe)
     suspend fun editRecipe(userId: Long, recipe: Recipe)
-    suspend fun deleteRecipe(userId: Long, recipeId: Int)
+    suspend fun deleteRecipe(userId: Long, recipeId: Long)
 }
 
 enum NotiType {
