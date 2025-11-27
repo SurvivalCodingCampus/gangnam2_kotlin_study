@@ -100,7 +100,7 @@ interface UserRepository {
     suspend fun getSavedRecipe(userId: Long): List<Recipe>
     suspend fun savedRecipe(recipeId: Long)
     suspend fun unsaveRecipe(recipeId: Long)
-    suspend fun recentSearchRecipe(): List<Recipe>
+    suspend fun recentSearchRecipe(userId: Long): List<Recipe>
 }
 
 interface ReviewRepository {
