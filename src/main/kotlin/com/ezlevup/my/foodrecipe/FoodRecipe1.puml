@@ -91,12 +91,26 @@ class Review {
     isDisLike: Boolean
 }
 
-class SearchFilter {
-    time: String?
-    rate: Int?
-    category: Category?
+enum SortTime {
+    ALL,
+    NEWEST,
+    OLDEST,
+    POPULARITY,
 }
 
+enum StarRating {
+    ONE_STAR,
+    TWO_STARS,
+    THREE_STARS,
+    FOUR_STARS,
+    FIVE_STARS
+}
+
+class SearchFilter {
+    time: SortTime
+    rate: StarRating
+    category: Category
+}
 
 interface AccountRepository {
     suspend fun login(email: String, pw: String): Result<Account, E>
@@ -141,7 +155,7 @@ enum NotificationFilter {
 
 interface NotiRepository {
     suspend fun getNotifications(userId: Long, filter: NotificationFilter): Result<List<Notification>, E>
-    suspend fun readNotifications(userId: Long, notiId: Long): Result<Unit, E>
+    suspend fun readNotifications(userId: Long, notificationId: Long): Result<Unit, E>
 }
 
 
