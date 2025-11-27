@@ -97,7 +97,7 @@ interface ReviewRepository {
     suspend fun createReview(userId: Long, recipeId: Long, review: Review)
     suspend fun editReview(userId: Long, recipeId: Long, review: Review)
     suspend fun deleteReview(userId: Long, recipeId: Long, reviewId: Long)
-    suspend fun getReviews(recipeId: Long)
+    suspend fun getReviews(recipeId: Long): List<Review>
 }
 
 interface RecipeRepository {
