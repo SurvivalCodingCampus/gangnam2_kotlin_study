@@ -1,0 +1,120 @@
+﻿@startuml
+
+class Account {
+    id: Long
+    name: String
+    email: String
+    password: String
+    imageUrl: String
+    jobGrade: String
+    description: String
+    country: String
+    city: String
+    type: AccountType
+    followerCount: Int
+    followingCount: Int
+    savedRecipe: List<Recipe>
+    recentSearchRecipe: List<Recipe>
+}
+
+enum AccountType {
+    EMAIL,
+    GOOGLE,
+    FACEBOOK,
+}
+
+class Recipe {
+    id: Long
+    title: String
+    category: Category
+    cookingTime: Int
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    shareUrl: String
+    videoUrl: String
+    rating: Int
+    ingredients: List<Ingredient>
+    procedures: List<Procedure>
+    reviews: List<Review>
+    imageUrl: String
+}
+
+enum Category {
+    CEREAL,
+    VEGETABLES,
+    DINNER,
+    CHINESE,
+    LOCAL_DISH,
+    FRUIT,
+    BREAKFAST,
+    SPANISH,
+    LUNCH,
+}
+
+
+class Notification {
+    id: Long
+    title: String
+    content: String
+    sendAt: LocalDateTime
+    isRead: Boolean
+    readAt: LocalDateTime
+}
+
+class Review {
+    id: Long
+    comment: String
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    likeCount: Int
+    dislikeCount: Int
+    isLike: Boolean
+    isDisLike: Boolean
+}
+
+class SearchFilter {
+    time: String?
+    rate: Int?
+    category: Category?
+}
+
+interface UserRepository {
+    suspend fun login(email: String, pw: String): Account
+    suspend fun signUp(account: Account)
+    suspend fun getProfile(userId: Long): Account
+    suspend fun updateAccount(account: Account)
+
+    suspend fun getSavedRecipe(userId: Long): List<Recipe>
+    suspend fun savedRecipe(recipeId: Int)
+    suspend fun unsaveRecipe(recipeId: Int)
+    suspend fun recentSearchRecipe(): List<Recipe>
+}
+
+interface ReviewRepository {
+    suspend fun likeReview(userId: Long, recipeId: Long, reviewId: Long)
+    suspend fun dislikeReview(userId: Long, recipeId: Long, reviewId: Long)
+    suspend fun createReview(userId: Long, recipeId: Long, review: Review)
+    suspend fun editReview(userId: Long, recipeId: Long, review: Review)
+    suspend fun deleteReview(userId: Long, recipeId: Long reviewId: Long)
+    suspend fun getReviews(recipeId: Long)
+}
+
+interface RecipeRepository {
+    suspend fun getRecipe(): List<Recipe>
+    suspend fun searchRecipes(search: String, searchFilter: SearchFilter): List<Recipe>
+    suspend fun saveRecipe(userId: Long, recipe: Recipe)
+    suspend fun editRecipe(userId: Long, recipe: Recipe)
+    suspend fun deleteRecipe(userId: Long, recipeId: Int)
+}
+
+enum NotiType {
+    ALL,
+    READ,
+    UNREAD,
+}
+
+interface NotiRepository {
+    suspend fun getNotifications(userId: Long, type:NotiType): List<Notification>
+    suspend fun readNotifications(userId: Long, notiId: Long)
+}
+@enduml
