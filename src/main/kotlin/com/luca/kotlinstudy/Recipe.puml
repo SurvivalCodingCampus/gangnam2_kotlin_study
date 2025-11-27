@@ -1,0 +1,128 @@
+@startuml
+
+class 유저 {
+    유저_아이디: Long
+    이름: String
+    이메일: String
+    비밀번호: String
+    위도: Double
+    경도: Double
+    프로필: 유저프로필
+}
+
+유저 o.. 유저프로필
+유저 o.. 게시글
+유저 o.. 알림
+유저 o.. 저장한게시글들
+
+class 유저프로필 {
+    팔로워: List<Long>
+    팔로잉: List<Long>
+    게시글들: List<Long>
+    소개글: String
+}
+
+class 저장한게시글들 {
+    유저_아이디: Long
+    저장한게시글들: List<Long>
+}
+
+class 게시글 {
+    게시글_아이디: Long
+    유저_아이디: Long
+    제목: String
+    재료들: Map<String, Double>
+    과정: List<String>
+    리뷰들: List<리뷰>
+    평점들: List<평점>
+    조리시간: Long
+    카테고리들: List<카테고리>
+    미디어: String
+    기준인원: Int
+}
+
+게시글 o.. 카테고리
+
+enum 카테고리 {
+    CEREAL
+    VEGETABLES
+    DINNER
+    CHINESE
+    LOCAL_DISH
+    FRUIT
+    BREAKFAST
+    SPANISH
+    LUNCH
+}
+
+게시글 o.. 리뷰
+게시글 o.. 평점
+
+class 리뷰 {
+    게시글_아이디: Long
+    유저_아이디: Long
+    리뷰_아이디: Long
+    내용: String
+    생성일: LocalDateTime
+    좋아요한_유저: List<Long>
+    싫어요한_유저: List<Long>
+}
+
+class 평점 {
+    점수: Int
+    유저_아이디: Long
+    게시글_아이디: Long
+}
+
+class 알림 {
+    제목: String
+    내용: String
+    읽음유무: Boolean
+    생성일: LocalDateTime
+    유저_아이디: Long
+    게시글_아이디: Long
+}
+Interface 인증Repository {
+    로그인(이메일: String, 비밀번호: String): Result<유저, 에러>
+    회원가입(이름: String, 이메일: String, 비밀번호: String): Result<유저, 에러>
+    비밀번호_찾기(이메일: String): Result<유저, 에러>
+    로그아웃(): Result<유저, 에러>
+}
+
+Interface 검색Repository {
+    검색(키워드: String, 정렬: String?, 평점: Int?, 분류: List<카테고리>?): Result<List<게시글>, 에러>
+}
+
+Interface 게시글저장Repository {
+    게시글_저장(게시글_아이디: Long, 유저_아이디: Long): Result<게시글, 에러>
+    게시글_저장취소(게시글_아이디: Long, 유저_아이디: Long): Result<게시글, 에러>
+    저장_게시글_목록_가져오기(유저_아이디: Long): Result<저장한게시글들, 에러>
+}
+
+Interface 팔로우Repository {
+    팔로우(내_유저_아이디: Long, 팔로우할_유저_아이디: Long): Result<유저프로필 ,에러>
+    언팔로우(내_유저_아이디: Long, 언팔로우할_유저_아이디: Long): Result<유저프로필 ,에러>
+}
+
+Interface 레시피평가Repository {
+    레시피_평가(평점: 평점): Result<평점 ,에러>
+    레시피_평가_삭제(유저_아이디: Long, 게시글_아이디: Long): Result<평점 ,에러>
+}
+
+Interface 리뷰Repository {
+    리뷰_작성(리뷰: 리뷰): Result<리뷰, 에러>
+    리뷰_수정(리뷰: 리뷰): Result<리뷰, 에러>
+    리뷰_삭제(리뷰_아이디: Long): Result<리뷰, 에러>
+    리뷰_목록_가져오기(게시글_아이디: Long): Result<List<리뷰>, 에러>
+    리뷰_좋아요(리뷰_아이디: Long, 평가한_유저: Long): Result<리뷰, 에러>
+    리뷰_싫어요(리뷰_아이디: Long, 평가한_유저: Long): Result<리뷰, 에러>
+}
+
+Interface 알림Repository {
+    알림_생성(게시글_아이디: Long, 유저_아이디: List<Long>): Result<List<알림>, 에러>
+    알림_읽음(게시글_아이디: Long, 유저_아이디: Long): Result<알림, 에러>
+    알림_목록_조회(유저_아이디: Long): Result<List<알림>, 에러>
+    알림_삭제(게시글_아이디: Long, 유저_아이디: Long): Result<알림, 에러>
+}
+
+@enduml
