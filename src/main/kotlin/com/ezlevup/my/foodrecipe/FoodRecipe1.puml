@@ -5,7 +5,6 @@ class Account {
     id: Long
     name: String
     email: String
-    password: String
     imageUrl: String
     jobGrade: String
     description: String
