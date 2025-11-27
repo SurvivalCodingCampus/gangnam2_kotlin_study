@@ -92,7 +92,7 @@ class SearchFilter {
 }
 
 interface UserRepository {
-    suspend fun login(email: String, pw: String): Account
+    suspend fun login(email: String, pw: String): Account?
     suspend fun signUp(account: Account)
     suspend fun getProfile(userId: Long): Account
     suspend fun updateAccount(account: Account)
