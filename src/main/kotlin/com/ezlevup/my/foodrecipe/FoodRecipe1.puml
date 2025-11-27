@@ -13,8 +13,10 @@ class Account {
     type: AccountType
     followerCount: Int
     followingCount: Int
-    savedRecipeIds: List<Long> ' 즐겨찾기 레시피, Recipe ID 만 저장
-    recentSearchRecipeIds: List<Long> ' 최근 검색한 레시피, Recipe ID 만 저장
+    ' 즐겨찾기 레시피, Recipe ID 만 저장
+    savedRecipeIds: List<Long>
+    ' 최근 검색한 레시피, Recipe ID 만 저장
+    recentSearchRecipeIds: List<Long>
     followUserIds: List<Long>
 }
 
@@ -38,6 +40,7 @@ class Procedure {
     content: String
 }
 
+' 레시피
 class Recipe {
     id: Long
     authorId: Long
@@ -48,8 +51,10 @@ class Recipe {
     updatedAt: LocalDateTime
     shareUrl: String
     videoUrl: String
-    averageRating: Double ' 별점
-    reviewCount: Int ' 총 리뷰수
+    ' 별점
+    averageRating: Double
+    ' 총 리뷰수
+    reviewCount: Int
     ingredients: List<Ingredient>
     procedures: List<Procedure>
     reviews: List<Review>
@@ -80,7 +85,8 @@ class Notification {
 
 class Review {
     id: Long
-    authorId: Long ' 리뷰 작성자
+    ' 리뷰 작성자
+    authorId: Long
     comment: String
     createdAt: LocalDateTime
     updatedAt: LocalDateTime
@@ -111,23 +117,34 @@ class SearchFilter {
     category: Category
 }
 
+' 계정 관리
 interface AccountRepository {
     suspend fun login(email: String, pw: String): Result<Account, E>
     suspend fun signUp(account: Account): Result<Account, E>
     suspend fun getProfile(userId: Long): Result<Account, E>
     suspend fun updateAccount(account: Account): Result<Account, E>
-    suspend fun follow(userId: Long, followUserId: Long): Result<Unit, E>
-    suspend fun unFollow(userId: Long, followUserId: Long): Result<Unit, E>
+}
 
-    ' 즐겨 찾기한 레시피
+' 팔로우 관리
+interface FollowRepository {
+    suspend fun follow(userId: Long, followUserId: Long): Result<Unit, E>
+    suspend fun unfollow(userId: Long, followUserId: Long): Result<Unit, E>
+}
+
+' 즐겨찾기 관리
+interface FavoriteRepository {
     suspend fun getSavedRecipes(userId: Long): Result<List<Recipe>, E>
     suspend fun addSavedRecipe(userId: Long, recipeId: Long): Result<Unit, E>
     suspend fun unsaveRecipe(userId: Long, recipeId: Long): Result<Unit, E>
-
-    ' 최근 검색 레시피
-    suspend fun recentSearchRecipe(userId: Long): Result<List<Recipe>, E>
 }
 
+' 검색 기록 관리
+interface SearchHistoryRepository {
+    ' 최근 검색 레시피
+    suspend fun getRecentSearchRecipes(userId: Long): Result<List<Recipe>, E>
+}
+
+' 리뷰 관리
 interface ReviewRepository {
     suspend fun likeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
     suspend fun dislikeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
@@ -137,6 +154,7 @@ interface ReviewRepository {
     suspend fun getReviews(recipeId: Long): Result<List<Review>, E>
 }
 
+' 레시피 관리
 interface RecipeRepository {
     suspend fun getRecipes(): Result<List<Recipe>, E>
     suspend fun searchRecipes(search: String, searchFilter: SearchFilter): Result<List<Recipe>, E>
@@ -152,7 +170,8 @@ enum NotificationFilter {
     UNREAD,
 }
 
-interface NotiRepository {
+' 알림 관리
+interface NotificationRepository  {
     suspend fun getNotifications(userId: Long, filter: NotificationFilter): Result<List<Notification>, E>
     suspend fun readNotifications(userId: Long, notificationId: Long): Result<Unit, E>
 }
