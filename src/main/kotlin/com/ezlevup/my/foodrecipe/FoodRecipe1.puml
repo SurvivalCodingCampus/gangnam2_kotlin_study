@@ -133,14 +133,14 @@ interface RecipeRepository {
     suspend fun rateRecipe(userId: Long, recipeId: Long, rate: Double): Result<Unit, E>
 }
 
-enum NotiType {
+enum NotificationFilter {
     ALL,
     READ,
     UNREAD,
 }
 
 interface NotiRepository {
-    suspend fun getNotifications(userId: Long, type:NotiType): Result<List<Notification>, E>
+    suspend fun getNotifications(userId: Long, filter: NotificationFilter): Result<List<Notification>, E>
     suspend fun readNotifications(userId: Long, notiId: Long): Result<Unit, E>
 }
 
