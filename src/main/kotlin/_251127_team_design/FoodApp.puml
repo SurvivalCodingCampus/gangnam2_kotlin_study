@@ -86,8 +86,8 @@ interface UserRepository {
     suspend fun updateAccount(account: Account)
 
     suspend fun getSavedRecipe(userId: Long): List<Recipe>
-    suspend fun savedRecipe(recipeId: Int)
-    suspend fun unsaveRecipe(recipeId: Int)
+    suspend fun savedRecipe(recipeId: Long)
+    suspend fun unsaveRecipe(recipeId: Long)
     suspend fun recentSearchRecipe(): List<Recipe>
 }
 
