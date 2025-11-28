@@ -1,0 +1,139 @@
+-@startuml
+'https://plantuml.com/class-diagram
+
+class Notification {
+    + id: Long
+    + title: String
+    + message: String
+    + isRead: Boolean
+    + createdAt: String
+}
+
+class User {
+    + id: Long
+    + email: String
+    + name: String
+    + password: String
+    + address: String
+    + profile: Profile
+}
+
+class Profile {
+     + followerCount: Int
+     + followingCount: Int
+     + work: String
+     + description: String
+     + image: String
+}
+
+class Recipe {
+    + id: Long
+    + title: String
+    + userId: Long
+    + duringTime: String
+    + topImage: String
+    + recipeImage: String
+    + video: String
+    + reviewCount: Int
+    + items: List<Items>
+    + step: List<String>
+    + averageRating: Double
+    + isSaved: Boolean
+    + share: String
+    + category: Category
+    + serveCount: Int
+    + createdAt: String
+}
+
+class Items {
+    + image: String
+    + title: String
+    + weight: Double
+}
+
+
+enum Category {
+    ALL
+    CEREAL
+    VEGETABLES
+    DINNER
+    ASIAN
+    INDIAN
+    CHINESE
+    ITALIAN
+    LOCALDISH
+    FRUITS
+    PROTEIN
+    BREAKFAST
+    LUNCH
+}
+
+class Rate {
+    + id: Long
+    + recipeId: Long
+    + rate: Double
+}
+
+enum SignUpType {
+    GOOGLE
+    FACEBOOK
+    DEFAULT
+}
+
+class Comment {
+    + id: Long
+    + userId: Long
+    + recipeId : Long
+    + content: String
+    + createdAt: String
+    + isLiked: Boolean
+    + likeCount: Int
+    + dislikeCount: Int
+}
+
+
+interface AuthRepository {
+    + fun signUp(email, password, name)
+    + fun signIn(email, password)
+    + fun checkPassword(password, checkPassword): Boolean
+    + fun oAuthSignIn(type: SingUpType)
+    + fun signOut()
+}
+
+interface UserRepository {
+    + fun getUser(id): User
+    + fun followUser(userId)
+    + fun unFollowUser(userId)
+}
+
+
+interface NotificationRepository {
+    + fun getNotifications(isRead: Boolean? = null): List<Notification>
+}
+
+interface RecipeRepository {
+    + fun getRecipes(): List<Recipe>
+    + fun getRecipe(id): Recipe?
+    + fun searchRecipesByFilter(keyword,time: Time,rate: rate, category: Category): List<Recipe>
+    + fun getRecipesByUser(userId): List<User>
+    + fun createRecipe(recipe: Recipe)
+    + fun getNewRecipes(): List<Recipe>
+    + fun getRecipeByCategory(category: Category): List<Recipe>
+    + fun toggleRecipe(isSaved: Boolean)
+    + fun getSavedRecipes(): List<Recipe>
+    + fun getRecentRecipes(): List<Recipe>
+    + fun saveRate(rate: Rate)
+    + fun getRate(recipeId): Double
+}
+
+interface CommentRepository {
+    + fun getComments(recipeId): List<Comment>
+    + fun createComment(content,recipeId,userId)
+    + fun likeComment(commentId)
+    + fun dislikeComment(commentId)
+    + fun getLikeCount(commentId): Int
+    + fun getDisLikeCount(commentId): Int
+}
+
+
+@enduml
