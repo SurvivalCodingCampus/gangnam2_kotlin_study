@@ -85,7 +85,7 @@ class Notification {
     content: String
     sentAt: LocalDateTime
     isRead: Boolean
-    readAt: LocalDateTime
+    readAt: LocalDateTime?
 }
 
 enum ReviewReaction {
