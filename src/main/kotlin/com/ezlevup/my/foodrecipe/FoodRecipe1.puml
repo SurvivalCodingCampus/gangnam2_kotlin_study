@@ -13,6 +13,10 @@ class Account {
     type: AccountType
     followerCount: Int
     followingCount: Int
+}
+
+' 사용자 활동 데이터
+class UserActivity {
     ' 즐겨찾기 레시피, Recipe ID 만 저장
     savedRecipeIds: List<Long>
     ' 최근 검색한 레시피, Recipe ID 만 저장
@@ -123,6 +127,11 @@ interface AccountRepository {
     suspend fun signUp(account: Account): Result<Account, E>
     suspend fun getProfile(userId: Long): Result<Account, E>
     suspend fun updateAccount(account: Account): Result<Account, E>
+}
+
+' 사용자 활동 데이터
+interface UserActivityRepository {
+    suspend fun loadActivity(): Result<UserActivity, E>
 }
 
 ' 팔로우 관리
