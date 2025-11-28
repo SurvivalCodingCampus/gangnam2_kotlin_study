@@ -1,0 +1,215 @@
+@startuml
+' Food Recipe class-diagram
+
+class Account {
+    id: Long
+    name: String
+    email: String
+    passwordHash: String?
+    imageUrl: String
+    jobGrade: String
+    description: String
+    country: String
+    city: String
+    type: AccountType
+    followerCount: Int
+    followingCount: Int
+}
+
+' 사용자 활동 데이터
+class UserActivity {
+    ' 즐겨찾기 레시피, Recipe ID 만 저장
+    savedRecipeIds: List<Long>
+    ' 최근 검색한 레시피, Recipe ID 만 저장
+    recentSearchRecipeIds: List<Long>
+    followUserIds: List<Long>
+}
+
+enum AccountType {
+    EMAIL,
+    GOOGLE,
+    FACEBOOK,
+}
+
+' 재료
+class Ingredient {
+    name: String
+    imageUrl: String
+    amount: Double
+    unit: String ' 단위 (예: "g", "ml", "개")
+}
+
+' 조리 순서
+class Procedure {
+    step: Int
+    content: String
+}
+
+' 레시피
+class Recipe {
+    id: Long
+    authorId: Long
+    title: String
+    category: Category
+    cookingTime: Int
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    shareUrl: String
+    videoUrl: String
+    ' 별점
+    averageRating: Double
+    ' 총 리뷰수
+    reviewCount: Int
+    ingredients: List<Ingredient>
+    procedures: List<Procedure>
+    reviews: List<Review>
+    imageUrl: String
+}
+
+enum Category {
+    CEREAL,
+    VEGETABLES,
+    DINNER,
+    CHINESE,
+    LOCAL_DISH,
+    FRUIT,
+    BREAKFAST,
+    SPANISH,
+    LUNCH,
+}
+
+
+class Notification {
+    id: Long
+    title: String
+    content: String
+    sentAt: LocalDateTime
+    isRead: Boolean
+    readAt: LocalDateTime?
+}
+
+enum ReviewReaction {
+    LIKE,
+    DISLIKE,
+    NONE,
+}
+
+class Review {
+    id: Long
+    ' 리뷰 작성자
+    authorId: Long
+    comment: String
+    createdAt: LocalDateTime
+    updatedAt: LocalDateTime
+    likeCount: Int
+    dislikeCount: Int
+    reaction: ReviewReaction
+}
+
+enum SortTime {
+    ALL,
+    NEWEST,
+    OLDEST,
+    POPULARITY,
+}
+
+enum StarRating {
+    ONE_STAR,
+    TWO_STARS,
+    THREE_STARS,
+    FOUR_STARS,
+    FIVE_STARS
+}
+
+class SearchFilter {
+    time: SortTime
+    rate: StarRating
+    category: Category
+}
+
+' 계정 관리
+interface AccountRepository {
+    suspend fun login(email: String, pw: String): Result<Account, E>
+    suspend fun signUp(account: Account): Result<Account, E>
+    suspend fun getProfile(userId: Long): Result<Account, E>
+    suspend fun updateAccount(account: Account): Result<Account, E>
+}
+
+' 사용자 활동 데이터
+interface UserActivityRepository {
+    suspend fun loadActivity(): Result<UserActivity, E>
+}
+
+' 팔로우 관리
+interface FollowRepository {
+    suspend fun follow(userId: Long, followUserId: Long): Result<Unit, E>
+    suspend fun unfollow(userId: Long, followUserId: Long): Result<Unit, E>
+}
+
+' 즐겨찾기 관리
+interface FavoriteRepository {
+    suspend fun getSavedRecipes(userId: Long): Result<List<Recipe>, E>
+    suspend fun addSavedRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+    suspend fun unsaveRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+}
+
+' 검색 기록 관리
+interface SearchHistoryRepository {
+    ' 최근 검색 레시피
+    suspend fun getRecentSearchRecipes(userId: Long): Result<List<Recipe>, E>
+}
+
+' 리뷰 관리
+interface ReviewRepository {
+    suspend fun likeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun dislikeReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun createReview(userId: Long, recipeId: Long, review: Review): Result<Unit, E>
+    suspend fun editReview(userId: Long, recipeId: Long, review: Review): Result<Unit, E>
+    suspend fun deleteReview(userId: Long, recipeId: Long, reviewId: Long): Result<Unit, E>
+    suspend fun getReviews(recipeId: Long): Result<List<Review>, E>
+}
+
+' 레시피 관리
+interface RecipeRepository {
+    suspend fun getRecipes(): Result<List<Recipe>, E>
+    suspend fun searchRecipes(search: String, searchFilter: SearchFilter): Result<List<Recipe>, E>
+    suspend fun createRecipe(userId: Long, recipe: Recipe): Result<Unit, E>
+    suspend fun editRecipe(userId: Long, recipe: Recipe): Result<Unit, E>
+    suspend fun deleteRecipe(userId: Long, recipeId: Long): Result<Unit, E>
+    suspend fun rateRecipe(userId: Long, recipeId: Long, rate: Double): Result<Unit, E>
+}
+
+enum NotificationFilter {
+    ALL,
+    READ,
+    UNREAD,
+}
+
+' 알림 관리
+interface NotificationRepository  {
+    suspend fun getNotifications(userId: Long, filter: NotificationFilter): Result<List<Notification>, E>
+    suspend fun readNotifications(userId: Long, notificationId: Long): Result<Unit, E>
+}
+
+
+' 관계 정의
+
+' Account 관계
+Account "1" -- "1" AccountType
+Account "1" -- "0..1" UserActivity
+
+' Review 관계
+Review "many" -- "1" Account
+Review "1" -- "1" ReviewReaction
+
+' Notification 관계
+Notification "many" -- "1" Account
+
+' Recipe 관계
+Recipe "1" *-- "many" Ingredient
+Recipe "1" *-- "many" Procedure
+Recipe "1" -- "many" Review
+Recipe "1" -- "1" Category
+Recipe "many" -- "1" Account : created by <
+
+@enduml
