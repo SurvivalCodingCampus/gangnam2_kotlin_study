@@ -5,6 +5,7 @@ class Account {
     id: Long
     name: String
     email: String
+    passwordHash: String?
     imageUrl: String
     jobGrade: String
     description: String
@@ -87,6 +88,12 @@ class Notification {
     readAt: LocalDateTime
 }
 
+enum ReviewReaction {
+    LIKE,
+    DISLIKE,
+    NONE,
+}
+
 class Review {
     id: Long
     ' 리뷰 작성자
@@ -96,8 +103,7 @@ class Review {
     updatedAt: LocalDateTime
     likeCount: Int
     dislikeCount: Int
-    isLike: Boolean
-    isDisLike: Boolean
+    reaction: ReviewReaction
 }
 
 enum SortTime {
