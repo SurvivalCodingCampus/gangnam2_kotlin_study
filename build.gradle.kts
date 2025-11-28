@@ -13,9 +13,13 @@ repositories {
 val ktorVersion = "3.3.2"
 val coroutinesVersion = "1.10.1"
 val serializationVersion = "1.9.0"
+val mockkVersion = "1.13.13"
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    // MockK (단위 테스트용 mocking 라이브러리)
+    testImplementation("io.mockk:mockk:$mockkVersion")
 
     // Ktor MockEngine
     testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
