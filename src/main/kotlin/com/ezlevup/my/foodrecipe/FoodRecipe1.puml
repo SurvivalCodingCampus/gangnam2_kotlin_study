@@ -194,5 +194,22 @@ interface NotificationRepository  {
 
 ' 관계 정의
 
+' Account 관계
+Account "1" -- "1" AccountType
+Account "1" -- "0..1" UserActivity
+
+' Review 관계
+Review "many" -- "1" Account
+Review "1" -- "1" ReviewReaction
+
+' Notification 관계
+Notification "many" -- "1" Account
+
+' Recipe 관계
+Recipe "1" *-- "many" Ingredient
+Recipe "1" *-- "many" Procedure
+Recipe "1" -- "many" Review
+Recipe "1" -- "1" Category
+Recipe "many" -- "1" Account : created by <
 
 @enduml
