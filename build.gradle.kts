@@ -23,6 +23,7 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:3.3.2")
     testImplementation("io.ktor:ktor-client-mock:3.3.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
 
 }
 
