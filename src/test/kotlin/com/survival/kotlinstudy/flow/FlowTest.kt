@@ -1,9 +1,10 @@
 package com.survival.kotlinstudy.flow
 
 import app.cash.turbine.test
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.zip
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -66,4 +67,27 @@ class FlowTest {
         }
     }
 
+    @Test
+    fun `Debounce 테스트()`() = runTest {
+        val list = listOf("h", "he", "hel", "hell", "hello")
+        val debounceFlow = debounceFlow(list)
+
+        debounceFlow.test {
+            assertEquals(list.last(), awaitItem())
+
+            awaitComplete()
+        }
+    }
+
+    @Test
+    fun `dispatcherFlow() 테스트`() = runTest {
+        withContext(Dispatchers.IO) {
+            val ioFlow = dispatcherFlow()
+
+            ioFlow.test {
+                assertEquals("데이터 로딩 중", awaitItem())
+                awaitComplete()
+            }
+        }
+    }
 }
