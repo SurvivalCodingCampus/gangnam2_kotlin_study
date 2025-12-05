@@ -68,7 +68,7 @@ fun main() = runBlocking {
     // HP 변화 관찰
     hero.hpFlow()
         .onEach { hp -> println("${hero.name}의 현재 HP: $hp") }
-    filter { hp -> hp < 50 } // HP가 50 미만일 때만
+        .filter { hp -> hp < 50 } // HP가 50 미만일 때만
         .onEach { println("${hero.name}가 위험합니다!") }
         .launchIn(this)
 
