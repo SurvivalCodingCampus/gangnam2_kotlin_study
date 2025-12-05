@@ -24,6 +24,6 @@ fun main() = runBlocking {
         while (true){
             emit(readln())
         }
-    }.debounce(3000)
+    }.debounce(300)
         .collect { println("Debounced: $it") }
 }
