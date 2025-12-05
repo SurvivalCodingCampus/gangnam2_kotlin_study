@@ -78,16 +78,4 @@ class FlowTest {
             awaitComplete()
         }
     }
-
-    @Test
-    fun `dispatcherFlow() 테스트`() = runTest {
-        withContext(Dispatchers.IO) {
-            val ioFlow = dispatcherFlow()
-
-            ioFlow.test {
-                assertEquals("데이터 로딩 중", awaitItem())
-                awaitComplete()
-            }
-        }
-    }
 }

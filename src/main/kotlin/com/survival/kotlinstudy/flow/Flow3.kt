@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 
 fun dispatcherFlow() = flow {
     emit("데이터 로딩 중")
-}.flowOn(Dispatchers.Default)
+}.flowOn(Dispatchers.IO)
 
 fun debounceFlow(list: List<String>) = flow {
 
