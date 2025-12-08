@@ -9,11 +9,11 @@ import kotlinx.coroutines.runBlocking
 fun main() = runBlocking {
     val flow = flow {
         for (i in 1..5) {
-            delay(1000)
+            delay(100)
             emit(i)
         }
     }
-    
+
     flow
         .filter { it % 2 == 0 }  // 짝수만 통과
         .map { it * 10 }        // 10배 증가
